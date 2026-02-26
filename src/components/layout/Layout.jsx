@@ -101,7 +101,7 @@ export default function Layout() {
             </div>
           </button>
           <div className="flex-1 min-w-0">
-            <div className="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight">salescloserpro</div>
+            <div className="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight">salescloserpro.ai</div>
             <div className="text-xs text-gray-400 dark:text-gray-500 leading-tight truncate">
               {company.name || 'Your Company'}
             </div>
@@ -230,7 +230,7 @@ export default function Layout() {
             ) : (
               <img src="/salescloserpro-logo.svg" alt="SalesCloserPro" className="w-7 h-7 rounded-full" />
             )}
-            <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloserpro</span>
+            <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloserpro.ai</span>
           </div>
           <button
             onClick={toggleTheme}

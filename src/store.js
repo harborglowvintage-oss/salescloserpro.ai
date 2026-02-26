@@ -10,13 +10,13 @@ const useStore = create(
 
       // ── Company Settings ──────────────────────────────
       company: {
-        name: '',
+        name: 'llmadvisor.ai',
         logo: '',
         address: '',
         phone: '',
         email: '',
-        website: '',
-        homeState: 'TX',
+        website: 'https://llmadvisor.ai',
+        homeState: 'MA',
       },
       setCompany: (data) => set((s) => ({ company: { ...s.company, ...data } })),
 

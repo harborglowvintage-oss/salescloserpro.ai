@@ -22,11 +22,11 @@
 <table align="center">
   <tr>
     <td align="center"><strong>� Purchase Orders</strong></td>
-    <td align="center"><strong>📝 Quote Builder</strong></td>
+    <td align="center"><strong>⚙️ Company Settings</strong></td>
   </tr>
   <tr>
     <td align="center"><img src="screenshots/purchase-orders.png" alt="Purchase Orders" width="480" /></td>
-    <td align="center"><img src="screenshots/quote-builder.png" alt="Quote Builder" width="480" /></td>
+    <td align="center"><img src="screenshots/company-settings.png" alt="Company Settings" width="480" /></td>
   </tr>
   <tr><td colspan="2"><br></td></tr>
   <tr>

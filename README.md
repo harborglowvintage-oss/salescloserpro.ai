@@ -2,7 +2,7 @@
   <img src="public/gptlogo.png" alt="SalesCloserPro Logo" width="120" />
 </p>
 
-<h1 align="center">salescloserpro — Close More. Stress Less. 💪</h1>
+<h1 align="center">salescloserpro.ai — Close More. Stress Less. 💪</h1>
 
 <p align="center">
   <strong>Free, open-source sales quoting, CRM, pipeline, purchase orders & invoicing — browser + desktop.</strong><br/>

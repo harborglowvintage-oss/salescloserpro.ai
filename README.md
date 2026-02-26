@@ -20,6 +20,9 @@
 <p align="center">
   <img src="screenshots/dashboard.png" alt="SalesCloserPro Dashboard" width="720" />
 </p>
+<p align="center">
+  <img src="screenshots/quote-builder.png" alt="SalesCloserPro Quote Builder" width="720" />
+</p>
 
 ---
 

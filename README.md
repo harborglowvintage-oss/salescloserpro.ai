@@ -21,7 +21,7 @@
 
 <table align="center">
   <tr>
-    <td align="center"><strong>� Purchase Orders</strong></td>
+    <td align="center"><strong>📋 Purchase Orders</strong></td>
     <td align="center"><strong>⚙️ Company Settings</strong></td>
   </tr>
   <tr>

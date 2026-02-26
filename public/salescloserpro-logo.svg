@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <defs>
+    <clipPath id="sq"><rect width="512" height="512" rx="64"/></clipPath>
+  </defs>
+
+  <!-- Background: warm cream -->
+  <rect width="512" height="512" rx="64" fill="#EDE8DC"/>
+
+  <!-- Large teal circle (center-back) -->
+  <circle cx="256" cy="210" r="145" fill="#4A8B8C"/>
+
+  <!-- Upper-left dot grid -->
+  <g fill="#4A8B8C" opacity="0.5">
+    <circle cx="62" cy="90" r="2.5"/><circle cx="72" cy="90" r="2.5"/><circle cx="82" cy="90" r="2.5"/><circle cx="92" cy="90" r="2.5"/>
+    <circle cx="62" cy="100" r="2.5"/><circle cx="72" cy="100" r="2.5"/><circle cx="82" cy="100" r="2.5"/><circle cx="92" cy="100" r="2.5"/>
+    <circle cx="62" cy="110" r="2.5"/><circle cx="72" cy="110" r="2.5"/><circle cx="82" cy="110" r="2.5"/><circle cx="92" cy="110" r="2.5"/>
+    <circle cx="62" cy="120" r="2.5"/><circle cx="72" cy="120" r="2.5"/><circle cx="82" cy="120" r="2.5"/><circle cx="92" cy="120" r="2.5"/>
+  </g>
+
+  <!-- Upper-right angular bracket -->
+  <path d="M400,48 L440,48 L440,108" fill="none" stroke="#1C2D3A" stroke-width="6" stroke-linecap="square"/>
+
+  <!-- ═══ LEFT FIGURE (man with tie) ═══ -->
+  <g>
+    <!-- Body / suit jacket -->
+    <path d="M75,260 L105,180 Q115,165 140,160 L170,155 L200,160 Q210,165 215,180 L230,325 L240,430 L165,430 L155,360 L140,430 L75,430 Z" fill="#1C2D3A"/>
+    <!-- Teal jacket highlights -->
+    <path d="M105,185 L140,168 L140,300 L95,300 Z" fill="#4A8B8C" opacity="0.7"/>
+    <path d="M200,168 L215,185 L215,290 L175,290 L175,200 Z" fill="#4A8B8C" opacity="0.5"/>
+    <!-- Shirt V / collar -->
+    <path d="M140,160 L170,155 L170,220 L155,200 L140,220 Z" fill="#EDE8DC"/>
+    <!-- Tie -->
+    <path d="M155,175 L162,175 L160,240 L157,250 L154,240 Z" fill="#1C2D3A"/>
+    <!-- Head -->
+    <ellipse cx="158" cy="120" rx="42" ry="48" fill="#EDE8DC"/>
+    <!-- Hair (dark, slicked back) -->
+    <path d="M118,105 Q120,62 158,58 Q196,62 198,105 Q195,85 158,82 Q121,85 118,105 Z" fill="#1C2D3A"/>
+    <!-- Eye -->
+    <ellipse cx="175" cy="115" rx="6" ry="6" fill="#1C2D3A"/>
+    <circle cx="177" cy="113" r="2" fill="#EDE8DC"/>
+    <!-- Ear hint -->
+    <ellipse cx="120" cy="118" rx="5" ry="8" fill="#D4CEBC"/>
+    <!-- Arm going right to handshake -->
+    <path d="M210,240 Q230,230 248,260 L248,285 Q230,275 215,280 Z" fill="#1C2D3A"/>
+    <!-- Suit sleeve cuff -->
+    <rect x="240" y="260" width="12" height="18" rx="2" fill="#EDE8DC"/>
+  </g>
+
+  <!-- ═══ RIGHT FIGURE (woman with bun) ═══ -->
+  <g>
+    <!-- Body / suit jacket -->
+    <path d="M282,260 L300,180 Q310,165 330,160 L360,155 Q385,160 395,175 L420,260 L437,430 L362,430 L355,360 L348,430 L282,430 Z" fill="#1C2D3A"/>
+    <!-- Teal jacket highlights -->
+    <path d="M305,185 L340,168 L340,300 L295,300 Z" fill="#4A8B8C" opacity="0.7"/>
+    <path d="M380,168 L400,185 L420,290 L370,290 Z" fill="#4A8B8C" opacity="0.5"/>
+    <!-- Collar / neckline -->
+    <path d="M335,160 L365,155 L365,210 L350,195 L335,210 Z" fill="#EDE8DC"/>
+    <!-- Head -->
+    <ellipse cx="355" cy="120" rx="42" ry="48" fill="#EDE8DC"/>
+    <!-- Hair (dark, with bun) -->
+    <path d="M315,108 Q318,62 355,58 Q392,62 395,108 Q392,88 355,85 Q318,88 315,108 Z" fill="#1C2D3A"/>
+    <!-- Bun -->
+    <circle cx="395" cy="80" r="18" fill="#1C2D3A"/>
+    <!-- Eye -->
+    <ellipse cx="338" cy="115" rx="6" ry="6" fill="#1C2D3A"/>
+    <circle cx="336" cy="113" r="2" fill="#EDE8DC"/>
+    <!-- Ear hint -->
+    <ellipse cx="393" cy="118" rx="5" ry="8" fill="#D4CEBC"/>
+    <!-- Arm going left to handshake -->
+    <path d="M300,240 Q280,230 264,260 L264,285 Q280,275 298,280 Z" fill="#1C2D3A"/>
+    <!-- Suit sleeve cuff -->
+    <rect x="260" y="260" width="12" height="18" rx="2" fill="#EDE8DC"/>
+  </g>
+
+  <!-- ═══ HANDSHAKE (center) ═══ -->
+  <g transform="translate(228, 272)">
+    <!-- Left hand -->
+    <path d="M14,4 Q20,-2 30,0 L42,4 Q46,8 44,14 L38,18 L22,20 Q12,18 10,12 Z" fill="#EDE8DC" stroke="#D4CEBC" stroke-width="1"/>
+    <!-- Right hand -->
+    <path d="M42,4 Q48,-2 56,2 L58,8 Q58,16 52,18 L38,18 Q34,14 34,10 Z" fill="#EDE8DC" stroke="#D4CEBC" stroke-width="1"/>
+    <!-- Finger details -->
+    <path d="M22,12 Q28,8 34,10" fill="none" stroke="#D4CEBC" stroke-width="1.2"/>
+    <path d="M26,16 Q32,12 38,14" fill="none" stroke="#D4CEBC" stroke-width="1"/>
+  </g>
+
+  <!-- ═══ BOTTOM DOT ROW (cream → teal → dark navy gradient) ═══ -->
+  <g transform="translate(0, 0)">
+    <circle cx="96"  cy="462" r="11" fill="#EDE8DC"/>
+    <circle cx="136" cy="462" r="11" fill="#D4CEBC"/>
+    <circle cx="176" cy="462" r="9"  fill="#A8B5A0"/>
+    <circle cx="210" cy="462" r="11" fill="#7BA393"/>
+    <circle cx="246" cy="462" r="9"  fill="#4A8B8C"/>
+    <circle cx="278" cy="462" r="11" fill="#3D7A7B"/>
+    <circle cx="312" cy="462" r="9"  fill="#2D5A5E"/>
+    <circle cx="342" cy="462" r="11" fill="#1C3D45"/>
+    <circle cx="376" cy="462" r="9"  fill="#1C2D3A"/>
+    <circle cx="410" cy="462" r="11" fill="#111D28"/>
+  </g>
+</svg>

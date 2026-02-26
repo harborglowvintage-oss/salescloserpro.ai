@@ -1,0 +1,38 @@
+# Dependencies
+node_modules/
+.npm
+
+# Build output
+dist/
+dist-ssr/
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.*.local
+
+# Editor
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# Vite
+vite.config.js.timestamp-*
+
+# Electron release builds
+release/
+
+# Scratch files
+Untitled-1.ini
+
+# OS
+.DS_Store
+desktop.ini

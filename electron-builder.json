@@ -1,0 +1,79 @@
+{
+  "appId": "com.llmadvisor.salescloserpro",
+  "productName": "SalesCloserPro",
+  "directories": {
+    "output": "release"
+  },
+  "files": [
+    "dist/**/*",
+    "electron/**/*",
+    "build/**/*",
+    "!node_modules/**/*"
+  ],
+  "extraResources": [],
+  "asar": true,
+
+  "win": {
+    "target": [
+      {
+        "target": "nsis",
+        "arch": ["x64"]
+      },
+      {
+        "target": "portable",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "build/icons/icon.ico",
+    "artifactName": "SalesCloserPro-${version}-Setup-${arch}.${ext}"
+  },
+  "nsis": {
+    "oneClick": false,
+    "perMachine": false,
+    "allowToChangeInstallationDirectory": true,
+    "shortcutName": "SalesCloserPro",
+    "installerIcon": "build/icons/icon.ico",
+    "uninstallerIcon": "build/icons/icon.ico",
+    "installerHeaderIcon": "build/icons/icon.ico"
+  },
+
+  "mac": {
+    "target": [
+      {
+        "target": "dmg",
+        "arch": ["x64", "arm64"]
+      }
+    ],
+    "icon": "build/icons/icon.icns",
+    "category": "public.app-category.business",
+    "artifactName": "SalesCloserPro-${version}-${arch}.${ext}"
+  },
+  "dmg": {
+    "title": "SalesCloserPro ${version}",
+    "contents": [
+      { "x": 130, "y": 220 },
+      { "x": 410, "y": 220, "type": "link", "path": "/Applications" }
+    ]
+  },
+
+  "linux": {
+    "target": [
+      {
+        "target": "AppImage",
+        "arch": ["x64"]
+      },
+      {
+        "target": "deb",
+        "arch": ["x64"]
+      }
+    ],
+    "icon": "build/icons/icon.png",
+    "category": "Office",
+    "artifactName": "SalesCloserPro-${version}-${arch}.${ext}",
+    "desktop": {
+      "Name": "SalesCloserPro",
+      "Comment": "Sales quoting, CRM, and pipeline tool",
+      "Categories": "Office;Finance;ProjectManagement"
+    }
+  }
+}

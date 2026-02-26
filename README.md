@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/salescloserpro-logo.svg" alt="SalesCloserPro Logo" width="72" />
+  <img src="public/gptlogo.png" alt="SalesCloserPro Logo" width="120" />
 </p>
 
 <h1 align="center">salescloserpro — Close More. Stress Less. 💪</h1>

@@ -542,6 +542,21 @@ export default function GoLiveWizard() {
 
                   <Tip>Builds run on GitHub's free tier (2,000 min/month for public repos — unlimited). Tag a release like <code className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs">git tag v1.0.0 && git push --tags</code> to auto-build and create a GitHub Release with all installers attached.</Tip>
 
+                  {/* macOS notarization note */}
+                  <div className="bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800 rounded-xl p-4 text-sm space-y-2">
+                    <div className="flex items-center gap-2 font-bold text-amber-800 dark:text-amber-300">
+                      <AlertCircle className="w-4 h-4" /> macOS: Unsigned App Warning
+                    </div>
+                    <p className="text-amber-700 dark:text-amber-400 text-xs leading-relaxed">
+                      macOS builds are <strong>unsigned</strong> unless you have an Apple Developer account ($99/year). Users will see a "Damaged" or "Unidentified Developer" warning. To bypass:
+                    </p>
+                    <ul className="text-amber-700 dark:text-amber-400 text-xs space-y-1 ml-1">
+                      <li>• <strong>Right-click → Open</strong> the app (instead of double-clicking)</li>
+                      <li>• Or run: <code className="bg-white dark:bg-gray-800 px-1.5 py-0.5 rounded text-[11px]">xattr -cr /Applications/SalesCloserPro.app</code></li>
+                    </ul>
+                    <p className="text-amber-600 dark:text-amber-500 text-[11px]">Windows & Linux builds work out of the box — no signing needed.</p>
+                  </div>
+
                   {/* Quick commands */}
                   <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-xs text-gray-600 dark:text-gray-400 space-y-2">
                     <p className="font-bold text-gray-700 dark:text-gray-300">Quick commands:</p>

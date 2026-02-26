@@ -157,6 +157,8 @@ All built artifacts are output to the `release/` directory.
 | `SalesCloserPro-1.0.0-x64.dmg` | Intel Macs |
 | `SalesCloserPro-1.0.0-arm64.dmg` | Apple Silicon (M1/M2/M3/M4) |
 
+> ⚠️ **macOS Unsigned App Warning:** Without an Apple Developer account ($99/year), macOS builds are unsigned. Users will see a "Damaged" or "Unidentified Developer" warning. To bypass: **right-click → Open** the app, or run `xattr -cr /Applications/SalesCloserPro.app` in Terminal. Windows & Linux builds work out of the box.
+
 ### 🐧 Linux Output
 
 | File | Description |

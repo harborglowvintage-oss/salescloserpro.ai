@@ -6,13 +6,13 @@ const useStore = create(
   persist(
     (set, get) => ({
       // ── Theme ──────────────────────────────────────────
-      theme: 'light',
+      theme: 'dark',
       toggleTheme: () => set((s) => ({ theme: s.theme === 'light' ? 'dark' : 'light' })),
 
       // ── Company Settings ──────────────────────────────
       company: {
         name: 'llmadvisor.ai',
-        logo: '',
+        logo: '/gptlogo.png',
         address: '',
         phone: '',
         email: '',

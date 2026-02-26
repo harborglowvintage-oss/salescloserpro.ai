@@ -21,29 +21,29 @@
 
 <table align="center">
   <tr>
-    <td align="center"><strong>📊 Dashboard</strong></td>
+    <td align="center"><strong>� Purchase Orders</strong></td>
     <td align="center"><strong>📝 Quote Builder</strong></td>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/dashboard.png" alt="Dashboard" width="480" /></td>
+    <td align="center"><img src="screenshots/purchase-orders.png" alt="Purchase Orders" width="480" /></td>
     <td align="center"><img src="screenshots/quote-builder.png" alt="Quote Builder" width="480" /></td>
   </tr>
   <tr><td colspan="2"><br></td></tr>
   <tr>
-    <td align="center"><strong>🔄 Pipeline</strong></td>
-    <td align="center"><strong>👥 Clients</strong></td>
+    <td align="center"><strong>💾 Backup &amp; Restore</strong></td>
+    <td align="center"><strong>❓ Help Guide</strong></td>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/pipeline.png" alt="Pipeline" width="480" /></td>
-    <td align="center"><img src="screenshots/clients.png" alt="Clients" width="480" /></td>
+    <td align="center"><img src="screenshots/backup-restore.png" alt="Backup &amp; Restore" width="480" /></td>
+    <td align="center"><img src="screenshots/help-guide.png" alt="Help Guide" width="480" /></td>
   </tr>
   <tr><td colspan="2"><br></td></tr>
   <tr>
-    <td align="center"><strong>🌙 Dark Mode</strong></td>
+    <td align="center"><strong>🆕 New Quote</strong></td>
     <td align="center"><strong>🚀 Go Live Wizard</strong></td>
   </tr>
   <tr>
-    <td align="center"><img src="screenshots/dark-mode.png" alt="Dark Mode" width="480" /></td>
+    <td align="center"><img src="screenshots/new-quote.png" alt="New Quote" width="480" /></td>
     <td align="center"><img src="screenshots/go-live-wizard.png" alt="Go Live Wizard" width="480" /></td>
   </tr>
 </table>

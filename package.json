@@ -1,6 +1,6 @@
 {
   "name": "salescloserpro",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Universal sales quoting, CRM, and pipeline tool — free, open source",
   "type": "module",
   "main": "electron/main.cjs",

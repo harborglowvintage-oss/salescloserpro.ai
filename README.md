@@ -23,6 +23,12 @@
 <p align="center">
   <img src="screenshots/quote-builder.png" alt="SalesCloserPro Quote Builder" width="720" />
 </p>
+<p align="center">
+  <img src="screenshots/pipeline.png" alt="SalesCloserPro Pipeline" width="720" />
+</p>
+<p align="center">
+  <img src="screenshots/dark-mode.png" alt="SalesCloserPro Dark Mode" width="720" />
+</p>
 
 ---
 

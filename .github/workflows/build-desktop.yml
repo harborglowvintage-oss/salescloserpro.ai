@@ -44,6 +44,8 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+        env:
+          NODE_ENV: development
 
       - name: 🏗️ Build Vite app
         run: npm run build
@@ -52,6 +54,7 @@ jobs:
         run: npx electron-builder --config electron-builder.json --win
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USE_HARD_LINKS: false
 
       - name: 📤 Upload Windows artifacts
         uses: actions/upload-artifact@v4
@@ -68,7 +71,7 @@ jobs:
       github.event_name == 'push' ||
       github.event.inputs.platforms == 'all' ||
       github.event.inputs.platforms == 'macos'
-    runs-on: macos-latest
+    runs-on: macos-13
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4
@@ -81,6 +84,8 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+        env:
+          NODE_ENV: development
 
       - name: 🏗️ Build Vite app
         run: npm run build
@@ -89,6 +94,8 @@ jobs:
         run: npx electron-builder --config electron-builder.json --mac
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CSC_IDENTITY_AUTO_DISCOVERY: false
+          USE_HARD_LINKS: false
 
       - name: 📤 Upload macOS artifacts
         uses: actions/upload-artifact@v4
@@ -116,6 +123,8 @@ jobs:
 
       - name: 📦 Install dependencies
         run: npm ci
+        env:
+          NODE_ENV: development
 
       - name: 🏗️ Build Vite app
         run: npm run build
@@ -124,6 +133,7 @@ jobs:
         run: npx electron-builder --config electron-builder.json --linux
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USE_HARD_LINKS: false
 
       - name: 📤 Upload Linux artifacts
         uses: actions/upload-artifact@v4

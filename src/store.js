@@ -1,5 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
+import { indexedDBStorage } from './db'
 
 const useStore = create(
   persist(
@@ -293,7 +294,7 @@ const useStore = create(
           },
         })),
     }),
-    { name: 'salescloserpro-data' }
+    { name: 'salescloserpro-data', storage: indexedDBStorage }
   )
 )
 

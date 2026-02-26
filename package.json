@@ -22,15 +22,16 @@
     "electron:build:linux": "vite build && electron-builder --config electron-builder.json --linux"
   },
   "dependencies": {
+    "clsx": "^2.1.1",
+    "date-fns": "^3.6.0",
+    "dexie": "^4.3.0",
+    "jspdf": "^2.5.1",
+    "jspdf-autotable": "^3.8.2",
+    "lucide-react": "^0.378.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-router-dom": "^6.22.3",
-    "lucide-react": "^0.378.0",
-    "jspdf": "^2.5.1",
-    "jspdf-autotable": "^3.8.2",
-    "zustand": "^4.5.2",
-    "date-fns": "^3.6.0",
-    "clsx": "^2.1.1"
+    "zustand": "^4.5.2"
   },
   "devDependencies": {
     "@types/react": "^18.3.1",

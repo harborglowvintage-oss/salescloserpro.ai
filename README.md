@@ -247,7 +247,7 @@ All built artifacts are output to the `release/` directory.
 - 📏 **Size limits** — max 5 files per quote, max 2 MB per file
 - 🖼️ **Visual thumbnails** — large, centered preview grid (44 × 40 rem) so you can see what you attached
 - 🗑️ **Remove** — click the ✕ on any thumbnail to detach
-- 💾 **Persisted** — attachments are saved with the quote in Zustand (base64 in `localStorage`)
+- 💾 **Persisted** — attachments are saved with the quote in Zustand (base64 in IndexedDB)
 - 🖨️ **Print-ready** — attachments are included in the save and print payload
 
 ### 🧮 50-State Tax Engine
@@ -436,7 +436,8 @@ The `index.html` ships with production-ready SEO markup so search engines and so
 | ⚛️ | **React** | 18.3 | UI component library |
 | ⚛️ | **React DOM** | 18.3 | React renderer for the browser |
 | 🧭 | **React Router DOM** | 6.22 | SPA navigation (HashRouter for static hosting & Electron) |
-| 🐻 | **Zustand** | 4.5 | Lightweight state management + `localStorage` persist middleware |
+| 🐻 | **Zustand** | 4.5 | Lightweight state management + IndexedDB persist middleware |
+| 🗄️ | **Dexie.js** | 4.x | IndexedDB wrapper — scalable local storage for 50,000+ records |
 | 📄 | **jsPDF** | 2.5 | Client-side PDF generation |
 | 📊 | **jspdf-autotable** | 3.8 | PDF table formatting with auto-pagination |
 | 📅 | **date-fns** | 3.6 | Lightweight date formatting & manipulation |
@@ -459,7 +460,7 @@ The `index.html` ships with production-ready SEO markup so search engines and so
 
 ### 🏗️ Architecture Highlights
 
-- 🏠 **Offline-first** — all data stored in `localStorage`, no server required
+- 🏠 **Offline-first** — all data stored in IndexedDB (via Dexie.js), no server required
 - 🔒 **No accounts** — zero authentication, zero sign-up friction
 - 📱 **Responsive** — works on desktop, tablet, and mobile
 - 🌙 **Dark mode** — system-aware with manual toggle, preference persisted
@@ -563,13 +564,13 @@ SalesCloserPro ships with a **fully integrated dark mode** experience:
 
 - 🎨 **System-aware** — automatically matches your OS preference on first visit
 - 🔘 **Manual toggle** — switch between light/dark from the sidebar
-- 💾 **Persisted** — your preference is saved to `localStorage` (key: `salescloserpro-data`)
+- 💾 **Persisted** — your preference is saved to IndexedDB (key: `salescloserpro-data`)
 - 🖥️ **Flash-free** — a pre-render script in `index.html` prevents white flash on dark mode load
 - 🎯 **Full coverage** — every component, modal, card, input, chart, and pipeline stage has dark variants
 - 🎨 **Balanced light mode** — stronger card shadows, richer stage backgrounds for pipeline cards
 - 🌈 **Color-coded pipeline** — each stage (Lead, Quoted, Sent, Negotiating, Won, Lost) has distinct, carefully tuned colors in both modes
 
-> 💡 **Tip:** Dark mode is controlled via the `class` strategy in Tailwind. A `dark` class is toggled on the `<html>` element. The pre-flash script reads the Zustand persisted state directly from `localStorage`.
+> 💡 **Tip:** Dark mode is controlled via the `class` strategy in Tailwind. A `dark` class is toggled on the `<html>` element. The pre-flash script reads the Zustand persisted state from IndexedDB.
 
 ---
 
@@ -577,7 +578,7 @@ SalesCloserPro ships with a **fully integrated dark mode** experience:
 
 ### 🏗️ How It Works
 
-SalesCloserPro stores **all data locally** in your browser's `localStorage` (or Electron's equivalent):
+SalesCloserPro stores **all data locally** in your browser's **IndexedDB** via [Dexie.js](https://dexie.org) (upgraded from localStorage in v1.0.0):
 
 | Data | Storage Key | Details |
 |---|---|---|
@@ -591,18 +592,20 @@ SalesCloserPro stores **all data locally** in your browser's `localStorage` (or 
 | 💾 Backup settings | `salescloserpro-data` | Auto-backup config, schedule & history |
 | 🌙 Theme preference | `salescloserpro-data` | `"dark"` or `"light"` |
 
-> ⚠️ **Important:** Since data lives in `localStorage`, clearing browser data will erase everything. Use the **Backup & Restore** feature regularly!
+> ⚠️ **Important:** Since data lives in IndexedDB, clearing browser data will erase everything. Use the **Backup & Restore** feature regularly!
+
+> 🔄 **Automatic migration:** Existing `localStorage` data is seamlessly migrated to IndexedDB on first load — no manual steps needed.
 
 ### 📊 Storage Limits
 
-| Browser / Runtime | localStorage Limit |
-|---|---|
-| 🌐 Chrome / Edge | ~5 MB |
-| 🦊 Firefox | ~5 MB |
-| 🧭 Safari | ~5 MB |
-| 🖥️ Electron | ~5 MB (Chromium engine) |
+| Browser / Runtime | IndexedDB Limit | Old localStorage Limit |
+|---|---|---|
+| 🌐 Chrome / Edge | **Up to 80% of disk** | ~5 MB |
+| 🦊 Firefox | **Up to 2 GB+** | ~5 MB |
+| 🧭 Safari | **Up to 1 GB** | ~5 MB |
+| 🖥️ Electron | **Up to 80% of disk** | ~5 MB |
 
-> 💡 For most users, 5 MB is enough for **thousands of quotes and clients**. File attachments (base64-encoded) consume more space — the 2 MB per-file and 5-file-per-quote limits help keep storage manageable. Use the backup system to export and archive data as needed.
+> 💡 With IndexedDB, you can store **tens of thousands of quotes, clients, and attachments** without hitting limits. The old 5 MB cap is gone — file attachments, audit history, and large datasets all fit comfortably.
 
 ### 🔄 Data Sync
 
@@ -649,7 +652,7 @@ The integrated data sync ensures consistency across modules:
 <details>
 <summary>🔒 Is my data secure?</summary>
 
-✅ **Yes!** All data stays in your browser's `localStorage` (or Electron's local storage). Nothing is sent to any server. SalesCloserPro is 100% offline-first with zero cloud dependency for core features. Only MoonPay payments (if enabled) communicate with external services.
+✅ **Yes!** All data stays in your browser's IndexedDB (or Electron's local storage). Nothing is sent to any server. SalesCloserPro is 100% offline-first with zero cloud dependency for core features. Only MoonPay payments (if enabled) communicate with external services.
 </details>
 
 <details>
@@ -698,7 +701,7 @@ git push origin main
 <details>
 <summary>📎 How do file attachments work?</summary>
 
-The **FileUploader** component in the Quote Builder lets you drag-and-drop or browse for files (images and PDFs). Each quote supports up to 5 files, max 2 MB each. Files are stored as base64 strings inside the Zustand store (`localStorage`). They appear as large, centered thumbnails in the form.
+The **FileUploader** component in the Quote Builder lets you drag-and-drop or browse for files (images and PDFs). Each quote supports up to 5 files, max 2 MB each. Files are stored as base64 strings inside the Zustand store (IndexedDB). They appear as large, centered thumbnails in the form.
 </details>
 
 <details>
@@ -710,7 +713,7 @@ The tax database covers all 50 US states + DC with general state-level rates, in
 <details>
 <summary>💾 What if I clear my browser data?</summary>
 
-⚠️ Clearing `localStorage` will erase all SalesCloserPro data. Use the **Backup & Restore** feature to regularly export your data. Enable auto-backup for peace of mind. In the desktop Electron app, data persists in the Chromium profile directory.
+⚠️ Clearing browser/site data will erase all SalesCloserPro data (stored in IndexedDB). Use the **Backup & Restore** feature to regularly export your data. Enable auto-backup for peace of mind. In the desktop Electron app, data persists in the Chromium profile directory.
 </details>
 
 <details>

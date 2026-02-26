@@ -17,6 +17,10 @@
   <a href="#️-desktop-app--electron"><img src="https://img.shields.io/badge/Desktop-Windows%20%7C%20macOS%20%7C%20Linux-orange" alt="Desktop" /></a>
 </p>
 
+<p align="center">
+  <img src="screenshots/dashboard.png" alt="SalesCloserPro Dashboard" width="720" />
+</p>
+
 ---
 
 ## 📑 Table of Contents

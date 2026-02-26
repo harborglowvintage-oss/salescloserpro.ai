@@ -71,7 +71,7 @@ jobs:
       github.event_name == 'push' ||
       github.event.inputs.platforms == 'all' ||
       github.event.inputs.platforms == 'macos'
-    runs-on: macos-13
+    runs-on: macos-latest
     steps:
       - name: 📥 Checkout code
         uses: actions/checkout@v4

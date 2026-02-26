@@ -1,3 +1,11 @@
+/**
+ * SalesCloserPro - IndexedDB Storage & Migration
+ * Copyright (c) 2026 Brent Girolimon / llmadvisor.ai
+ * Powered by highsignal™
+ * Licensed under Apache-2.0
+ * https://github.com/harborglowvintage-oss/salescloserpro.ai
+ */
+
 import Dexie from 'dexie'
 
 // ── IndexedDB via Dexie ─────────────────────────────────

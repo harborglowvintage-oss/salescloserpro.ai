@@ -1,3 +1,11 @@
+/**
+ * SalesCloserPro - Application Root
+ * Copyright (c) 2026 Brent Girolimon / llmadvisor.ai
+ * Powered by highsignal™
+ * Licensed under Apache-2.0
+ * https://github.com/harborglowvintage-oss/salescloserpro.ai
+ */
+
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Layout from './components/layout/Layout'

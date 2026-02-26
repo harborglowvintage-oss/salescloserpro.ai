@@ -748,9 +748,36 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-⚖️ **Trademark Notice:** "SalesCloserPro" and the SalesCloserPro logo are trademarks of their respective owners. Use of these marks in derivative works requires prior written permission.
-
 ⚠️ **Disclaimer:** This software is provided "as is" without warranty of any kind. The authors and contributors are not responsible for any damages, data loss, financial loss, or other liabilities arising from the use of this software. Tax calculations are approximations — always verify with a licensed tax professional. MoonPay payment processing is provided by MoonPay and subject to their terms of service and fee schedule.
+
+---
+
+## 🏛️ Trademark & Attribution
+
+**highsignal™** is a registered trademark of llmadvisor.ai.
+
+While this software is **open-source under Apache-2.0**, the **highsignal™** name and branding are protected.
+
+### For Contributors:
+- ✅ You may contribute code to this project
+- ✅ Your contributions remain under Apache 2.0
+- See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines
+
+### For Forks:
+If you fork this project, you **must**:
+- ✅ Maintain attribution to the original SalesCloserPro project
+- ✅ Keep the Apache 2.0 license intact
+- ❌ **Remove all highsignal™ branding** (name, logo, trademarks)
+- ❌ **Rebrand under a different name**
+
+**Example fork attribution:**
+```
+Based on SalesCloserPro by highsignal™
+Original: https://github.com/harborglowvintage-oss/salescloserpro.ai
+Licensed under Apache-2.0
+```
+
+See [NOTICE](NOTICE) for full attribution requirements.
 
 ---
 
@@ -764,7 +791,7 @@ limitations under the License.
 
 <p align="center">
   <strong>🚀 salescloserpro — Close More. Stress Less. 💪</strong><br/>
-  <em>⚡ Powered by <a href="https://llmadvisor.ai">llmadvisor.ai</a></em>
+  <em>⚡ Powered by <strong>highsignal™</strong> / <a href="https://llmadvisor.ai">llmadvisor.ai</a></em>
 </p>
 
 <p align="center">

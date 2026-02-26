@@ -92,7 +92,7 @@ export default function Layout() {
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-full h-full object-cover" />
             ) : (
-              <img src="/salescloserpro-logo.svg" alt="SalesCloserPro" className="w-full h-full object-cover" />
+              <img src="./salescloserpro-logo.svg" alt="SalesCloserPro" className="w-full h-full object-cover" />
             )}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
               <span className="text-white text-[9px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
@@ -165,7 +165,7 @@ export default function Layout() {
             {/* Logo area — generous padding */}
             <div className="flex items-center justify-center pt-5 pb-3">
               <div className="w-16 h-16 rounded-2xl bg-white dark:bg-gray-700 flex items-center justify-center ring-2 ring-gray-200 dark:ring-gray-600 shadow-sm group-hover:ring-gray-300 dark:group-hover:ring-gray-500 transition-all duration-200 overflow-hidden">
-                <img src="/gptlogo.png" alt="salescloserpro.ai" className="w-14 h-14 object-cover rounded-xl drop-shadow-sm" />
+                <img src="./gptlogo.png" alt="salescloserpro.ai" className="w-14 h-14 object-cover rounded-xl drop-shadow-sm" />
               </div>
             </div>
             {/* Text area — centered */}
@@ -228,7 +228,7 @@ export default function Layout() {
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-7 h-7 rounded-lg object-cover" />
             ) : (
-              <img src="/salescloserpro-logo.svg" alt="SalesCloserPro" className="w-7 h-7 rounded-full" />
+              <img src="./salescloserpro-logo.svg" alt="SalesCloserPro" className="w-7 h-7 rounded-full" />
             )}
             <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloserpro.ai</span>
           </div>
@@ -243,6 +243,11 @@ export default function Layout() {
         <main className="flex-1 p-4 lg:p-8 overflow-y-auto">
           <Outlet />
         </main>
+        
+        {/* Footer */}
+        <footer className="border-t border-gray-800 py-3 px-4 text-center text-xs text-gray-500">
+          Powered by <span className="font-semibold">highsignal™</span> © 2026 llmadvisor.ai · Licensed under Apache-2.0
+        </footer>
       </div>
     </div>
   )

@@ -1,3 +1,11 @@
+/**
+ * SalesCloserPro - Global State Management
+ * Copyright (c) 2026 Brent Girolimon / llmadvisor.ai
+ * Powered by highsignal™
+ * Licensed under Apache-2.0
+ * https://github.com/harborglowvintage-oss/salescloserpro.ai
+ */
+
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
 import { indexedDBStorage } from './db'
@@ -12,7 +20,7 @@ const useStore = create(
       // ── Company Settings ──────────────────────────────
       company: {
         name: 'llmadvisor.ai',
-        logo: '/gptlogo.png',
+        logo: './gptlogo.png',
         address: '',
         phone: '',
         email: '',

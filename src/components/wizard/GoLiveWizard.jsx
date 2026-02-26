@@ -2,7 +2,7 @@ import { useState } from 'react'
 import {
   Github, Globe, Mail, ChevronRight, ChevronDown, CheckCircle, ExternalLink,
   CreditCard, Wallet, Shield, Zap, AlertCircle, Copy, Check, Eye, EyeOff,
-  Circle, RotateCcw, ArrowRight, Sparkles, Clock, Info,
+  Circle, RotateCcw, ArrowRight, Sparkles, Clock, Info, Monitor,
 } from 'lucide-react'
 import useStore from '../../store'
 
@@ -21,6 +21,7 @@ const STEP_META = [
   { id: 3, label: 'Domain',     icon: Globe,       color: 'bg-purple-600',                        keys: ['domain_decided','domain_configured'] },
   { id: 4, label: 'Email',      icon: Mail,        color: 'bg-red-500',                           keys: ['email_decided','email_configured'] },
   { id: 5, label: 'Payments',   icon: CreditCard,  color: 'bg-gradient-to-br from-violet-600 to-blue-600', keys: ['pay_account','pay_keys','pay_wallet','pay_enabled'] },
+  { id: 6, label: 'Desktop App', icon: Monitor,      color: 'bg-gradient-to-br from-cyan-600 to-teal-600',   keys: ['desktop_workflow','desktop_trigger','desktop_download'] },
 ]
 
 /* ── Reusable checkbox task ─────────────────────────────── */
@@ -488,6 +489,77 @@ export default function GoLiveWizard() {
 
                   <div className="flex gap-3">
                     <button onClick={() => setStep(4)} className="btn-secondary">← Back</button>
+                    <button onClick={() => setStep(6)} className="btn-primary flex-1 flex items-center justify-center gap-2">
+                      Continue to Desktop App <ChevronRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                </>)}
+
+                {/* ── STEP 6: Desktop App ────────── */}
+                {s.id === 6 && (<>
+                  <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                    Generate branded desktop apps (Windows .exe, macOS .dmg, Linux .AppImage) for your customers — <strong>no Node.js required</strong>. GitHub Actions builds them automatically in the cloud.
+                  </p>
+
+                  {/* How it works */}
+                  <div className="bg-gradient-to-br from-cyan-50 to-teal-50 dark:from-cyan-900/20 dark:to-teal-900/20 border border-cyan-200 dark:border-cyan-800 rounded-2xl p-5 space-y-4">
+                    <h3 className="font-bold text-cyan-900 dark:text-cyan-200 flex items-center gap-2">
+                      <Monitor className="w-5 h-5" /> How It Works
+                    </h3>
+                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
+                      <div className="text-center space-y-2">
+                        <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto shadow-sm"><Github className="w-5 h-5 text-gray-700 dark:text-gray-300" /></div>
+                        <div className="font-semibold text-gray-800 dark:text-gray-200">1. Push to GitHub</div>
+                        <div className="text-gray-500 dark:text-gray-400 text-xs">Your code is already there from Step 1</div>
+                      </div>
+                      <div className="text-center space-y-2">
+                        <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto shadow-sm"><Zap className="w-5 h-5 text-cyan-600" /></div>
+                        <div className="font-semibold text-gray-800 dark:text-gray-200">2. Actions builds it</div>
+                        <div className="text-gray-500 dark:text-gray-400 text-xs">Windows, macOS & Linux — all in parallel</div>
+                      </div>
+                      <div className="text-center space-y-2">
+                        <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto shadow-sm"><Monitor className="w-5 h-5 text-teal-600" /></div>
+                        <div className="font-semibold text-gray-800 dark:text-gray-200">3. Download installers</div>
+                        <div className="text-gray-500 dark:text-gray-400 text-xs">.exe, .dmg, .AppImage — ready to distribute</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="space-y-2">
+                    <TaskCheck checked={cl.desktop_workflow} onChange={() => tog('desktop_workflow')} timeEst="auto"
+                      sub={<>The workflow file <code className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs">.github/workflows/build-desktop.yml</code> is already included in this repo. Verify it exists in your fork.</>}>
+                      Build workflow is in your repo
+                    </TaskCheck>
+                    <TaskCheck checked={cl.desktop_trigger} onChange={() => tog('desktop_trigger')} timeEst="1 min"
+                      sub={<>Go to your fork on GitHub → <strong>Actions</strong> tab → <strong>"Build Desktop App"</strong> → <strong>Run workflow</strong>. Choose "all" platforms or pick one. Or push a tag like <code className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs">v1.0.0</code> to trigger automatically.</>}>
+                      Trigger the build (manual or tag push)
+                    </TaskCheck>
+                    <TaskCheck checked={cl.desktop_download} onChange={() => tog('desktop_download')} timeEst="5 min"
+                      sub="After the build completes (~5-10 min), go to Actions → your run → scroll to Artifacts. Download the .exe, .dmg, or .AppImage for your platform.">
+                      Download your desktop installers
+                    </TaskCheck>
+                  </div>
+
+                  <Tip>Builds run on GitHub's free tier (2,000 min/month for public repos — unlimited). Tag a release like <code className="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded text-xs">git tag v1.0.0 && git push --tags</code> to auto-build and create a GitHub Release with all installers attached.</Tip>
+
+                  {/* Quick commands */}
+                  <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-xs text-gray-600 dark:text-gray-400 space-y-2">
+                    <p className="font-bold text-gray-700 dark:text-gray-300">Quick commands:</p>
+                    <div className="space-y-1.5 font-mono">
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-400">#</span> Manual trigger via GitHub UI — no terminal needed
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className="text-gray-400">#</span> Or auto-build with a version tag:
+                      </div>
+                      <code className="block bg-white dark:bg-gray-900 rounded-lg px-3 py-2 text-[11px] leading-relaxed border border-gray-200 dark:border-gray-700">
+                        git tag v1.0.0 && git push origin v1.0.0
+                      </code>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-3">
+                    <button onClick={() => setStep(5)} className="btn-secondary">← Back</button>
                   </div>
                 </>)}
               </div>

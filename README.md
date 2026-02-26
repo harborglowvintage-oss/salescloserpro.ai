@@ -183,7 +183,7 @@ All built artifacts are output to the `release/` directory.
 | 💳 | **MoonPay Payments** | Accept credit card / bank / Apple Pay → crypto payments on any invoice |
 | 📄 | **PDF Export** | Color-neutral branded proposals & POs — charcoal palette, 50% deposit terms |
 | 💾 | **Backup & Restore** | Full JSON backup with auto-schedule, File System Access API, Firefox-safe |
-| 🚀 | **Go Live Wizard** | 5-step guide: GitHub → Cloudflare → Domain → Email → Payments |
+| 🚀 | **Go Live Wizard** | 6-step guide: GitHub → Cloudflare → Domain → Email → Payments → Desktop App |
 | 🏢 | **Company Settings** | Logo upload, company info, branding for all PDF exports |
 | ❓ | **Help Center** | 12-section searchable guide with expandable FAQs |
 | 🌙 | **Dark / Light Mode** | System-aware theme toggle, persisted per user, balanced for both modes |
@@ -331,13 +331,14 @@ Both the **Quote/Proposal PDF** and the **Purchase Order PDF** share a refined d
 - 🦊 **Firefox-safe** — download uses delayed `revokeObjectURL` for cross-browser compatibility
 
 ### 🚀 Go Live Wizard
-> 🌐 Deploy your own SalesCloserPro instance in 5 easy steps.
+> 🌐 Deploy your own SalesCloserPro instance in 6 easy steps.
 
 1. 🐙 **GitHub** — Fork the repo and push your customizations
 2. ☁️ **Cloudflare Pages** — Free hosting with automatic deployments
 3. 🌍 **Custom Domain** — Connect your own domain name
 4. 📧 **Business Email** — Set up professional email (Zoho / Google)
 5. 💳 **Payments** — Configure MoonPay for invoice payments
+6. 🖥️ **Desktop App** — Build branded .exe, .dmg & .AppImage via GitHub Actions (no Node.js required)
 
 ---
 

@@ -256,6 +256,9 @@ const useStore = create(
         pay_keys: false,
         pay_wallet: false,
         pay_enabled: false,
+        desktop_workflow: false,
+        desktop_trigger: false,
+        desktop_download: false,
       },
       setGoLiveCheck: (key, val) =>
         set((s) => ({ goLiveChecklist: { ...s.goLiveChecklist, [key]: val } })),
@@ -267,6 +270,7 @@ const useStore = create(
             domain_decided: false, domain_configured: false,
             email_decided: false, email_configured: false,
             pay_account: false, pay_keys: false, pay_wallet: false, pay_enabled: false,
+            desktop_workflow: false, desktop_trigger: false, desktop_download: false,
           },
         })),
 

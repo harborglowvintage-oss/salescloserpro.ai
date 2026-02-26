@@ -17,30 +17,34 @@
   <a href="#️-desktop-app--electron"><img src="https://img.shields.io/badge/Desktop-Windows%20%7C%20macOS%20%7C%20Linux-orange" alt="Desktop" /></a>
 </p>
 
+### 📸 Screenshots
+
 <table align="center">
   <tr>
-    <td align="center"><strong>Dashboard</strong></td>
-    <td align="center"><strong>Quote Builder</strong></td>
+    <td align="center"><strong>📊 Dashboard</strong></td>
+    <td align="center"><strong>📝 Quote Builder</strong></td>
   </tr>
   <tr>
-    <td><img src="screenshots/dashboard.png" alt="Dashboard" width="420" /></td>
-    <td><img src="screenshots/quote-builder.png" alt="Quote Builder" width="420" /></td>
+    <td align="center"><img src="screenshots/dashboard.png" alt="Dashboard" width="480" /></td>
+    <td align="center"><img src="screenshots/quote-builder.png" alt="Quote Builder" width="480" /></td>
   </tr>
-  <tr><td colspan="2">&nbsp;</td></tr>
+  <tr><td colspan="2"><br></td></tr>
   <tr>
-    <td align="center"><strong>Pipeline</strong></td>
-    <td align="center"><strong>Clients</strong></td>
-  </tr>
-  <tr>
-    <td><img src="screenshots/pipeline.png" alt="Pipeline" width="420" /></td>
-    <td><img src="screenshots/clients.png" alt="Clients" width="420" /></td>
-  </tr>
-  <tr><td colspan="2">&nbsp;</td></tr>
-  <tr>
-    <td align="center" colspan="2"><strong>Dark Mode</strong></td>
+    <td align="center"><strong>🔄 Pipeline</strong></td>
+    <td align="center"><strong>👥 Clients</strong></td>
   </tr>
   <tr>
-    <td align="center" colspan="2"><img src="screenshots/dark-mode.png" alt="Dark Mode" width="420" /></td>
+    <td align="center"><img src="screenshots/pipeline.png" alt="Pipeline" width="480" /></td>
+    <td align="center"><img src="screenshots/clients.png" alt="Clients" width="480" /></td>
+  </tr>
+  <tr><td colspan="2"><br></td></tr>
+  <tr>
+    <td align="center"><strong>🌙 Dark Mode</strong></td>
+    <td align="center"><strong>🚀 Go Live Wizard</strong></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="screenshots/dark-mode.png" alt="Dark Mode" width="480" /></td>
+    <td align="center"><img src="screenshots/go-live-wizard.png" alt="Go Live Wizard" width="480" /></td>
   </tr>
 </table>
 

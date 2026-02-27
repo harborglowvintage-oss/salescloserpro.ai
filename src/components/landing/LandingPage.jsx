@@ -176,10 +176,11 @@ export default function LandingPage() {
           </span>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.1] mb-6">
-            Work smarter, not harder.{' '}
+            The anti-CRM for operators who hate subscriptions but still want to{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-              Close faster.
+              close and get paid fast ⚡
             </span>
+            .
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-10">

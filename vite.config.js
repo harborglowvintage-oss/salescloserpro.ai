@@ -1,7 +1,21 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-export default defineConfig({
+export default defineConfig(() => ({
   plugins: [react()],
-  base: './',   // relative paths so Electron can load from file://
-})
+  // Use relative paths for Electron (file://), absolute for web/Netlify
+  base: process.env.VITE_ELECTRON === 'true' ? './' : '/',
+  build: {
+    chunkSizeWarningLimit: 600,
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-pdf':   ['jspdf', 'jspdf-autotable'],
+          'vendor-db':    ['dexie'],
+          'vendor-ui':    ['lucide-react'],
+        }
+      }
+    }
+  }
+}))

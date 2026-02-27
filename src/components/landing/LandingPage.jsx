@@ -5,6 +5,7 @@
  * Licensed under Apache-2.0
  */
 
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FileText,
@@ -75,6 +76,31 @@ const PartnerCard = ({ href, logo, alt, bg, title, body, cta, ctaColor = 'text-b
 )
 
 export default function LandingPage() {
+  const [ghStats, setGhStats] = useState({ downloads: null, stars: null })
+
+  useEffect(() => {
+    // Real GitHub release download counts — public API, no auth required
+    fetch('https://api.github.com/repos/harborglowvintage-oss/salescloserpro.ai/releases')
+      .then(r => r.ok ? r.json() : [])
+      .then(releases => {
+        const total = releases.reduce((sum, rel) =>
+          sum + rel.assets.reduce((s, a) => s + (a.download_count || 0), 0), 0)
+        setGhStats(prev => ({ ...prev, downloads: total }))
+      })
+      .catch(() => {})
+
+    // GitHub repo stars
+    fetch('https://api.github.com/repos/harborglowvintage-oss/salescloserpro.ai')
+      .then(r => r.ok ? r.json() : {})
+      .then(data => {
+        if (data.stargazers_count != null)
+          setGhStats(prev => ({ ...prev, stars: data.stargazers_count }))
+      })
+      .catch(() => {})
+  }, [])
+
+  const fmtNum = n => n == null ? '—' : n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n)
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 antialiased">
 
@@ -720,72 +746,54 @@ export default function LandingPage() {
         </div>
       </section>
 
+
+
       {/* ───────── SPONSOR STRIP ───────── */}
-      <section className="border-t border-white/[0.06] border-b border-b-white/[0.06]">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-sm text-slate-400 text-center sm:text-left">
-            <span className="text-white font-semibold">Sponsorships welcome.</span>{' '}
-            salescloserpro.ai and its affiliated properties serve{' '}
-            <span className="text-white font-medium">hundreds of unique visitors daily</span> and log{' '}
-            <span className="text-white font-medium">thousands of installs weekly</span> — small business owners, contractors, and sales professionals.
-            Your logo. Your brand. Their screen.
-          </p>
-          <a
-            href="mailto:sponsor@salescloserpro.ai"
-            className="flex-shrink-0 px-5 py-2.5 rounded-lg border border-indigo-500/50 hover:border-indigo-400 hover:bg-indigo-500/10 text-indigo-300 hover:text-indigo-200 text-sm font-semibold transition-all whitespace-nowrap"
-          >
-            Inquire about sponsorship →
-          </a>
+      <section className="relative border-t border-white/[0.06] overflow-hidden">
+        {/* subtle gradient wash */}
+        <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/30 via-transparent to-indigo-950/20 pointer-events-none" />
+        <div className="relative max-w-6xl mx-auto px-6 sm:px-8 py-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
+
+          {/* left — headline + stats */}
+          <div className="flex-1 min-w-0">
+            <p className="text-[11px] font-semibold tracking-widest uppercase text-indigo-400 mb-2">Partner with us</p>
+            <h3 className="text-white text-xl font-semibold leading-snug mb-4">
+              Put your brand in front of the people who close deals.
+            </h3>
+            <div className="flex flex-wrap gap-x-8 gap-y-3">
+              <div>
+                <p className="text-2xl font-bold text-white leading-none tabular-nums">{fmtNum(ghStats.downloads)}</p>
+                <p className="text-xs text-slate-400 mt-0.5">total installs</p>
+              </div>
+              <div className="w-px self-stretch bg-white/10 hidden sm:block" />
+              <div>
+                <p className="text-2xl font-bold text-white leading-none tabular-nums">{fmtNum(ghStats.stars)}</p>
+                <p className="text-xs text-slate-400 mt-0.5">GitHub stars</p>
+              </div>
+              <div className="w-px self-stretch bg-white/10 hidden sm:block" />
+              <div>
+                <p className="text-2xl font-bold text-white leading-none">SMB</p>
+                <p className="text-xs text-slate-400 mt-0.5">contractors &amp; sales pros</p>
+              </div>
+            </div>
+          </div>
+
+          {/* right — CTA */}
+          <div className="flex-shrink-0 flex flex-col items-center gap-3 text-center">
+            <a
+              href="mailto:sponsor@salescloserpro.ai"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-lg shadow-indigo-900/40 transition-all duration-200 hover:shadow-indigo-700/40 hover:-translate-y-px"
+            >
+              Inquire about sponsorship
+              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"/>
+              </svg>
+            </a>
+            <p className="text-[11px] text-slate-500">Your logo. Your brand. Their screen.</p>
+          </div>
+
         </div>
       </section>
-
-      {/* ───────── CLOSING VISUAL ───────── */}
-      <div className="relative overflow-hidden" aria-hidden="true">
-        {/* Contract + pen SVG — subtle, angled, bottom-right */}
-        <svg
-          viewBox="0 0 900 520"
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute bottom-0 right-0 w-[640px] max-w-[72vw] opacity-[0.045] pointer-events-none select-none"
-          style={{ transform: 'translate(8%, 12%) rotate(-11deg)', transformOrigin: 'bottom right' }}
-        >
-          {/* Paper sheet */}
-          <rect x="120" y="40" width="560" height="420" rx="6" fill="none" stroke="white" strokeWidth="2" />
-          {/* Top fold corner */}
-          <path d="M600 40 L640 80 L600 80 Z" fill="none" stroke="white" strokeWidth="1.5" />
-          <line x1="600" y1="40" x2="600" y2="80" stroke="white" strokeWidth="1" />
-          <line x1="600" y1="80" x2="640" y2="80" stroke="white" strokeWidth="1" />
-          {/* Document text lines */}
-          {[110, 140, 168, 196, 224, 252, 280, 308].map((y, i) => (
-            <line key={i} x1="168" y1={y} x2={i % 3 === 2 ? 540 : 624} y2={y} stroke="white" strokeWidth="1.2" strokeLinecap="round" />
-          ))}
-          {/* Section divider */}
-          <line x1="168" y1="335" x2="624" y2="335" stroke="white" strokeWidth="0.8" strokeDasharray="4 4" />
-          {/* Signature label */}
-          <rect x="168" y="355" width="140" height="1.5" rx="1" fill="white" />
-          <rect x="360" y="355" width="140" height="1.5" rx="1" fill="white" />
-          {/* Signature scribble */}
-          <path d="M170 350 C185 338, 195 362, 210 348 C222 336, 228 355, 245 345 C258 336, 262 352, 272 348" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-          {/* Date line */}
-          <rect x="168" y="400" width="100" height="1" rx="0.5" fill="white" />
-
-          {/* Sleek pen — diagonal, resting across sheet */}
-          {/* Pen barrel */}
-          <rect x="480" y="280" width="320" height="18" rx="9" fill="none" stroke="white" strokeWidth="2"
-            transform="rotate(-28 480 280)" />
-          {/* Pen clip */}
-          <path d="M492 278 L488 250 L496 252 Z" fill="none" stroke="white" strokeWidth="1.2"
-            transform="rotate(-28 480 280)" />
-          {/* Pen grip section */}
-          <rect x="480" y="280" width="48" height="18" rx="4" fill="none" stroke="white" strokeWidth="1.5"
-            transform="rotate(-28 480 280)" />
-          {/* Nib */}
-          <path d="M476 283 L462 292 L478 298 Z" fill="none" stroke="white" strokeWidth="1.5" strokeLinejoin="round"
-            transform="rotate(-28 480 280)" />
-          {/* Ink dot */}
-          <circle cx="461" cy="292" r="2.5" fill="white" opacity="0.6"
-            transform="rotate(-28 480 280)" />
-        </svg>
-      </div>
 
       {/* ───────── FOOTER ───────── */}
       <footer className="border-t border-white/[0.06] mt-12">

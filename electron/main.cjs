@@ -113,7 +113,7 @@ function buildMenu() {
       submenu: [
         {
           label: 'SalesCloserPro on GitHub',
-          click: () => shell.openExternal('https://github.com/llmadvisor/salescloserpro'),
+          click: () => shell.openExternal('https://github.com/harborglowvintage-oss/salescloserpro.ai'),
         },
         {
           label: 'Powered by llmadvisor.ai',

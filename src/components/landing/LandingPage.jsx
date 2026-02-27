@@ -515,7 +515,7 @@ export default function LandingPage() {
             ctaColor="text-emerald-400"
             glowColor="rgba(34,197,94,0.18)"
             title={<><span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 block mb-1">The Budget Privacy Pick</span>Professional email for $1/month</>}
-            body={<>Get <strong className="text-slate-200">you@yourdomain.com</strong> so every quote you send looks the part. Zoho Mail is <strong className="text-slate-200">secure, ad-free, and built for privacy</strong> — no scanning your inbox to sell you ads. Includes shared calendars, tasks, and built-in collaboration tools. To connect your custom domain you'll need the <strong className="text-emerald-300">Mail Lite plan at $1/user/month</strong>. <strong className="text-emerald-300">Best for: solo operators and small teams who want pro email without the Google tax.</>}
+            body={<>Get <strong className="text-slate-200">you@yourdomain.com</strong> so every quote you send looks the part. Zoho Mail is <strong className="text-slate-200">secure, ad-free, and built for privacy</strong> — no scanning your inbox to sell you ads. Includes shared calendars, tasks, and built-in collaboration tools. To connect your custom domain you'll need the <strong className="text-emerald-300">Mail Lite plan at $1/user/month</strong>. <strong className="text-emerald-300">Best for: solo operators and small teams who want pro email without the Google tax.</strong></>}
             cta="Start for $1/mo"
             rel="noopener noreferrer sponsored"
           />

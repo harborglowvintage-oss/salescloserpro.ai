@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"name": "SalesCloserPro",
+			"path": "../../../.."
+		}
+	],
+	"settings": {
+		"css.lint.unknownAtRules": "ignore",
+		"css.lint.vendorPrefix": "ignore",
+		"css.validate": true
+	}
+}

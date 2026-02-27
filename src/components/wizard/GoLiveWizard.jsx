@@ -322,12 +322,12 @@ export default function GoLiveWizard() {
                   </div>
                 </>)}
 
-                {/* ── STEP 5: MoonPay Payments ───── */}
+                {/* ── STEP 5: MoonPay Commerce Payments ───── */}
                 {s.id === 5 && (<>
                   {/* How it works */}
                   <div className="bg-gradient-to-br from-violet-50 to-blue-50 dark:from-violet-900/20 dark:to-blue-900/20 border border-violet-200 dark:border-violet-800 rounded-2xl p-5 space-y-4">
                     <h3 className="font-bold text-violet-900 dark:text-violet-200 flex items-center gap-2">
-                      <Zap className="w-5 h-5" /> How MoonPay Payments Work
+                      <Zap className="w-5 h-5" /> How MoonPay Commerce Works
                     </h3>
                     <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
                       <div className="text-center space-y-2">
@@ -351,7 +351,7 @@ export default function GoLiveWizard() {
                   {/* Checklist */}
                   <div className="space-y-2">
                     <TaskCheck checked={cl.pay_account} onChange={() => tog('pay_account')} timeEst="3 min"
-                      sub="Visit dashboard.moonpay.com → Sign up for a free account. You'll need to verify your identity for production mode.">
+                      sub="Visit commerce.moonpay.com → Sign up for a free account. You'll need to verify your identity for production mode. Trusted by Shopify, Ledger, Fortune Media, and 6,000+ merchants worldwide.">
                       Create a MoonPay account
                     </TaskCheck>
                     <TaskCheck checked={cl.pay_keys} onChange={() => tog('pay_keys')} timeEst="1 min"
@@ -368,7 +368,7 @@ export default function GoLiveWizard() {
                     </TaskCheck>
                   </div>
 
-                  <LinkCard href="https://dashboard.moonpay.com" label="Go to MoonPay Dashboard" badge="Free account" />
+                  <LinkCard href="https://commerce.moonpay.com" label="Go to MoonPay Commerce" badge="Free · Live globally" />
 
                   {/* Configuration */}
                   <div className="space-y-4 border-t border-gray-100 dark:border-gray-700 pt-5">
@@ -482,9 +482,10 @@ export default function GoLiveWizard() {
 
                   {/* Info box */}
                   <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-xs text-gray-500 dark:text-gray-400 leading-relaxed space-y-2">
-                    <p><strong className="text-gray-700 dark:text-gray-300">Why MoonPay?</strong> Licensed, regulated provider used by 20M+ customers. Handles KYC/AML so you don't have to. Visa, Mastercard, Apple Pay, Google Pay, bank transfer supported.</p>
-                    <p><strong className="text-gray-700 dark:text-gray-300">Why stablecoins?</strong> USDC is pegged 1:1 to USD — no volatility. $1,500 invoice = $1,500 USDC. Convert to fiat on any exchange anytime.</p>
-                    <p><strong className="text-gray-700 dark:text-gray-300">Fees:</strong> MoonPay charges the buyer ~1–4.5% depending on method. You receive the exact amount with no seller fees.</p>
+                    <p><strong className="text-gray-700 dark:text-gray-300">Why MoonPay Commerce?</strong> MoonPay's unified commerce platform — launched globally Oct 2025 and already trusted by Shopify, Ledger, Fortune Media, and 6,000+ merchants. Licensed, regulated, handles KYC/AML so you don't have to. Supports Visa, Mastercard, Apple Pay, Google Pay, bank transfer, and 100+ cryptos.</p>
+                    <p><strong className="text-gray-700 dark:text-gray-300">No chargebacks.</strong> Direct buyer-to-merchant payments mean zero chargeback risk. Merchants also get low fees, Pay Links, subscriptions, split payments, and affiliate tracking built in.</p>
+                    <p><strong className="text-gray-700 dark:text-gray-300">Why stablecoins?</strong> USDC is pegged 1:1 to USD — no volatility. $1,500 invoice = $1,500 USDC. Auto-convert to USD, EUR, or other fiat through MoonPay Commerce anytime.</p>
+                    <p><strong className="text-gray-700 dark:text-gray-300">Fees:</strong> MoonPay charges the buyer ~1–4.5% depending on method. You receive the exact invoice amount with zero seller fees and zero chargebacks.</p>
                   </div>
 
                   <div className="flex gap-3">

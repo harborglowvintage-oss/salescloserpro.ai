@@ -9,6 +9,8 @@
 import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Layout from './components/layout/Layout'
+import LandingPage from './components/landing/LandingPage'
+import AboutPage from './components/landing/AboutPage'
 import Dashboard from './components/dashboard/Dashboard'
 import QuoteBuilder from './components/quotes/QuoteBuilder'
 import QuoteList from './components/quotes/QuoteList'
@@ -19,6 +21,7 @@ import HelpGuide from './components/help/HelpGuide'
 import CompanySettings from './components/settings/CompanySettings'
 import BackupRestore from './components/backup/BackupRestore'
 import PurchaseOrders from './components/po/PurchaseOrders'
+import LegalPage from './components/landing/LegalPage'
 import useStore from './store'
 
 export default function App() {
@@ -32,8 +35,13 @@ export default function App() {
   return (
     <HashRouter>
       <Routes>
+        {/* Landing Page */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<AboutPage />} />
+        <Route path="/legal" element={<LegalPage />} />
+        
+        {/* App Routes */}
         <Route path="/" element={<Layout />}>
-          <Route index element={<Navigate to="/dashboard" replace />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="quotes" element={<QuoteList />} />
           <Route path="quotes/new" element={<QuoteBuilder />} />

@@ -253,17 +253,17 @@ const sections = [
   {
     id: 'payments',
     icon: CreditCard,
-    title: 'Payments (MoonPay)',
+    title: 'Payments (MoonPay Commerce)',
     color: 'text-violet-500',
     bg: 'bg-violet-50 dark:bg-violet-900/30',
     content: [
       {
-        q: 'What is MoonPay and how does it work?',
-        a: 'MoonPay is a payment gateway that lets your clients pay invoices using credit card, debit card, bank transfer, or Apple Pay. Payments are converted to cryptocurrency (stablecoins like USDC) and sent directly to your wallet. This gives you instant, global payments without traditional payment processor restrictions.'
+        q: 'What is MoonPay Commerce and how does it work?',
+        a: 'MoonPay Commerce is the unified crypto payments platform by MoonPay — launched globally in October 2025 and already trusted by 6,000+ merchants including Shopify, Ledger, and Fortune Media. It lets your clients pay invoices using credit card, debit card, Apple Pay, Google Pay, bank transfer, or 100+ cryptocurrencies. Payments land directly in your crypto wallet, and you can auto-convert to USD or EUR anytime. Unlike card processors, there are zero chargebacks — all payments are final and direct from buyer to merchant.'
       },
       {
-        q: 'How do I set up MoonPay payments?',
-        a: 'Go to Go Live → Step 5 (Payments). You\'ll need: 1) A MoonPay account — sign up at dashboard.moonpay.com, 2) Your publishable API key (starts with pk_test_ for sandbox or pk_live_ for production), 3) A crypto wallet address to receive payments. Enter these in the configuration form, toggle "Enable Payments" on, and you\'re ready to accept payments.'
+        q: 'How do I set up MoonPay Commerce payments?',
+        a: 'Go to Go Live → Step 5 (Payments). You\'ll need: 1) A MoonPay Commerce account — sign up free at commerce.moonpay.com, 2) Your publishable API key (starts with pk_test_ for sandbox or pk_live_ for production), 3) A crypto wallet address to receive payments. Enter these in the configuration form, toggle "Enable Payments" on, and you\'re ready to accept payments.'
       },
       {
         q: 'What currencies can I accept?',
@@ -282,8 +282,8 @@ const sections = [
         a: 'Sandbox mode uses test API keys (pk_test_) and the MoonPay test environment — no real money is transferred. Use this to test the payment flow before going live. Production mode uses live API keys (pk_live_) and processes real payments. Always test thoroughly in sandbox before switching to production.'
       },
       {
-        q: 'What are MoonPay\'s fees?',
-        a: 'MoonPay charges a processing fee (typically 1-4.5% depending on payment method and region). Card payments have higher fees than bank transfers. Using USDC on Polygon minimizes blockchain network fees. Check MoonPay\'s current fee schedule at moonpay.com for the latest rates.'
+        q: 'What are MoonPay Commerce fees? Are there chargebacks?',
+        a: 'MoonPay charges the buyer a processing fee (typically 1–4.5% depending on payment method and region). Card payments have higher fees than bank transfers. You (the merchant) receive the full invoice amount with zero seller fees. Critically, there are NO chargebacks — crypto payments are irreversible and direct from buyer to your wallet. Check the current fee schedule at commerce.moonpay.com.'
       },
       {
         q: 'Is it secure?',

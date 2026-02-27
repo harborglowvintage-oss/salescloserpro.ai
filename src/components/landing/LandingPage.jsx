@@ -720,6 +720,25 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ───────── SPONSOR STRIP ───────── */}
+      <section className="border-t border-white/[0.06] border-b border-b-white/[0.06]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-slate-400 text-center sm:text-left">
+            <span className="text-white font-semibold">Sponsorships welcome.</span>{' '}
+            salescloserpro.ai and its affiliated properties serve{' '}
+            <span className="text-white font-medium">hundreds of unique visitors daily</span> and log{' '}
+            <span className="text-white font-medium">thousands of installs weekly</span> — small business owners, contractors, and sales professionals.
+            Your logo. Your brand. Their screen.
+          </p>
+          <a
+            href="mailto:sponsor@salescloserpro.ai"
+            className="flex-shrink-0 px-5 py-2.5 rounded-lg border border-indigo-500/50 hover:border-indigo-400 hover:bg-indigo-500/10 text-indigo-300 hover:text-indigo-200 text-sm font-semibold transition-all whitespace-nowrap"
+          >
+            Inquire about sponsorship →
+          </a>
+        </div>
+      </section>
+
       {/* ───────── FOOTER ───────── */}
       <footer className="border-t border-white/[0.06] mt-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">

@@ -293,7 +293,7 @@ export default function LandingPage() {
                 SalesCloserPro was built by someone who's been on job sites, felt the pressure of a last-minute deal falling apart, and knows exactly what it's like to run a business on a shoestring. Not a VC-funded startup. Not a team of developers who've never sent an invoice. Just a real person solving a real problem.
               </p>
               <p className="text-slate-400 leading-relaxed text-[15px] mb-6">
-                If you're running an <strong className="text-white">Etsy shop</strong>, selling on <strong className="text-white">Facebook Marketplace</strong>, or turning your <strong className="text-white">side hustle into something serious</strong> — you don't need enterprise software with a monthly fee you can't afford. You need something that works, looks professional, and gets out of your way.
+                If you're running a <strong className="text-white">contracting business</strong>, managing a <strong className="text-white">sales operation</strong>, or closing <strong className="text-white">high-ticket deals</strong> — you need a tool built for operators who take their numbers seriously. Not a toy. Not a subscription trap. Something that runs lean, looks executive, and keeps your pipeline moving.
               </p>
               <p className="text-slate-400 leading-relaxed text-[15px] mb-6">
                 And here's the edge most of your competition doesn't have yet: <strong className="text-white">integrated crypto and card payments via MoonPay Commerce.</strong> Get paid the moment a client accepts your quote — no bank holds, no 5-day ACH waits, no chargebacks erasing your margin. Have a client in Canada, Europe, or Southeast Asia? They pay in their preferred method. You receive it. Cashflow solved.
@@ -514,8 +514,8 @@ export default function LandingPage() {
             hoverTint="hover:bg-emerald-500/[0.08]"
             ctaColor="text-emerald-400"
             glowColor="rgba(34,197,94,0.18)"
-            title="Professional email for $1/month"
-            body={<>Get <strong className="text-slate-200">you@yourdomain.com</strong> so every quote you send looks the part. Zoho Mail is <strong className="text-slate-200">secure, ad-free, and built for privacy</strong> — no scanning your inbox to sell you ads. Includes shared calendars, tasks, and built-in collaboration tools. To connect your custom domain you'll need the <strong className="text-emerald-300">Mail Lite plan at $1/user/month</strong> — making it the <strong className="text-emerald-300">absolute best alternative to Gmail or Outlook</strong> for any business that values privacy over price.</>}
+            title={<><span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 block mb-1">The Budget Privacy Pick</span>Professional email for $1/month</>}
+            body={<>Get <strong className="text-slate-200">you@yourdomain.com</strong> so every quote you send looks the part. Zoho Mail is <strong className="text-slate-200">secure, ad-free, and built for privacy</strong> — no scanning your inbox to sell you ads. Includes shared calendars, tasks, and built-in collaboration tools. To connect your custom domain you'll need the <strong className="text-emerald-300">Mail Lite plan at $1/user/month</strong>. <strong className="text-emerald-300">Best for: solo operators and small teams who want pro email without the Google tax.</>}
             cta="Start for $1/mo"
             rel="noopener noreferrer sponsored"
           />
@@ -529,8 +529,8 @@ export default function LandingPage() {
             hoverTint="hover:bg-blue-500/[0.08]"
             ctaColor="text-blue-400"
             glowColor="rgba(59,130,246,0.18)"
-            title="The easiest way to run your business on one login"
-            body={<>Google Workspace is the closest thing to a universal business OS. <strong className="text-slate-200">Gmail, Drive, Docs, Meet, Calendar, Sheets — and Gemini AI built in.</strong> Everything synced across every device and teammate. Send quotes from your pro email, collaborate on proposals in real time, and let Gemini draft, summarize, and answer for you. Plans start at <strong className="text-blue-300">$7–$14/user/month</strong> — less than a lunch tab.</>}
+            title={<><span className="text-[10px] font-bold uppercase tracking-widest text-blue-400 block mb-1">The Full Professional Suite</span>The easiest way to run your business on one login</>}
+            body={<>Google Workspace is the closest thing to a universal business OS. <strong className="text-slate-200">Gmail, Drive, Docs, Meet, Calendar, Sheets — and Gemini AI built in.</strong> Everything synced across every device and teammate. Send quotes from your pro email, collaborate on proposals in real time, and let Gemini draft, summarize, and answer for you. Plans start at <strong className="text-blue-300">$7–$14/user/month</strong>. <strong className="text-blue-300">Best for: teams, growing operations, and anyone who lives inside Google already.</strong></>}
             cta="Compare plans"
             note="Billed directly by Google"
           />
@@ -763,17 +763,17 @@ export default function LandingPage() {
             </h3>
             <div className="flex flex-wrap gap-x-8 gap-y-3">
               <div>
-                <p className="text-2xl font-bold text-white leading-none tabular-nums">{fmtNum(ghStats.downloads)}</p>
-                <p className="text-xs text-slate-400 mt-0.5">total installs</p>
+                <p className="text-2xl font-bold text-white leading-none">Growing</p>
+                <p className="text-xs text-slate-400 mt-0.5">network of independent operators</p>
               </div>
               <div className="w-px self-stretch bg-white/10 hidden sm:block" />
               <div>
-                <p className="text-2xl font-bold text-white leading-none tabular-nums">{fmtNum(ghStats.stars)}</p>
-                <p className="text-xs text-slate-400 mt-0.5">GitHub stars</p>
+                <p className="text-2xl font-bold text-white leading-none">100%</p>
+                <p className="text-xs text-slate-400 mt-0.5">free &amp; open source</p>
               </div>
               <div className="w-px self-stretch bg-white/10 hidden sm:block" />
               <div>
-                <p className="text-2xl font-bold text-white leading-none">SMB</p>
+                <p className="text-2xl font-bold text-white leading-none">B2B</p>
                 <p className="text-xs text-slate-400 mt-0.5">contractors &amp; sales pros</p>
               </div>
             </div>

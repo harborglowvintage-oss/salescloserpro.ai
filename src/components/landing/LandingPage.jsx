@@ -469,7 +469,8 @@ export default function LandingPage() {
         <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 text-center">Step 1 &amp; 2 — Your Online Presence</p>
         <div className="grid sm:grid-cols-2 gap-5 mb-8 max-w-2xl mx-auto">
           <PartnerCard
-            href="https://namecheap.pxf.io/c/affiliate_id/1632743/5618"
+            href="https://namecheap.pxf.io/c/7886401/1632743/5618"
+            rel="sponsored noopener noreferrer"
             logo="/logos/namecheap.png"
             alt="Namecheap"
             bg="bg-white"

@@ -799,8 +799,8 @@ export default function LandingPage() {
       {/* ───────── FOOTER ───────── */}
       <footer className="border-t border-white/[0.06] mt-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-          <div className="grid sm:grid-cols-4 gap-8 mb-8">
-            <div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-8 mb-8">
+            <div className="col-span-2 sm:col-span-1">
               <div className="flex items-center gap-2 mb-3">
                 <img src="/logos/salescloserprologo.png" alt="" className="h-8 w-auto" />
                 <span className="font-bold text-white">salescloserpro.ai</span>

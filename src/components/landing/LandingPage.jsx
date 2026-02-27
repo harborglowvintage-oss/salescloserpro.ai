@@ -834,9 +834,8 @@ export default function LandingPage() {
               <p className="text-sm text-slate-500 mt-1">Powered by highsignal™</p>
             </div>
           </div>
-          <div className="border-t border-white/[0.06] pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-500">
+          <div className="border-t border-white/[0.06] pt-6 flex items-center justify-center text-xs text-slate-500">
             <span>© 2026 SalesCloserPro · Apache-2.0 License</span>
-            <Link to="/legal" className="hover:text-slate-300 transition-colors underline underline-offset-2">Legal &amp; Compliance Policies</Link>
           </div>
 
         </div>

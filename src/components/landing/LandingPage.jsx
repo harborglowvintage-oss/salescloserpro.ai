@@ -83,7 +83,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5">
             <img src="/logos/salescloserprologo.png" alt="SalesCloserPro" className="h-8 w-auto" />
-            <span className="text-lg font-bold text-white tracking-tight">SalesCloserPro</span>
+            <span className="text-lg font-bold text-white tracking-tight">salescloserpro.ai</span>
           </Link>
 
           <nav className="hidden sm:flex items-center gap-6 text-sm text-slate-400">
@@ -727,7 +727,7 @@ export default function LandingPage() {
             <div>
               <div className="flex items-center gap-2 mb-3">
                 <img src="/logos/salescloserprologo.png" alt="" className="h-8 w-auto" />
-                <span className="font-bold text-white">SalesCloserPro</span>
+                <span className="font-bold text-white">salescloserpro.ai</span>
               </div>
               <p className="text-sm text-slate-500">Free, open-source sales quoting and CRM for professionals who value privacy.</p>
             </div>

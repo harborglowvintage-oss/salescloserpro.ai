@@ -100,12 +100,12 @@ export default function Layout() {
               </span>
             </div>
           </button>
-          <div className="flex-1 min-w-0">
+          <button onClick={() => navigate('/')} className="flex-1 min-w-0 text-left hover:opacity-70 transition-opacity">
             <div className="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight">salescloserpro.ai</div>
             <div className="text-xs text-gray-400 dark:text-gray-500 leading-tight truncate">
               {company.name || 'Your Company'}
             </div>
-          </div>
+          </button>
           {/* Theme toggle */}
           <button
             onClick={toggleTheme}

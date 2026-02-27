@@ -1,6 +1,6 @@
-# salescloser.ai — Marketing Homepage
+# salescloserpro.ai — Marketing Homepage
 
-> The public-facing marketing site for [salescloser.ai](https://salescloser.ai) — a free, open-source sales CRM, quoting, and pipeline tool.
+> The public-facing marketing site for [salescloserpro.ai](https://salescloserpro.ai) — a free, open-source sales CRM, quoting, and pipeline tool.
 
 This repo contains **only the landing page** and its assets. The full application lives at [harborglowvintage-oss/salescloserpro.ai](https://github.com/harborglowvintage-oss/salescloserpro.ai).
 
@@ -97,8 +97,8 @@ Partner cards are rendered via the `<PartnerCard>` component in `LandingPage.jsx
 
 All meta tags, Open Graph, Twitter Card, and JSON-LD structured data are in `index.html`.
 
-- Canonical: `https://salescloser.ai/`
-- OG image: `https://salescloser.ai/og-cover.png`
+- Canonical: `https://salescloserpro.ai/`
+- OG image: `https://salescloserpro.ai/og-cover.png`
 - Schema.org type: `SoftwareApplication`
 
 ---

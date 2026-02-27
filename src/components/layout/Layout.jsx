@@ -101,7 +101,7 @@ export default function Layout() {
             </div>
           </button>
           <div className="flex-1 min-w-0">
-            <div className="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight">salescloser.ai</div>
+            <div className="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight">salescloserpro.ai</div>
             <div className="text-xs text-gray-400 dark:text-gray-500 leading-tight truncate">
               {company.name || 'Your Company'}
             </div>
@@ -170,7 +170,7 @@ export default function Layout() {
             </div>
             {/* Text area — centered */}
             <div className="text-center pb-4 px-4">
-              <div className="text-[15px] font-extrabold text-gray-800 dark:text-gray-100 leading-tight tracking-tight">salescloser.ai</div>
+              <div className="text-[15px] font-extrabold text-gray-800 dark:text-gray-100 leading-tight tracking-tight">salescloserpro.ai</div>
               <div className="text-[11px] text-gray-500 dark:text-gray-400 font-semibold mt-0.5 flex items-center justify-center gap-1">
                 GPT Assistant
                 <ExternalLink className="w-3 h-3 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" />
@@ -230,7 +230,7 @@ export default function Layout() {
             ) : (
               <img src="./salescloserpro-logo.svg" alt="SalesCloserPro" className="w-7 h-7 rounded-full" />
             )}
-            <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloser.ai</span>
+            <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloserpro.ai</span>
           </div>
           <button
             onClick={toggleTheme}

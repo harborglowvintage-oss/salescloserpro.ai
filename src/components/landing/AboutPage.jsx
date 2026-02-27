@@ -110,7 +110,7 @@ export default function AboutPage() {
         <Section icon={Download} color="text-emerald-400 bg-emerald-500/10" title="Getting started (2 minutes)">
           <p><strong className="text-white">Option A — Use in your browser</strong></p>
           <ol className="list-decimal ml-5 space-y-1">
-            <li>Visit <Link to="/dashboard" className="text-blue-400 hover:underline">salescloser.ai → Launch App</Link></li>
+            <li>Visit <Link to="/dashboard" className="text-blue-400 hover:underline">salescloserpro.ai → Launch App</Link></li>
             <li>You'll land on the Dashboard. That's it — you're ready to go.</li>
           </ol>
           <p><strong className="text-white">Option B — Download the desktop app</strong></p>

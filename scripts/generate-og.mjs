@@ -100,7 +100,7 @@ const svg = `
     fill="#475569"
     text-anchor="middle"
     letter-spacing="1"
-  >salescloser.ai</text>
+  >salescloserpro.ai</text>
 
   <!-- powered by -->
   <text

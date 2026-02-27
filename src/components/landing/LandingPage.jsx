@@ -176,9 +176,9 @@ export default function LandingPage() {
           </span>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.1] mb-6">
-            The Free CRM. No gimmicks. Send out a quote with a few clicks —{' '}
+            The Free CRM. No gimmicks.{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-              collect payments instantly ⚡
+              Send a quote in minutes — get paid instantly ⚡
             </span>
           </h1>
 

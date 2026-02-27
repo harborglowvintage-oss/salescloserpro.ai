@@ -739,6 +739,54 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* ───────── CLOSING VISUAL ───────── */}
+      <div className="relative overflow-hidden" aria-hidden="true">
+        {/* Contract + pen SVG — subtle, angled, bottom-right */}
+        <svg
+          viewBox="0 0 900 520"
+          xmlns="http://www.w3.org/2000/svg"
+          className="absolute bottom-0 right-0 w-[640px] max-w-[72vw] opacity-[0.045] pointer-events-none select-none"
+          style={{ transform: 'translate(8%, 12%) rotate(-11deg)', transformOrigin: 'bottom right' }}
+        >
+          {/* Paper sheet */}
+          <rect x="120" y="40" width="560" height="420" rx="6" fill="none" stroke="white" strokeWidth="2" />
+          {/* Top fold corner */}
+          <path d="M600 40 L640 80 L600 80 Z" fill="none" stroke="white" strokeWidth="1.5" />
+          <line x1="600" y1="40" x2="600" y2="80" stroke="white" strokeWidth="1" />
+          <line x1="600" y1="80" x2="640" y2="80" stroke="white" strokeWidth="1" />
+          {/* Document text lines */}
+          {[110, 140, 168, 196, 224, 252, 280, 308].map((y, i) => (
+            <line key={i} x1="168" y1={y} x2={i % 3 === 2 ? 540 : 624} y2={y} stroke="white" strokeWidth="1.2" strokeLinecap="round" />
+          ))}
+          {/* Section divider */}
+          <line x1="168" y1="335" x2="624" y2="335" stroke="white" strokeWidth="0.8" strokeDasharray="4 4" />
+          {/* Signature label */}
+          <rect x="168" y="355" width="140" height="1.5" rx="1" fill="white" />
+          <rect x="360" y="355" width="140" height="1.5" rx="1" fill="white" />
+          {/* Signature scribble */}
+          <path d="M170 350 C185 338, 195 362, 210 348 C222 336, 228 355, 245 345 C258 336, 262 352, 272 348" fill="none" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+          {/* Date line */}
+          <rect x="168" y="400" width="100" height="1" rx="0.5" fill="white" />
+
+          {/* Sleek pen — diagonal, resting across sheet */}
+          {/* Pen barrel */}
+          <rect x="480" y="280" width="320" height="18" rx="9" fill="none" stroke="white" strokeWidth="2"
+            transform="rotate(-28 480 280)" />
+          {/* Pen clip */}
+          <path d="M492 278 L488 250 L496 252 Z" fill="none" stroke="white" strokeWidth="1.2"
+            transform="rotate(-28 480 280)" />
+          {/* Pen grip section */}
+          <rect x="480" y="280" width="48" height="18" rx="4" fill="none" stroke="white" strokeWidth="1.5"
+            transform="rotate(-28 480 280)" />
+          {/* Nib */}
+          <path d="M476 283 L462 292 L478 298 Z" fill="none" stroke="white" strokeWidth="1.5" strokeLinejoin="round"
+            transform="rotate(-28 480 280)" />
+          {/* Ink dot */}
+          <circle cx="461" cy="292" r="2.5" fill="white" opacity="0.6"
+            transform="rotate(-28 480 280)" />
+        </svg>
+      </div>
+
       {/* ───────── FOOTER ───────── */}
       <footer className="border-t border-white/[0.06] mt-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">

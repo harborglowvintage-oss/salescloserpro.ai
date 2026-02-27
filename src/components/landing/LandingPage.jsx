@@ -176,9 +176,9 @@ export default function LandingPage() {
           </span>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.1] mb-6">
-            The anti-CRM for operators who refuse to pay SaaS tax —{' '}
+            The free sales system for independent operators who want control —{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-              and want to collect fast ⚡
+              over their pipeline, their data, and their cashflow ⚡
             </span>
           </h1>
 

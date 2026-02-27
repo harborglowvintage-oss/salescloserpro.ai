@@ -798,17 +798,27 @@ export default function LandingPage() {
 
       {/* ───────── FOOTER ───────── */}
       <footer className="border-t border-white/[0.06] mt-12">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
-            <div className="sm:col-span-2 lg:col-span-1">
-              <div className="flex items-center gap-2 mb-3">
+        <div className="max-w-6xl mx-auto px-6 sm:px-8 py-12">
+
+          {/* Brand row */}
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-10">
+            <div className="max-w-xs">
+              <div className="flex items-center gap-2 mb-2">
                 <img src="/logos/salescloserprologo.png" alt="" className="h-8 w-auto" />
-                <span className="font-bold text-white">salescloserpro.ai</span>
+                <span className="font-bold text-white text-base">salescloserpro.ai</span>
               </div>
-              <p className="text-sm text-slate-500">Free, open-source sales quoting and CRM for professionals who value privacy.</p>
+              <p className="text-sm text-slate-500 leading-relaxed">Free, open-source sales quoting and CRM for professionals who value privacy.</p>
             </div>
+            <div className="text-sm text-slate-500 sm:text-right">
+              <p>Built by <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">llmadvisor.ai</a></p>
+              <p className="mt-0.5">Powered by highsignal™</p>
+            </div>
+          </div>
+
+          {/* Links row */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-8 mb-10">
             <div>
-              <h5 className="text-white font-semibold mb-3 text-sm">Links</h5>
+              <h5 className="text-white font-semibold mb-3 text-xs uppercase tracking-widest">Links</h5>
               <ul className="space-y-2 text-sm text-slate-400">
                 <li><a href="https://github.com/harborglowvintage-oss/salescloserpro.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a></li>
                 <li><Link to="/about" className="hover:text-white transition-colors">About &amp; Guide</Link></li>
@@ -817,7 +827,7 @@ export default function LandingPage() {
               </ul>
             </div>
             <div>
-              <h5 className="text-white font-semibold mb-3 text-sm">Legal</h5>
+              <h5 className="text-white font-semibold mb-3 text-xs uppercase tracking-widest">Legal</h5>
               <ul className="space-y-2 text-sm text-slate-400">
                 <li><Link to="/legal" className="hover:text-white transition-colors">Terms of Use</Link></li>
                 <li><Link to="/legal#privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
@@ -826,16 +836,11 @@ export default function LandingPage() {
                 <li><Link to="/legal#payments" className="hover:text-white transition-colors">Payments &amp; Crypto</Link></li>
               </ul>
             </div>
-            <div>
-              <h5 className="text-white font-semibold mb-3 text-sm">Built by</h5>
-              <p className="text-sm text-slate-400">
-                <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">llmadvisor.ai</a>
-              </p>
-              <p className="text-sm text-slate-500 mt-1">Powered by highsignal™</p>
-            </div>
           </div>
-          <div className="border-t border-white/[0.06] pt-6 flex items-center justify-center text-xs text-slate-500">
-            <span>© 2026 SalesCloserPro · Apache-2.0 License</span>
+
+          {/* Bottom bar */}
+          <div className="border-t border-white/[0.06] pt-6 text-center text-xs text-slate-600">
+            © 2026 SalesCloserPro · Apache-2.0 License
           </div>
 
         </div>

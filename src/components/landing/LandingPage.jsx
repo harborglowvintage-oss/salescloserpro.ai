@@ -554,14 +554,14 @@ export default function LandingPage() {
             <div className="absolute -bottom-20 right-10 w-64 h-64 rounded-full opacity-15 pointer-events-none" style={{ background: 'radial-gradient(circle, #6366f1, transparent 70%)' }} />
             <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(168,85,247,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.8) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
 
-            <div className="relative flex flex-col justify-between h-full p-8 gap-6">
-              <div className="flex items-start gap-4">
-                <div className="relative flex-shrink-0">
+            <div className="relative flex flex-col justify-between h-full p-5 sm:p-8 gap-6">
+              <div className="flex flex-col sm:flex-row items-start gap-4">
+                <div className="relative flex-shrink-0 w-full sm:w-auto">
                   <div className="absolute inset-0 rounded-2xl blur-xl opacity-60" style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.6), transparent 70%)' }} />
                   <div
-                    className="relative flex items-center justify-center overflow-hidden"
+                    className="relative flex items-center justify-center overflow-hidden w-full sm:w-[280px]"
                     style={{
-                      width: 280, height: 96,
+                      height: 72,
                       borderRadius: 16,
                       background: 'rgba(168,85,247,0.1)',
                       border: '1px solid rgba(168,85,247,0.28)',
@@ -571,9 +571,9 @@ export default function LandingPage() {
                     <img src="/logos/moonpay.png" alt="MoonPay" className="w-full h-full object-contain p-2" />
                   </div>
                 </div>
-                <div>
+                <div className="min-w-0">
                   <span className="inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-purple-200 border border-purple-400/30 rounded-full mb-2" style={{ background: 'rgba(168,85,247,0.15)' }}>✦ Now: MoonPay Commerce</span>
-                  <p className="text-purple-400 text-xs font-semibold uppercase tracking-widest">Trusted by Shopify · Ledger · Fortune Media</p>
+                  <p className="text-purple-400 text-xs font-semibold uppercase tracking-wide sm:tracking-widest">Trusted by Shopify · Ledger · Fortune Media</p>
                 </div>
               </div>
 
@@ -589,7 +589,7 @@ export default function LandingPage() {
                 <p className="text-slate-400 text-xs leading-relaxed mb-3">
                   International client in Japan? Freelancer in Brazil? Contractor in the EU? They pay in their preferred method. You receive instantly. No foreign transaction drama.
                 </p>
-                <div className="grid grid-cols-2 gap-1.5 mb-4 text-xs text-slate-300">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-4 text-xs text-slate-300">
                   {[
                     { icon: '⚡', text: 'Fast settlement — no delays' },
                     { icon: '🔒', text: 'Zero chargebacks for you' },

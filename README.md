@@ -69,6 +69,7 @@
   - [💾 Backup & Restore](#-backup--restore)
   - [🚀 Go Live Wizard](#-go-live-wizard)
 - [🌐 Deploy Your Own (Free)](#-deploy-your-own-free)
+- [✦ Custom & Enterprise Services](#-custom--enterprise-services)
 - [🔍 SEO & Meta Tags](#-seo--meta-tags)
 - [🛠️ Tech Stack](#️-tech-stack)
 - [📁 Project Structure](#-project-structure)
@@ -408,6 +409,31 @@ Use [Cloudflare DNS](https://cloudflare.com/dns) for free DNS management. Point 
 > 💳 Set up [MoonPay](https://dashboard.moonpay.com) in the Go Live wizard to accept invoice payments.
 
 Accept credit card, bank transfer, or Apple Pay. Funds settle as stablecoins (USDC recommended) to your crypto wallet.
+
+---
+
+## ✦ Custom & Enterprise Services
+
+> **Need more than the free version?** We offer private technical partnerships for businesses that need a tailored implementation.
+
+Visit **[salescloserpro.ai/services](https://salescloserpro.ai/#/services)** for full details.
+
+### What we offer
+
+| Service | Description |
+|---|---|
+| 🔧 **Custom Configuration & Build** | Platform scoped and extended to match your exact workflow — data structure, automations, and feature additions built around how your team operates |
+| 🏢 **White-Label & Enterprise Architecture** | Full rebrand of the interface for your franchise or sales floor — stripped default branding, rebuilt around your corporate identity |
+| 🛟 **Setup, Onboarding & Consulting** | Hands-on deployment, data migration, and team onboarding — implementation done right the first time |
+| 🤝 **Ongoing Partnership & Support** | Retainer-based engagement with dedicated responsiveness, roadmap input, and continuous refinement |
+
+### How it works
+
+1. **Describe** — Tell us what you need. No forms, no chatbots. Just a conversation.
+2. **Scope** — We assess feasibility, define deliverables, and present a clear proposal.
+3. **Execute** — Work begins with direct communication and full transparency.
+
+> Engagements typically start at **$2,500**. Contact **brent@llmadvisor.ai** or click **Request a Build Conversation** on the [services page](https://salescloserpro.ai/#/services).
 
 ---
 

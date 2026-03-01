@@ -23,6 +23,7 @@ import BackupRestore from './components/backup/BackupRestore'
 import PurchaseOrders from './components/po/PurchaseOrders'
 import LegalPage from './components/landing/LegalPage'
 import ServicesPage from './components/landing/ServicesPage'
+import WhitepaperPage from './components/landing/WhitepaperPage'
 import useStore from './store'
 
 export default function App() {
@@ -41,6 +42,7 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/legal" element={<LegalPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        <Route path="/whitepaper" element={<WhitepaperPage />} />
         
         {/* App Routes */}
         <Route path="/" element={<Layout />}>

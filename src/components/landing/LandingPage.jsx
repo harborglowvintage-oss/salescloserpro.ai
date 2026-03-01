@@ -115,6 +115,7 @@ export default function LandingPage() {
           <nav className="hidden sm:flex items-center gap-6 text-sm text-slate-400">
             <Link to="/about" className="hover:text-white transition-colors">About</Link>
             <Link to="/help" className="hover:text-white transition-colors">Docs</Link>
+            <Link to="/whitepaper" className="hover:text-white transition-colors">Whitepaper</Link>
             <Link to="/services" className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 hover:text-amber-300 transition-colors text-xs font-semibold tracking-wide">✦ Custom</Link>
             <a href="https://github.com/harborglowvintage-oss/salescloserpro.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               <Github className="w-5 h-5" />
@@ -826,6 +827,7 @@ export default function LandingPage() {
                 <li><Link to="/help" className="hover:text-white transition-colors">In-App Docs</Link></li>
                 <li><a href="https://github.com/harborglowvintage-oss/salescloserpro.ai/issues" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Report a Bug</a></li>
                 <li><Link to="/services" className="text-amber-400 hover:text-amber-300 transition-colors">✦ Custom &amp; Enterprise</Link></li>
+                <li><Link to="/whitepaper" className="hover:text-white transition-colors">📄 Whitepaper</Link></li>
               </ul>
             </div>
             <div>

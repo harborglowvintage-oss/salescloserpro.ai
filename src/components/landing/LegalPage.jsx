@@ -26,7 +26,7 @@ import {
 
 const LAST_UPDATED = 'February 26, 2026'
 const APP_VERSION  = '1.0.0'
-const CONTACT_EMAIL = 'legal@llmadvisor.ai'
+const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
 /* ── collapsible section ── */
 function Section({ id, icon: Icon, title, color = 'text-blue-400', children, defaultOpen = false }) {

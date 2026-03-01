@@ -440,7 +440,6 @@ export default function WhitepaperPage() {
                       ['Presentation', 'Amateur / inconsistent'],
                       ['Payment link', 'None — "mail a check"'],
                       ['Mobile', 'Breaks on phones'],
-                      ['Video walkthrough', 'Not possible'],
                     ].map(([label, val]) => (
                       <li key={label} className="flex items-start gap-2.5">
                         <XCircle className="w-4 h-4 text-red-500/70 mt-0.5 flex-shrink-0" />
@@ -464,7 +463,6 @@ export default function WhitepaperPage() {
                       ['Presentation', 'Branded PDF — print-ready'],
                       ['Payment link', 'Built-in — one-click pay'],
                       ['Mobile', 'Fully responsive'],
-                      ['Video walkthrough', 'Arcade smart embed'],
                     ].map(([label, val]) => (
                       <li key={label} className="flex items-start gap-2.5">
                         <CheckCircle2 className="w-4 h-4 text-emerald-500/70 mt-0.5 flex-shrink-0" />
@@ -482,7 +480,7 @@ export default function WhitepaperPage() {
                 You need software that does the heavy lifting for you. <strong className="text-blue-300">Speed wins the bid.</strong> The contractor who can walk a job site and fire off a binding, professional quote to the client's phone in 10 minutes takes the job.
               </p>
               <p>
-                Furthermore, you can't always be in the boardroom. By using tools like <strong className="text-blue-300">SalesCloserPro.ai</strong> and embedding interactive "smart videos" (like Arcade) directly into your quotes, the software does the selling for you. The client clicks a link, sees a professional walkthrough of your proposal, and signs the deal while you are physically working on another job site.
+                Furthermore, you can't always be in the boardroom. By using tools like <strong className="text-blue-300">SalesCloserPro.ai</strong>, the software does the selling for you. The client clicks a link, sees a professional branded quote on their phone, and signs the deal while you are physically working on another job site.
               </p>
             </div>
           </section>
@@ -755,7 +753,7 @@ export default function WhitepaperPage() {
             <div className="rounded-xl border border-blue-500/20 bg-blue-500/[0.04] p-6 sm:p-8">
               <h2 className="text-2xl font-bold text-white mb-4">Conclusion</h2>
               <p className="text-base text-slate-300 leading-relaxed">
-                The old way of doing business is a liability. Waiting 43 days on overdue invoices, absorbing 7% inflation, paying over $9,100 per employee for heavy software, and sending Word documents will cost you jobs and freeze your cash. <strong className="text-white">SalesCloserPro.ai gives you the blueprint to fix it.</strong> By cutting the software bloat (Zoho/Gmail), locking the front door (Cloudflare), automating your sales pitch (Arcade), getting paid instantly in digital dollars (MoonPay/USDC), and earning crypto rewards on every outgoing purchase (Gemini), you turn your construction business into a bulletproof operation that global instability and fragile banks cannot touch.
+                The old way of doing business is a liability. Waiting 43 days on overdue invoices, absorbing 7% inflation, paying over $9,100 per employee for heavy software, and sending Word documents will cost you jobs and freeze your cash. <strong className="text-white">SalesCloserPro.ai gives you the blueprint to fix it.</strong> By cutting the software bloat (Zoho/Gmail), locking the front door (Cloudflare), automating your sales pitch, getting paid instantly in digital dollars (MoonPay/USDC), and earning crypto rewards on every outgoing purchase (Gemini), you turn your construction business into a bulletproof operation that global instability and fragile banks cannot touch.
               </p>
             </div>
           </section>

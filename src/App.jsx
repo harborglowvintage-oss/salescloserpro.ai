@@ -24,6 +24,7 @@ import PurchaseOrders from './components/po/PurchaseOrders'
 import LegalPage from './components/landing/LegalPage'
 import ServicesPage from './components/landing/ServicesPage'
 import WhitepaperPage from './components/landing/WhitepaperPage'
+import EmailGate from './components/auth/EmailGate'
 import useStore from './store'
 
 export default function App() {
@@ -44,8 +45,8 @@ export default function App() {
         <Route path="/services" element={<ServicesPage />} />
         <Route path="/whitepaper" element={<WhitepaperPage />} />
         
-        {/* App Routes */}
-        <Route path="/" element={<Layout />}>
+        {/* App Routes — gated behind email capture */}
+        <Route path="/" element={<EmailGate><Layout /></EmailGate>}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="quotes" element={<QuoteList />} />
           <Route path="quotes/new" element={<QuoteBuilder />} />

@@ -2,10 +2,11 @@ import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, FileText, Users, GitBranch,
   Rocket, Plus, Menu, X, DollarSign, Coffee, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart,
-  MessageSquare, ExternalLink
+  MessageSquare, ExternalLink, LogOut
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import useStore from '../../store'
+import { getGatedEmail, clearGatedEmail } from '../auth/EmailGate'
 
 function resizeLogo(file, maxDim = 256) {
   return new Promise((resolve) => {
@@ -203,6 +204,22 @@ export default function Layout() {
           <div className="text-[9px] text-gray-300 dark:text-gray-600 text-center">
             © {new Date().getFullYear()} SalesCloserPro · Apache 2.0
           </div>
+
+          {/* Gated email + sign out */}
+          {getGatedEmail() && (
+            <div className="mt-2 flex items-center justify-between gap-1 px-1">
+              <span className="text-[10px] text-gray-400 dark:text-gray-500 truncate" title={getGatedEmail()}>
+                {getGatedEmail()}
+              </span>
+              <button
+                onClick={() => { clearGatedEmail(); window.location.hash = '/'; window.location.reload() }}
+                className="flex items-center gap-0.5 text-[10px] text-gray-400 dark:text-gray-500 hover:text-red-400 dark:hover:text-red-400 transition-colors flex-shrink-0"
+                title="Sign out"
+              >
+                <LogOut className="w-3 h-3" /> Out
+              </button>
+            </div>
+          )}
         </div>
       </aside>
 

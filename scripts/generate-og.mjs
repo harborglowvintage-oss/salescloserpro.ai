@@ -16,7 +16,7 @@ const H = 630
 
 /* ── logo ── */
 const logoPath = resolve(root, 'public/logos/salescloserprologo.png')
-const logoSize = 160
+const logoSize = 152
 const logoResized = await sharp(readFileSync(logoPath))
   .resize(logoSize, logoSize, { fit: 'contain', background: { r: 0, g: 0, b: 0, alpha: 0 } })
   .png()
@@ -63,9 +63,9 @@ const svg = `
 
   <!-- wordmark -->
   <text
-    x="${W / 2}" y="284"
+    x="${W / 2}" y="300"
     font-family="Inter, -apple-system, sans-serif"
-    font-size="72" font-weight="800"
+    font-size="70" font-weight="800"
     fill="#ffffff"
     text-anchor="middle"
     letter-spacing="-2"
@@ -73,18 +73,18 @@ const svg = `
 
   <!-- tagline -->
   <text
-    x="${W / 2}" y="346"
+    x="${W / 2}" y="362"
     font-family="Inter, -apple-system, sans-serif"
-    font-size="28" font-weight="500"
+    font-size="27" font-weight="500"
     fill="#94a3b8"
     text-anchor="middle"
     letter-spacing="0"
   >Free Sales CRM · Quoting · Pipeline · POs · PDF Export</text>
 
   <!-- badge pill -->
-  <rect x="${W/2 - 110}" y="392" width="220" height="44" rx="22" fill="rgba(59,130,246,0.15)" stroke="rgba(99,130,246,0.4)" stroke-width="1.5"/>
+  <rect x="${W/2 - 110}" y="408" width="220" height="44" rx="22" fill="rgba(59,130,246,0.15)" stroke="rgba(99,130,246,0.4)" stroke-width="1.5"/>
   <text
-    x="${W / 2}" y="420"
+    x="${W / 2}" y="436"
     font-family="Inter, -apple-system, sans-serif"
     font-size="18" font-weight="700"
     fill="#93c5fd"
@@ -121,7 +121,7 @@ const svgBuffer = Buffer.from(svg)
 
 // logo position: centered horizontally, above wordmark
 const logoX = Math.round((W - logoSize) / 2)
-const logoY = 88
+const logoY = 80
 
 await sharp(svgBuffer)
   .composite([

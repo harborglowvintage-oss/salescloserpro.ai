@@ -132,6 +132,6 @@ await sharp(svgBuffer)
     }
   ])
   .png({ compressionLevel: 9 })
-  .toFile(resolve(root, 'public/og-cover.png'))
+  .toFile(resolve(root, 'public/og-cover-v2.png'))
 
-console.log('✅  Generated public/og-cover.png (1200×630)')
+console.log('✅  Generated public/og-cover-v2.png (1200×630)')

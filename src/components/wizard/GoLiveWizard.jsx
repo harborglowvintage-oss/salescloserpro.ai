@@ -48,9 +48,9 @@ function TaskCheck({ checked, onChange, children, sub, timeEst }) {
 }
 
 /* ── Link button ────────────────────────────────────────── */
-function LinkCard({ href, label, badge, recommended }) {
+function LinkCard({ href, label, badge, recommended, sponsored }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer"
+    <a href={href} target="_blank" rel={sponsored ? "noopener noreferrer sponsored" : "noopener noreferrer"}
       className="flex items-center justify-between p-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 hover:border-blue-400 hover:shadow-md transition-all group bg-white dark:bg-gray-800">
       <div className="flex items-center gap-3">
         <div className="font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">{label}</div>
@@ -266,6 +266,7 @@ export default function GoLiveWizard() {
                       <p>Your free <strong>yourproject.pages.dev</strong> URL is permanent, HTTPS, and fully functional. You can add a domain later anytime.</p>
                     </div>
                   )}
+                  <LinkCard href="https://namecheap.pxf.io/9VgWEj" label="Register a Domain — Namecheap" badge="Affiliate · Free WhoisGuard" sponsored />
                   <LinkCard href="https://www.cloudflare.com/dns/" label="Cloudflare Free DNS" badge="Recommended" />
                   <div className="flex gap-3">
                     <button onClick={() => setStep(2)} className="btn-secondary">← Back</button>

@@ -216,6 +216,23 @@ export default function EmailGate({ children }) {
             </Link>
             . Your data stays in your browser — we never share or sell your information.
           </p>
+
+          {/* Sponsors */}
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-white/[0.04] pt-6">
+            <span className="text-[10px] font-semibold text-slate-600 uppercase tracking-wider">Sponsors</span>
+            {/* TP-Link */}
+            <a
+              href="https://www.jdoqocy.com/click-101696721-15610798"
+              target="_blank"
+              rel="sponsored noopener"
+              className="text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-medium"
+              title="TP-Link — Wi-Fi Routers & Mesh Systems"
+            >
+              TP-Link Wi-Fi
+            </a>
+            <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            {/* Add future sponsor links here */}
+          </div>
         </div>
       </div>
     </div>

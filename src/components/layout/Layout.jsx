@@ -261,8 +261,25 @@ export default function Layout() {
           <Outlet />
         </main>
         
+        {/* Sponsors */}
+        <div className="border-t border-gray-100 dark:border-gray-800 px-4 py-2 flex flex-wrap items-center gap-x-4 gap-y-1">
+          <span className="text-[10px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-wider">Sponsors</span>
+          {/* TP-Link */}
+          <a
+            href="https://www.jdoqocy.com/click-101696721-15610798"
+            target="_blank"
+            rel="sponsored noopener"
+            className="text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
+            title="TP-Link — Wi-Fi Routers & Mesh Systems"
+          >
+            TP-Link Wi-Fi
+          </a>
+          <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
+          {/* Add future sponsor links here */}
+        </div>
+
         {/* Footer */}
-        <footer className="border-t border-gray-800 py-3 px-4 text-center text-xs text-gray-500">
+        <footer className="border-t border-gray-100 dark:border-gray-800 py-3 px-4 text-center text-xs text-gray-500">
           Powered by <span className="font-semibold">highsignal™</span> © 2026 llmadvisor.ai · Licensed under Apache-2.0
         </footer>
       </div>

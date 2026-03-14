@@ -212,7 +212,7 @@ export default function Layout() {
                 {getGatedEmail()}
               </span>
               <button
-                onClick={() => { clearGatedEmail(); window.location.hash = '/'; window.location.reload() }}
+                onClick={() => { clearGatedEmail(); window.location.href = '/' }}
                 className="flex items-center gap-0.5 text-[10px] text-gray-400 dark:text-gray-500 hover:text-red-400 dark:hover:text-red-400 transition-colors flex-shrink-0"
                 title="Sign out"
               >

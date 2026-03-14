@@ -6,7 +6,7 @@
  * https://github.com/harborglowvintage-oss/salescloserpro.ai
  */
 
-import { HashRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Layout from './components/layout/Layout'
 import LandingPage from './components/landing/LandingPage'
@@ -36,7 +36,7 @@ export default function App() {
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Routes>
         {/* Landing Page */}
         <Route path="/" element={<LandingPage />} />
@@ -60,6 +60,6 @@ export default function App() {
           <Route path="help" element={<HelpGuide />} />
         </Route>
       </Routes>
-    </HashRouter>
+    </BrowserRouter>
   )
 }

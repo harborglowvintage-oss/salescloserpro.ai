@@ -130,7 +130,7 @@ export default function PayInvoiceModal({ open, onClose, quote, grandTotal }) {
                 </div>
               </div>
               <a
-                href="#/go-live"
+                href="/go-live"
                 onClick={onClose}
                 className="inline-flex items-center gap-2 text-sm font-bold text-amber-700 dark:text-amber-300 hover:text-amber-800 dark:hover:text-amber-200"
               >

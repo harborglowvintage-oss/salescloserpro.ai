@@ -275,6 +275,17 @@ export default function Layout() {
             TP-Link Wi-Fi
           </a>
           <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
+          {/* Verizon */}
+          <a
+            href="https://www.tkqlhce.com/click-101696721-11187187"
+            target="_blank"
+            rel="sponsored noopener"
+            className="text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
+            title="Verizon — Deals & Offers"
+          >
+            Verizon Offers
+          </a>
+          <img src="https://www.tqlkg.com/image-101696721-11187187" width="1" height="1" border="0" alt="" aria-hidden="true" />
           {/* Add future sponsor links here */}
         </div>
 

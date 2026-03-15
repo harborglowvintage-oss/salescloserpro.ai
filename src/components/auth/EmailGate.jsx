@@ -225,10 +225,11 @@ export default function EmailGate({ children }) {
               href="https://www.jdoqocy.com/click-101696721-15610798"
               target="_blank"
               rel="sponsored noopener"
-              className="text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-medium"
+              className="inline-flex items-center gap-1.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-medium"
               title="TP-Link — Wi-Fi Routers & Mesh Systems"
             >
-              TP-Link Wi-Fi
+              <img src="/logos/tplink.png" alt="TP-Link" className="h-4 w-auto" />
+              <span>TP-Link Wi-Fi</span>
             </a>
             <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
             {/* Verizon */}
@@ -236,10 +237,11 @@ export default function EmailGate({ children }) {
               href="https://www.tkqlhce.com/click-101696721-11187187"
               target="_blank"
               rel="sponsored noopener"
-              className="text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-medium"
+              className="inline-flex items-center gap-1.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-medium"
               title="Verizon — Deals & Offers"
             >
-              Verizon Offers
+              <img src="/logos/verizon.png" alt="Verizon" className="h-4 w-auto" />
+              <span>Verizon Offers</span>
             </a>
             <img src="https://www.tqlkg.com/image-101696721-11187187" width="1" height="1" border="0" alt="" aria-hidden="true" />
             {/* Add future sponsor links here */}

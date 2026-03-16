@@ -853,8 +853,8 @@ export default function LandingPage() {
                 className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                 title="TP-Link — Wi-Fi Routers & Mesh Systems"
               >
-                <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
-                  <img src="/logos/tplink.png" alt="TP-Link" className="h-5 w-auto" />
+                <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                  <img src="/logos/tplink.png" alt="TP-Link" className="max-h-7 w-auto" />
                 </span>
                 <span>TP-Link Wi-Fi</span>
               </a>
@@ -866,8 +866,8 @@ export default function LandingPage() {
                 className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                 title="Verizon — Deals & Offers"
               >
-                <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
-                  <img src="/logos/verizon.png" alt="Verizon" className="h-5 w-auto" />
+                <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                  <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
                 </span>
                 <span>Verizon Offers</span>
               </a>
@@ -879,8 +879,8 @@ export default function LandingPage() {
                 className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                 title="GearUP — Gaming Performance Booster"
               >
-                <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
-                  <img src="/logos/gearup.png" alt="GearUP" className="h-5 w-auto" />
+                <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                  <img src="/logos/gearup.png" alt="GearUP" className="max-h-5 w-auto" />
                 </span>
                 <span>GearUP Booster</span>
               </a>

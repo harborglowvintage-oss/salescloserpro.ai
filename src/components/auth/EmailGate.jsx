@@ -219,18 +219,18 @@ export default function EmailGate({ children }) {
             <div className="flex items-center justify-center gap-4 flex-wrap">
               {/* TP-Link */}
               <a href="https://www.jdoqocy.com/click-101696721-15610798" target="_blank" rel="sponsored noopener" title="TP-Link — Wi-Fi Routers & Mesh Systems"
-                className="bg-white rounded px-2 py-1 inline-flex items-center hover:opacity-80 transition-opacity">
-                <img src="/logos/tplink.png" alt="TP-Link" className="h-5 w-auto" />
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/tplink.png" alt="TP-Link" className="max-h-7 w-auto" />
               </a>
               {/* Verizon */}
               <a href="https://www.tkqlhce.com/click-101696721-11187187" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"
-                className="bg-white rounded px-2 py-1 inline-flex items-center hover:opacity-80 transition-opacity">
-                <img src="/logos/verizon.png" alt="Verizon" className="h-5 w-auto" />
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
               </a>
               {/* GearUP */}
               <a href="https://www.tkqlhce.com/click-101696721-17235974" target="_blank" rel="sponsored noopener" title="GearUP — Gaming Performance Booster"
-                className="bg-white rounded px-2 py-1 inline-flex items-center hover:opacity-80 transition-opacity">
-                <img src="/logos/gearup.png" alt="GearUP" className="h-5 w-auto" />
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/gearup.png" alt="GearUP" className="max-h-5 w-auto" />
               </a>
               {/* Add future sponsors here — rows fill at 3 per line */}
             </div>

@@ -472,7 +472,6 @@ export default function LandingPage() {
         <div className="grid sm:grid-cols-2 gap-5 mb-8 max-w-2xl mx-auto">
           <PartnerCard
             href="https://namecheap.pxf.io/9VgWEj"
-            rel="sponsored noopener noreferrer"
             logo="/logos/namecheap.png"
             alt="Namecheap"
             bg="bg-white"
@@ -853,7 +852,9 @@ export default function LandingPage() {
               className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
               title="TP-Link — Wi-Fi Routers & Mesh Systems"
             >
-              <img src="/logos/tplink.png" alt="TP-Link" className="h-4 w-auto" />
+              <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
+                <img src="/logos/tplink.png" alt="TP-Link" className="h-5 w-auto" />
+              </span>
               <span>TP-Link Wi-Fi</span>
             </a>
             <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
@@ -865,10 +866,26 @@ export default function LandingPage() {
               className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
               title="Verizon — Deals & Offers"
             >
-              <img src="/logos/verizon.png" alt="Verizon" className="h-4 w-auto" />
+              <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
+                <img src="/logos/verizon.png" alt="Verizon" className="h-5 w-auto" />
+              </span>
               <span>Verizon Offers</span>
             </a>
             <img src="https://www.tqlkg.com/image-101696721-11187187" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            {/* GearUP */}
+            <a
+              href="https://www.tkqlhce.com/click-101696721-17235974"
+              target="_blank"
+              rel="sponsored noopener"
+              className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+              title="GearUP — Gaming Performance Booster"
+            >
+              <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
+                <img src="/logos/gearup.png" alt="GearUP" className="h-5 w-auto" />
+              </span>
+              <span>GearUP Booster</span>
+            </a>
+            <img src="https://www.awltovhc.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
             {/* Add future sponsor links here */}
           </div>
 

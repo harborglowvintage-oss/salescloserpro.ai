@@ -358,6 +358,7 @@ export default function LegalPage() {
                       ['Zoho Mail', 'Affiliate link', 'Commission on qualifying purchases'],
                       ['Buy Me a Coffee', 'Direct support', 'Voluntary tips to developer'],
                       ['MoonPay Commerce', 'Integration partner', 'No direct compensation; used in-app'],
+                      ['GearUP Booster', 'Affiliate link', 'Commission on qualifying purchases'],
                       ['Cloudflare', 'Non-affiliate link', 'No compensation'],
                       ['Google Workspace', 'Non-affiliate link', 'No compensation'],
                     ].map(([p, r, c]) => (

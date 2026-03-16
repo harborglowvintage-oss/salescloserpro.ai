@@ -854,7 +854,7 @@ export default function LandingPage() {
                 title="TP-Link — Wi-Fi Routers & Mesh Systems"
               >
                 <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                  <img src="/logos/tplink.png" alt="TP-Link" className="max-h-7 w-auto" />
+                  <img src="/logos/tplink2.png" alt="TP-Link" className="max-h-7 w-auto" />
                 </span>
                 <span>TP-Link Wi-Fi</span>
               </a>

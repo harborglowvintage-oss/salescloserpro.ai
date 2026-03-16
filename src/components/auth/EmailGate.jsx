@@ -220,7 +220,7 @@ export default function EmailGate({ children }) {
               {/* TP-Link */}
               <a href="https://www.jdoqocy.com/click-101696721-15610798" target="_blank" rel="sponsored noopener" title="TP-Link — Wi-Fi Routers & Mesh Systems"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/tplink.png" alt="TP-Link" className="max-h-7 w-auto" />
+                <img src="/logos/tplink2.png" alt="TP-Link" className="max-h-7 w-auto" />
               </a>
               {/* Verizon */}
               <a href="https://www.tkqlhce.com/click-101696721-11187187" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"

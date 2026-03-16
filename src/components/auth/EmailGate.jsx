@@ -95,15 +95,11 @@ export default function EmailGate({ children }) {
         <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
           <Link to="/" className="flex items-center gap-2.5 group">
             <img
-              src="./salescloserpro-logo.svg"
+              src="/logos/salescloserprologo.png"
               alt="SalesCloserPro"
-              className="h-8 w-8"
-              onError={(e) => { e.target.style.display = 'none' }}
+              className="h-8 w-auto"
             />
-            <span className="text-lg font-bold tracking-tight">
-              <span className="text-white">SalesCloser</span>
-              <span className="text-blue-400">Pro</span>
-            </span>
+            <span className="text-lg font-bold text-white tracking-tight">salescloserpro.ai</span>
           </Link>
           <Link
             to="/"
@@ -217,52 +213,31 @@ export default function EmailGate({ children }) {
             . Your data stays in your browser — we never share or sell your information.
           </p>
 
-          {/* Sponsors */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 border-t border-white/[0.04] pt-6">
-            <span className="text-[10px] font-semibold text-slate-600 uppercase tracking-wider">Sponsors</span>
-            {/* TP-Link */}
-            <a
-              href="https://www.jdoqocy.com/click-101696721-15610798"
-              target="_blank"
-              rel="sponsored noopener"
-              className="inline-flex items-center gap-1.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-medium"
-              title="TP-Link — Wi-Fi Routers & Mesh Systems"
-            >
-              <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
+          {/* Sponsors — logo pills only, rows of 3 */}
+          <div className="mt-8 border-t border-white/[0.04] pt-6 text-center">
+            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Sponsors</p>
+            <div className="flex items-center justify-center gap-4 flex-wrap">
+              {/* TP-Link */}
+              <a href="https://www.jdoqocy.com/click-101696721-15610798" target="_blank" rel="sponsored noopener" title="TP-Link — Wi-Fi Routers & Mesh Systems"
+                className="bg-white rounded px-2 py-1 inline-flex items-center hover:opacity-80 transition-opacity">
                 <img src="/logos/tplink.png" alt="TP-Link" className="h-5 w-auto" />
-              </span>
-              <span>TP-Link Wi-Fi</span>
-            </a>
-            <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            {/* Verizon */}
-            <a
-              href="https://www.tkqlhce.com/click-101696721-11187187"
-              target="_blank"
-              rel="sponsored noopener"
-              className="inline-flex items-center gap-1.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-medium"
-              title="Verizon — Deals & Offers"
-            >
-              <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
+              </a>
+              {/* Verizon */}
+              <a href="https://www.tkqlhce.com/click-101696721-11187187" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"
+                className="bg-white rounded px-2 py-1 inline-flex items-center hover:opacity-80 transition-opacity">
                 <img src="/logos/verizon.png" alt="Verizon" className="h-5 w-auto" />
-              </span>
-              <span>Verizon Offers</span>
-            </a>
-            <img src="https://www.tqlkg.com/image-101696721-11187187" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            {/* GearUP */}
-            <a
-              href="https://www.tkqlhce.com/click-101696721-17235974"
-              target="_blank"
-              rel="sponsored noopener"
-              className="inline-flex items-center gap-1.5 text-[11px] text-blue-400 hover:text-blue-300 transition-colors font-medium"
-              title="GearUP — Gaming Performance Booster"
-            >
-              <span className="bg-white rounded px-1.5 py-0.5 inline-flex items-center">
+              </a>
+              {/* GearUP */}
+              <a href="https://www.tkqlhce.com/click-101696721-17235974" target="_blank" rel="sponsored noopener" title="GearUP — Gaming Performance Booster"
+                className="bg-white rounded px-2 py-1 inline-flex items-center hover:opacity-80 transition-opacity">
                 <img src="/logos/gearup.png" alt="GearUP" className="h-5 w-auto" />
-              </span>
-              <span>GearUP Booster</span>
-            </a>
+              </a>
+              {/* Add future sponsors here — rows fill at 3 per line */}
+            </div>
+            {/* CJ pixel trackers */}
+            <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-11187187" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            {/* Add future sponsor links here */}
           </div>
         </div>
       </div>

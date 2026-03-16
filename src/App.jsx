@@ -29,11 +29,13 @@ import useStore from './store'
 
 export default function App() {
   const syncAllQuotesToPipeline = useStore((s) => s.syncAllQuotesToPipeline)
+  const quotes = useStore((s) => s.quotes)
 
-  // On app load, sync all existing quotes into the pipeline
+  // Sync quotes into pipeline after store has hydrated from IndexedDB.
+  // Running on quotes.length change ensures we catch the first real load.
   useEffect(() => {
     syncAllQuotesToPipeline()
-  }, []) // eslint-disable-line react-hooks/exhaustive-deps
+  }, [quotes.length]) // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <BrowserRouter>

@@ -166,7 +166,7 @@ export default function Layout() {
             {/* Logo area — generous padding */}
             <div className="flex items-center justify-center pt-5 pb-3">
               <div className="w-16 h-16 rounded-2xl bg-white dark:bg-gray-700 flex items-center justify-center ring-2 ring-gray-200 dark:ring-gray-600 shadow-sm group-hover:ring-gray-300 dark:group-hover:ring-gray-500 transition-all duration-200 overflow-hidden">
-                <img src="./gptlogo.png" alt="salescloserpro.ai" className="w-14 h-14 object-cover rounded-xl drop-shadow-sm" />
+                <img src="/gptlogo.png" alt="salescloserpro.ai" className="w-14 h-14 object-cover rounded-xl drop-shadow-sm" />
               </div>
             </div>
             {/* Text area — centered */}

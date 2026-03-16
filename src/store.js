@@ -20,7 +20,7 @@ const useStore = create(
       // ── Company Settings ──────────────────────────────
       company: {
         name: 'llmadvisor.ai',
-        logo: './gptlogo.png',
+        logo: '/gptlogo.png',
         address: '',
         phone: '',
         email: '',

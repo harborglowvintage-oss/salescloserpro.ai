@@ -845,22 +845,22 @@ export default function LandingPage() {
           <div className="border-t border-white/[0.06] pt-6 mb-6 text-center">
             <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Sponsors</p>
             <div className="flex items-center justify-center gap-6 flex-wrap">
-              {/* TP-Link */}
+              {/* TP-Link Tapo */}
               <a
-                href="https://www.jdoqocy.com/click-101696721-15610798"
+                href="https://www.dpbolvw.net/click-101696721-15600687"
                 target="_blank"
                 rel="sponsored noopener"
                 className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                title="TP-Link — Wi-Fi Routers & Mesh Systems"
+                title="TP-Link Tapo — Smart Home Store"
               >
                 <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                  <img src="/logos/tplink2.png" alt="TP-Link" className="max-h-7 w-auto" />
+                  <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
                 </span>
-                <span>TP-Link Wi-Fi</span>
+                <span>TP-Link Tapo</span>
               </a>
               {/* Verizon */}
               <a
-                href="https://www.tkqlhce.com/click-101696721-11187187"
+                href="https://www.tkqlhce.com/click-101696721-11371807"
                 target="_blank"
                 rel="sponsored noopener"
                 className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
@@ -871,24 +871,24 @@ export default function LandingPage() {
                 </span>
                 <span>Verizon Offers</span>
               </a>
-              {/* GearUP */}
+              {/* Hotels.com */}
               <a
-                href="https://www.tkqlhce.com/click-101696721-17235974"
+                href="https://www.tkqlhce.com/click-101696721-10772148"
                 target="_blank"
                 rel="sponsored noopener"
                 className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                title="GearUP — Gaming Performance Booster"
+                title="Hotels.com — Book Now and Save"
               >
                 <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                  <img src="/logos/gearup.png" alt="GearUP" className="max-h-5 w-auto" />
+                  <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 w-auto" />
                 </span>
-                <span>GearUP Booster</span>
+                <span>Hotels.com</span>
               </a>
             </div>
             {/* CJ pixel trackers */}
-            <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-11187187" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-10772148" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
 
           {/* Bottom bar */}

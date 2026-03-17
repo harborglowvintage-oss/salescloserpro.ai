@@ -217,27 +217,27 @@ export default function EmailGate({ children }) {
           <div className="mt-8 border-t border-white/[0.04] pt-6 text-center">
             <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Sponsors</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              {/* TP-Link */}
-              <a href="https://www.jdoqocy.com/click-101696721-15610798" target="_blank" rel="sponsored noopener" title="TP-Link — Wi-Fi Routers & Mesh Systems"
+              {/* TP-Link Tapo */}
+              <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored noopener" title="TP-Link Tapo — Smart Home Store"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/tplink2.png" alt="TP-Link" className="max-h-7 w-auto" />
+                <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
               </a>
               {/* Verizon */}
-              <a href="https://www.tkqlhce.com/click-101696721-11187187" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"
+              <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
               </a>
-              {/* GearUP */}
-              <a href="https://www.tkqlhce.com/click-101696721-17235974" target="_blank" rel="sponsored noopener" title="GearUP — Gaming Performance Booster"
+              {/* Hotels.com */}
+              <a href="https://www.tkqlhce.com/click-101696721-10772148" target="_blank" rel="sponsored noopener" title="Hotels.com — Book Now and Save"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/gearup.png" alt="GearUP" className="max-h-5 w-auto" />
+                <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 w-auto" />
               </a>
               {/* Add future sponsors here — rows fill at 3 per line */}
             </div>
             {/* CJ pixel trackers */}
-            <img src="https://www.ftjcfx.com/image-101696721-15610798" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-11187187" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-10772148" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
         </div>
       </div>

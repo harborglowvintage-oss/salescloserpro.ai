@@ -854,7 +854,10 @@ export default function LandingPage() {
                   className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="TP-Link Tapo — Smart Home Store"
                 >
-                    <span className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-400/25 bg-gradient-to-b from-white via-white to-slate-100 shadow-[0_8px_18px_rgba(13,148,136,0.12),0_0_14px_rgba(45,212,191,0.12),inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-2px_4px_rgba(15,23,42,0.08)]">
+                    <span
+                      className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
+                      style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
+                    >
                       <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 max-w-[84%] w-auto" />
                   </span>
                   <span className="leading-tight text-center">TP-Link Tapo</span>
@@ -867,7 +870,10 @@ export default function LandingPage() {
                   className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="GearUp — Game Boosting & Performance"
                 >
-                  <span className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-400/25 bg-gradient-to-b from-white via-white to-slate-100 shadow-[0_8px_18px_rgba(13,148,136,0.12),0_0_14px_rgba(45,212,191,0.12),inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-2px_4px_rgba(15,23,42,0.08)]">
+                  <span
+                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
+                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
+                  >
                     <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 max-w-[84%] w-auto" />
                   </span>
                   <span className="leading-tight text-center">GearUp</span>
@@ -880,7 +886,10 @@ export default function LandingPage() {
                   className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="SafeShell VPN — Best VPN of 2025"
                 >
-                  <span className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-400/25 bg-gradient-to-b from-white via-white to-slate-100 px-1 shadow-[0_8px_18px_rgba(13,148,136,0.12),0_0_14px_rgba(45,212,191,0.12),inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-2px_4px_rgba(15,23,42,0.08)]">
+                  <span
+                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 px-1 shadow-md shadow-teal-500/10"
+                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
+                  >
                     <img src="/logos/safeshell.png" alt="SafeShell VPN" className="max-h-5 max-w-[94%] w-auto" />
                   </span>
                   <span className="leading-tight text-center">SafeShell VPN</span>
@@ -893,7 +902,10 @@ export default function LandingPage() {
                   className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Verizon — Deals & Offers"
                 >
-                  <span className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-400/25 bg-gradient-to-b from-white via-white to-slate-100 shadow-[0_8px_18px_rgba(13,148,136,0.12),0_0_14px_rgba(45,212,191,0.12),inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-2px_4px_rgba(15,23,42,0.08)]">
+                  <span
+                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
+                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
+                  >
                     <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 max-w-[80%] w-auto" />
                   </span>
                   <span className="leading-tight text-center">Verizon Offers</span>
@@ -908,7 +920,10 @@ export default function LandingPage() {
                   className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Hotels.com — Book Now and Save"
                 >
-                  <span className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-400/25 bg-gradient-to-b from-white via-white to-slate-100 shadow-[0_8px_18px_rgba(13,148,136,0.12),0_0_14px_rgba(45,212,191,0.12),inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-2px_4px_rgba(15,23,42,0.08)]">
+                  <span
+                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
+                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
+                  >
                     <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 max-w-[84%] w-auto" />
                   </span>
                   <span className="leading-tight text-center">Hotels.com</span>
@@ -921,7 +936,10 @@ export default function LandingPage() {
                   className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="M&M's — Shop Now"
                 >
-                  <span className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-400/25 bg-gradient-to-b from-white via-white to-slate-100 shadow-[0_8px_18px_rgba(13,148,136,0.12),0_0_14px_rgba(45,212,191,0.12),inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-2px_4px_rgba(15,23,42,0.08)]">
+                  <span
+                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
+                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
+                  >
                     <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 max-w-[84%] w-auto" />
                   </span>
                   <span className="leading-tight text-center">M&amp;M's</span>
@@ -934,7 +952,10 @@ export default function LandingPage() {
                   className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Peet's Coffee — 30% Off New Subscriptions"
                 >
-                  <span className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-400/25 bg-gradient-to-b from-white via-white to-slate-100 shadow-[0_8px_18px_rgba(13,148,136,0.12),0_0_14px_rgba(45,212,191,0.12),inset_0_1px_0_rgba(255,255,255,0.95),inset_0_-2px_4px_rgba(15,23,42,0.08)]">
+                  <span
+                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
+                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
+                  >
                     <img src="/logos/peets.png" alt="Peet's Coffee" className="max-h-7 max-w-[84%] w-auto" />
                   </span>
                   <span className="leading-tight text-center">Peet's Coffee</span>

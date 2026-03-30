@@ -935,7 +935,7 @@ export default function LandingPage() {
                   title="Peet's Coffee — 30% Off New Subscriptions"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                    <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="w-auto object-contain" style={{ maxHeight: '30px' }} />
+                    <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="w-auto object-contain" style={{ maxHeight: '24px', maxWidth: '88px' }} />
                   </span>
                   <span className="text-center leading-tight">Peet's Coffee</span>
                 </a>

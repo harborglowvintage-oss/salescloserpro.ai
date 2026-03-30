@@ -931,11 +931,11 @@ export default function LandingPage() {
                   href="https://www.anrdoezrs.net/click-101696721-17180550"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Peet's Coffee — 30% Off New Subscriptions"
                 >
-                  <span className="bg-white rounded inline-flex items-center justify-center w-32 h-10">
-                    <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="w-auto object-contain" style={{ maxHeight: '36px', maxWidth: '120px' }} />
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8 p-0.5">
+                    <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="max-h-full max-w-full object-contain" />
                   </span>
                   <span className="text-center leading-tight">Peet's Coffee</span>
                 </a>

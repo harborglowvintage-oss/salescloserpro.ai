@@ -851,52 +851,52 @@ export default function LandingPage() {
                   href="https://www.dpbolvw.net/click-101696721-15600687"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="TP-Link Tapo — Smart Home Store"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
                   </span>
-                  <span>TP-Link Tapo</span>
+                  <span className="text-center leading-tight">TP-Link Tapo</span>
                 </a>
                 {/* GearUp */}
                 <a
                   href="https://www.dpbolvw.net/click-101696721-17235974"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="GearUp — Game Boosting & Performance"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 w-auto" />
                   </span>
-                  <span>GearUp</span>
+                  <span className="text-center leading-tight">GearUp</span>
                 </a>
                 {/* SafeShell VPN */}
                 <a
                   href="https://www.jdoqocy.com/click-101696721-17077457"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="SafeShell VPN — Best VPN of 2025"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/safeshellfinal.png" alt="SafeShell VPN" className="h-7 w-7 object-contain" />
                   </span>
-                  <span>SafeShell VPN</span>
+                  <span className="text-center leading-tight">SafeShell VPN</span>
                 </a>
                 {/* Verizon */}
                 <a
                   href="https://www.tkqlhce.com/click-101696721-11371807"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Verizon — Deals & Offers"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
                   </span>
-                  <span>Verizon Offers</span>
+                  <span className="text-center leading-tight">Verizon Offers</span>
                 </a>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-6">
@@ -905,39 +905,39 @@ export default function LandingPage() {
                   href="https://www.tkqlhce.com/click-101696721-10772148"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Hotels.com — Book Now and Save"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 w-auto" />
                   </span>
-                  <span>Hotels.com</span>
+                  <span className="text-center leading-tight">Hotels.com</span>
                 </a>
                 {/* M&M's */}
                 <a
                   href="https://www.anrdoezrs.net/click-101696721-15075557"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="M&M's — Shop Now"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 w-auto" />
                   </span>
-                  <span>M&amp;M's</span>
+                  <span className="text-center leading-tight">M&amp;M's</span>
                 </a>
                 {/* Peet's Coffee */}
                 <a
                   href="https://www.anrdoezrs.net/click-101696721-17180550"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Peet's Coffee — 30% Off New Subscriptions"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/peets.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
                   </span>
-                  <span>Peet's Coffee</span>
+                  <span className="text-center leading-tight">Peet's Coffee</span>
                 </a>
               </div>
             </div>

@@ -845,120 +845,99 @@ export default function LandingPage() {
           <div className="border-t border-white/[0.06] pt-6 mb-6 text-center">
             <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Affiliate Offers</p>
             <div className="space-y-4">
-              <div className="flex flex-wrap items-start justify-center gap-x-6 gap-y-4 md:flex-nowrap">
+              <div className="flex flex-wrap items-center justify-center gap-6">
                 {/* TP-Link Tapo */}
                 <a
                   href="https://www.dpbolvw.net/click-101696721-15600687"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="TP-Link Tapo — Smart Home Store"
                 >
-                    <span
-                      className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
-                      style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
-                    >
-                      <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 max-w-[84%] w-auto" />
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                    <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
                   </span>
-                  <span className="leading-tight text-center">TP-Link Tapo</span>
+                  <span>TP-Link Tapo</span>
                 </a>
                 {/* GearUp */}
                 <a
                   href="https://www.dpbolvw.net/click-101696721-17235974"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="GearUp — Game Boosting & Performance"
                 >
-                  <span
-                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
-                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
-                  >
-                    <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 max-w-[84%] w-auto" />
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                    <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 w-auto" />
                   </span>
-                  <span className="leading-tight text-center">GearUp</span>
+                  <span>GearUp</span>
                 </a>
                 {/* SafeShell VPN */}
                 <a
                   href="https://www.jdoqocy.com/click-101696721-17077457"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="SafeShell VPN — Best VPN of 2025"
                 >
-                  <span
-                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 px-1 shadow-md shadow-teal-500/10"
-                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
-                  >
-                    <img src="/logos/safeshell.png" alt="SafeShell VPN" className="max-h-5 max-w-[94%] w-auto" />
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                    <img src="/logos/safeshell.png" alt="SafeShell VPN" className="h-7 w-7 object-contain" />
                   </span>
-                  <span className="leading-tight text-center">SafeShell VPN</span>
+                  <span>SafeShell VPN</span>
                 </a>
                 {/* Verizon */}
                 <a
                   href="https://www.tkqlhce.com/click-101696721-11371807"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Verizon — Deals & Offers"
                 >
-                  <span
-                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
-                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
-                  >
-                    <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 max-w-[80%] w-auto" />
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                    <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
                   </span>
-                  <span className="leading-tight text-center">Verizon Offers</span>
+                  <span>Verizon Offers</span>
                 </a>
               </div>
-              <div className="flex flex-wrap items-start justify-center gap-x-6 gap-y-4 md:flex-nowrap">
+              <div className="flex flex-wrap items-center justify-center gap-6">
                 {/* Hotels.com */}
                 <a
                   href="https://www.tkqlhce.com/click-101696721-10772148"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Hotels.com — Book Now and Save"
                 >
-                  <span
-                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
-                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
-                  >
-                    <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 max-w-[84%] w-auto" />
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                    <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 w-auto" />
                   </span>
-                  <span className="leading-tight text-center">Hotels.com</span>
+                  <span>Hotels.com</span>
                 </a>
                 {/* M&M's */}
                 <a
                   href="https://www.anrdoezrs.net/click-101696721-15075557"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="M&M's — Shop Now"
                 >
-                  <span
-                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
-                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
-                  >
-                    <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 max-w-[84%] w-auto" />
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                    <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 w-auto" />
                   </span>
-                  <span className="leading-tight text-center">M&amp;M's</span>
+                  <span>M&amp;M's</span>
                 </a>
                 {/* Peet's Coffee */}
                 <a
                   href="https://www.anrdoezrs.net/click-101696721-17180550"
                   target="_blank"
                   rel="sponsored noopener"
-                  className="inline-flex w-32 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   title="Peet's Coffee — 30% Off New Subscriptions"
                 >
-                  <span
-                    className="inline-flex h-10 w-28 items-center justify-center rounded border border-cyan-300/30 bg-gradient-to-b from-white via-white to-slate-100 shadow-md shadow-teal-500/10"
-                    style={{ boxShadow: '0 8px 18px rgba(13, 148, 136, 0.12), 0 0 14px rgba(45, 212, 191, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.95), inset 0 -2px 4px rgba(15, 23, 42, 0.08)' }}
-                  >
-                    <img src="/logos/peets.png" alt="Peet's Coffee" className="max-h-7 max-w-[84%] w-auto" />
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                    <img src="/logos/peets.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
                   </span>
-                  <span className="leading-tight text-center">Peet's Coffee</span>
+                  <span>Peet's Coffee</span>
                 </a>
               </div>
             </div>

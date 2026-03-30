@@ -881,7 +881,7 @@ export default function LandingPage() {
                   title="SafeShell VPN — Best VPN of 2025"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                    <img src="/logos/safeshell.png" alt="SafeShell VPN" className="h-7 w-7 object-contain" />
+                    <img src="/logos/safeshellfinal.png" alt="SafeShell VPN" className="h-7 w-7 object-contain" />
                   </span>
                   <span>SafeShell VPN</span>
                 </a>

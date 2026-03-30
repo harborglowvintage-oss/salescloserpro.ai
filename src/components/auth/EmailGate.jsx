@@ -213,14 +213,24 @@ export default function EmailGate({ children }) {
             . Your data stays in your browser — we never share or sell your information.
           </p>
 
-          {/* Sponsors — logo pills only, rows of 3 */}
+          {/* Affiliate Offers — logo pills only, rows of 3-4 */}
           <div className="mt-8 border-t border-white/[0.04] pt-6 text-center">
-            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Sponsors</p>
+            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Affiliate Offers</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               {/* TP-Link Tapo */}
               <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored noopener" title="TP-Link Tapo — Smart Home Store"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
+              </a>
+              {/* GearUp */}
+              <a href="https://www.dpbolvw.net/click-101696721-17235974" target="_blank" rel="sponsored noopener" title="GearUp — Game Boosting & Performance"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 w-auto" />
+              </a>
+              {/* SafeShell VPN */}
+              <a href="https://www.jdoqocy.com/click-101696721-17077457" target="_blank" rel="sponsored noopener" title="SafeShell VPN — Best VPN of 2025"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/safeshell.png" alt="SafeShell VPN" className="max-h-7 w-auto" />
               </a>
               {/* Verizon */}
               <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"
@@ -232,12 +242,25 @@ export default function EmailGate({ children }) {
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 w-auto" />
               </a>
-              {/* Add future sponsors here — rows fill at 3 per line */}
+              {/* M&M's */}
+              <a href="https://www.anrdoezrs.net/click-101696721-15075557" target="_blank" rel="sponsored noopener" title="M&M's — Shop Now"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 w-auto" />
+              </a>
+              {/* Peet's Coffee */}
+              <a href="https://www.anrdoezrs.net/click-101696721-17180550" target="_blank" rel="sponsored noopener" title="Peet's Coffee — 30% Off New Subscriptions"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/peets.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
+              </a>
             </div>
             {/* CJ pixel trackers */}
             <img src="https://www.tqlkg.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-10772148" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-17077457" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-15075557" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17180550" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
         </div>
       </div>

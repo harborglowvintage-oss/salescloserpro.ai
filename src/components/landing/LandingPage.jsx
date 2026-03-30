@@ -841,9 +841,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Sponsors row */}
+          {/* Affiliate Offers row */}
           <div className="border-t border-white/[0.06] pt-6 mb-6 text-center">
-            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Sponsors</p>
+            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Affiliate Offers</p>
             <div className="flex items-center justify-center gap-6 flex-wrap">
               {/* TP-Link Tapo */}
               <a
@@ -857,6 +857,32 @@ export default function LandingPage() {
                   <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
                 </span>
                 <span>TP-Link Tapo</span>
+              </a>
+              {/* GearUp */}
+              <a
+                href="https://www.dpbolvw.net/click-101696721-17235974"
+                target="_blank"
+                rel="sponsored noopener"
+                className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                title="GearUp — Game Boosting & Performance"
+              >
+                <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                  <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 w-auto" />
+                </span>
+                <span>GearUp</span>
+              </a>
+              {/* SafeShell VPN */}
+              <a
+                href="https://www.jdoqocy.com/click-101696721-17077457"
+                target="_blank"
+                rel="sponsored noopener"
+                className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                title="SafeShell VPN — Best VPN of 2025"
+              >
+                <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                  <img src="/logos/safeshell.png" alt="SafeShell VPN" className="max-h-7 w-auto" />
+                </span>
+                <span>SafeShell VPN</span>
               </a>
               {/* Verizon */}
               <a
@@ -884,11 +910,41 @@ export default function LandingPage() {
                 </span>
                 <span>Hotels.com</span>
               </a>
+              {/* M&M's */}
+              <a
+                href="https://www.anrdoezrs.net/click-101696721-15075557"
+                target="_blank"
+                rel="sponsored noopener"
+                className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                title="M&M's — Shop Now"
+              >
+                <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                  <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 w-auto" />
+                </span>
+                <span>M&amp;M's</span>
+              </a>
+              {/* Peet's Coffee */}
+              <a
+                href="https://www.anrdoezrs.net/click-101696721-17180550"
+                target="_blank"
+                rel="sponsored noopener"
+                className="inline-flex items-center gap-1.5 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                title="Peet's Coffee — 30% Off New Subscriptions"
+              >
+                <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                  <img src="/logos/peets.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
+                </span>
+                <span>Peet's Coffee</span>
+              </a>
             </div>
             {/* CJ pixel trackers */}
             <img src="https://www.tqlkg.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-10772148" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-17077457" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-15075557" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17180550" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
 
           {/* Bottom bar */}

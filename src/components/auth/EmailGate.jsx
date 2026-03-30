@@ -249,8 +249,8 @@ export default function EmailGate({ children }) {
               </a>
               {/* Peet's Coffee */}
               <a href="https://www.anrdoezrs.net/click-101696721-17180550" target="_blank" rel="sponsored noopener" title="Peet's Coffee — 30% Off New Subscriptions"
-                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="w-auto object-contain" style={{ maxHeight: '28px', maxWidth: '88px' }} />
+                className="bg-white rounded inline-flex items-center justify-center w-32 h-10 hover:opacity-80 transition-opacity">
+                <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="w-auto object-contain" style={{ maxHeight: '36px', maxWidth: '120px' }} />
               </a>
             </div>
             {/* CJ pixel trackers */}

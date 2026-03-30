@@ -250,7 +250,7 @@ export default function EmailGate({ children }) {
               {/* Peet's Coffee */}
               <a href="https://www.anrdoezrs.net/click-101696721-17180550" target="_blank" rel="sponsored noopener" title="Peet's Coffee — 30% Off New Subscriptions"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/peets.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
+                <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
               </a>
             </div>
             {/* CJ pixel trackers */}

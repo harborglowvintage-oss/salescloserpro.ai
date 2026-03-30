@@ -935,7 +935,7 @@ export default function LandingPage() {
                   title="Peet's Coffee — 30% Off New Subscriptions"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                    <img src="/logos/peets.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
+                    <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
                   </span>
                   <span className="text-center leading-tight">Peet's Coffee</span>
                 </a>

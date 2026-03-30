@@ -230,7 +230,7 @@ export default function EmailGate({ children }) {
               {/* SafeShell VPN */}
               <a href="https://www.jdoqocy.com/click-101696721-17077457" target="_blank" rel="sponsored noopener" title="SafeShell VPN — Best VPN of 2025"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/safeshellfinal.png" alt="SafeShell VPN" className="max-h-7 w-auto" />
+                <img src="/logos/safeshellfinal.png" alt="SafeShell VPN" className="h-8 w-8 object-contain" />
               </a>
               {/* Verizon */}
               <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"

@@ -841,9 +841,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Trusted Partner Offers row */}
+          {/* Affiliate Partners row */}
           <div className="border-t border-white/[0.06] pt-6 mb-6 text-center">
-            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Trusted Partner Offers</p>
+            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Affiliate Partners</p>
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {/* TP-Link Tapo */}

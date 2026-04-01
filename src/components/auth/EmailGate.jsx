@@ -213,9 +213,9 @@ export default function EmailGate({ children }) {
             . Your data stays in your browser — we never share or sell your information.
           </p>
 
-          {/* Trusted Partner Offers — logo pills only, rows of 3-4 */}
+          {/* Affiliate Partners — logo pills only, rows of 3-4 */}
           <div className="mt-8 border-t border-white/[0.04] pt-6 text-center">
-            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Trusted Partner Offers</p>
+            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Affiliate Partners</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               {/* TP-Link Tapo */}
                 <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored noopener" title="TP-Link Tapo"

@@ -223,39 +223,39 @@ export default function EmailGate({ children }) {
                 <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
               </a>
               {/* GearUp */}
-              <a href="https://www.dpbolvw.net/click-101696721-17235974" target="_blank" rel="sponsored noopener" title="GearUp — Game Boosting & Performance"
+              <a href="https://www.dpbolvw.net/click-101696721-17235974" target="_blank" rel="sponsored noopener" title="GearUp"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 w-auto" />
               </a>
               {/* Carbonite */}
-              <a href="https://www.dpbolvw.net/click-101696721-15693758" target="_blank" rel="sponsored noopener" title="Carbonite — Personal Backup"
+              <a href="https://www.dpbolvw.net/click-101696721-15693758" target="_blank" rel="sponsored noopener" title="Carbonite"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/carbonite.png" alt="Carbonite Backup" className="max-h-7 w-auto" />
+                <img src="/logos/carbonite.png" alt="Carbonite" className="max-h-7 w-auto" />
               </a>
               {/* Verizon */}
-              <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"
+                  <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
               </a>
               {/* Hotels.com */}
-              <a href="https://www.tkqlhce.com/click-101696721-10772148" target="_blank" rel="sponsored noopener" title="Hotels.com — Book Now and Save"
+              <a href="https://www.tkqlhce.com/click-101696721-10772148" target="_blank" rel="sponsored noopener" title="Hotels.com"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/hotelsnew.png" alt="Hotels.com" className="max-h-5 w-auto" />
               </a>
               {/* M&M's */}
-              <a href="https://www.anrdoezrs.net/click-101696721-15075557" target="_blank" rel="sponsored noopener" title="M&M's — Shop Now"
+              <a href="https://www.anrdoezrs.net/click-101696721-15075557" target="_blank" rel="sponsored noopener" title="M&M's"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 w-auto" />
               </a>
               {/* Peet's Coffee */}
-              <a href="https://www.anrdoezrs.net/click-101696721-17180550" target="_blank" rel="sponsored noopener" title="Peet's Coffee — 30% Off New Subscriptions"
+              <a href="https://www.anrdoezrs.net/click-101696721-17180550" target="_blank" rel="sponsored noopener" title="Peet's Coffee"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 p-0.5 hover:opacity-80 transition-opacity">
                 <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="max-h-full max-w-full object-contain" />
               </a>
               {/* Northern Tool + Equipment */}
-              <a href="https://www.dpbolvw.net/click-101696721-15483785" target="_blank" rel="sponsored noopener" title="Northern Tool + Equipment"
+              <a href="https://www.dpbolvw.net/click-101696721-15483785" target="_blank" rel="sponsored noopener" title="Northern Tool"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/northerntool.png" alt="Northern Tool + Equipment" className="max-h-7 w-auto" />
+                <img src="/logos/northerntool.png" alt="Northern Tool" className="max-h-7 w-auto" />
               </a>
             </div>
             {/* CJ pixel trackers */}

@@ -865,7 +865,7 @@ export default function LandingPage() {
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="GearUp — Game Boosting & Performance"
+                  title="GearUp"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 w-auto" />
@@ -878,12 +878,12 @@ export default function LandingPage() {
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="Carbonite — Personal Backup"
+                  title="Carbonite"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                    <img src="/logos/carbonite.png" alt="Carbonite Backup" className="max-h-7 w-auto" />
+                    <img src="/logos/carbonite.png" alt="Carbonite" className="max-h-7 w-auto" />
                   </span>
-                  <span className="text-center leading-tight">Carbonite Backup</span>
+                  <span className="text-center leading-tight">Carbonite</span>
                 </a>
                 {/* Verizon */}
                 <a
@@ -891,12 +891,12 @@ export default function LandingPage() {
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="Verizon — Deals & Offers"
+                    title="Verizon"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
                   </span>
-                  <span className="text-center leading-tight">Verizon Offers</span>
+                    <span className="text-center leading-tight">Verizon</span>
                 </a>
               </div>
               <div className="flex flex-wrap items-center justify-center gap-6">
@@ -906,7 +906,7 @@ export default function LandingPage() {
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="Hotels.com — Book Now and Save"
+                  title="Hotels.com"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/hotelsnew.png" alt="Hotels.com" className="max-h-5 w-auto" />
@@ -919,7 +919,7 @@ export default function LandingPage() {
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="M&M's — Shop Now"
+                  title="M&M's"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 w-auto" />
@@ -932,7 +932,7 @@ export default function LandingPage() {
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="Peet's Coffee — 30% Off New Subscriptions"
+                  title="Peet's Coffee"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8 p-0.5">
                     <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="max-h-full max-w-full object-contain" />
@@ -945,10 +945,10 @@ export default function LandingPage() {
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="Northern Tool + Equipment"
+                  title="Northern Tool"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                    <img src="/logos/northerntool.png" alt="Northern Tool + Equipment" className="max-h-7 w-auto" />
+                    <img src="/logos/northerntool.png" alt="Northern Tool" className="max-h-7 w-auto" />
                   </span>
                   <span className="text-center leading-tight">Northern Tool</span>
                 </a>

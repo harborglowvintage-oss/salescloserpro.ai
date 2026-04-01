@@ -284,12 +284,12 @@ export default function Layout() {
               target="_blank"
               rel="sponsored noopener"
               className="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
-              title="Verizon — Deals & Offers"
+                title="Verizon"
             >
               <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                 <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
               </span>
-              <span>Verizon Offers</span>
+                <span>Verizon</span>
             </a>
             {/* Hotels.com */}
             <a
@@ -297,7 +297,7 @@ export default function Layout() {
               target="_blank"
               rel="sponsored noopener"
               className="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
-              title="Hotels.com — Book Now and Save"
+              title="Hotels.com"
             >
               <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                 <img src="/logos/hotelsnew.png" alt="Hotels.com" className="max-h-5 w-auto" />

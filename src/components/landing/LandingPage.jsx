@@ -841,9 +841,9 @@ export default function LandingPage() {
             </div>
           </div>
 
-          {/* Affiliate Offers row */}
+          {/* Trusted Partner Offers row */}
           <div className="border-t border-white/[0.06] pt-6 mb-6 text-center">
-            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Affiliate Offers</p>
+            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Trusted Partner Offers</p>
             <div className="space-y-4">
               <div className="flex flex-wrap items-center justify-center gap-6">
                 {/* TP-Link Tapo */}
@@ -872,18 +872,18 @@ export default function LandingPage() {
                   </span>
                   <span className="text-center leading-tight">GearUp</span>
                 </a>
-                {/* SafeShell VPN */}
+                {/* Carbonite */}
                 <a
-                  href="https://www.jdoqocy.com/click-101696721-17077457"
+                  href="https://www.dpbolvw.net/click-101696721-15693758"
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="SafeShell VPN — Best VPN of 2025"
+                  title="Carbonite — Personal Backup"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                    <img src="/logos/safeshellfinal.png" alt="SafeShell VPN" className="h-7 w-7 object-contain" />
+                    <img src="/logos/carbonite.png" alt="Carbonite Backup" className="max-h-7 w-auto" />
                   </span>
-                  <span className="text-center leading-tight">SafeShell VPN</span>
+                  <span className="text-center leading-tight">Carbonite Backup</span>
                 </a>
                 {/* Verizon */}
                 <a
@@ -909,7 +909,7 @@ export default function LandingPage() {
                   title="Hotels.com — Book Now and Save"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                    <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 w-auto" />
+                    <img src="/logos/hotelsnew.png" alt="Hotels.com" className="max-h-5 w-auto" />
                   </span>
                   <span className="text-center leading-tight">Hotels.com</span>
                 </a>
@@ -939,6 +939,19 @@ export default function LandingPage() {
                   </span>
                   <span className="text-center leading-tight">Peet's Coffee</span>
                 </a>
+                {/* Northern Tool + Equipment */}
+                <a
+                  href="https://www.dpbolvw.net/click-101696721-15483785"
+                  target="_blank"
+                  rel="sponsored noopener"
+                  className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                  title="Northern Tool + Equipment"
+                >
+                  <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
+                    <img src="/logos/northerntool.png" alt="Northern Tool + Equipment" className="max-h-7 w-auto" />
+                  </span>
+                  <span className="text-center leading-tight">Northern Tool</span>
+                </a>
               </div>
             </div>
             {/* CJ pixel trackers */}
@@ -946,9 +959,10 @@ export default function LandingPage() {
             <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-10772148" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-17077457" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-15693758" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-15075557" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-17180550" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-15483785" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
 
           {/* Bottom bar */}

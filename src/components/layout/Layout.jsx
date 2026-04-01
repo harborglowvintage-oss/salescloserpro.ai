@@ -300,7 +300,7 @@ export default function Layout() {
               title="Hotels.com — Book Now and Save"
             >
               <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 w-auto" />
+                <img src="/logos/hotelsnew.png" alt="Hotels.com" className="max-h-5 w-auto" />
               </span>
               <span>Hotels.com</span>
             </a>

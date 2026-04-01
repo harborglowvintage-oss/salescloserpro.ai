@@ -213,9 +213,9 @@ export default function EmailGate({ children }) {
             . Your data stays in your browser — we never share or sell your information.
           </p>
 
-          {/* Affiliate Offers — logo pills only, rows of 3-4 */}
+          {/* Trusted Partner Offers — logo pills only, rows of 3-4 */}
           <div className="mt-8 border-t border-white/[0.04] pt-6 text-center">
-            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Affiliate Offers</p>
+            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Trusted Partner Offers</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               {/* TP-Link Tapo */}
               <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored noopener" title="TP-Link Tapo — Smart Home Store"
@@ -227,10 +227,10 @@ export default function EmailGate({ children }) {
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 w-auto" />
               </a>
-              {/* SafeShell VPN */}
-              <a href="https://www.jdoqocy.com/click-101696721-17077457" target="_blank" rel="sponsored noopener" title="SafeShell VPN — Best VPN of 2025"
+              {/* Carbonite */}
+              <a href="https://www.dpbolvw.net/click-101696721-15693758" target="_blank" rel="sponsored noopener" title="Carbonite — Personal Backup"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/safeshellfinal.png" alt="SafeShell VPN" className="h-8 w-8 object-contain" />
+                <img src="/logos/carbonite.png" alt="Carbonite Backup" className="max-h-7 w-auto" />
               </a>
               {/* Verizon */}
               <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon — Deals & Offers"
@@ -240,7 +240,7 @@ export default function EmailGate({ children }) {
               {/* Hotels.com */}
               <a href="https://www.tkqlhce.com/click-101696721-10772148" target="_blank" rel="sponsored noopener" title="Hotels.com — Book Now and Save"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/hotels.png" alt="Hotels.com" className="max-h-5 w-auto" />
+                <img src="/logos/hotelsnew.png" alt="Hotels.com" className="max-h-5 w-auto" />
               </a>
               {/* M&M's */}
               <a href="https://www.anrdoezrs.net/click-101696721-15075557" target="_blank" rel="sponsored noopener" title="M&M's — Shop Now"
@@ -252,15 +252,21 @@ export default function EmailGate({ children }) {
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 p-0.5 hover:opacity-80 transition-opacity">
                 <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="max-h-full max-w-full object-contain" />
               </a>
+              {/* Northern Tool + Equipment */}
+              <a href="https://www.dpbolvw.net/click-101696721-15483785" target="_blank" rel="sponsored noopener" title="Northern Tool + Equipment"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/northerntool.png" alt="Northern Tool + Equipment" className="max-h-7 w-auto" />
+              </a>
             </div>
             {/* CJ pixel trackers */}
             <img src="https://www.tqlkg.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-10772148" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-17077457" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-15693758" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-15075557" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-17180550" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-15483785" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
         </div>
       </div>

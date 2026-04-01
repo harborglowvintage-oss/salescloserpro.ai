@@ -355,11 +355,12 @@ export default function LegalPage() {
                     {[
                       ['TP-Link Tapo', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['GearUp', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['SafeShell VPN', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Carbonite', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Verizon', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Hotels.com', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ["M&M's", 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ["Peet's Coffee", 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Northern Tool + Equipment', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Namecheap', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Gemini Credit Card', 'Referral link', 'Referral bonus if approved'],
                       ['Zoho Mail', 'Affiliate link', 'Commission on qualifying purchases'],

@@ -852,7 +852,7 @@ export default function LandingPage() {
                   target="_blank"
                   rel="sponsored noopener"
                   className="inline-flex w-24 flex-col items-center gap-2 text-xs text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  title="TP-Link Tapo — Smart Home Store"
+                  title="TP-Link Tapo"
                 >
                   <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                     <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />

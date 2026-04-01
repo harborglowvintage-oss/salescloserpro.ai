@@ -271,7 +271,7 @@ export default function Layout() {
               target="_blank"
               rel="sponsored noopener"
               className="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
-              title="TP-Link Tapo — Smart Home Store"
+              title="TP-Link Tapo"
             >
               <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
                 <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />

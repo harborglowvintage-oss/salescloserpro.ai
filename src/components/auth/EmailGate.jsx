@@ -218,7 +218,7 @@ export default function EmailGate({ children }) {
             <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Trusted Partner Offers</p>
             <div className="flex items-center justify-center gap-4 flex-wrap">
               {/* TP-Link Tapo */}
-              <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored noopener" title="TP-Link Tapo — Smart Home Store"
+                <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored noopener" title="TP-Link Tapo"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
               </a>

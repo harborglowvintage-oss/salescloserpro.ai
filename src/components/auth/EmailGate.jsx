@@ -315,8 +315,18 @@ export default function EmailGate({ children }) {
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/vitalheallogo.png" alt="VitalHeal" className="max-h-7 w-auto" />
               </a>
+              {/* CheapTickets */}
+              <a href="https://www.anrdoezrs.net/click-101696721-12843042" target="_blank" rel="sponsored noopener" title="CheapTickets"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/cheapticketslogo.png" alt="CheapTickets" className="max-h-7 w-auto" />
+              </a>
+              {/* Raw Paws Pet Food */}
+              <a href="https://www.jdoqocy.com/click-101696721-17234935" target="_blank" rel="sponsored noopener" title="Raw Paws Pet Food"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/rawpawspetfoodlogo.png" alt="Raw Paws Pet Food" className="max-h-7 w-auto" />
+              </a>
             </div>
-            {/* CJ pixel trackers — all 19 partners */}
+            {/* CJ pixel trackers — all 21 partners */}
             <img src="https://www.tqlkg.com/image-101696721-17124588" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-17110018" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-15178612" width="1" height="1" border="0" alt="" aria-hidden="true" />
@@ -336,6 +346,8 @@ export default function EmailGate({ children }) {
             <img src="https://www.tqlkg.com/image-101696721-15610800" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-17254505" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-12843042" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17234935" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
         </div>
       </div>

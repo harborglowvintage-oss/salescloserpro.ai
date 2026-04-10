@@ -52,6 +52,8 @@ Example:
 - TP-Link Tapo
 - Verizon
 - VitalHeal
+- CheapTickets
+- Raw Paws Pet Food
 
 ## Partner-Specific Notes
 
@@ -170,6 +172,16 @@ Example:
 ### VitalHeal
 
 - Keep wording neutral: `VitalHeal`
+- No implied official status or exclusive relationship
+
+### CheapTickets
+
+- Keep wording neutral: `CheapTickets`
+- No implied official status or exclusive relationship
+
+### Raw Paws Pet Food
+
+- Keep wording neutral: `Raw Paws Pet Food`
 - No implied official status or exclusive relationship
 
 Purpose: this file is the quick compliance reference for future affiliate updates in this repo.

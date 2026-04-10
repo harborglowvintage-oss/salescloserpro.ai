@@ -844,6 +844,7 @@ export default function LandingPage() {
                   <a href="https://www.tkqlhce.com/click-101696721-15712042" target="_blank" rel="sponsored noopener" title="M&amp;M's" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/mmslogo.png" alt="M&amp;M's" className="max-h-7 w-auto" /></a>
                   <a href="https://www.tkqlhce.com/click-101696721-17254505" target="_blank" rel="sponsored noopener" title="VitalHeal" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/vitalheallogo.png" alt="VitalHeal" className="max-h-7 w-auto" /></a>
                   <a href="https://www.dpbolvw.net/click-101696721-17110018" target="_blank" rel="sponsored noopener" title="Blackout Coffee" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/blackoutcoffee.png" alt="Blackout Coffee" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-17234935" target="_blank" rel="sponsored noopener" title="Raw Paws Pet Food" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/rawpawspetfoodlogo.png" alt="Raw Paws Pet Food" className="max-h-7 w-auto" /></a>
                 </div>
               </div>
 
@@ -853,6 +854,7 @@ export default function LandingPage() {
                 <div className="flex flex-wrap gap-2">
                   <a href="https://www.kqzyfj.com/click-101696721-10433860" target="_blank" rel="sponsored noopener" title="Hotels.com" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/hotelslogo.png" alt="Hotels.com" className="max-h-5 w-auto" /></a>
                   <a href="https://www.anrdoezrs.net/click-101696721-17133005" target="_blank" rel="sponsored noopener" title="EF Adventures" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/efeducationlogo.png" alt="EF Adventures" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.anrdoezrs.net/click-101696721-12843042" target="_blank" rel="sponsored noopener" title="CheapTickets" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/cheapticketslogo.png" alt="CheapTickets" className="max-h-7 w-auto" /></a>
                 </div>
               </div>
 
@@ -913,6 +915,8 @@ export default function LandingPage() {
             <img src="https://www.awltovhc.com/image-101696721-17262416" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.ftjcfx.com/image-101696721-10448329" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-17235980" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-12843042" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17234935" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
 
           {/* Brand row */}

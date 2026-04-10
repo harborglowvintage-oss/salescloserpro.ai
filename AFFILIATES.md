@@ -45,6 +45,8 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | 17 | **TP-Link Tapo** | `/logos/tplinklogo.png` | `https://www.tkqlhce.com/click-101696721-15610800` | `https://www.tqlkg.com/image-101696721-15610800` | TP-Link Tapo | ✅ Yes |
 | 18 | **Verizon** | `/logos/verizonlogo.png` | `https://www.tkqlhce.com/click-101696721-11371807` | `https://www.lduhtrp.net/image-101696721-11371807` | Verizon | ✅ Yes |
 | 19 | **VitalHeal** | `/logos/vitalheallogo.png` | `https://www.tkqlhce.com/click-101696721-17254505` | `https://www.lduhtrp.net/image-101696721-17254505` | VitalHeal | ❌ No |
+| 20 | **CheapTickets** | `/logos/cheapticketslogo.png` | `https://www.anrdoezrs.net/click-101696721-12843042` | `https://www.tqlkg.com/image-101696721-12843042` | CheapTickets | ❌ No |
+| 21 | **Raw Paws Pet Food** | `/logos/rawpawspetfoodlogo.png` | `https://www.jdoqocy.com/click-101696721-17234935` | `https://www.tqlkg.com/image-101696721-17234935` | Raw Paws Pet Food | ❌ No |
 
 ### Non-CJ Affiliates (in GoLiveWizard / Legal only)
 
@@ -193,6 +195,22 @@ When adding or removing a partner, update **all** entries in this file AND the f
 - Keep on-site labeling neutral; use `Verizon` instead of promotional wording unless CJ provides a current approved offer.
 
 ### VitalHeal
+
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+---
+
+### CheapTickets
+
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+---
+
+### Raw Paws Pet Food
 
 - Keep on-site copy neutral; brand name only.
 - Do not imply official status or exclusive relationship.

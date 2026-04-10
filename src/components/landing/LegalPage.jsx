@@ -372,6 +372,8 @@ export default function LegalPage() {
                       ['TP-Link Tapo', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Verizon', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['VitalHeal', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['CheapTickets', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Raw Paws Pet Food', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Namecheap', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Gemini Credit Card', 'Referral link', 'Referral bonus if approved'],
                       ['Zoho Mail', 'Affiliate link', 'Commission on qualifying purchases'],

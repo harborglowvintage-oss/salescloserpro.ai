@@ -1,6 +1,176 @@
 # Affiliate Compliance Reference
 
-Last updated: 2026-04-01
+Last updated: 2026-04-10
+
+Purpose: this file is the quick compliance reference for future affiliate updates in this repo.
+Use it together with AFFILIATES.md.
+
+## Core Rule
+
+For partner tiles and logo links, default to neutral brand-only wording.
+
+Safe default pattern:
+
+- Visible label = brand name only
+- Hover title = same brand name only
+- Alt text = same brand name only
+- No coupon, discount, promo, save, best, official, or offer language unless the partner program explicitly allows it and the offer is current
+
+Example:
+
+- Visible label: `Peet's Coffee`
+- Hover title: `Peet's Coffee`
+- Alt text: `Peet's Coffee`
+
+## Repo-Level Rules
+
+- Do not add trademarked partner names to domains, subdomains, paths meant for SEO targeting, page titles, or meta tags unless the partner terms explicitly allow it.
+- Do not add coupon/deal wording to titles, labels, or descriptive copy unless the program explicitly provides approved wording.
+- Do not imply official status, endorsement, or exclusive relationship.
+- Do not use outdated promotions.
+- If a partner requires negative matching in SEM, note it here and in AFFILIATES.md.
+- SafeShell VPN is removed from the active partner set.
+
+## Current Active CJ Partners
+
+- AdBlocker Ultimate
+- Blackout Coffee
+- Carbonite
+- DomoAI
+- EF Adventures
+- EWA
+- FM Software (TrackNotion)
+- GameFly
+- GearUP
+- Hotels.com
+- Intuit QuickBooks
+- M&M's
+- Northern Tool + Equipment
+- Peet's Coffee
+- Surfshark
+- TEAC
+- TP-Link Tapo
+- Verizon
+- VitalHeal
+
+## Partner-Specific Notes
+
+### AdBlocker Ultimate
+
+- Keep wording neutral: `AdBlocker Ultimate`
+- Only use logos provided in CJ Account Manager
+- No branded SEM bidding or ad copy
+
+### Blackout Coffee
+
+- Keep wording neutral: `Blackout Coffee`
+- No coupon/deal language without explicit program approval
+
+### Carbonite
+
+- Keep wording neutral: `Carbonite`
+- Do not use backup/restore/cloud storage/Microsoft 365 backup/cyber resilience phrasing unless explicitly authorized
+- No branded SEM bidding, branded-plus-keyword bidding, or coupon/promo variants
+- Do not use Carbonite branded terms in domains or URLs
+
+### DomoAI
+
+- Keep wording neutral: `DomoAI`
+- No implied official status
+
+### EF Adventures
+
+- Keep wording neutral: `EF Adventures`
+- No implied official status
+
+### EWA
+
+- Keep wording neutral: `EWA`
+- No implied official status
+
+### FM Software (TrackNotion)
+
+- Keep wording neutral: `TrackNotion`
+- No implied official status
+
+### GameFly
+
+- Keep wording neutral: `GameFly`
+- No coupon/deal language without explicit program approval
+
+### GearUP
+
+- Keep wording neutral: `GearUP`
+- No SEM bidding on GearUP, GearUP Booster, GearUP coupon, GearUP discount, or gearup game booster
+- Avoid booster/performance, coupon, or discount marketing language unless explicitly approved
+
+### Hotels.com
+
+- Keep wording neutral: `Hotels.com`
+- No Expedia/Hotels.com trademark bidding unless explicitly approved in writing
+- Do not use coupon/deal terms in page titles or meta descriptions unless explicitly allowed and current
+- Do not imply official affiliation
+- Only use affiliate-program-approved coupons/promos
+
+### Intuit QuickBooks
+
+- Keep wording neutral: `QuickBooks`
+- No SEM bidding on `Intuit QuickBooks` or any variations/misspellings; negative matching required
+- No branded SEM display URL or ad copy
+- Only use logos from CJ Account Manager
+- Do not use `authorized wholesaler` or `official site`
+
+### M&M's
+
+- Keep wording neutral: `M&M's`
+- No SEM bidding on trademark variants or MyMMS
+- Only use trademark in ad copy if merchant supplies approved copy
+
+### Northern Tool + Equipment
+
+- Keep wording neutral: `Northern Tool`
+- No SEM bidding on Northern Tool, northerntool.com, misspellings, or coupon/deal variants
+- No branded terms in metatags, hidden text, or page titles
+
+### Peet's Coffee
+
+- Keep wording neutral: `Peet's Coffee`
+- No SEM bidding on Peet's, Peets, Peets.com; negative matching required
+- No `peets` in domains or subdomains
+- Gift cards are non-commissionable
+
+### Surfshark
+
+- Keep wording neutral: `Surfshark`
+- No SEM bidding on any Surfshark branded variants; negative matching required; no direct linking
+- No incentivized traffic
+
+### TEAC
+
+- Keep wording neutral: `TEAC`
+- No SEM bidding on TEAC or teacusa.com; negative matching required
+- Do not create TEAC-branded social media accounts
+- Only use logos from CJ Account Manager
+- Do not use `authorized wholesaler` or `official site`
+
+### TP-Link Tapo
+
+- Keep wording neutral: `TP-Link Tapo`
+- No SEM bidding on TP-Link, Kasa, Tapo, Deco, or tp-link.com branded terms
+- No branded SEM display URL or branded SEM ad copy
+
+### Verizon
+
+- Keep wording neutral: `Verizon`
+- No branded SEM bidding
+- Do not use `Verizon` in SEM display URLs
+- Do not use `official site` in ad copy
+- Only use current approved offers from the affiliate program
+
+### VitalHeal
+
+- Keep wording neutral: `VitalHeal`
+- No implied official status or exclusive relationship
 
 Purpose: this file is the quick compliance reference for future affiliate updates in this repo.
 Use it together with AFFILIATES.md.

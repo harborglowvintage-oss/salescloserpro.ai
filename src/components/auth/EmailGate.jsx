@@ -213,60 +213,129 @@ export default function EmailGate({ children }) {
             . Your data stays in your browser — we never share or sell your information.
           </p>
 
-          {/* Affiliate Partners — logo pills only, rows of 3-4 */}
-          <div className="mt-8 border-t border-white/[0.04] pt-6 text-center">
-            <p className="text-[10px] font-semibold text-slate-600 uppercase tracking-widest mb-3">Affiliate Partners</p>
+          {/* Affiliate Offers — logo pills */}
+          <div className="mt-8 border-t border-white/[0.04] pt-6">
+            <div className="flex flex-col gap-1 mb-3">
+              <p className="text-[10px] font-bold text-white uppercase tracking-widest">Affiliate Offers</p>
+              <p className="text-[10px] text-slate-500">We earn a commission when you shop through the links below</p>
+            </div>
             <div className="flex items-center justify-center gap-4 flex-wrap">
-              {/* TP-Link Tapo */}
-                <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored noopener" title="TP-Link Tapo"
+              {/* AdBlocker Ultimate */}
+              <a href="https://www.anrdoezrs.net/click-101696721-17124588" target="_blank" rel="sponsored noopener" title="AdBlocker Ultimate"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/tplink2.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
+                <img src="/logos/adblockerlogo.png" alt="AdBlocker Ultimate" className="max-h-7 w-auto" />
               </a>
-              {/* GearUp */}
-              <a href="https://www.dpbolvw.net/click-101696721-17235974" target="_blank" rel="sponsored noopener" title="GearUp"
+              {/* Blackout Coffee */}
+              <a href="https://www.dpbolvw.net/click-101696721-17110018" target="_blank" rel="sponsored noopener" title="Blackout Coffee"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/gearup.png" alt="GearUp" className="max-h-7 w-auto" />
+                <img src="/logos/blackoutcoffee.png" alt="Blackout Coffee" className="max-h-7 w-auto" />
               </a>
               {/* Carbonite */}
-              <a href="https://www.dpbolvw.net/click-101696721-15693758" target="_blank" rel="sponsored noopener" title="Carbonite"
+              <a href="https://www.jdoqocy.com/click-101696721-15178612" target="_blank" rel="sponsored noopener" title="Carbonite"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/carbonite.png" alt="Carbonite" className="max-h-7 w-auto" />
+                <img src="/logos/carbonitelogo.png" alt="Carbonite" className="max-h-7 w-auto" />
               </a>
-              {/* Verizon */}
-                  <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon"
+              {/* DomoAI */}
+              <a href="https://www.dpbolvw.net/click-101696721-17222070" target="_blank" rel="sponsored noopener" title="DomoAI"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/verizon.png" alt="Verizon" className="max-h-5 w-auto" />
+                <img src="/logos/domoailogo.png" alt="DomoAI" className="max-h-7 w-auto" />
+              </a>
+              {/* EF Adventures */}
+              <a href="https://www.anrdoezrs.net/click-101696721-17133005" target="_blank" rel="sponsored noopener" title="EF Adventures"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/efeducationlogo.png" alt="EF Adventures" className="max-h-7 w-auto" />
+              </a>
+              {/* EWA */}
+              <a href="https://www.jdoqocy.com/click-101696721-17262416" target="_blank" rel="sponsored noopener" title="EWA"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/ewalogo.png" alt="EWA" className="max-h-7 w-auto" />
+              </a>
+              {/* FM Software */}
+              <a href="https://www.jdoqocy.com/click-101696721-17258377" target="_blank" rel="sponsored noopener" title="FM Software"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/FMSoftwarelogo.png" alt="FM Software" className="max-h-7 w-auto" />
+              </a>
+              {/* GameFly */}
+              <a href="https://www.kqzyfj.com/click-101696721-10448329" target="_blank" rel="sponsored noopener" title="GameFly"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/gameflylogo.png" alt="GameFly" className="max-h-7 w-auto" />
+              </a>
+              {/* GearUP */}
+              <a href="https://www.tkqlhce.com/click-101696721-17235980" target="_blank" rel="sponsored noopener" title="GearUP"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/gearuplogo.png" alt="GearUP" className="max-h-7 w-auto" />
               </a>
               {/* Hotels.com */}
-              <a href="https://www.tkqlhce.com/click-101696721-10772148" target="_blank" rel="sponsored noopener" title="Hotels.com"
+              <a href="https://www.kqzyfj.com/click-101696721-10433860" target="_blank" rel="sponsored noopener" title="Hotels.com"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/hotelsnew.png" alt="Hotels.com" className="max-h-5 w-auto" />
+                <img src="/logos/hotelslogo.png" alt="Hotels.com" className="max-h-5 w-auto" />
+              </a>
+              {/* Intuit QuickBooks */}
+              <a href="https://www.jdoqocy.com/click-101696721-17250447" target="_blank" rel="sponsored noopener" title="Intuit QuickBooks"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/quickbookslogo.png" alt="Intuit QuickBooks" className="max-h-7 w-auto" />
               </a>
               {/* M&M's */}
-              <a href="https://www.anrdoezrs.net/click-101696721-15075557" target="_blank" rel="sponsored noopener" title="M&M's"
+              <a href="https://www.tkqlhce.com/click-101696721-15712042" target="_blank" rel="sponsored noopener" title="M&M's"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/m_m.png" alt="M&M's" className="max-h-7 w-auto" />
+                <img src="/logos/mmslogo.png" alt="M&M's" className="max-h-7 w-auto" />
+              </a>
+              {/* Northern Tool */}
+              <a href="https://www.tkqlhce.com/click-101696721-15483785" target="_blank" rel="sponsored noopener" title="Northern Tool"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/northerntoollogo.png" alt="Northern Tool" className="max-h-7 w-auto" />
               </a>
               {/* Peet's Coffee */}
-              <a href="https://www.anrdoezrs.net/click-101696721-17180550" target="_blank" rel="sponsored noopener" title="Peet's Coffee"
-                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 p-0.5 hover:opacity-80 transition-opacity">
-                <img src="/logos/peetsfinal.png" alt="Peet's Coffee" className="max-h-full max-w-full object-contain" />
-              </a>
-              {/* Northern Tool + Equipment */}
-              <a href="https://www.dpbolvw.net/click-101696721-15483785" target="_blank" rel="sponsored noopener" title="Northern Tool"
+              <a href="https://www.dpbolvw.net/click-101696721-13443788" target="_blank" rel="sponsored noopener" title="Peet's Coffee"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
-                <img src="/logos/northerntool.png" alt="Northern Tool" className="max-h-7 w-auto" />
+                <img src="/logos/peetslogo.png" alt="Peet's Coffee" className="max-h-7 w-auto" />
+              </a>
+              {/* Surfshark */}
+              <a href="https://www.jdoqocy.com/click-101696721-15740556" target="_blank" rel="sponsored noopener" title="Surfshark"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/surfsharklogo.png" alt="Surfshark" className="max-h-7 w-auto" />
+              </a>
+              {/* TEAC */}
+              <a href="https://www.jdoqocy.com/click-101696721-15919841" target="_blank" rel="sponsored noopener" title="TEAC"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/TEAClogo.png" alt="TEAC" className="max-h-7 w-auto" />
+              </a>
+              {/* TP-Link Tapo */}
+              <a href="https://www.tkqlhce.com/click-101696721-15610800" target="_blank" rel="sponsored noopener" title="TP-Link Tapo"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/tplinklogo.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
+              </a>
+              {/* Verizon */}
+              <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/verizonlogo.png" alt="Verizon" className="max-h-5 w-auto" />
+              </a>
+              {/* VitalHeal */}
+              <a href="https://www.tkqlhce.com/click-101696721-17254505" target="_blank" rel="sponsored noopener" title="VitalHeal"
+                className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
+                <img src="/logos/vitalheallogo.png" alt="VitalHeal" className="max-h-7 w-auto" />
               </a>
             </div>
-            {/* CJ pixel trackers */}
-            <img src="https://www.tqlkg.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            {/* CJ pixel trackers — all 19 partners */}
+            <img src="https://www.tqlkg.com/image-101696721-17124588" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-17110018" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-15178612" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-17222070" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-17133005" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-17262416" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-17258377" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-10448329" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-17235980" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-10433860" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17250447" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-15712042" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-15483785" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-13443788" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-15740556" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-15919841" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-15610800" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-10772148" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-17235974" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-15693758" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-15075557" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-17180550" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-15483785" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-17254505" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
         </div>
       </div>

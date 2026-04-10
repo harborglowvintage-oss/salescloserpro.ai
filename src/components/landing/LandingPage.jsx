@@ -801,48 +801,8 @@ export default function LandingPage() {
       <footer className="border-t border-white/[0.06] mt-12">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 py-12">
 
-          {/* Brand row */}
-          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-10">
-            <div className="max-w-xs">
-              <div className="flex items-center gap-2 mb-2">
-                <img src="/logos/salescloserprologo.png" alt="" className="h-8 w-auto" />
-                <span className="font-bold text-white text-base">salescloserpro.ai</span>
-              </div>
-              <p className="text-sm text-slate-500 leading-relaxed">Free, open-source sales quoting and CRM for professionals who value privacy.</p>
-            </div>
-            <div className="text-sm text-slate-500 sm:text-right">
-              <p>Built by <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">llmadvisor.ai</a></p>
-              <p className="mt-0.5">Powered by highsignal™</p>
-            </div>
-          </div>
-
-          {/* Links row */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-8 mb-10">
-            <div>
-              <h5 className="text-white font-semibold mb-3 text-xs uppercase tracking-widest">Links</h5>
-              <ul className="space-y-2 text-sm text-slate-400">
-                <li><a href="https://github.com/harborglowvintage-oss/salescloserpro.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a></li>
-                <li><Link to="/about" className="hover:text-white transition-colors">About &amp; Guide</Link></li>
-                <li><Link to="/help" className="hover:text-white transition-colors">In-App Docs</Link></li>
-                <li><a href="https://github.com/harborglowvintage-oss/salescloserpro.ai/issues" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Report a Bug</a></li>
-                <li><Link to="/services" className="text-amber-400 hover:text-amber-300 transition-colors">✦ Custom &amp; Enterprise</Link></li>
-                <li><Link to="/whitepaper" className="hover:text-white transition-colors">📄 Whitepaper</Link></li>
-              </ul>
-            </div>
-            <div>
-              <h5 className="text-white font-semibold mb-3 text-xs uppercase tracking-widest">Legal</h5>
-              <ul className="space-y-2 text-sm text-slate-400">
-                <li><Link to="/legal" className="hover:text-white transition-colors">Terms of Use</Link></li>
-                <li><Link to="/legal#privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link to="/legal#affiliate" className="hover:text-white transition-colors">Affiliate Disclosure</Link></li>
-                <li><Link to="/legal#ai" className="hover:text-white transition-colors">AI Disclosure</Link></li>
-                <li><Link to="/legal#payments" className="hover:text-white transition-colors">Payments &amp; Crypto</Link></li>
-              </ul>
-            </div>
-          </div>
-
           {/* Affiliate Offers — category card grid */}
-          <div className="border-t border-white/[0.06] pt-6 mb-6">
+          <div className="border-b border-white/[0.06] pb-6 mb-10">
             {/* Header lockup */}
             <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-5">
               <span className="text-xs font-bold text-white uppercase tracking-widest">Affiliate Offers</span>
@@ -953,6 +913,46 @@ export default function LandingPage() {
             <img src="https://www.awltovhc.com/image-101696721-17262416" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.ftjcfx.com/image-101696721-10448329" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-17235980" width="1" height="1" border="0" alt="" aria-hidden="true" />
+          </div>
+
+          {/* Brand row */}
+          <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-10">
+            <div className="max-w-xs">
+              <div className="flex items-center gap-2 mb-2">
+                <img src="/logos/salescloserprologo.png" alt="" className="h-8 w-auto" />
+                <span className="font-bold text-white text-base">salescloserpro.ai</span>
+              </div>
+              <p className="text-sm text-slate-500 leading-relaxed">Free, open-source sales quoting and CRM for professionals who value privacy.</p>
+            </div>
+            <div className="text-sm text-slate-500 sm:text-right">
+              <p>Built by <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">llmadvisor.ai</a></p>
+              <p className="mt-0.5">Powered by highsignal™</p>
+            </div>
+          </div>
+
+          {/* Links row */}
+          <div className="grid grid-cols-2 sm:grid-cols-2 gap-8 mb-10">
+            <div>
+              <h5 className="text-white font-semibold mb-3 text-xs uppercase tracking-widest">Links</h5>
+              <ul className="space-y-2 text-sm text-slate-400">
+                <li><a href="https://github.com/harborglowvintage-oss/salescloserpro.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">GitHub</a></li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About &amp; Guide</Link></li>
+                <li><Link to="/help" className="hover:text-white transition-colors">In-App Docs</Link></li>
+                <li><a href="https://github.com/harborglowvintage-oss/salescloserpro.ai/issues" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Report a Bug</a></li>
+                <li><Link to="/services" className="text-amber-400 hover:text-amber-300 transition-colors">✦ Custom &amp; Enterprise</Link></li>
+                <li><Link to="/whitepaper" className="hover:text-white transition-colors">📄 Whitepaper</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h5 className="text-white font-semibold mb-3 text-xs uppercase tracking-widest">Legal</h5>
+              <ul className="space-y-2 text-sm text-slate-400">
+                <li><Link to="/legal" className="hover:text-white transition-colors">Terms of Use</Link></li>
+                <li><Link to="/legal#privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/legal#affiliate" className="hover:text-white transition-colors">Affiliate Disclosure</Link></li>
+                <li><Link to="/legal#ai" className="hover:text-white transition-colors">AI Disclosure</Link></li>
+                <li><Link to="/legal#payments" className="hover:text-white transition-colors">Payments &amp; Crypto</Link></li>
+              </ul>
+            </div>
           </div>
 
           {/* Bottom bar */}

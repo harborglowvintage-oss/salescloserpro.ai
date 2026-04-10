@@ -22,18 +22,29 @@ When adding or removing a partner, update **all** entries in this file AND the f
 
 ## Current Partner Registry
 
-> Last updated: 2026-04-01
+> Last updated: 2026-04-10
 
 | # | Partner | Logo File | CJ Click URL | CJ Pixel URL | Label Text | In Layout? |
 |---|---------|-----------|-------------|--------------|------------|------------|
-| 1 | **TP-Link Tapo** | `/logos/tplink2.png` | `https://www.dpbolvw.net/click-101696721-15600687` | `https://www.tqlkg.com/image-101696721-15600687` | TP-Link Tapo | ✅ Yes |
-| 2 | **GearUp** | `/logos/gearup.png` | `https://www.dpbolvw.net/click-101696721-17235974` | `https://www.tqlkg.com/image-101696721-17235974` | GearUp | ❌ No |
-| 3 | **Carbonite** | `/logos/carbonite.png` | `https://www.dpbolvw.net/click-101696721-15693758` | `https://www.awltovhc.com/image-101696721-15693758` | Carbonite | ❌ No |
-| 4 | **Verizon** | `/logos/verizon.png` | `https://www.tkqlhce.com/click-101696721-11371807` | `https://www.lduhtrp.net/image-101696721-11371807` | Verizon | ✅ Yes |
-| 5 | **Hotels.com** | `/logos/hotelsnew.png` | `https://www.tkqlhce.com/click-101696721-10772148` | `https://www.awltovhc.com/image-101696721-10772148` | Hotels.com | ✅ Yes |
-| 6 | **M&M's** | `/logos/m_m.png` | `https://www.anrdoezrs.net/click-101696721-15075557` | `https://www.awltovhc.com/image-101696721-15075557` | M&M's | ❌ No |
-| 7 | **Peet's Coffee** | `/logos/peetsfinal.png` | `https://www.anrdoezrs.net/click-101696721-17180550` | `https://www.tqlkg.com/image-101696721-17180550` | Peet's Coffee | ❌ No |
-| 8 | **Northern Tool + Equipment** | `/logos/northerntool.png` | `https://www.dpbolvw.net/click-101696721-15483785` | `https://www.tqlkg.com/image-101696721-15483785` | Northern Tool | ❌ No |
+| 1 | **AdBlocker Ultimate** | `/logos/adblockerlogo.png` | `https://www.anrdoezrs.net/click-101696721-17124588` | `https://www.tqlkg.com/image-101696721-17124588` | AdBlocker Ultimate | ❌ No |
+| 2 | **Blackout Coffee** | `/logos/blackoutcoffee.png` | `https://www.dpbolvw.net/click-101696721-17110018` | `https://www.awltovhc.com/image-101696721-17110018` | Blackout Coffee | ❌ No |
+| 3 | **Carbonite** | `/logos/carbonitelogo.png` | `https://www.jdoqocy.com/click-101696721-15178612` | `https://www.awltovhc.com/image-101696721-15178612` | Carbonite | ❌ No |
+| 4 | **DomoAI** | `/logos/domoailogo.png` | `https://www.dpbolvw.net/click-101696721-17222070` | `https://www.ftjcfx.com/image-101696721-17222070` | DomoAI | ❌ No |
+| 5 | **EF Adventures** | `/logos/efeducationlogo.png` | `https://www.anrdoezrs.net/click-101696721-17133005` | `https://www.ftjcfx.com/image-101696721-17133005` | EF Adventures | ❌ No |
+| 6 | **EWA** | `/logos/ewalogo.png` | `https://www.jdoqocy.com/click-101696721-17262416` | `https://www.awltovhc.com/image-101696721-17262416` | EWA | ❌ No |
+| 7 | **FM Software (TrackNotion)** | `/logos/FMSoftwarelogo.png` | `https://www.jdoqocy.com/click-101696721-17258377` | `https://www.lduhtrp.net/image-101696721-17258377` | TrackNotion | ❌ No |
+| 8 | **GameFly** | `/logos/gameflylogo.png` | `https://www.kqzyfj.com/click-101696721-10448329` | `https://www.ftjcfx.com/image-101696721-10448329` | GameFly | ❌ No |
+| 9 | **GearUP** | `/logos/gearuplogo.png` | `https://www.tkqlhce.com/click-101696721-17235980` | `https://www.lduhtrp.net/image-101696721-17235980` | GearUP | ❌ No |
+| 10 | **Hotels.com** | `/logos/hotelslogo.png` | `https://www.kqzyfj.com/click-101696721-10433860` | `https://www.ftjcfx.com/image-101696721-10433860` | Hotels.com | ✅ Yes |
+| 11 | **Intuit QuickBooks** | `/logos/quickbookslogo.png` | `https://www.jdoqocy.com/click-101696721-17250447` | `https://www.tqlkg.com/image-101696721-17250447` | QuickBooks | ❌ No |
+| 12 | **M&M's** | `/logos/mmslogo.png` | `https://www.tkqlhce.com/click-101696721-15712042` | `https://www.ftjcfx.com/image-101696721-15712042` | M&M's | ❌ No |
+| 13 | **Northern Tool + Equipment** | `/logos/northerntoollogo.png` | `https://www.tkqlhce.com/click-101696721-15483785` | `https://www.ftjcfx.com/image-101696721-15483785` | Northern Tool | ❌ No |
+| 14 | **Peet's Coffee** | `/logos/peetslogo.png` | `https://www.dpbolvw.net/click-101696721-13443788` | `https://www.lduhtrp.net/image-101696721-13443788` | Peet's Coffee | ❌ No |
+| 15 | **Surfshark** | `/logos/surfsharklogo.png` | `https://www.jdoqocy.com/click-101696721-15740556` | `https://www.lduhtrp.net/image-101696721-15740556` | Surfshark | ❌ No |
+| 16 | **TEAC** | `/logos/TEAClogo.png` | `https://www.jdoqocy.com/click-101696721-15919841` | `https://www.tqlkg.com/image-101696721-15919841` | TEAC | ❌ No |
+| 17 | **TP-Link Tapo** | `/logos/tplinklogo.png` | `https://www.tkqlhce.com/click-101696721-15610800` | `https://www.tqlkg.com/image-101696721-15610800` | TP-Link Tapo | ✅ Yes |
+| 18 | **Verizon** | `/logos/verizonlogo.png` | `https://www.tkqlhce.com/click-101696721-11371807` | `https://www.lduhtrp.net/image-101696721-11371807` | Verizon | ✅ Yes |
+| 19 | **VitalHeal** | `/logos/vitalheallogo.png` | `https://www.tkqlhce.com/click-101696721-17254505` | `https://www.lduhtrp.net/image-101696721-17254505` | VitalHeal | ❌ No |
 
 ### Non-CJ Affiliates (in GoLiveWizard / Legal only)
 
@@ -47,6 +58,124 @@ When adding or removing a partner, update **all** entries in this file AND the f
 ---
 
 ## Compliance Notes
+
+### AdBlocker Ultimate
+
+- Do not use AdBlocker Ultimate branded terms in domains, subdomains, or SEM ad copy.
+- Publishers can only use logos and images provided in the CJ Account Manager.
+- Keep on-site copy neutral; brand name only.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### Blackout Coffee
+
+- Keep on-site copy neutral; brand name only.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### Carbonite
+
+- Do not bid on `Carbonite`, trademark-plus terms, misspellings, coupon/promo variants, or branded-plus-keyword combinations in SEM.
+- Keep on-site copy limited to plain brand identification only: `Carbonite`.
+- Do not use Carbonite branded terms in domains, URLs, or misleading branded paths.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### DomoAI
+
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### EF Adventures
+
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### EWA
+
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### FM Software (TrackNotion)
+
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### GameFly
+
+- Keep on-site copy neutral; brand name only.
+- No coupon or deal language unless explicitly provided through the affiliate program.
+
+### GearUP
+
+- Do not bid on `GearUP`, `GearUP Booster`, `GearUP coupon`, `GearUP discount`, or `gearup game booster` in SEM.
+- Keep on-site copy neutral; avoid coupon, discount, or booster-performance marketing claims unless the program explicitly provides approved wording.
+- Use simple brand identification only for tiles and labels.
+
+### Hotels.com
+
+- Do not bid on Expedia or Hotels.com marks, variants, or misspellings in SEM unless Expedia provides prior written approval.
+- Do not use coupon or deal keywords in page titles or meta descriptions unless the offer is legitimate on Hotels.com or you have explicit written approval.
+- Keep on-site copy neutral; avoid `Book Now`, `Save`, coupon wording, or promotional claims unless Expedia provided the exact approved messaging and terms.
+- Do not use Expedia or Hotels.com marks in meta-tags, domains, subdomains, or misleading branded URLs.
+- Do not imply endorsement, official status, or affiliation beyond being an affiliate link.
+- Only use coupons or promotional codes provided exclusively through the affiliate program.
+
+### Intuit QuickBooks
+
+- Do not bid on `Intuit QuickBooks` or any variations/misspellings in SEM.
+- Negative matching for protected keywords is required.
+- Do not use `Intuit QuickBooks` in SEM display URL content or ad copy.
+- Publishers can only use logos and images provided in the CJ Account Manager.
+- Keep on-site copy neutral; brand name only.
+- Ad copy cannot contain misspellings, incorrect grammar, or false/misleading statements.
+- Do not use `authorized wholesaler` or `official site` in any ad copy.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### M&M's
+
+- Do not bid on M&M's, MyMMS, misspellings, or trademark variants in SEM.
+- Only use trademark terms in ad copy if the merchant provides approved copy.
+- Keep on-site copy neutral; avoid `Shop Now`, coupon language, or promotional claims unless explicitly approved through the affiliate program.
+- If using SEM outside the site, follow the merchant's approved-copy requirement when trademark terms appear in ad copy.
+
+### Northern Tool + Equipment
+
+- Do not bid on `Northern Tool`, `Northern Tool + Equipment`, `northerntool.com`, misspellings, or coupon/deal variants in SEM.
+- Do not use Northern Tool branded terms in SEM display URLs or display copy.
+- Do not use Northern Tool branded terms in metatags, hidden text, page titles, or other SEO-targeting content.
+- Keep on-site copy limited to neutral visible partner identification only; avoid coupon or deal language unless the affiliate program explicitly provides it.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### Peet's Coffee
+
+- Do not bid on `Peet's`, `Peet's Coffee`, `Peets`, `Peets Coffee`, or `Peets.com` in SEM.
+- Negative matching for protected keywords is required in search campaigns.
+- Do not use `peets` in domains or subdomains.
+- Keep on-site copy neutral; avoid discount, coupon, or offer language unless it is explicitly provided through the affiliate program.
+- Gift cards are non-commissionable items.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### Surfshark
+
+- Do not bid on `surfshark` or any branded variants/misspellings in SEM. Full negative keyword list: https://docs.google.com/spreadsheets/d/1DuNWI7uS5wK5ySzhpE0ARWOqqVTNMAm611Bl7hFQMZ0/
+- Negative matching for protected keywords is required.
+- No direct linking (SEM).
+- No incentivized traffic.
+- Keep on-site copy neutral; brand name only.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+### TEAC
+
+- Do not bid on `TEAC` or `teacusa.com` branded terms or variations/misspellings in SEM.
+- Negative matching for protected keywords is required.
+- Do not use TEAC branded terms in SEM display URLs or ad copy.
+- Do not create TEAC-branded social media accounts.
+- Publishers can only use logos and images provided in the CJ Account Manager.
+- Keep on-site copy neutral; brand name only.
+- Do not use `authorized wholesaler` or `official site` in any ad copy.
+- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
 
 ### TP-Link Tapo
 
@@ -63,50 +192,10 @@ When adding or removing a partner, update **all** entries in this file AND the f
 - Only promote offers provided through the Verizon Wireless affiliate program, and remove expired offers immediately.
 - Keep on-site labeling neutral; use `Verizon` instead of promotional wording unless CJ provides a current approved offer.
 
-### Northern Tool + Equipment
+### VitalHeal
 
-- Do not bid on `Northern Tool`, `Northern Tool + Equipment`, `northerntool.com`, misspellings, or coupon/deal variants in SEM.
-- Do not use Northern Tool branded terms in SEM display URLs or display copy.
-- Do not use Northern Tool branded terms in metatags, hidden text, page titles, or other SEO-targeting content.
-- Keep on-site copy limited to neutral visible partner identification only; avoid coupon or deal language unless the affiliate program explicitly provides it.
-- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
-
-### M&M's
-
-- Do not bid on M&M's, MyMMS, misspellings, or trademark variants in SEM.
-- Only use trademark terms in ad copy if the merchant provides approved copy.
-- Keep on-site copy neutral; avoid `Shop Now`, coupon language, or promotional claims unless explicitly approved through the affiliate program.
-- If using SEM outside the site, follow the merchant's approved-copy requirement when trademark terms appear in ad copy.
-
-### Hotels.com
-
-- Do not bid on Expedia or Hotels.com marks, variants, or misspellings in SEM unless Expedia provides prior written approval.
-- Do not use coupon or deal keywords in page titles or meta descriptions unless the offer is legitimate on Hotels.com or you have explicit written approval.
-- Keep on-site copy neutral; avoid `Book Now`, `Save`, coupon wording, or promotional claims unless Expedia provided the exact approved messaging and terms.
-- Do not use Expedia or Hotels.com marks in meta-tags, domains, subdomains, or misleading branded URLs.
-- Do not imply endorsement, official status, or affiliation beyond being an affiliate link.
-- Only use coupons or promotional codes provided exclusively through the affiliate program.
-
-### GearUp
-
-- Do not bid on `GearUP`, `GearUP Booster`, `GearUP coupon`, `GearUP discount`, or `gearup game booster` in SEM.
-- Keep on-site copy neutral; avoid coupon, discount, or booster-performance marketing claims unless the program explicitly provides approved wording.
-- Use simple brand identification only for tiles and labels.
-
-### Carbonite
-
-- Do not bid on `Carbonite`, trademark-plus terms, misspellings, coupon/promo variants, or branded-plus-keyword combinations in SEM.
-- Avoid backup, restore, cloud storage, Microsoft 365 backup, cyber resilience, and similar solution-keyword marketing language unless Carbonite explicitly authorizes it for your use.
-- Keep on-site copy limited to plain brand identification only: `Carbonite`.
-- Do not use Carbonite branded terms in domains, URLs, or misleading branded paths.
-- Only use coupons or promotional codes that are provided exclusively through the affiliate program.
-
-### Peet's Coffee
-
-- Do not bid on `Peet's`, `Peet's Coffee`, `Peets`, `Peets Coffee`, or `Peets.com` in SEM.
-- Negative matching for protected keywords is required in search campaigns.
-- Do not use `peets` in domains or subdomains.
-- Keep on-site copy neutral; avoid discount, coupon, or offer language unless it is explicitly provided through the affiliate program.
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
 - Only use coupons or promotional codes that are provided exclusively through the affiliate program.
 
 ---

@@ -453,6 +453,53 @@ The `index.html` ships with production-ready SEO markup so search engines and so
 
 ---
 
+### 🚨 Active Ranking — What's Working (Do Not Modify Without Understanding)
+
+**Last verified:** April 10, 2026 — salescloserpro.ai ranks **#1 on Google** for `salescloserpro` organically.
+
+This section documents the exact signals Google has indexed and is actively rewarding. Before changing any of the values below, understand that Google re-evaluates the page on the next crawl cycle. Even "safe-looking" edits to these fields can cause ranking fluctuation that takes weeks to recover.
+
+#### 🔒 Do Not Change — Core Ranking Signals
+
+| Signal | Current Value | Location | Risk if Changed |
+|--------|--------------|----------|-----------------|
+| **`<title>`** | `salescloserpro.ai — Free Sales CRM, Quoting & Pipeline Tool` | `index.html` line 7 | Direct ranking impact — this exact phrasing is indexed |
+| **`meta description`** | `Build professional quotes, manage your pipeline, and close more deals — 100% free and open source. No login, no fees, no limits. Download or use in your browser.` | `index.html` line 8 | Changes the snippet shown in search results |
+| **`H1` text** | `The Free CRM. No gimmicks. Send a quote in minutes — get paid instantly ⚡` | `LandingPage.jsx` line 182 | H1 must semantically match the title tag intent |
+| **`link rel="canonical"`** | `https://salescloserpro.ai/` | `index.html` | Changing domain/path tells Google to re-index a "new" page |
+| **`og:image`** | `https://salescloserpro.ai/og-cover-v2.png` | `index.html` | This image is actively cached by Google, social platforms, and chat previews |
+| **JSON-LD `SoftwareApplication`** | Type: `SoftwareApplication`, Category: `BusinessApplication / CRM Software`, Price: `0` | `index.html` | Structured data drives rich result eligibility — don't rename fields |
+| **`meta keywords`** | `free CRM, sales quoting tool, proposal builder, pipeline management...` | `index.html` | Low direct impact but part of the indexed document fingerprint |
+| **`impact-site-verification`** | `5392dd5a-0383-498b-ba31-de7c16d0aa63` | `index.html` line 4 | Impact.com tracking verification — removing breaks affiliate attribution |
+
+#### ✅ Safe to Change Below the Fold
+
+These elements are in the footer or below the visible viewport. Google discounts footer content for primary ranking signals. Changes here carry low SEO risk:
+
+- Affiliate partner section (logos, category cards, header text)
+- Footer copyright text and timestamp
+- Social links and "Built by" attribution
+- `Layout.jsx` sidebar affiliate pills
+- `EmailGate.jsx` affiliate section
+
+#### ⚠️ What Triggers a Google Re-Evaluation
+
+- Any change to `<title>`, `meta description`, or `H1` — even minor rewording
+- Changing the `canonical` URL
+- Adding/removing `meta robots` directives
+- Replacing the JSON-LD schema `@type` or removing fields
+- Changing `og:image` to a new file (social cache takes 7–14 days to refresh)
+- Deploying to a new domain without a 301 redirect chain
+
+#### 📋 Affiliate Section — Safe Edit Protocol
+
+The affiliate section (footer + EmailGate) uses `rel="sponsored"` on all CJ links, which correctly signals to Google that these links are paid placements and should not pass PageRank. CJ pixel trackers are standard 1×1 `<img>` tags. **All edits to the affiliate section are SEO-neutral** as long as:
+1. `rel="sponsored"` remains on every affiliate `<a>` tag
+2. No new external JavaScript is introduced
+3. Logo `<img>` tags use the existing `/logos/*.png` files already indexed by Google
+
+---
+
 ## 🛠️ Tech Stack
 
 ### 📦 Runtime Dependencies

@@ -342,10 +342,21 @@ export default function LegalPage() {
                 bodies globally, we disclose all material connections.
               </p>
               <p>
-                Affiliate logos/images shown in the partner grid are sourced from merchant-approved creatives in
-                Commission Junction (CJ) or the corresponding affiliate network dashboard, then resized or optimized
-                for consistent display only. We do not claim ownership of partner marks and we do not imply
-                endorsement beyond the disclosed affiliate relationship.
+                Affiliate logos/images displayed in the partner grid are sourced exclusively from
+                merchant-approved creative assets provided through Commission Junction (CJ), AWIN, or the
+                merchant's official affiliate dashboard. Asset filenames retain the original network-assigned
+                creative ID (e.g., <Hi>Adblocker-17124591.jpeg</Hi>, <Hi>Jugbow-79708.png</Hi>) so every image
+                can be traced back to its source program. Images are locally hosted and may be resized or
+                losslessly optimized for layout consistency; no other modifications are made.
+              </p>
+              <p>
+                We make our best effort to comply with all applicable affiliate network program policies,
+                publisher agreements, and brand guidelines — including CJ Publisher Service Agreement, AWIN
+                Publisher Terms, and each merchant's individual creative-use requirements. We do not claim
+                ownership of partner marks and we do not imply endorsement beyond the disclosed affiliate
+                relationship. If a brand owner or network compliance team identifies an issue with how a logo
+                or creative is displayed, please contact us at <Hi>{CONTACT_EMAIL}</Hi> and we will address
+                it promptly.
               </p>
               <H>Identified Affiliate Relationships</H>
               <div className="overflow-x-auto">
@@ -536,8 +547,10 @@ export default function LegalPage() {
                 identification/referential purposes under nominative fair use. No endorsement by these brands is implied.
               </p>
               <p>
-                Affiliate partner logos are pulled from merchant-provided creative libraries (including CJ where
-                applicable) and normalized for layout consistency across our sites.
+                Affiliate partner logos are sourced from merchant-provided creative libraries (CJ, AWIN, or
+                direct merchant dashboards). Original network-assigned asset IDs are preserved in the filenames
+                to maintain traceability to the originating program. Images are hosted locally and may be
+                resized for display consistency; their content is unaltered.
               </p>
               <H>DMCA Takedown Notices</H>
               <p>

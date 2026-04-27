@@ -102,7 +102,7 @@ export default function LandingPage() {
   const fmtNum = n => n == null ? '—' : n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n)
 
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 antialiased">
+    <div className="min-h-screen bg-slate-950 text-slate-200 antialiased pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
 
       {/* ───────── NAV ───────── */}
       <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-slate-950/80 backdrop-blur-lg">

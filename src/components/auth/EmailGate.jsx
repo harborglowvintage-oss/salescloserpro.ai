@@ -89,10 +89,48 @@ export default function EmailGate({ children }) {
 
   // ── Gate screen ──
   return (
-    <div className="min-h-screen bg-[#0a0e1a] flex flex-col">
+    <div className="relative min-h-screen bg-[#0a0e1a] flex flex-col overflow-hidden pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_60%_50%_at_50%_-10%,rgba(56,140,255,0.12),transparent)]" />
+
+      <style>{`
+        @keyframes heroFloat {
+          0%, 100% { transform: rotateX(10deg) rotateY(-3deg) translateY(0px); }
+          50% { transform: rotateX(8deg) rotateY(-2deg) translateY(-16px); }
+        }
+      `}</style>
+
+      <div className="absolute inset-0 flex items-start justify-center pt-14 sm:pt-16 pointer-events-none select-none" style={{ perspective: '900px' }}>
+        <img
+          src="/logos/salescloserprologo.png"
+          alt=""
+          className="w-[420px] sm:w-[500px] md:w-[580px] opacity-[0.08]"
+          style={{
+            animation: 'heroFloat 8s ease-in-out infinite',
+            filter: 'drop-shadow(0 60px 100px rgba(56,140,255,0.35)) drop-shadow(0 20px 40px rgba(0,0,0,0.5)) drop-shadow(0 4px 8px rgba(56,140,255,0.2))',
+            transformStyle: 'preserve-3d',
+          }}
+        />
+      </div>
+
+      <div className="absolute inset-0 flex items-start justify-center pt-20 sm:pt-24 pointer-events-none select-none" style={{ perspective: '900px' }}>
+        <img
+          src="/logos/salescloserprologo.png"
+          alt=""
+          className="w-[420px] sm:w-[500px] md:w-[580px] opacity-[0.025]"
+          style={{
+            animation: 'heroFloat 8s ease-in-out infinite',
+            transform: 'rotateX(10deg) rotateY(-3deg) scaleY(-0.35)',
+            filter: 'blur(3px)',
+            transformStyle: 'preserve-3d',
+            maskImage: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%)',
+            WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%)',
+          }}
+        />
+      </div>
+
       {/* Top nav bar */}
-      <nav className="w-full border-b border-white/[0.06] bg-[#0a0e1a]/80 backdrop-blur-md">
-        <div className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
+      <nav className="relative z-10 w-full border-b border-white/[0.06] bg-[#0a0e1a]/80 backdrop-blur-md">
+        <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 py-4">
           <Link to="/" className="flex items-center gap-2.5 group">
             <img
               src="/logos/salescloserprologo.png"
@@ -111,7 +149,7 @@ export default function EmailGate({ children }) {
       </nav>
 
       {/* Main content */}
-      <div className="flex-1 flex items-center justify-center px-4 py-12">
+      <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-lg">
           {/* Card */}
           <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8 sm:p-10 shadow-2xl">
@@ -146,7 +184,7 @@ export default function EmailGate({ children }) {
                     placeholder="you@company.com"
                     autoFocus
                     autoComplete="email"
-                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.06] border text-white placeholder:text-slate-500 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-all ${
+                    className={`w-full pl-10 pr-4 py-3 rounded-xl bg-white/[0.06] border text-white placeholder:text-slate-500 text-base sm:text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/40 transition-all ${
                       error ? 'border-red-500/50' : 'border-white/[0.1] hover:border-white/[0.15]'
                     }`}
                   />
@@ -216,7 +254,7 @@ export default function EmailGate({ children }) {
       </div>
 
       {/* Affiliate Offers — full-width categorized card grid */}
-      <div className="w-full max-w-6xl mx-auto px-6 sm:px-8 mt-12">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-6 sm:px-8 mt-12">
         <div className="border-t border-white/[0.06] pt-8">
             <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
               <span className="text-xs font-bold text-white uppercase tracking-widest">Affiliate Offers</span>
@@ -229,7 +267,7 @@ export default function EmailGate({ children }) {
 
               {/* EDUCATION */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-amber-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-amber-400 mb-2">🎓 Education</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-amber-400 mb-2">🎓 Education</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.jdoqocy.com/click-101696721-17262416" target="_blank" rel="sponsored nofollow noopener" title="EWA" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/ewalogo.png" alt="EWA" className="max-h-6 w-auto" /></a>
                 </div>
@@ -237,7 +275,7 @@ export default function EmailGate({ children }) {
 
               {/* FOOD & HEALTH */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-emerald-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-emerald-400 mb-2">🌿 Food &amp; Health</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-emerald-400 mb-2">🌿 Food &amp; Health</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.dpbolvw.net/click-101696721-13443788" target="_blank" rel="sponsored nofollow noopener" title="Peet's Coffee" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/peetslogo.png" alt="Peet's Coffee" className="max-h-6 w-auto" /></a>
                   <a href="https://www.tkqlhce.com/click-101696721-15712042" target="_blank" rel="sponsored nofollow noopener" title="M&M's" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/mmslogo.png" alt="M&M's" className="max-h-6 w-auto" /></a>
@@ -249,7 +287,7 @@ export default function EmailGate({ children }) {
 
               {/* GAMING */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-pink-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-pink-400 mb-2">🎮 Gaming</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-pink-400 mb-2">🎮 Gaming</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.kqzyfj.com/click-101696721-10448329" target="_blank" rel="sponsored nofollow noopener" title="GameFly" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/gameflylogo.png" alt="GameFly" className="max-h-6 w-auto" /></a>
                   <a href="https://www.tkqlhce.com/click-101696721-17235980" target="_blank" rel="sponsored nofollow noopener" title="GearUP" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/gearuplogo.png" alt="GearUP" className="max-h-6 w-auto" /></a>
@@ -258,7 +296,7 @@ export default function EmailGate({ children }) {
 
               {/* HOME FURNISHINGS & AUDIO */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-orange-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-orange-400 mb-2">🏠 Home Furnishings &amp; Audio</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-orange-400 mb-2">🏠 Home Furnishings &amp; Audio</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.jdoqocy.com/click-101696721-15919841" target="_blank" rel="sponsored nofollow noopener" title="TEAC" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/TEAClogo.png" alt="TEAC" className="max-h-6 w-auto" /></a>
                   <a href="https://www.jdoqocy.com/click-101696721-15826779" target="_blank" rel="sponsored nofollow noopener" title="Skutchi Designs" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Skutchilogo.png" alt="Skutchi Designs" className="max-h-6 w-auto" /></a>
@@ -268,7 +306,7 @@ export default function EmailGate({ children }) {
 
               {/* OFFICE & WORKSPACE */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-amber-600 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-amber-500 mb-2">💼 Office &amp; Workspace</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-amber-500 mb-2">💼 Office &amp; Workspace</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.dpbolvw.net/click-101696721-15600474" target="_blank" rel="sponsored nofollow noopener" title="Arka" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/arkalogo.png" alt="Arka" className="max-h-6 w-auto" /></a>
                   <a href="https://www.awin1.com/cread.php?awinmid=91359&awinaffid=2848879&ued=https%3A%2F%2Fwww.giftcards.ca%2F" target="_blank" rel="sponsored nofollow noopener" title="Giftcards.ca" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/giftcardscalogo.webp" alt="Giftcards.ca" className="max-h-8 w-auto" /></a>
@@ -277,7 +315,7 @@ export default function EmailGate({ children }) {
 
               {/* PERSONAL ACCESSORIES */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-cyan-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-cyan-400 mb-2">✦ Personal Accessories</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-cyan-400 mb-2">✦ Personal Accessories</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.dpbolvw.net/click-101696721-15153860" target="_blank" rel="sponsored nofollow noopener" title="Oakley" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/oakleylogo.png" alt="Oakley" className="max-h-6 w-auto" /></a>
                 </div>
@@ -285,7 +323,7 @@ export default function EmailGate({ children }) {
 
               {/* PETS */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-yellow-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-yellow-400 mb-2">🐾 Pets</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-yellow-400 mb-2">🐾 Pets</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.jdoqocy.com/click-101696721-17234935" target="_blank" rel="sponsored nofollow noopener" title="Raw Paws Pet Food" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/rawpawspetfoodlogo.png" alt="Raw Paws Pet Food" className="max-h-6 w-auto" /></a>
                 </div>
@@ -293,7 +331,7 @@ export default function EmailGate({ children }) {
 
               {/* SECURITY & PRIVACY */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-green-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-green-400 mb-2">🔒 Security &amp; Privacy</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-green-400 mb-2">🔒 Security &amp; Privacy</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.jdoqocy.com/click-101696721-15740556" target="_blank" rel="sponsored nofollow noopener" title="Surfshark" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/surfsharklogo.png" alt="Surfshark" className="max-h-6 w-auto" /></a>
                   <a href="https://www.anrdoezrs.net/click-101696721-17124588" target="_blank" rel="sponsored nofollow noopener" title="AdBlocker Ultimate" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/adblockerlogo.png" alt="AdBlocker Ultimate" className="max-h-6 w-auto" /></a>
@@ -303,7 +341,7 @@ export default function EmailGate({ children }) {
 
               {/* SOFTWARE & AI */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-blue-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-blue-400 mb-2">💻 Software &amp; AI</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-blue-400 mb-2">💻 Software &amp; AI</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.dpbolvw.net/click-101696721-17222070" target="_blank" rel="sponsored nofollow noopener" title="DomoAI" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/domoailogo.png" alt="DomoAI" className="max-h-6 w-auto" /></a>
                   <a href="https://www.jdoqocy.com/click-101696721-17258377" target="_blank" rel="sponsored nofollow noopener" title="FM Software" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/FMSoftwarelogo.png" alt="FM Software" className="max-h-6 w-auto" /></a>
@@ -315,7 +353,7 @@ export default function EmailGate({ children }) {
 
               {/* TELECOM & HARDWARE */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-slate-400 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-slate-400 mb-2">📡 Telecom &amp; Hardware</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-slate-400 mb-2">📡 Telecom &amp; Hardware</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored nofollow noopener" title="Verizon" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/verizonlogo.png" alt="Verizon" className="max-h-4 w-auto" /></a>
                   <a href="https://runpod.io?ref=li2hee5u" target="_blank" rel="sponsored nofollow noopener" title="RunPod" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/runpodlogo.svg" alt="RunPod" className="max-h-4 w-auto" /></a>
@@ -327,7 +365,7 @@ export default function EmailGate({ children }) {
 
               {/* TOOLS & EQUIPMENT */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-teal-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-teal-400 mb-2">🔧 Tools &amp; Equipment</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-teal-400 mb-2">🔧 Tools &amp; Equipment</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.tkqlhce.com/click-101696721-15483785" target="_blank" rel="sponsored nofollow noopener" title="Northern Tool" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/northerntoollogo.png" alt="Northern Tool" className="max-h-6 w-auto" /></a>
                   <a href="https://www.jdoqocy.com/click-101696721-15786075" target="_blank" rel="sponsored nofollow noopener" title="OBI" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/obilogo.png" alt="OBI" className="max-h-6 w-auto" /></a>
@@ -336,7 +374,7 @@ export default function EmailGate({ children }) {
 
               {/* TRAVEL */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-rose-500 bg-white/[0.03] p-3">
-                <p className="text-[9px] font-bold uppercase tracking-widest text-rose-400 mb-2">✈️ Travel</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-rose-400 mb-2">✈️ Travel</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.kqzyfj.com/click-101696721-10433860" target="_blank" rel="sponsored nofollow noopener" title="Hotels.com" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/hotelslogo.png" alt="Hotels.com" className="max-h-8 w-auto" /></a>
                   <a href="https://www.anrdoezrs.net/click-101696721-17133005" target="_blank" rel="sponsored nofollow noopener" title="EF Adventures" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/efeducationlogo.png" alt="EF Adventures" className="max-h-6 w-auto" /></a>

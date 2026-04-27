@@ -4,7 +4,7 @@
 
 <h1 align="center">salescloserpro.ai — Close More. Stress Less. 💪</h1>
 
-<p align="center"><strong>Version 1.0.1 | Updated 2026-04-26</strong></p>
+<p align="center"><strong>Version 1.0.1 | Updated 2026-04-27</strong></p>
 
 <p align="center">
   <strong>Free, open-source sales quoting, CRM, pipeline, purchase orders & invoicing — browser + desktop.</strong><br/>
@@ -575,7 +575,7 @@ The affiliate section (footer + EmailGate) uses `rel="sponsored"` on all CJ link
 | 🔄 | **PostCSS** | 8.4 | CSS processing pipeline |
 | 🌐 | **Autoprefixer** | 10.4 | Automatic vendor prefixes |
 | 🖥️ | **Electron** | 33+ | Native desktop shell (Windows, macOS, Linux) |
-| 📦 | **electron-builder** | 25.1 | Package Electron apps into distributable installers |
+| 📦 | **electron-builder** | 26.8 | Package Electron apps into distributable installers |
 | 📋 | **@types/react** | 18.3 | TypeScript type definitions for React (IDE support) |
 | 📋 | **@types/react-dom** | 18.3 | TypeScript type definitions for React DOM (IDE support) |
 

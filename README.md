@@ -116,7 +116,7 @@ The AI assistant can help you with:
 
 | Requirement | Version | Check |
 |---|---|---|
-| 🟢 **Node.js** | 18+ | `node --version` |
+| 🟢 **Node.js** | 24+ | `node --version` |
 | 📦 **npm** | 9+ | `npm --version` |
 | 🌐 **Browser** | Chrome, Edge, Firefox, Safari | Any modern browser |
 

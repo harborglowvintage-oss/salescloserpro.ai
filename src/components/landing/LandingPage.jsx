@@ -874,6 +874,7 @@ export default function LandingPage() {
                 <p className="text-[10px] font-bold uppercase tracking-widest text-yellow-400 mb-3">🐾 Pets</p>
                 <div className="grid grid-cols-3 gap-2">
                   <a href="https://www.jdoqocy.com/click-101696721-17234935" target="_blank" rel="sponsored nofollow noopener" title="Raw Paws Pet Food" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/rawpawspetfoodlogo.png" alt="Raw Paws Pet Food" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.awin1.com/cread.php?awinmid=79708&awinaffid=2848879&ued=https%3A%2F%2Fjugbow.com%2F" target="_blank" rel="sponsored nofollow noopener" title="Jugbow" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/jugbowlogo.png" alt="Jugbow" className="max-h-7 w-auto" /></a>
                 </div>
               </div>
 

@@ -22,7 +22,7 @@ When adding or removing a partner, update **all** entries in this file AND the f
 
 ## Current Partner Registry
 
-> Last updated: 2026-04-10
+> Last updated: 2026-04-23
 
 | # | Partner | Logo File | CJ Click URL | CJ Pixel URL | Label Text | In Layout? |
 |---|---------|-----------|-------------|--------------|------------|------------|
@@ -42,17 +42,32 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | 14 | **Peet's Coffee** | `/logos/peetslogo.png` | `https://www.dpbolvw.net/click-101696721-13443788` | `https://www.lduhtrp.net/image-101696721-13443788` | Peet's Coffee | ❌ No |
 | 15 | **Surfshark** | `/logos/surfsharklogo.png` | `https://www.jdoqocy.com/click-101696721-15740556` | `https://www.lduhtrp.net/image-101696721-15740556` | Surfshark | ❌ No |
 | 16 | **TEAC** | `/logos/TEAClogo.png` | `https://www.jdoqocy.com/click-101696721-15919841` | `https://www.tqlkg.com/image-101696721-15919841` | TEAC | ❌ No |
-| 17 | **TP-Link Tapo** | `/logos/tplinklogo.png` | `https://www.tkqlhce.com/click-101696721-15610800` | `https://www.tqlkg.com/image-101696721-15610800` | TP-Link Tapo | ✅ Yes |
+| 17 | **TP-Link Tapo** | `/logos/tplinklogo.png` | `https://www.dpbolvw.net/click-101696721-15600687` | `https://www.awltovhc.com/image-101696721-15600687` | TP-Link Tapo | ✅ Yes |
 | 18 | **Verizon** | `/logos/verizonlogo.png` | `https://www.tkqlhce.com/click-101696721-11371807` | `https://www.lduhtrp.net/image-101696721-11371807` | Verizon | ✅ Yes |
 | 19 | **VitalHeal** | `/logos/vitalheallogo.png` | `https://www.tkqlhce.com/click-101696721-17254505` | `https://www.lduhtrp.net/image-101696721-17254505` | VitalHeal | ❌ No |
 | 20 | **CheapTickets** | `/logos/cheapticketslogo.png` | `https://www.anrdoezrs.net/click-101696721-12843042` | `https://www.tqlkg.com/image-101696721-12843042` | CheapTickets | ❌ No |
 | 21 | **Raw Paws Pet Food** | `/logos/rawpawspetfoodlogo.png` | `https://www.jdoqocy.com/click-101696721-17234935` | `https://www.tqlkg.com/image-101696721-17234935` | Raw Paws Pet Food | ❌ No |
+| 22 | **amFilm** | `/logos/amfilmlogo.png` | `https://www.jdoqocy.com/click-101696721-17257661` | `https://www.tqlkg.com/image-101696721-17257661` | amFilm | ❌ No |
+| 23 | **Skutchi Designs** | `/logos/Skutchilogo.png` | `https://www.jdoqocy.com/click-101696721-15826779` | `https://www.ftjcfx.com/image-101696721-15826779` | Skutchi Designs | ❌ No |
+| 24 | **Pelican** | `/logos/pelicanlogo.webp` | `https://www.anrdoezrs.net/click-101696721-15751514` | `https://www.ftjcfx.com/image-101696721-15751514` | Pelican | ❌ No |
+| 25 | **Arka** | `/logos/arkalogo.png` | `https://www.dpbolvw.net/click-101696721-15600474` | `https://www.awltovhc.com/image-101696721-15600474` | Arka | ❌ No |
+| 26 | **OBI** | `/logos/obilogo.png` | `https://www.jdoqocy.com/click-101696721-15786075` | `https://www.awltovhc.com/image-101696721-15786075` | OBI | ❌ No |
+| 27 | **AMBIR** | `/logos/ambirlogo.png` | `https://www.anrdoezrs.net/click-101696721-17272885` | `https://www.tqlkg.com/image-101696721-17272885` | AMBIR | ❌ No |
+| 28 | **Oakley** | `/logos/oakleylogo.png` | `https://www.dpbolvw.net/click-101696721-15153860` | `https://www.tqlkg.com/image-101696721-15153860` | Oakley | ❌ No |
+| 29 | **Fresh Adventures** | `/logos/freshadventureslogo.png` | `https://www.dpbolvw.net/click-101696721-17207704` | `https://www.lduhtrp.net/image-101696721-17207704` | Fresh Adventures | ❌ No |
+| 30 | **Epidemic Sound** | `/logos/epidemicsoundlogo.png` | `https://www.tkqlhce.com/click-101696721-17163276` | `https://www.tqlkg.com/image-101696721-17163276` | Epidemic Sound | ❌ No |
 
 ### Non-CJ Affiliates (in GoLiveWizard / Legal only)
 
 | Partner | Link | Notes |
 |---------|------|-------|
 | **Namecheap** | `https://namecheap.pxf.io/9VgWEj` | Domain registration — GoLiveWizard.jsx |
+| **DigitalOcean** | `https://www.awin1.com/cread.php?awinmid=123996&awinaffid=2848879&ued=https%3A%2F%2Fwww.digitalocean.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
+| **Giftcards.ca** | `https://www.awin1.com/cread.php?awinmid=91359&awinaffid=2848879&ued=https%3A%2F%2Fwww.giftcards.ca%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
+| **Survive X** | `https://www.awin1.com/cread.php?awinmid=124484&awinaffid=2848879&ued=https%3A%2F%2Fsurvive-x.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
+| **Joydeco** | `https://www.awin1.com/cread.php?awinmid=119863&awinaffid=2848879&ued=https%3A%2F%2Fjoydeco.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
+| **Jugbow** | `https://www.awin1.com/cread.php?awinmid=79708&awinaffid=2848879&ued=https%3A%2F%2Fjugbow.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
+| **RunPod** | `https://runpod.io?ref=li2hee5u` | Direct referral link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **Zoho Mail** | `https://go.zoho.com/x7Vq` | Email provider — GoLiveWizard.jsx |
 | **Gemini Credit Card** | Referral link | Legal disclosure only |
 | **Buy Me a Coffee** | Direct support | Legal disclosure only |

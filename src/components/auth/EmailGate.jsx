@@ -120,7 +120,7 @@ export default function EmailGate({ children }) {
           style={{
             animation: 'heroFloat 8s ease-in-out infinite',
             transform: 'rotateX(10deg) rotateY(-3deg) scaleY(-0.35)',
-            filter: 'blur(3px)',
+            filter: 'none',
             transformStyle: 'preserve-3d',
             maskImage: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%)',
             WebkitMaskImage: 'linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%)',
@@ -152,7 +152,7 @@ export default function EmailGate({ children }) {
       <div className="relative z-10 flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-lg">
           {/* Card */}
-          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.03] backdrop-blur-sm p-8 sm:p-10 shadow-2xl">
+          <div className="rounded-2xl border border-white/[0.08] bg-white/[0.04] p-8 sm:p-10 shadow-2xl">
             {/* Icon */}
             <div className="flex items-center justify-center w-14 h-14 rounded-xl bg-blue-500/10 border border-blue-500/20 mb-6 mx-auto">
               <Lock size={24} className="text-blue-400" />

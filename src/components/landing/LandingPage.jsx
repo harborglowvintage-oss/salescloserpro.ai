@@ -384,7 +384,7 @@ export default function LandingPage() {
                 <svg viewBox="0 0 41 41" className="w-3.5 h-3.5 flex-shrink-0" fill="none" style={{ color: '#10a37f' }}>
                   <path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-7.505-3.354 10.079 10.079 0 0 0-9.612 6.977 9.967 9.967 0 0 0-6.664 4.834 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 7.504 3.353 10.078 10.078 0 0 0 9.617-6.981 9.967 9.967 0 0 0 6.663-4.834 10.079 10.079 0 0 0-1.243-11.813zM22.498 37.886a7.474 7.474 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.496zM6.392 31.006a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zM4.297 13.62A7.469 7.469 0 0 1 8.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L7.044 23.86a7.504 7.504 0 0 1-2.747-10.24zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.499v4.993l-4.331 2.5-4.331-2.5V18z" fill="currentColor"/>
                 </svg>
-                <span className="text-[11px] text-slate-300/80 font-medium">Using the creator's recommended model: <span className="text-white font-semibold">GPT-5.2</span></span>
+                <span className="text-[11px] text-slate-300/80 font-medium">Using the creator's recommended model: <span className="text-white font-semibold">GPT-5.5</span></span>
               </div>
 
               {/* prompt starter cards — matching ChatGPT GPT interface */}
@@ -437,7 +437,7 @@ export default function LandingPage() {
                   style={{ background: 'linear-gradient(135deg, #10a37f, #0ea5e9)', boxShadow: '0 0 24px rgba(16,163,127,0.35)' }}>
                   Try the GPT — Free →
                 </span>
-                <span className="text-[11px] text-slate-500 pl-1">Powered by ChatGPT · GPT-5.2 · No Plus subscription needed</span>
+                <span className="text-[11px] text-slate-500 pl-1">Powered by ChatGPT · GPT-5.5 · No Plus subscription needed</span>
               </div>
             </div>
           </div>
@@ -801,95 +801,134 @@ export default function LandingPage() {
       <footer className="border-t border-white/[0.06] mt-12">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 py-12">
 
-          {/* Affiliate Offers — category card grid */}
+          {/* Affiliate Offers — categorized card grid */}
           <div className="border-b border-white/[0.06] pb-6 mb-10">
-            {/* Header lockup */}
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 mb-5">
+            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
               <span className="text-xs font-bold text-white uppercase tracking-widest">Affiliate Offers</span>
-              <span className="inline-flex items-center gap-1.5 bg-white/[0.06] border border-white/[0.08] rounded-full px-3 py-1 text-[10px] text-slate-400">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block" />
-                We earn a commission when you shop through the links below&nbsp;·&nbsp;
-                <Link to="/legal" className="text-emerald-400 hover:text-emerald-300 transition-colors">Full disclosure →</Link>
+              <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 bg-white/[0.05] rounded-full px-3 py-1 border border-white/[0.08] ring-1 ring-blue-400/30 shadow-[0_0_12px_rgba(59,130,246,0.2)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block flex-shrink-0" />
+                We earn a commission when you shop through the links below &middot; <Link to="/legal" className="ml-1 text-blue-400 hover:text-blue-300 transition-colors">Full disclosure →</Link>
               </span>
             </div>
 
-            {/* 3-column category grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
 
-              {/* 🔒 Security & Privacy */}
-              <div className="rounded-lg p-3 bg-white/[0.02] border border-white/[0.08] border-t-2 border-t-cyan-500">
-                <p className="text-[10px] font-bold text-cyan-400 uppercase tracking-widest mb-2">🔒 Security &amp; Privacy</p>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.jdoqocy.com/click-101696721-15740556" target="_blank" rel="sponsored noopener" title="Surfshark" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/surfsharklogo.png" alt="Surfshark" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.anrdoezrs.net/click-101696721-17124588" target="_blank" rel="sponsored noopener" title="AdBlocker Ultimate" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/adblockerlogo.png" alt="AdBlocker Ultimate" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-15178612" target="_blank" rel="sponsored noopener" title="Carbonite" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/carbonitelogo.png" alt="Carbonite" className="max-h-7 w-auto" /></a>
+              {/* EDUCATION */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-amber-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-3">🎓 Education</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.jdoqocy.com/click-101696721-17262416" target="_blank" rel="sponsored nofollow noopener" title="EWA" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/ewalogo.png" alt="EWA" className="max-h-7 w-auto" /></a>
                 </div>
               </div>
 
-              {/* 🤖 Software & AI */}
-              <div className="rounded-lg p-3 bg-white/[0.02] border border-white/[0.08] border-t-2 border-t-purple-500">
-                <p className="text-[10px] font-bold text-purple-400 uppercase tracking-widest mb-2">🤖 Software &amp; AI</p>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.dpbolvw.net/click-101696721-17222070" target="_blank" rel="sponsored noopener" title="DomoAI" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/domoailogo.png" alt="DomoAI" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-17258377" target="_blank" rel="sponsored noopener" title="TrackNotion" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/FMSoftwarelogo.png" alt="TrackNotion" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-17250447" target="_blank" rel="sponsored noopener" title="QuickBooks" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/quickbookslogo.png" alt="QuickBooks" className="max-h-7 w-auto" /></a>
+              {/* FOOD & HEALTH */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-emerald-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-3">🌿 Food &amp; Health</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.dpbolvw.net/click-101696721-13443788" target="_blank" rel="sponsored nofollow noopener" title="Peet's Coffee" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/peetslogo.png" alt="Peet's Coffee" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.tkqlhce.com/click-101696721-15712042" target="_blank" rel="sponsored nofollow noopener" title="M&M's" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/mmslogo.png" alt="M&M's" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.tkqlhce.com/click-101696721-17254505" target="_blank" rel="sponsored nofollow noopener" title="VitalHeal" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/vitalheallogo.png" alt="VitalHeal" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.dpbolvw.net/click-101696721-17110018" target="_blank" rel="sponsored nofollow noopener" title="Blackout Coffee" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/blackoutcoffee.png" alt="Blackout Coffee" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.awin1.com/cread.php?awinmid=124484&awinaffid=2848879&ued=https%3A%2F%2Fsurvive-x.com%2F" target="_blank" rel="sponsored nofollow noopener" title="Survive X" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/surviveXlogo.webp" alt="Survive X" className="max-h-6 w-auto" /></a>
                 </div>
               </div>
 
-              {/* 🌿 Food & Health */}
-              <div className="rounded-lg p-3 bg-white/[0.02] border border-white/[0.08] border-t-2 border-t-green-500">
-                <p className="text-[10px] font-bold text-green-400 uppercase tracking-widest mb-2">🌿 Food &amp; Health</p>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.dpbolvw.net/click-101696721-13443788" target="_blank" rel="sponsored noopener" title="Peet's Coffee" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/peetslogo.png" alt="Peet's Coffee" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-15712042" target="_blank" rel="sponsored noopener" title="M&amp;M's" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/mmslogo.png" alt="M&amp;M's" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-17254505" target="_blank" rel="sponsored noopener" title="VitalHeal" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/vitalheallogo.png" alt="VitalHeal" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.dpbolvw.net/click-101696721-17110018" target="_blank" rel="sponsored noopener" title="Blackout Coffee" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/blackoutcoffee.png" alt="Blackout Coffee" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-17234935" target="_blank" rel="sponsored noopener" title="Raw Paws Pet Food" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/rawpawspetfoodlogo.png" alt="Raw Paws Pet Food" className="max-h-7 w-auto" /></a>
+              {/* GAMING */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-pink-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-pink-400 mb-3">🎮 Gaming</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.kqzyfj.com/click-101696721-10448329" target="_blank" rel="sponsored nofollow noopener" title="GameFly" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/gameflylogo.png" alt="GameFly" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.tkqlhce.com/click-101696721-17235980" target="_blank" rel="sponsored nofollow noopener" title="GearUP" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/gearuplogo.png" alt="GearUP" className="max-h-7 w-auto" /></a>
                 </div>
               </div>
 
-              {/* ✈️ Travel */}
-              <div className="rounded-lg p-3 bg-white/[0.02] border border-white/[0.08] border-t-2 border-t-blue-500">
-                <p className="text-[10px] font-bold text-blue-400 uppercase tracking-widest mb-2">✈️ Travel</p>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.kqzyfj.com/click-101696721-10433860" target="_blank" rel="sponsored noopener" title="Hotels.com" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/hotelslogo.png" alt="Hotels.com" className="max-h-5 w-auto" /></a>
-                  <a href="https://www.anrdoezrs.net/click-101696721-17133005" target="_blank" rel="sponsored noopener" title="EF Adventures" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/efeducationlogo.png" alt="EF Adventures" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.anrdoezrs.net/click-101696721-12843042" target="_blank" rel="sponsored noopener" title="CheapTickets" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/cheapticketslogo.png" alt="CheapTickets" className="max-h-7 w-auto" /></a>
+              {/* HOME FURNISHINGS & AUDIO */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-orange-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-orange-400 mb-3">🏠 Home Furnishings &amp; Audio</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.jdoqocy.com/click-101696721-15919841" target="_blank" rel="sponsored nofollow noopener" title="TEAC" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/TEAClogo.png" alt="TEAC" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-15826779" target="_blank" rel="sponsored nofollow noopener" title="Skutchi Designs" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Skutchilogo.png" alt="Skutchi Designs" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.awin1.com/cread.php?awinmid=119863&awinaffid=2848879&ued=https%3A%2F%2Fjoydeco.com%2F" target="_blank" rel="sponsored nofollow noopener" title="Joydeco" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/joydecologo.webp" alt="Joydeco" className="max-h-6 w-auto" /></a>
                 </div>
               </div>
 
-              {/* 📡 Telecom & Hardware */}
-              <div className="rounded-lg p-3 bg-white/[0.02] border border-white/[0.08] border-t-2 border-t-amber-500">
-                <p className="text-[10px] font-bold text-amber-400 uppercase tracking-widest mb-2">📡 Telecom &amp; Hardware</p>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored noopener" title="Verizon" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/verizonlogo.png" alt="Verizon" className="max-h-5 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-15610800" target="_blank" rel="sponsored noopener" title="TP-Link Tapo" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/tplinklogo.png" alt="TP-Link Tapo" className="max-h-7 w-auto" /></a>
+              {/* OFFICE & WORKSPACE */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-amber-600 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-3">💼 Office &amp; Workspace</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.dpbolvw.net/click-101696721-15600474" target="_blank" rel="sponsored nofollow noopener" title="Arka" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/arkalogo.png" alt="Arka" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.awin1.com/cread.php?awinmid=91359&awinaffid=2848879&ued=https%3A%2F%2Fwww.giftcards.ca%2F" target="_blank" rel="sponsored nofollow noopener" title="Giftcards.ca" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/giftcardscalogo.webp" alt="Giftcards.ca" className="max-h-8 w-auto" /></a>
                 </div>
               </div>
 
-              {/* 🏠 Home & Audio */}
-              <div className="rounded-lg p-3 bg-white/[0.02] border border-white/[0.08] border-t-2 border-t-orange-500">
-                <p className="text-[10px] font-bold text-orange-400 uppercase tracking-widest mb-2">🏠 Home &amp; Audio</p>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.tkqlhce.com/click-101696721-15483785" target="_blank" rel="sponsored noopener" title="Northern Tool" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/northerntoollogo.png" alt="Northern Tool" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-15919841" target="_blank" rel="sponsored noopener" title="TEAC" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/TEAClogo.png" alt="TEAC" className="max-h-7 w-auto" /></a>
+              {/* PERSONAL ACCESSORIES */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-cyan-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-3">✦ Personal Accessories</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.dpbolvw.net/click-101696721-15153860" target="_blank" rel="sponsored nofollow noopener" title="Oakley" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/oakleylogo.png" alt="Oakley" className="max-h-7 w-auto" /></a>
                 </div>
               </div>
 
-              {/* 📚 Education */}
-              <div className="rounded-lg p-3 bg-white/[0.02] border border-white/[0.08] border-t-2 border-t-red-500">
-                <p className="text-[10px] font-bold text-red-400 uppercase tracking-widest mb-2">📚 Education</p>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.jdoqocy.com/click-101696721-17262416" target="_blank" rel="sponsored noopener" title="EWA" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/ewalogo.png" alt="EWA" className="max-h-7 w-auto" /></a>
+              {/* PETS */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-yellow-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-yellow-400 mb-3">🐾 Pets</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.jdoqocy.com/click-101696721-17234935" target="_blank" rel="sponsored nofollow noopener" title="Raw Paws Pet Food" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/rawpawspetfoodlogo.png" alt="Raw Paws Pet Food" className="max-h-7 w-auto" /></a>
                 </div>
               </div>
 
-              {/* 🎮 Gaming */}
-              <div className="rounded-lg p-3 bg-white/[0.02] border border-white/[0.08] border-t-2 border-t-indigo-500">
-                <p className="text-[10px] font-bold text-indigo-400 uppercase tracking-widest mb-2">🎮 Gaming</p>
-                <div className="flex flex-wrap gap-2">
-                  <a href="https://www.kqzyfj.com/click-101696721-10448329" target="_blank" rel="sponsored noopener" title="GameFly" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/gameflylogo.png" alt="GameFly" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-17235980" target="_blank" rel="sponsored noopener" title="GearUP" className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity"><img src="/logos/gearuplogo.png" alt="GearUP" className="max-h-7 w-auto" /></a>
+              {/* SECURITY & PRIVACY */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-green-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-green-400 mb-3">🔒 Security &amp; Privacy</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.jdoqocy.com/click-101696721-15740556" target="_blank" rel="sponsored nofollow noopener" title="Surfshark" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/surfsharklogo.png" alt="Surfshark" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.anrdoezrs.net/click-101696721-17124588" target="_blank" rel="sponsored nofollow noopener" title="AdBlocker Ultimate" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/adblockerlogo.png" alt="AdBlocker Ultimate" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-15178612" target="_blank" rel="sponsored nofollow noopener" title="Carbonite" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/carbonitelogo.png" alt="Carbonite" className="max-h-7 w-auto" /></a>
+                </div>
+              </div>
+
+              {/* SOFTWARE & AI */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-blue-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-3">💻 Software &amp; AI</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.dpbolvw.net/click-101696721-17222070" target="_blank" rel="sponsored nofollow noopener" title="DomoAI" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/domoailogo.png" alt="DomoAI" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-17258377" target="_blank" rel="sponsored nofollow noopener" title="FM Software" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/FMSoftwarelogo.png" alt="FM Software" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-17250447" target="_blank" rel="sponsored nofollow noopener" title="QuickBooks" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/quickbookslogo.png" alt="QuickBooks" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.tkqlhce.com/click-101696721-17163276" target="_blank" rel="sponsored nofollow noopener" title="Epidemic Sound" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/epidemicsoundlogo.png" alt="Epidemic Sound" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.awin1.com/cread.php?awinmid=123996&awinaffid=2848879&ued=https%3A%2F%2Fwww.digitalocean.com%2F" target="_blank" rel="sponsored nofollow noopener" title="DigitalOcean" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/digitaloceanlogo.png" alt="DigitalOcean" className="max-h-6 w-auto" /></a>
+                </div>
+              </div>
+
+              {/* TELECOM & HARDWARE */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-slate-400 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">📡 Telecom &amp; Hardware</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored nofollow noopener" title="Verizon" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/verizonlogo.png" alt="Verizon" className="max-h-5 w-auto" /></a>
+                  <a href="https://runpod.io?ref=li2hee5u" target="_blank" rel="sponsored nofollow noopener" title="RunPod" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/runpodlogo.svg" alt="RunPod" className="max-h-5 w-auto" /></a>
+                  <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored nofollow noopener" title="TP-Link Tapo" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/tplinklogo.png" alt="TP-Link Tapo" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-17257661" target="_blank" rel="sponsored nofollow noopener" title="amFilm" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/amfilmlogo.png" alt="amFilm" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.anrdoezrs.net/click-101696721-17272885" target="_blank" rel="sponsored nofollow noopener" title="AMBIR" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/ambirlogo.png" alt="AMBIR" className="max-h-7 w-auto" /></a>
+                </div>
+              </div>
+
+              {/* TOOLS & EQUIPMENT */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-teal-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-3">🔧 Tools &amp; Equipment</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.tkqlhce.com/click-101696721-15483785" target="_blank" rel="sponsored nofollow noopener" title="Northern Tool" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/northerntoollogo.png" alt="Northern Tool" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-15786075" target="_blank" rel="sponsored nofollow noopener" title="OBI" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/obilogo.png" alt="OBI" className="max-h-7 w-auto" /></a>
+                </div>
+              </div>
+
+              {/* TRAVEL */}
+              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-rose-500 bg-white/[0.03] p-4">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-rose-400 mb-3">✈️ Travel</p>
+                <div className="grid grid-cols-3 gap-2">
+                  <a href="https://www.kqzyfj.com/click-101696721-10433860" target="_blank" rel="sponsored nofollow noopener" title="Hotels.com" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/hotelslogo.png" alt="Hotels.com" className="max-h-8 w-auto" /></a>
+                  <a href="https://www.anrdoezrs.net/click-101696721-17133005" target="_blank" rel="sponsored nofollow noopener" title="EF Adventures" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/efeducationlogo.png" alt="EF Adventures" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.anrdoezrs.net/click-101696721-12843042" target="_blank" rel="sponsored nofollow noopener" title="CheapTickets" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/cheapticketslogo.png" alt="CheapTickets" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.anrdoezrs.net/click-101696721-15751514" target="_blank" rel="sponsored nofollow noopener" title="Pelican" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/pelicanlogo.webp" alt="Pelican" className="max-h-7 w-auto" /></a>
+                  <a href="https://www.dpbolvw.net/click-101696721-17207704" target="_blank" rel="sponsored nofollow noopener" title="Fresh Adventures" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/freshadventureslogo.png" alt="Fresh Adventures" className="max-h-7 w-auto" /></a>
                 </div>
               </div>
 
@@ -909,7 +948,7 @@ export default function LandingPage() {
             <img src="https://www.ftjcfx.com/image-101696721-10433860" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.ftjcfx.com/image-101696721-17133005" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-15610800" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.ftjcfx.com/image-101696721-15483785" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-15919841" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.awltovhc.com/image-101696721-17262416" width="1" height="1" border="0" alt="" aria-hidden="true" />
@@ -917,6 +956,15 @@ export default function LandingPage() {
             <img src="https://www.lduhtrp.net/image-101696721-17235980" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-12843042" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-17234935" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-15751514" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-15153860" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-17207704" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17257661" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17272885" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.ftjcfx.com/image-101696721-15826779" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-15786075" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.tqlkg.com/image-101696721-17163276" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.awltovhc.com/image-101696721-15600474" width="1" height="1" border="0" alt="" aria-hidden="true" />
           </div>
 
           {/* Brand row */}

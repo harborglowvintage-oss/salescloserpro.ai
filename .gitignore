@@ -33,6 +33,9 @@ release/
 # Scratch files
 Untitled-1.ini
 
+# Local backup archives (do not commit in public repo)
+local-backups/
+
 # OS
 .DS_Store
 desktop.ini

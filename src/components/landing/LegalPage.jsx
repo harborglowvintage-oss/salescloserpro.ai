@@ -24,7 +24,7 @@ import {
   Gavel,
 } from 'lucide-react'
 
-const LAST_UPDATED = 'February 26, 2026'
+const LAST_UPDATED = 'April 26, 2026'
 const APP_VERSION  = '1.0.0'
 const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
@@ -341,6 +341,12 @@ export default function LegalPage() {
                 <Hi>FTC's Endorsement Guides (16 CFR Part 255)</Hi>, ASA (UK), and equivalent advertising standards
                 bodies globally, we disclose all material connections.
               </p>
+              <p>
+                Affiliate logos/images shown in the partner grid are sourced from merchant-approved creatives in
+                Commission Junction (CJ) or the corresponding affiliate network dashboard, then resized or optimized
+                for consistent display only. We do not claim ownership of partner marks and we do not imply
+                endorsement beyond the disclosed affiliate relationship.
+              </p>
               <H>Identified Affiliate Relationships</H>
               <div className="overflow-x-auto">
                 <table className="w-full text-xs border-collapse">
@@ -374,7 +380,21 @@ export default function LegalPage() {
                       ['VitalHeal', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['CheapTickets', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Raw Paws Pet Food', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['amFilm', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Skutchi Designs', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Pelican', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Arka', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['OBI', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['AMBIR', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Oakley', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Fresh Adventures', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Epidemic Sound', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Namecheap', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['DigitalOcean', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
+                      ['Giftcards.ca', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
+                      ['Survive X', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
+                      ['Joydeco', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
+                      ['RunPod', 'Referral link', 'Referral reward on qualifying signups'],
                       ['Gemini Credit Card', 'Referral link', 'Referral bonus if approved'],
                       ['Zoho Mail', 'Affiliate link', 'Commission on qualifying purchases'],
                       ['Buy Me a Coffee', 'Direct support', 'Voluntary tips to developer'],
@@ -513,6 +533,10 @@ export default function LegalPage() {
                 All third-party logos displayed in SalesCloserPro (MoonPay, Namecheap, Cloudflare, Gemini, Zoho,
                 Google Workspace, Buy Me a Coffee) are trademarks of their respective owners and are used solely for
                 identification/referential purposes under nominative fair use. No endorsement by these brands is implied.
+              </p>
+              <p>
+                Affiliate partner logos are pulled from merchant-provided creative libraries (including CJ where
+                applicable) and normalized for layout consistency across our sites.
               </p>
               <H>DMCA Takedown Notices</H>
               <p>

@@ -4,6 +4,8 @@
 
 <h1 align="center">salescloserpro.ai — Close More. Stress Less. 💪</h1>
 
+<p align="center"><strong>Version 1.0.1 | Updated 2026-04-26</strong></p>
+
 <p align="center">
   <strong>Free, open-source sales quoting, CRM, pipeline, purchase orders & invoicing — browser + desktop.</strong><br/>
   <em>Built with ⚛️ React · ⚡ Vite · 🎨 Tailwind · 🐻 Zustand · 🖥️ Electron — zero backend, zero sign-up, works offline.</em>
@@ -20,6 +22,13 @@
 ### 📸 Screenshots
 
 <table align="center">
+  <tr>
+    <td colspan="2" align="center"><strong>🏠 Homepage</strong></td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><img src="screenshots/homepage.png" alt="Homepage" width="980" /></td>
+  </tr>
+  <tr><td colspan="2"><br></td></tr>
   <tr>
     <td align="center"><strong>📋 Purchase Orders</strong></td>
     <td align="center"><strong>⚙️ Company Settings</strong></td>
@@ -54,6 +63,7 @@
 
 - [🤖 salescloserpro.ai — GPT Assistant](#-salescloserpro-ai--gpt-assistant)
 - [⚡ Quick Start — Install in 60 Seconds](#-quick-start--install-in-60-seconds)
+- [🗄️ Local Zip Backup (Public Repo Safe)](#️-local-zip-backup-public-repo-safe)
 - [🖥️ Desktop App — Electron](#️-desktop-app--electron)
 - [✨ Features at a Glance](#-features-at-a-glance)
 - [📸 Feature Deep Dive](#-feature-deep-dive)
@@ -69,6 +79,7 @@
   - [💾 Backup & Restore](#-backup--restore)
   - [🚀 Go Live Wizard](#-go-live-wizard)
 - [🌐 Deploy Your Own (Free)](#-deploy-your-own-free)
+- [☁️ Cloudflare Edge Configuration](#️-cloudflare-edge-configuration)
 - [✦ Custom & Enterprise Services](#-custom--enterprise-services)
 - [🔍 SEO & Meta Tags](#-seo--meta-tags)
 - [🛠️ Tech Stack](#️-tech-stack)
@@ -135,6 +146,19 @@ npm run build
 npm run preview
 ```
 
+### 🗄️ Local Zip Backup (Public Repo Safe)
+
+Use this when you want a fast local snapshot before major edits.
+
+```bash
+mkdir -p local-backups
+zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
+  -x "node_modules/*" ".git/*" "dist/*" "release/*" "local-backups/*"
+```
+
+- `local-backups/` is gitignored so backups stay local and out of this public repository.
+- Never include secrets, API keys, private customer data, or `.env` values in backup artifacts you share.
+
 ---
 
 ## 🖥️ Desktop App — Electron
@@ -179,15 +203,15 @@ All built artifacts are output to the `release/` directory.
 
 | File | Description |
 |---|---|
-| `SalesCloserPro-1.0.0-Setup-x64.exe` | NSIS installer (user choice install directory) |
-| `SalesCloserPro-1.0.0-x64.exe` | Portable — no install needed |
+| `SalesCloserPro-1.0.1-Setup-x64.exe` | NSIS installer (user choice install directory) |
+| `SalesCloserPro-1.0.1-x64.exe` | Portable — no install needed |
 
 ### 🍎 macOS Output
 
 | File | Description |
 |---|---|
-| `SalesCloserPro-1.0.0-x64.dmg` | Intel Macs |
-| `SalesCloserPro-1.0.0-arm64.dmg` | Apple Silicon (M1/M2/M3/M4) |
+| `SalesCloserPro-1.0.1-x64.dmg` | Intel Macs |
+| `SalesCloserPro-1.0.1-arm64.dmg` | Apple Silicon (M1/M2/M3/M4) |
 
 > ⚠️ **macOS Unsigned App Warning:** Without an Apple Developer account ($99/year), macOS builds are unsigned. Users will see a "Damaged" or "Unidentified Developer" warning. To bypass: **right-click → Open** the app, or run `xattr -cr /Applications/SalesCloserPro.app` in Terminal. Windows & Linux builds work out of the box.
 
@@ -195,8 +219,8 @@ All built artifacts are output to the `release/` directory.
 
 | File | Description |
 |---|---|
-| `SalesCloserPro-1.0.0-x64.AppImage` | Run anywhere — no install needed |
-| `SalesCloserPro-1.0.0-x64.deb` | Debian/Ubuntu package — `sudo dpkg -i *.deb` |
+| `SalesCloserPro-1.0.1-x64.AppImage` | Run anywhere — no install needed |
+| `SalesCloserPro-1.0.1-x64.deb` | Debian/Ubuntu package — `sudo dpkg -i *.deb` |
 
 > 💡 **Note:** The `vite.config.js` uses `base: './'` so the app loads correctly from the `file://` protocol inside Electron.
 
@@ -409,6 +433,30 @@ Use [Cloudflare DNS](https://cloudflare.com/dns) for free DNS management. Point 
 > 💳 Set up [MoonPay](https://dashboard.moonpay.com) in the Go Live wizard to accept invoice payments.
 
 Accept credit card, bank transfer, or Apple Pay. Funds settle as stablecoins (USDC recommended) to your crypto wallet.
+
+---
+
+## ☁️ Cloudflare Edge Configuration
+
+Production edge behavior is managed in Cloudflare and should be treated as part of the app configuration.
+
+### Security headers and CSP
+
+- Response headers (including `Content-Security-Policy`) are managed by **Cloudflare Response Header Transform Rules**.
+- `public/_headers` in this repo is the source-of-truth fallback for Cloudflare Pages and local reference.
+- Keep Cloudflare dashboard header rules and `public/_headers` synchronized whenever security headers are changed.
+
+### Edge routing and worker notes
+
+- `robots.txt` and `.well-known/security.txt` are served via Cloudflare edge routing/worker logic.
+- Keep exact route expressions, worker script names, and account-level rule details in private operations documentation (not in this public repo).
+- After any edge-rule change, verify both public crawler endpoints and security-contact endpoints are still reachable.
+
+### Public repo safety guidelines
+
+- Do not commit API tokens, account IDs, zone IDs, or dashboard export payloads.
+- Do not publish full Cloudflare rule expressions if they reveal internal routing or abuse controls.
+- Keep this README focused on operational intent; keep implementation specifics in a private runbook.
 
 ---
 

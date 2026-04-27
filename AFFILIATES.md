@@ -26,36 +26,36 @@ When adding or removing a partner, update **all** entries in this file AND the f
 
 | # | Partner | Logo File | CJ Click URL | CJ Pixel URL | Label Text | In Layout? |
 |---|---------|-----------|-------------|--------------|------------|------------|
-| 1 | **AdBlocker Ultimate** | `/logos/adblockerlogo.png` | `https://www.anrdoezrs.net/click-101696721-17124588` | `https://www.tqlkg.com/image-101696721-17124588` | AdBlocker Ultimate | ❌ No |
+| 1 | **AdBlocker Ultimate** | `/logos/Adblocker-17124591.jpeg` | `https://www.anrdoezrs.net/click-101696721-17124588` | `https://www.tqlkg.com/image-101696721-17124588` | AdBlocker Ultimate | ❌ No |
 | 2 | **Blackout Coffee** | `/logos/blackoutcoffee.png` | `https://www.dpbolvw.net/click-101696721-17110018` | `https://www.awltovhc.com/image-101696721-17110018` | Blackout Coffee | ❌ No |
-| 3 | **Carbonite** | `/logos/carbonitelogo.png` | `https://www.jdoqocy.com/click-101696721-15178612` | `https://www.awltovhc.com/image-101696721-15178612` | Carbonite | ❌ No |
-| 4 | **DomoAI** | `/logos/domoailogo.png` | `https://www.dpbolvw.net/click-101696721-17222070` | `https://www.ftjcfx.com/image-101696721-17222070` | DomoAI | ❌ No |
-| 5 | **EF Adventures** | `/logos/efeducationlogo.png` | `https://www.anrdoezrs.net/click-101696721-17133005` | `https://www.ftjcfx.com/image-101696721-17133005` | EF Adventures | ❌ No |
-| 6 | **EWA** | `/logos/ewalogo.png` | `https://www.jdoqocy.com/click-101696721-17262416` | `https://www.awltovhc.com/image-101696721-17262416` | EWA | ❌ No |
+| 3 | **Carbonite** | `/logos/Carbonite-logo-15554902.png` | `https://www.jdoqocy.com/click-101696721-15178612` | `https://www.awltovhc.com/image-101696721-15178612` | Carbonite | ❌ No |
+| 4 | **DomoAI** | `/logos/DomoAi-17163300.png` | `https://www.dpbolvw.net/click-101696721-17222070` | `https://www.ftjcfx.com/image-101696721-17222070` | DomoAI | ❌ No |
+| 5 | **EF Adventures** | `/logos/ef-adventures-23557584.jpeg` | `https://www.anrdoezrs.net/click-101696721-17133005` | `https://www.ftjcfx.com/image-101696721-17133005` | EF Adventures | ❌ No |
+| 6 | **EWA** | `/logos/Ewa-23803634.png` | `https://www.jdoqocy.com/click-101696721-17262416` | `https://www.awltovhc.com/image-101696721-17262416` | EWA | ❌ No |
 | 7 | **FM Software (TrackNotion)** | `/logos/FMSoftwarelogo.png` | `https://www.jdoqocy.com/click-101696721-17258377` | `https://www.lduhtrp.net/image-101696721-17258377` | TrackNotion | ❌ No |
-| 8 | **GameFly** | `/logos/gameflylogo.png` | `https://www.kqzyfj.com/click-101696721-10448329` | `https://www.ftjcfx.com/image-101696721-10448329` | GameFly | ❌ No |
-| 9 | **GearUP** | `/logos/gearuplogo.png` | `https://www.tkqlhce.com/click-101696721-17235980` | `https://www.lduhtrp.net/image-101696721-17235980` | GearUP | ❌ No |
-| 10 | **Hotels.com** | `/logos/hotelslogo.png` | `https://www.kqzyfj.com/click-101696721-10433860` | `https://www.ftjcfx.com/image-101696721-10433860` | Hotels.com | ✅ Yes |
-| 11 | **Intuit QuickBooks** | `/logos/quickbookslogo.png` | `https://www.jdoqocy.com/click-101696721-17250447` | `https://www.tqlkg.com/image-101696721-17250447` | QuickBooks | ❌ No |
-| 12 | **M&M's** | `/logos/mmslogo.png` | `https://www.tkqlhce.com/click-101696721-15712042` | `https://www.ftjcfx.com/image-101696721-15712042` | M&M's | ❌ No |
-| 13 | **Northern Tool + Equipment** | `/logos/northerntoollogo.png` | `https://www.tkqlhce.com/click-101696721-15483785` | `https://www.ftjcfx.com/image-101696721-15483785` | Northern Tool | ❌ No |
-| 14 | **Peet's Coffee** | `/logos/peetslogo.png` | `https://www.dpbolvw.net/click-101696721-13443788` | `https://www.lduhtrp.net/image-101696721-13443788` | Peet's Coffee | ❌ No |
-| 15 | **Surfshark** | `/logos/surfsharklogo.png` | `https://www.jdoqocy.com/click-101696721-15740556` | `https://www.lduhtrp.net/image-101696721-15740556` | Surfshark | ❌ No |
-| 16 | **TEAC** | `/logos/TEAClogo.png` | `https://www.jdoqocy.com/click-101696721-15919841` | `https://www.tqlkg.com/image-101696721-15919841` | TEAC | ❌ No |
-| 17 | **TP-Link Tapo** | `/logos/tplinklogo.png` | `https://www.dpbolvw.net/click-101696721-15600687` | `https://www.awltovhc.com/image-101696721-15600687` | TP-Link Tapo | ✅ Yes |
-| 18 | **Verizon** | `/logos/verizonlogo.png` | `https://www.tkqlhce.com/click-101696721-11371807` | `https://www.lduhtrp.net/image-101696721-11371807` | Verizon | ✅ Yes |
-| 19 | **VitalHeal** | `/logos/vitalheallogo.png` | `https://www.tkqlhce.com/click-101696721-17254505` | `https://www.lduhtrp.net/image-101696721-17254505` | VitalHeal | ❌ No |
-| 20 | **CheapTickets** | `/logos/cheapticketslogo.png` | `https://www.anrdoezrs.net/click-101696721-12843042` | `https://www.tqlkg.com/image-101696721-12843042` | CheapTickets | ❌ No |
-| 21 | **Raw Paws Pet Food** | `/logos/rawpawspetfoodlogo.png` | `https://www.jdoqocy.com/click-101696721-17234935` | `https://www.tqlkg.com/image-101696721-17234935` | Raw Paws Pet Food | ❌ No |
-| 22 | **amFilm** | `/logos/amfilmlogo.png` | `https://www.jdoqocy.com/click-101696721-17257661` | `https://www.tqlkg.com/image-101696721-17257661` | amFilm | ❌ No |
-| 23 | **Skutchi Designs** | `/logos/Skutchilogo.png` | `https://www.jdoqocy.com/click-101696721-15826779` | `https://www.ftjcfx.com/image-101696721-15826779` | Skutchi Designs | ❌ No |
-| 24 | **Pelican** | `/logos/pelicanlogo.webp` | `https://www.anrdoezrs.net/click-101696721-15751514` | `https://www.ftjcfx.com/image-101696721-15751514` | Pelican | ❌ No |
+| 8 | **GameFly** | `/logos/Gamefly-logo-10495782.png` | `https://www.kqzyfj.com/click-101696721-10448329` | `https://www.ftjcfx.com/image-101696721-10448329` | GameFly | ❌ No |
+| 9 | **GearUP** | `/logos/Gearup-23735360.png` | `https://www.tkqlhce.com/click-101696721-17235980` | `https://www.lduhtrp.net/image-101696721-17235980` | GearUP | ❌ No |
+| 10 | **Hotels.com** | `/logos/hotels-com-10418404.png` | `https://www.kqzyfj.com/click-101696721-10433860` | `https://www.ftjcfx.com/image-101696721-10433860` | Hotels.com | ✅ Yes |
+| 11 | **Intuit QuickBooks** | `/logos/Intuit-Quickbooks-15647418.png` | `https://www.jdoqocy.com/click-101696721-17250447` | `https://www.tqlkg.com/image-101696721-17250447` | QuickBooks | ❌ No |
+| 12 | **M&M's** | `/logos/M&Ms-15075557.jpeg` | `https://www.tkqlhce.com/click-101696721-15712042` | `https://www.ftjcfx.com/image-101696721-15712042` | M&M's | ❌ No |
+| 13 | **Northern Tool + Equipment** | `/logos/NorthernTool-Logo-10356274.gif` | `https://www.tkqlhce.com/click-101696721-15483785` | `https://www.ftjcfx.com/image-101696721-15483785` | Northern Tool | ❌ No |
+| 14 | **Peet's Coffee** | `/logos/Peets-Coffee-13426123.jpeg` | `https://www.dpbolvw.net/click-101696721-13443788` | `https://www.lduhtrp.net/image-101696721-13443788` | Peet's Coffee | ❌ No |
+| 15 | **Surfshark** | `/logos/Surfshark-20148897.jpeg` | `https://www.jdoqocy.com/click-101696721-15740556` | `https://www.lduhtrp.net/image-101696721-15740556` | Surfshark | ❌ No |
+| 16 | **TEAC** | `/logos/Teac--21087655.png` | `https://www.jdoqocy.com/click-101696721-15919841` | `https://www.tqlkg.com/image-101696721-15919841` | TEAC | ❌ No |
+| 17 | **TP-Link Tapo** | `/logos/TP-Link-15600687.jpeg` | `https://www.dpbolvw.net/click-101696721-15600687` | `https://www.awltovhc.com/image-101696721-15600687` | TP-Link Tapo | ✅ Yes |
+| 18 | **Verizon** | `/logos/Verizon-10416412.png` | `https://www.tkqlhce.com/click-101696721-11371807` | `https://www.lduhtrp.net/image-101696721-11371807` | Verizon | ✅ Yes |
+| 19 | **VitalHeal** | `/logos/Vital-Health-23801187.png` | `https://www.tkqlhce.com/click-101696721-17254505` | `https://www.lduhtrp.net/image-101696721-17254505` | VitalHeal | ❌ No |
+| 20 | **CheapTickets** | `/logos/Cheaptickets-Logo-12843040.jpeg` | `https://www.anrdoezrs.net/click-101696721-12843042` | `https://www.tqlkg.com/image-101696721-12843042` | CheapTickets | ❌ No |
+| 21 | **Raw Paws Pet Food** | `/logos/Raw-Paws-Petfoods-15878721.jpeg` | `https://www.jdoqocy.com/click-101696721-17234935` | `https://www.tqlkg.com/image-101696721-17234935` | Raw Paws Pet Food | ❌ No |
+| 22 | **amFilm** | `/logos/am-film-23807336.png` | `https://www.jdoqocy.com/click-101696721-17257661` | `https://www.tqlkg.com/image-101696721-17257661` | amFilm | ❌ No |
+| 23 | **Skutchi Designs** | `/logos/Skutchi-Designs-20918025.jpeg` | `https://www.jdoqocy.com/click-101696721-15826779` | `https://www.ftjcfx.com/image-101696721-15826779` | Skutchi Designs | ❌ No |
+| 24 | **Pelican** | `/logos/Pelican-20815910.png` | `https://www.anrdoezrs.net/click-101696721-15751514` | `https://www.ftjcfx.com/image-101696721-15751514` | Pelican | ❌ No |
 | 25 | **Arka** | `/logos/arkalogo.png` | `https://www.dpbolvw.net/click-101696721-15600474` | `https://www.awltovhc.com/image-101696721-15600474` | Arka | ❌ No |
-| 26 | **OBI** | `/logos/obilogo.png` | `https://www.jdoqocy.com/click-101696721-15786075` | `https://www.awltovhc.com/image-101696721-15786075` | OBI | ❌ No |
-| 27 | **AMBIR** | `/logos/ambirlogo.png` | `https://www.anrdoezrs.net/click-101696721-17272885` | `https://www.tqlkg.com/image-101696721-17272885` | AMBIR | ❌ No |
-| 28 | **Oakley** | `/logos/oakleylogo.png` | `https://www.dpbolvw.net/click-101696721-15153860` | `https://www.tqlkg.com/image-101696721-15153860` | Oakley | ❌ No |
-| 29 | **Fresh Adventures** | `/logos/freshadventureslogo.png` | `https://www.dpbolvw.net/click-101696721-17207704` | `https://www.lduhtrp.net/image-101696721-17207704` | Fresh Adventures | ❌ No |
-| 30 | **Epidemic Sound** | `/logos/epidemicsoundlogo.png` | `https://www.tkqlhce.com/click-101696721-17163276` | `https://www.tqlkg.com/image-101696721-17163276` | Epidemic Sound | ❌ No |
+| 26 | **OBI** | `/logos/OBI-15786075.png` | `https://www.jdoqocy.com/click-101696721-15786075` | `https://www.awltovhc.com/image-101696721-15786075` | OBI | ❌ No |
+| 27 | **AMBIR** | `/logos/Ambir-17262056.jpeg` | `https://www.anrdoezrs.net/click-101696721-17272885` | `https://www.tqlkg.com/image-101696721-17272885` | AMBIR | ❌ No |
+| 28 | **Oakley** | `/logos/Oakley-10375170.jpeg` | `https://www.dpbolvw.net/click-101696721-15153860` | `https://www.tqlkg.com/image-101696721-15153860` | Oakley | ❌ No |
+| 29 | **Fresh Adventures** | `/logos/FreshAdventures-23650288.png` | `https://www.dpbolvw.net/click-101696721-17207704` | `https://www.lduhtrp.net/image-101696721-17207704` | Fresh Adventures | ❌ No |
+| 30 | **Epidemic Sound** | `/logos/epidemic-sound-20089917.png` | `https://www.tkqlhce.com/click-101696721-17163276` | `https://www.tqlkg.com/image-101696721-17163276` | Epidemic Sound | ❌ No |
 
 ### Non-CJ Affiliates (in GoLiveWizard / Legal only)
 

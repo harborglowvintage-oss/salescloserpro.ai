@@ -267,14 +267,14 @@ export default function Layout() {
           <div className="flex items-center justify-center gap-5 flex-wrap">
             {/* TP-Link Tapo */}
             <a
-              href="https://www.tkqlhce.com/click-101696721-15610800"
+              href="https://www.dpbolvw.net/click-101696721-15600687"
               target="_blank"
-              rel="sponsored noopener"
+              rel="sponsored nofollow noopener"
               className="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
               title="TP-Link Tapo"
             >
               <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                <img src="/logos/tplinklogo.png" alt="TP-Link Tapo" className="max-h-7 w-auto" />
+                <img src="/logos/TP-Link-15600687.jpeg" alt="TP-Link Tapo" className="max-h-7 w-auto" />
               </span>
               <span>TP-Link Tapo</span>
             </a>
@@ -282,12 +282,12 @@ export default function Layout() {
             <a
               href="https://www.tkqlhce.com/click-101696721-11371807"
               target="_blank"
-              rel="sponsored noopener"
+              rel="sponsored nofollow noopener"
               className="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
               title="Verizon"
             >
               <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                <img src="/logos/verizonlogo.png" alt="Verizon" className="max-h-5 w-auto" />
+                <img src="/logos/Verizon-10416412.png" alt="Verizon" className="max-h-5 w-auto" />
               </span>
               <span>Verizon</span>
             </a>
@@ -295,18 +295,18 @@ export default function Layout() {
             <a
               href="https://www.kqzyfj.com/click-101696721-10433860"
               target="_blank"
-              rel="sponsored noopener"
+              rel="sponsored nofollow noopener"
               className="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
               title="Hotels.com"
             >
               <span className="bg-white rounded inline-flex items-center justify-center w-24 h-8">
-                <img src="/logos/hotelslogo.png" alt="Hotels.com" className="max-h-5 w-auto" />
+                <img src="/logos/hotels-com-10418404.png" alt="Hotels.com" className="max-h-5 w-auto" />
               </span>
               <span>Hotels.com</span>
             </a>
           </div>
           {/* CJ pixel trackers */}
-          <img src="https://www.tqlkg.com/image-101696721-15610800" width="1" height="1" border="0" alt="" aria-hidden="true" />
+          <img src="https://www.awltovhc.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
           <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
           <img src="https://www.ftjcfx.com/image-101696721-10433860" width="1" height="1" border="0" alt="" aria-hidden="true" />
         </div>

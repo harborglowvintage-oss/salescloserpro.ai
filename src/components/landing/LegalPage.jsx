@@ -371,6 +371,7 @@ export default function LegalPage() {
                   <tbody className="space-y-1">
                     {[
                       ['AdBlocker Ultimate', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
+                      ['Angi', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Blackout Coffee', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['Carbonite', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
                       ['DomoAI', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
@@ -405,7 +406,9 @@ export default function LegalPage() {
                       ['Giftcards.ca', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
                       ['Joydeco', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
                       ['Jugbow', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
+                      ['SleepEZ', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
                       ['Survive X', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
+                      ['Tsar Bomba', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
                       ['RunPod', 'Referral link', 'Referral reward on qualifying signups'],
                       ['Gemini Credit Card', 'Referral link', 'Referral bonus if approved'],
                       ['Zoho Mail', 'Affiliate link', 'Commission on qualifying purchases'],

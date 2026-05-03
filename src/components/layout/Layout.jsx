@@ -267,7 +267,7 @@ export default function Layout() {
           <div className="flex items-center justify-center gap-5 flex-wrap">
             {/* TP-Link Tapo */}
             <a
-              href="https://www.dpbolvw.net/click-101696721-15600687"
+              href="https://www.anrdoezrs.net/click-101696721-15600687"
               target="_blank"
               rel="sponsored nofollow noopener"
               className="inline-flex items-center gap-1.5 text-[11px] text-blue-500 hover:text-blue-400 dark:text-blue-400 dark:hover:text-blue-300 transition-colors font-medium"
@@ -306,7 +306,7 @@ export default function Layout() {
             </a>
           </div>
           {/* CJ pixel trackers */}
-          <img src="https://www.awltovhc.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
+          <img src="https://www.lduhtrp.net/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
           <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
           <img src="https://www.ftjcfx.com/image-101696721-10433860" width="1" height="1" border="0" alt="" aria-hidden="true" />
         </div>

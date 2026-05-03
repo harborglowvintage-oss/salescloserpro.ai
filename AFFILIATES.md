@@ -22,7 +22,7 @@ When adding or removing a partner, update **all** entries in this file AND the f
 
 ## Current Partner Registry
 
-> Last updated: 2026-04-23
+> Last updated: 2026-05-03
 
 | # | Partner | Logo File | CJ Click URL | CJ Pixel URL | Label Text | In Layout? |
 |---|---------|-----------|-------------|--------------|------------|------------|
@@ -42,7 +42,7 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | 14 | **Peet's Coffee** | `/logos/Peets-Coffee-13426123.jpeg` | `https://www.dpbolvw.net/click-101696721-13443788` | `https://www.lduhtrp.net/image-101696721-13443788` | Peet's Coffee | ❌ No |
 | 15 | **Surfshark** | `/logos/Surfshark-20148897.jpeg` | `https://www.jdoqocy.com/click-101696721-15740556` | `https://www.lduhtrp.net/image-101696721-15740556` | Surfshark | ❌ No |
 | 16 | **TEAC** | `/logos/Teac--21087655.png` | `https://www.jdoqocy.com/click-101696721-15919841` | `https://www.tqlkg.com/image-101696721-15919841` | TEAC | ❌ No |
-| 17 | **TP-Link Tapo** | `/logos/TP-Link-15600687.jpeg` | `https://www.dpbolvw.net/click-101696721-15600687` | `https://www.awltovhc.com/image-101696721-15600687` | TP-Link Tapo | ✅ Yes |
+| 17 | **TP-Link Tapo** | `/logos/TP-Link-15600687.jpeg` | `https://www.anrdoezrs.net/click-101696721-15600687` | `https://www.lduhtrp.net/image-101696721-15600687` | TP-Link Tapo | ✅ Yes |
 | 18 | **Verizon** | `/logos/Verizon-10416412.png` | `https://www.tkqlhce.com/click-101696721-11371807` | `https://www.lduhtrp.net/image-101696721-11371807` | Verizon | ✅ Yes |
 | 19 | **VitalHeal** | `/logos/Vital-Health-23801187.png` | `https://www.tkqlhce.com/click-101696721-17254505` | `https://www.lduhtrp.net/image-101696721-17254505` | VitalHeal | ❌ No |
 | 20 | **CheapTickets** | `/logos/Cheaptickets-Logo-12843040.jpeg` | `https://www.anrdoezrs.net/click-101696721-12843042` | `https://www.tqlkg.com/image-101696721-12843042` | CheapTickets | ❌ No |
@@ -56,6 +56,7 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | 28 | **Oakley** | `/logos/Oakley-10375170.jpeg` | `https://www.dpbolvw.net/click-101696721-15153860` | `https://www.tqlkg.com/image-101696721-15153860` | Oakley | ❌ No |
 | 29 | **Fresh Adventures** | `/logos/FreshAdventures-23650288.png` | `https://www.dpbolvw.net/click-101696721-17207704` | `https://www.lduhtrp.net/image-101696721-17207704` | Fresh Adventures | ❌ No |
 | 30 | **Epidemic Sound** | `/logos/epidemic-sound-20089917.png` | `https://www.tkqlhce.com/click-101696721-17163276` | `https://www.tqlkg.com/image-101696721-17163276` | Epidemic Sound | ❌ No |
+| 31 | **Angi** | `/logos/angi-23444170.png` | `https://www.anrdoezrs.net/click-101696721-17080749` | `https://www.lduhtrp.net/image-101696721-17080749` | Angi | ❌ No |
 
 ### Non-CJ Affiliates (in GoLiveWizard / Legal only)
 
@@ -67,6 +68,8 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | **Survive X** | `https://www.awin1.com/cread.php?awinmid=124484&awinaffid=2848879&ued=https%3A%2F%2Fsurvive-x.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **Joydeco** | `https://www.awin1.com/cread.php?awinmid=119863&awinaffid=2848879&ued=https%3A%2F%2Fjoydeco.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **Jugbow** | `https://www.awin1.com/cread.php?awinmid=79708&awinaffid=2848879&ued=https%3A%2F%2Fjugbow.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
+| **SleepEZ** | `https://www.awin1.com/cread.php?awinmid=83073&awinaffid=2848879&ued=https%3A%2F%2Fsleepez.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
+| **Tsar Bomba** | `https://www.awin1.com/cread.php?awinmid=109230&awinaffid=2848879&ued=https%3A%2F%2Ftsarbomba.com%2Fcollections%2Fpre-sale-collection` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **RunPod** | `https://runpod.io?ref=li2hee5u` | Direct referral link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **Zoho Mail** | `https://go.zoho.com/x7Vq` | Email provider — GoLiveWizard.jsx |
 | **Gemini Credit Card** | Referral link | Legal disclosure only |
@@ -201,6 +204,14 @@ When adding or removing a partner, update **all** entries in this file AND the f
 - Keep on-site copy neutral; do not imply official status.
 - Only show coupons or promotions that are provided through the affiliate program or publicly available.
 
+### Angi
+
+- Do not bid on `Angi`, `Handy`, `Angie's List`, `Instapro`, `HomeAdvisor`, `CraftJack`, `Angi Ads`, `Angi Leads`, `Angi Pro`, or `Angi Services` branded terms in SEM.
+- Do not use Angi branded terms in SEM display URLs or SEM ad copy.
+- 25% commission on qualifying transactions.
+- No parked domains or third-party traffic acquisition.
+- Keep on-site copy neutral; brand name only.
+
 ### Verizon
 
 - Do not bid on Verizon branded terms or competitor trademarks in SEM.
@@ -230,6 +241,22 @@ When adding or removing a partner, update **all** entries in this file AND the f
 - Keep on-site copy neutral; brand name only.
 - Do not imply official status or exclusive relationship.
 - Only use coupons or promotional codes that are provided exclusively through the affiliate program.
+
+---
+
+### SleepEZ
+
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
+- AWIN program.
+
+---
+
+### Tsar Bomba
+
+- Keep on-site copy neutral; brand name only.
+- Do not imply official status or exclusive relationship.
+- AWIN program.
 
 ---
 

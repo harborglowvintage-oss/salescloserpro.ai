@@ -298,9 +298,10 @@ export default function EmailGate({ children }) {
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-orange-500 bg-white/[0.03] p-3">
                 <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-orange-400 mb-2">🏠 Home Furnishings &amp; Audio</p>
                 <div className="grid grid-cols-3 gap-1.5">
-                  <a href="https://www.jdoqocy.com/click-101696721-15919841" target="_blank" rel="sponsored nofollow noopener" title="TEAC" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Teac--21087655.png" alt="TEAC" className="max-h-6 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-15826779" target="_blank" rel="sponsored nofollow noopener" title="Skutchi Designs" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Skutchi-Designs-20918025.jpeg" alt="Skutchi Designs" className="max-h-6 w-auto" /></a>
                   <a href="https://www.awin1.com/cread.php?awinmid=119863&awinaffid=2848879&ued=https%3A%2F%2Fjoydeco.com%2F" target="_blank" rel="sponsored nofollow noopener" title="Joydeco" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/joydecologo.webp" alt="Joydeco" className="max-h-5 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-15826779" target="_blank" rel="sponsored nofollow noopener" title="Skutchi Designs" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Skutchi-Designs-20918025.jpeg" alt="Skutchi Designs" className="max-h-6 w-auto" /></a>
+                  <a href="https://www.awin1.com/cread.php?awinmid=83073&awinaffid=2848879&ued=https%3A%2F%2Fsleepez.com%2F" target="_blank" rel="sponsored nofollow noopener" title="SleepEZ" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/sleepezUSAlogo-83073.png" alt="SleepEZ" className="max-h-6 w-auto" /></a>
+                  <a href="https://www.jdoqocy.com/click-101696721-15919841" target="_blank" rel="sponsored nofollow noopener" title="TEAC" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Teac--21087655.png" alt="TEAC" className="max-h-6 w-auto" /></a>
                 </div>
               </div>
 
@@ -318,6 +319,7 @@ export default function EmailGate({ children }) {
                 <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-cyan-400 mb-2">✦ Personal Accessories</p>
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.dpbolvw.net/click-101696721-15153860" target="_blank" rel="sponsored nofollow noopener" title="Oakley" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Oakley-10375170.jpeg" alt="Oakley" className="max-h-6 w-auto" /></a>
+                  <a href="https://www.awin1.com/cread.php?awinmid=109230&awinaffid=2848879&ued=https%3A%2F%2Ftsarbomba.com%2Fcollections%2Fpre-sale-collection" target="_blank" rel="sponsored nofollow noopener" title="Tsar Bomba" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Tsarbomba-109230.png" alt="Tsar Bomba" className="max-h-6 w-auto" /></a>
                 </div>
               </div>
 
@@ -358,16 +360,17 @@ export default function EmailGate({ children }) {
                 <div className="grid grid-cols-3 gap-1.5">
                   <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored nofollow noopener" title="Verizon" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Verizon-10416412.png" alt="Verizon" className="max-h-4 w-auto" /></a>
                   <a href="https://runpod.io?ref=li2hee5u" target="_blank" rel="sponsored nofollow noopener" title="RunPod" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/runpod-685b36c74aa59531d0f1a347_runpod-logo-black.svg" alt="RunPod" className="max-h-4 w-auto" /></a>
-                  <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored nofollow noopener" title="TP-Link Tapo" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/TP-Link-15600687.jpeg" alt="TP-Link Tapo" className="max-h-6 w-auto" /></a>
+                  <a href="https://www.anrdoezrs.net/click-101696721-15600687" target="_blank" rel="sponsored nofollow noopener" title="TP-Link Tapo" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/TP-Link-15600687.jpeg" alt="TP-Link Tapo" className="max-h-6 w-auto" /></a>
                   <a href="https://www.jdoqocy.com/click-101696721-17257661" target="_blank" rel="sponsored nofollow noopener" title="amFilm" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/am-film-23807336.png" alt="amFilm" className="max-h-6 w-auto" /></a>
                   <a href="https://www.anrdoezrs.net/click-101696721-17272885" target="_blank" rel="sponsored nofollow noopener" title="AMBIR" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Ambir-17262056.jpeg" alt="AMBIR" className="max-h-6 w-auto" /></a>
                 </div>
               </div>
 
-              {/* TOOLS & EQUIPMENT */}
+              {/* TOOLS, EQUIPMENT & PROFESSIONAL SERVICES */}
               <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-teal-500 bg-white/[0.03] p-3">
-                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-teal-400 mb-2">🔧 Tools &amp; Equipment</p>
+                <p className="text-[11px] font-bold uppercase tracking-widest leading-tight text-teal-400 mb-2">🔧 Tools, Equipment &amp; Professional Services</p>
                 <div className="grid grid-cols-3 gap-1.5">
+                  <a href="https://www.anrdoezrs.net/click-101696721-17080749" target="_blank" rel="sponsored nofollow noopener" title="Angi" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/angi-23444170.png" alt="Angi" className="max-h-6 w-auto" /></a>
                   <a href="https://www.tkqlhce.com/click-101696721-15483785" target="_blank" rel="sponsored nofollow noopener" title="Northern Tool" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/NorthernTool-Logo-10356274.gif" alt="Northern Tool" className="max-h-6 w-auto" /></a>
                   <a href="https://www.jdoqocy.com/click-101696721-15786075" target="_blank" rel="sponsored nofollow noopener" title="OBI" className="w-full h-[44px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/OBI-15786075.png" alt="OBI" className="max-h-6 w-auto" /></a>
                 </div>
@@ -486,7 +489,7 @@ export default function EmailGate({ children }) {
                 <img src="/logos/Teac--21087655.png" alt="TEAC" className="max-h-7 w-auto" />
               </a>
               {/* TP-Link Tapo */}
-              <a href="https://www.dpbolvw.net/click-101696721-15600687" target="_blank" rel="sponsored nofollow noopener" title="TP-Link Tapo"
+              <a href="https://www.anrdoezrs.net/click-101696721-15600687" target="_blank" rel="sponsored nofollow noopener" title="TP-Link Tapo"
                 className="bg-white rounded inline-flex items-center justify-center w-24 h-8 hover:opacity-80 transition-opacity">
                 <img src="/logos/TP-Link-15600687.jpeg" alt="TP-Link Tapo" className="max-h-7 w-auto" />
               </a>
@@ -583,7 +586,8 @@ export default function EmailGate({ children }) {
             <img src="https://www.lduhtrp.net/image-101696721-13443788" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-15740556" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-15919841" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
+            <img src="https://www.lduhtrp.net/image-101696721-17080749" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.lduhtrp.net/image-101696721-17254505" width="1" height="1" border="0" alt="" aria-hidden="true" />
             <img src="https://www.tqlkg.com/image-101696721-12843042" width="1" height="1" border="0" alt="" aria-hidden="true" />

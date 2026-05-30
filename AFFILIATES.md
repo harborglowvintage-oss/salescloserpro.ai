@@ -79,6 +79,9 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | **GMKtec** | `https://www.awin1.com/cread.php?awinmid=45751&awinaffid=2848879&ued=https%3A%2F%2Fwww.gmktec.com%2Fproducts%2Famd-ryzen%25E2%2584%25A2-ai-max-395-evo-x2-ai-mini-pc` | AWIN link — Telecom, Hardware & Cloud |
 | **Argendon** | `https://www.awin1.com/cread.php?awinmid=126513&awinaffid=2848879&ued=https%3A%2F%2Fwww.argendon.com%2Fproducts%2Fargendon-wholesale-pack-xstorm-max-180-pint-industrial-commercial-dehumidifier-with-pump` | AWIN link — Tools, Equipment & Professional Services |
 | **ACoBS (TransparentRx)** | `https://www.awin1.com/cread.php?awinmid=91823&awinaffid=2848879&ued=https%3A%2F%2Fwww.acobs.org%2Fcpbs-certification-course%2F` | AWIN link — Education & Finance Tools |
+| **Airbrush** | `https://www.awin1.com/cread.php?awinmid=125364&awinaffid=2848879&ued=https%3A%2F%2Fairbrush.com%2Fpricing` | AWIN link — Software & AI |
+| **Burton Goods** | `https://www.awin1.com/cread.php?awinmid=83699&awinaffid=2848879&ued=https%3A%2F%2Fburtongoods.com%2Fproducts%2Fslim-leather-laptop-briefcase-medium-16` | AWIN link — Personal Accessories |
+| **Giftlab** | `https://www.awin1.com/cread.php?awinmid=95201&awinaffid=2848879&ued=https%3A%2F%2Fwww.giftlab.com%2Fcollections%2Fcustom-mirror-light` | AWIN link — Home Furnishings & Audio |
 | **RunPod** | `https://www.runpod.io/?ref=li2hee5u` | Direct referral link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **Zoho Mail** | `https://go.zoho.com/x7Vq` | Email provider — GoLiveWizard.jsx |
 | **Gemini Credit Card** | Referral link | Legal disclosure only |

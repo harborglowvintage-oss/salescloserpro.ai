@@ -11,7 +11,7 @@ When adding or removing a partner, update **all** entries in this file AND the f
 |------|---------------|
 | `src/components/auth/EmailGate.jsx` | Logo pill `<a>` block + CJ pixel `<img>` tag |
 | `src/components/landing/LandingPage.jsx` | Logo + label `<a>` block + CJ pixel `<img>` tag |
-| `src/components/layout/Layout.jsx` | Logo `<a>` block + CJ pixel `<img>` tag *(Layout only shows a subset — see "In Layout" column below)* |
+| `src/components/layout/Layout.jsx` | Logo `<a>` block — the in-app footer now renders the FULL categorized grid (mirrors LandingPage/EmailGate); 3 CJ impression pixels (TP-Link/Verizon/Hotels) preserved |
 | `src/components/landing/LegalPage.jsx` | Row in the `Identified Affiliate Relationships` table array |
 | `public/logos/` | Drop the logo PNG file here |
 
@@ -22,7 +22,7 @@ When adding or removing a partner, update **all** entries in this file AND the f
 
 ## Current Partner Registry
 
-> Last updated: 2026-05-03
+> Last updated: 2026-05-30
 
 | # | Partner | Logo File | CJ Click URL | CJ Pixel URL | Label Text | In Layout? |
 |---|---------|-----------|-------------|--------------|------------|------------|
@@ -47,16 +47,15 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | 19 | **VitalHeal** | `/logos/Vital-Health-23801187.png` | `https://www.tkqlhce.com/click-101696721-17254505` | `https://www.lduhtrp.net/image-101696721-17254505` | VitalHeal | ❌ No |
 | 20 | **CheapTickets** | `/logos/Cheaptickets-Logo-12843040.jpeg` | `https://www.anrdoezrs.net/click-101696721-12843042` | `https://www.tqlkg.com/image-101696721-12843042` | CheapTickets | ❌ No |
 | 21 | **Raw Paws Pet Food** | `/logos/Raw-Paws-Petfoods-15878721.jpeg` | `https://www.jdoqocy.com/click-101696721-17234935` | `https://www.tqlkg.com/image-101696721-17234935` | Raw Paws Pet Food | ❌ No |
-| 22 | **amFilm** | `/logos/am-film-23807336.png` | `https://www.jdoqocy.com/click-101696721-17257661` | `https://www.tqlkg.com/image-101696721-17257661` | amFilm | ❌ No |
-| 23 | **Skutchi Designs** | `/logos/Skutchi-Designs-20918025.jpeg` | `https://www.jdoqocy.com/click-101696721-15826779` | `https://www.ftjcfx.com/image-101696721-15826779` | Skutchi Designs | ❌ No |
-| 24 | **Pelican** | `/logos/Pelican-20815910.png` | `https://www.anrdoezrs.net/click-101696721-15751514` | `https://www.ftjcfx.com/image-101696721-15751514` | Pelican | ❌ No |
-| 25 | **Arka** | `/logos/arkalogo.png` | `https://www.dpbolvw.net/click-101696721-15600474` | `https://www.awltovhc.com/image-101696721-15600474` | Arka | ❌ No |
-| 26 | **OBI** | `/logos/OBI-15786075.png` | `https://www.jdoqocy.com/click-101696721-15786075` | `https://www.awltovhc.com/image-101696721-15786075` | OBI | ❌ No |
-| 27 | **AMBIR** | `/logos/Ambir-17262056.jpeg` | `https://www.anrdoezrs.net/click-101696721-17272885` | `https://www.tqlkg.com/image-101696721-17272885` | AMBIR | ❌ No |
-| 28 | **Oakley** | `/logos/Oakley-10375170.jpeg` | `https://www.dpbolvw.net/click-101696721-15153860` | `https://www.tqlkg.com/image-101696721-15153860` | Oakley | ❌ No |
-| 29 | **Fresh Adventures** | `/logos/FreshAdventures-23650288.png` | `https://www.dpbolvw.net/click-101696721-17207704` | `https://www.lduhtrp.net/image-101696721-17207704` | Fresh Adventures | ❌ No |
-| 30 | **Epidemic Sound** | `/logos/epidemic-sound-20089917.png` | `https://www.tkqlhce.com/click-101696721-17163276` | `https://www.tqlkg.com/image-101696721-17163276` | Epidemic Sound | ❌ No |
-| 31 | **Angi** | `/logos/angi-23444170.png` | `https://www.anrdoezrs.net/click-101696721-17080749` | `https://www.lduhtrp.net/image-101696721-17080749` | Angi | ❌ No |
+| 22 | **Skutchi Designs** | `/logos/Skutchi-Designs-20918025.jpeg` | `https://www.jdoqocy.com/click-101696721-15826779` | `https://www.ftjcfx.com/image-101696721-15826779` | Skutchi Designs | ❌ No |
+| 23 | **Pelican** | `/logos/Pelican-20815910.png` | `https://www.anrdoezrs.net/click-101696721-15751514` | `https://www.ftjcfx.com/image-101696721-15751514` | Pelican | ❌ No |
+| 24 | **Arka** | `/logos/arkalogo.png` | `https://www.dpbolvw.net/click-101696721-15600474` | `https://www.awltovhc.com/image-101696721-15600474` | Arka | ❌ No |
+| 25 | **OBI** | `/logos/OBI-15786075.png` | `https://www.jdoqocy.com/click-101696721-15786075` | `https://www.awltovhc.com/image-101696721-15786075` | OBI | ❌ No |
+| 26 | **AMBIR** | `/logos/Ambir-17262056.jpeg` | `https://www.anrdoezrs.net/click-101696721-17272885` | `https://www.tqlkg.com/image-101696721-17272885` | AMBIR | ❌ No |
+| 27 | **Oakley** | `/logos/Oakley-10375170.jpeg` | `https://www.dpbolvw.net/click-101696721-15153860` | `https://www.tqlkg.com/image-101696721-15153860` | Oakley | ❌ No |
+| 28 | **Fresh Adventures** | `/logos/FreshAdventures-23650288.png` | `https://www.dpbolvw.net/click-101696721-17207704` | `https://www.lduhtrp.net/image-101696721-17207704` | Fresh Adventures | ❌ No |
+| 29 | **Epidemic Sound** | `/logos/epidemic-sound-20089917.png` | `https://www.tkqlhce.com/click-101696721-17163276` | `https://www.tqlkg.com/image-101696721-17163276` | Epidemic Sound | ❌ No |
+| 30 | **Angi** | `/logos/angi-23444170.png` | `https://www.anrdoezrs.net/click-101696721-17080749` | `https://www.lduhtrp.net/image-101696721-17080749` | Angi | ❌ No |
 
 ### Non-CJ Affiliates (in GoLiveWizard / Legal only)
 
@@ -70,7 +69,17 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | **Jugbow** | `https://www.awin1.com/cread.php?awinmid=79708&awinaffid=2848879&ued=https%3A%2F%2Fjugbow.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **SleepEZ** | `https://www.awin1.com/cread.php?awinmid=83073&awinaffid=2848879&ued=https%3A%2F%2Fsleepez.com%2F` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **Tsar Bomba** | `https://www.awin1.com/cread.php?awinmid=109230&awinaffid=2848879&ued=https%3A%2F%2Ftsarbomba.com%2Fcollections%2Fpre-sale-collection` | AWIN link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
-| **RunPod** | `https://runpod.io?ref=li2hee5u` | Direct referral link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
+| **Poster Master** | `https://www.awin1.com/cread.php?awinmid=121870&awinaffid=2848879&ued=https%3A%2F%2Fpostermasterstudio.com%2Fproducts%2Fted-teddy-bear` | AWIN link — Office & Workspace |
+| **Retouch4me** | `https://www.awin1.com/cread.php?awinmid=123978&awinaffid=2848879&ued=https%3A%2F%2Fretouch4.me%2Fsubscription` | AWIN link — Software & AI |
+| **VSGO** | `https://www.awin1.com/cread.php?awinmid=120898&awinaffid=2848879&ued=https%3A%2F%2Fvsgotech.com%2Fproducts%2Fvb058` | AWIN link — Personal Accessories |
+| **Grand Patio** | `https://www.awin1.com/cread.php?awinmid=45477&awinaffid=2848879&ued=https%3A%2F%2Fgrandpatio.com%2Fcollections%2Fnapoli-patio-umbrella%2Fproducts%2Fnapoli-10x13-ft-rectangular-offset-umbrella-with-base` | AWIN link — Home Furnishings & Audio |
+| **Valerion** | `https://www.awin1.com/cread.php?awinmid=113200&awinaffid=2848879&ued=https%3A%2F%2Fwww.valerion.com%2Fproduct%2Fvisionmaster-max-free-ceiling-bracket%3Ftitle%3DDefault%2BTitle%26image%3D0` | AWIN link — Home Furnishings & Audio |
+| **Authoritylayer** | `https://www.awin1.com/cread.php?awinmid=127177&awinaffid=2848879&ued=https%3A%2F%2Fauthoritylayer.app%2Fpricing` | AWIN link — Software & AI |
+| **Petcube** | `https://www.awin1.com/cread.php?awinmid=33889&awinaffid=2848879&ued=https%3A%2F%2Fpetcube.com%2Fstore%2Fproduct%2Ffountain%2F%3Fproduct%3Dfountain` | AWIN link — Pets |
+| **GMKtec** | `https://www.awin1.com/cread.php?awinmid=45751&awinaffid=2848879&ued=https%3A%2F%2Fwww.gmktec.com%2Fproducts%2Famd-ryzen%25E2%2584%25A2-ai-max-395-evo-x2-ai-mini-pc` | AWIN link — Telecom, Hardware & Cloud |
+| **Argendon** | `https://www.awin1.com/cread.php?awinmid=126513&awinaffid=2848879&ued=https%3A%2F%2Fwww.argendon.com%2Fproducts%2Fargendon-wholesale-pack-xstorm-max-180-pint-industrial-commercial-dehumidifier-with-pump` | AWIN link — Tools, Equipment & Professional Services |
+| **ACoBS (TransparentRx)** | `https://www.awin1.com/cread.php?awinmid=91823&awinaffid=2848879&ued=https%3A%2F%2Fwww.acobs.org%2Fcpbs-certification-course%2F` | AWIN link — Education & Finance Tools |
+| **RunPod** | `https://www.runpod.io/?ref=li2hee5u` | Direct referral link — LandingPage.jsx, EmailGate.jsx, LegalPage.jsx |
 | **Zoho Mail** | `https://go.zoho.com/x7Vq` | Email provider — GoLiveWizard.jsx |
 | **Gemini Credit Card** | Referral link | Legal disclosure only |
 | **Buy Me a Coffee** | Direct support | Legal disclosure only |
@@ -316,3 +325,4 @@ When adding or removing a partner, update **all** entries in this file AND the f
 | Partner | Removed | Reason |
 |---------|---------|--------|
 | SafeShell VPN | 2026-04-01 | Replaced by Carbonite |
+| amFilm | 2026-05-30 | No longer an active affiliate program for this site |

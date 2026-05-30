@@ -4,7 +4,7 @@
 
 <h1 align="center">salescloserpro.ai — Close More. Stress Less. 💪</h1>
 
-<p align="center"><strong>Version 1.0.1 | Updated 2026-04-27</strong></p>
+<p align="center"><strong>Version 1.0.1 | Updated 2026-05-30</strong></p>
 
 <p align="center">
   <strong>Free, open-source sales quoting, CRM, pipeline, purchase orders & invoicing — browser + desktop.</strong><br/>

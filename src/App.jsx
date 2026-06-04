@@ -1,7 +1,6 @@
 /**
  * SalesCloserPro - Application Root
- * Copyright (c) 2026 Brent Girolimon / llmadvisor.ai
- * Powered by highsignal™
+ * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  * https://github.com/harborglowvintage-oss/salescloserpro.ai
  */
@@ -23,8 +22,6 @@ import BackupRestore from './components/backup/BackupRestore'
 import PurchaseOrders from './components/po/PurchaseOrders'
 import LegalPage from './components/landing/LegalPage'
 import ServicesPage from './components/landing/ServicesPage'
-import WhitepaperPage from './components/landing/WhitepaperPage'
-import EmailGate from './components/auth/EmailGate'
 import useStore from './store'
 
 export default function App() {
@@ -45,10 +42,9 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/legal" element={<LegalPage />} />
         <Route path="/services" element={<ServicesPage />} />
-        <Route path="/whitepaper" element={<WhitepaperPage />} />
         
-        {/* App Routes — gated behind email capture */}
-        <Route path="/" element={<EmailGate><Layout /></EmailGate>}>
+        {/* App Routes — instant access, no email/login */}
+        <Route path="/" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="quotes" element={<QuoteList />} />
           <Route path="quotes/new" element={<QuoteBuilder />} />

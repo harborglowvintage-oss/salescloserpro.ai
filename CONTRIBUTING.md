@@ -13,9 +13,9 @@ Thank you for your interest in contributing to SalesCloserPro! We welcome contri
 
 By contributing to this project, you agree that your contributions will be licensed under the Apache License 2.0.
 
-## 🏛️ Trademark Policy
+## 🏛️ Trademark & Branding Policy
 
-**highsignal™** is a registered trademark of llmadvisor.ai.
+**SalesCloserPro** is a project of **LLMadvisor ai LLC**. The "SalesCloserPro" name and logo are the property of LLMadvisor ai LLC.
 
 ### For Contributors:
 - You may contribute code to this project
@@ -27,13 +27,12 @@ If you fork this project, you **must**:
 - ✅ Maintain attribution to the original SalesCloserPro project
 - ✅ Keep the Apache 2.0 license intact
 - ✅ Include a link to the original repository
-- ❌ **Remove all highsignal™ branding** (name, logo, trademarks)
-- ❌ **Rebrand your fork** under a different name
-- ❌ Do not use "SalesCloserPro" or "highsignal" in derivative works
+- ❌ **Remove the SalesCloserPro name and logo branding** and rebrand your fork under a different name
+- ❌ Do not use "SalesCloserPro" or "LLMadvisor ai" in a way that implies endorsement of your derivative work
 
 **Example attribution for forks:**
 ```
-Based on SalesCloserPro by highsignal™
+Based on SalesCloserPro by LLMadvisor ai LLC
 Original: https://github.com/harborglowvintage-oss/salescloserpro.ai
 Licensed under Apache-2.0
 ```
@@ -58,4 +57,4 @@ Open a discussion on GitHub or reach out via the project's contact information.
 
 ---
 
-**Powered by highsignal™** | © 2026 llmadvisor.ai
+© 2026 LLMadvisor ai LLC

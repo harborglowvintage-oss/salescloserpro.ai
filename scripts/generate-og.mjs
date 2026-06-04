@@ -82,7 +82,7 @@ const svg = `
   >Free Sales CRM · Quoting · Pipeline · POs · PDF Export</text>
 
   <!-- badge pill -->
-  <rect x="${W/2 - 110}" y="428" width="220" height="44" rx="22" fill="rgba(59,130,246,0.15)" stroke="rgba(99,130,246,0.4)" stroke-width="1.5"/>
+  <rect x="${W/2 - 150}" y="428" width="300" height="44" rx="22" fill="rgba(59,130,246,0.15)" stroke="rgba(99,130,246,0.4)" stroke-width="1.5"/>
   <text
     x="${W / 2}" y="456"
     font-family="Inter, -apple-system, sans-serif"
@@ -102,14 +102,15 @@ const svg = `
     letter-spacing="1"
   >salescloserpro.ai</text>
 
-  <!-- powered by -->
+  <!-- publisher -->
   <text
     x="${W / 2}" y="596"
     font-family="Inter, -apple-system, sans-serif"
-    font-size="15" font-weight="400"
-    fill="#334155"
+    font-size="16" font-weight="500"
+    fill="#64748b"
     text-anchor="middle"
-  >Powered by highsignal™ · llmadvisor.ai</text>
+    letter-spacing="0.3"
+  >© 2026 LLMadvisor ai LLC</text>
 
   <!-- bottom accent bar -->
   <rect x="0" y="${H - 4}" width="${W}" height="4" fill="url(#accent)"/>

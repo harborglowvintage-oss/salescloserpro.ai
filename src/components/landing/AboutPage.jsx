@@ -1,7 +1,6 @@
 /**
  * SalesCloserPro - About & User Guide
- * Copyright (c) 2026 Brent Girolimon / llmadvisor.ai
- * Powered by highsignal™
+ * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */
 
@@ -251,9 +250,9 @@ export default function AboutPage() {
       {/* ── footer ── */}
       <footer className="border-t border-white/[0.06] mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 text-center text-xs text-slate-500">
-          © 2026 SalesCloserPro · Built by{' '}
+          © 2026 LLMadvisor ai LLC · Built by{' '}
           <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">llmadvisor.ai</a>
-          {' '}· Powered by highsignal™ · Apache-2.0 License
+          {' '}· Apache-2.0 License
         </div>
       </footer>
     </div>

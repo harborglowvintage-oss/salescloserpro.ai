@@ -3,7 +3,7 @@ import {
   HelpCircle, FileText, Users, GitBranch, Rocket, DollarSign,
   Layers, Paperclip, Sun, Moon, Upload, Printer, Download,
   ChevronDown, ChevronRight, Search, BookOpen, Zap, Shield,
-  BarChart3, Settings, ArrowRight, ExternalLink, Coffee,
+  BarChart3, Settings, ArrowRight, ExternalLink,
   PlusCircle, Edit3, Trash2, Eye, CheckCircle, CreditCard, Wallet
 } from 'lucide-react'
 
@@ -29,7 +29,7 @@ const sections = [
       },
       {
         q: 'Is it really free?',
-        a: 'Yes — 100% free and open source. No hidden fees, no feature gates, no time limits. If you find it useful, consider supporting development via Buy Me a Coffee.'
+        a: 'Yes — 100% free and open source. No hidden fees, no feature gates, no time limits.'
       }
     ]
   },
@@ -510,15 +510,6 @@ export default function HelpGuide() {
             llmadvisor.ai
           </a>
         </p>
-        <a
-          href="https://buymeacoffee.com/llmadvisor.ai"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-600 hover:text-amber-700 transition-colors"
-        >
-          <Coffee className="w-3.5 h-3.5" />
-          Buy Me a Coffee
-        </a>
       </div>
     </div>
   )

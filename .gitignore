@@ -33,8 +33,10 @@ release/
 # Scratch files
 Untitled-1.ini
 
-# Local backup archives (do not commit in public repo)
+# Local backup archives (never commit in public repo)
 local-backups/
+local-zip-backups/
+*.zip
 
 # OS
 .DS_Store

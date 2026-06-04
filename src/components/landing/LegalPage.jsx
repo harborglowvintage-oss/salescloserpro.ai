@@ -1,7 +1,6 @@
 /**
  * SalesCloserPro - Legal & Compliance Page
- * Copyright (c) 2026 Brent Girolimon / llmadvisor.ai
- * Powered by highsignal™
+ * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */
 
@@ -24,7 +23,7 @@ import {
   Gavel,
 } from 'lucide-react'
 
-const LAST_UPDATED = 'April 26, 2026'
+const LAST_UPDATED = 'June 4, 2026'
 const APP_VERSION  = '1.0.0'
 const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
@@ -134,7 +133,8 @@ export default function LegalPage() {
                 <TocItem href="#affiliate">Affiliate Disclosure</TocItem>
                 <TocItem href="#gdpr">GDPR (EU)</TocItem>
                 <TocItem href="#ccpa">CCPA (California)</TocItem>
-                <TocItem href="#coppa">COPPA (Children)</TocItem>
+                <TocItem href="#coppa">Children &amp; Minors</TocItem>
+                <TocItem href="#accessibility">Accessibility (ADA)</TocItem>
                 <TocItem href="#export">Export &amp; Sanctions</TocItem>
                 <TocItem href="#dmca">DMCA &amp; IP</TocItem>
                 <TocItem href="#opensource">Open-Source License</TocItem>
@@ -337,111 +337,25 @@ export default function LegalPage() {
             {/* ── 6. AFFILIATE ── */}
             <Section id="affiliate" icon={Globe} title="Affiliate &amp; Referral Disclosure" color="text-amber-400">
               <p>
-                SalesCloserPro's landing page contains affiliate and referral links. In compliance with the{' '}
-                <Hi>FTC's Endorsement Guides (16 CFR Part 255)</Hi>, ASA (UK), and equivalent advertising standards
-                bodies globally, we disclose all material connections.
+                <Hi>SalesCloserPro does not currently contain any affiliate, referral, sponsored, or
+                paid-placement links.</Hi> All third-party advertising, affiliate partner grids, sponsor
+                placements, referral cards, and tracking pixels that previously appeared on this site have been
+                removed in their entirety.
               </p>
               <p>
-                Affiliate logos/images displayed in the partner grid are sourced exclusively from
-                merchant-approved creative assets provided through Commission Junction (CJ), AWIN, or the
-                merchant's official affiliate dashboard. Asset filenames retain the original network-assigned
-                creative ID (e.g., <Hi>Adblocker-17124591.jpeg</Hi>, <Hi>Jugbow-79708.png</Hi>) so every image
-                can be traced back to its source program. Images are locally hosted and may be resized or
-                losslessly optimized for layout consistency; no other modifications are made.
+                The application links to a small number of independent third-party services purely as a
+                convenience to help you operate your business — for example, optional domain registration, email
+                hosting, and the MoonPay payment integration described in the{' '}
+                <a href="#payments" className="text-blue-400 hover:text-blue-300">Payments</a> section. These are{' '}
+                <Hi>ordinary, non-affiliate links</Hi>: we receive no commission, referral reward, or other
+                compensation when you follow them, no tracking or attribution identifiers are attached, and you
+                are never required to use any of them.
               </p>
               <p>
-                We make our best effort to comply with all applicable affiliate network program policies,
-                publisher agreements, and brand guidelines — including CJ Publisher Service Agreement, AWIN
-                Publisher Terms, and each merchant's individual creative-use requirements. We do not claim
-                ownership of partner marks and we do not imply endorsement beyond the disclosed affiliate
-                relationship. If a brand owner or network compliance team identifies an issue with how a logo
-                or creative is displayed, please contact us at <Hi>{CONTACT_EMAIL}</Hi> and we will address
-                it promptly.
-              </p>
-              <H>Identified Affiliate Relationships</H>
-              <div className="overflow-x-auto">
-                <table className="w-full text-xs border-collapse">
-                  <thead>
-                    <tr className="text-slate-500 border-b border-white/[0.06]">
-                      <th className="text-left py-2 pr-4 font-semibold uppercase tracking-wider">Partner</th>
-                      <th className="text-left py-2 pr-4 font-semibold uppercase tracking-wider">Relationship</th>
-                      <th className="text-left py-2 font-semibold uppercase tracking-wider">Compensation</th>
-                    </tr>
-                  </thead>
-                  <tbody className="space-y-1">
-                    {[
-                      ['AdBlocker Ultimate', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Angi', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Blackout Coffee', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Carbonite', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['DomoAI', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['EF Adventures', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['EWA', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['FM Software (TrackNotion)', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['GameFly', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['GearUP', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Hotels.com', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Intuit QuickBooks', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ["M&M's", 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Northern Tool + Equipment', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ["Peet's Coffee", 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Surfshark', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['TEAC', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['TP-Link Tapo', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Verizon', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['VitalHeal', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['CheapTickets', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Raw Paws Pet Food', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Skutchi Designs', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Pelican', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Arka', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['OBI', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['AMBIR', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Oakley', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Fresh Adventures', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Epidemic Sound', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['Namecheap', 'Affiliate (Commission Junction)', 'Commission on qualifying purchases'],
-                      ['DigitalOcean', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Giftcards.ca', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Joydeco', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Jugbow', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['SleepEZ', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Survive X', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Tsar Bomba', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Poster Master', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Retouch4me', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['VSGO', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Grand Patio', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Valerion', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Authoritylayer', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Petcube', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['GMKtec', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Argendon', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['ACoBS (TransparentRx)', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Airbrush', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Burton Goods', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['Giftlab', 'Affiliate (AWIN)', 'Commission on qualifying purchases'],
-                      ['RunPod', 'Referral link', 'Referral reward on qualifying signups'],
-                      ['Gemini Credit Card', 'Referral link', 'Referral bonus if approved'],
-                      ['Zoho Mail', 'Affiliate link', 'Commission on qualifying purchases'],
-                      ['Buy Me a Coffee', 'Direct support', 'Voluntary tips to developer'],
-                      ['MoonPay Commerce', 'Integration partner', 'No direct compensation; used in-app'],
-                      ['Cloudflare', 'Non-affiliate link', 'No compensation'],
-                      ['Google Workspace', 'Non-affiliate link', 'No compensation'],
-                    ].map(([p, r, c]) => (
-                      <tr key={p} className="border-b border-white/[0.04]">
-                        <td className="py-2 pr-4 text-slate-300 font-medium">{p}</td>
-                        <td className="py-2 pr-4 text-slate-400">{r}</td>
-                        <td className="py-2 text-slate-400">{c}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-              <p className="mt-3">
-                Affiliate relationships do not influence product recommendations. All linked services are used by or
-                recommended to the developer independently of compensation. Users are never required to use any
-                linked service — all are optional.
+                If we introduce any compensated relationship in the future, we will disclose it here in full and
+                label it clearly at the point of each link, in compliance with the{' '}
+                <Hi>FTC Endorsement Guides (16 CFR Part 255)</Hi>, the UK ASA/CAP codes, and equivalent
+                advertising-standards rules worldwide. Questions about this notice: <Hi>{CONTACT_EMAIL}</Hi>.
               </p>
             </Section>
 
@@ -506,18 +420,70 @@ export default function LegalPage() {
               <p>Email: <Hi>{CONTACT_EMAIL}</Hi></p>
             </Section>
 
-            {/* ── 9. COPPA ── */}
-            <Section id="coppa" icon={AlertTriangle} title="COPPA — Children's Online Privacy" color="text-orange-400">
+            {/* ── 9. CHILDREN & MINORS ── */}
+            <Section id="coppa" icon={AlertTriangle} title="Children's &amp; Minors' Privacy (COPPA, CPRA, GDPR-K)" color="text-orange-400">
+              <H>Age Restriction — 18+</H>
               <p>
-                The Children's Online Privacy Protection Act (COPPA) prohibits collecting personal information from
-                children under age 13 without verifiable parental consent.
+                SalesCloserPro is a business tool <Hi>intended solely for use by professionals aged 18 and older</Hi>
+                {' '}(or the age of majority in your jurisdiction, whichever is greater). The Software is not directed
+                to, designed for, or marketed to children or minors, and we do not knowingly permit anyone under 18
+                to create quotes, invoices, or accounts.
               </p>
-              <H>Age Restriction</H>
+              <H>COPPA (United States)</H>
               <p>
-                SalesCloserPro is intended for use by <Hi>business professionals aged 18 and older</Hi> (or the age
-                of majority in your jurisdiction). The software is not directed at children and we do not knowingly
-                collect any information from children under 13. If you believe a child has submitted information,
-                contact us at <Hi>{CONTACT_EMAIL}</Hi> for immediate deletion assistance.
+                The Children's Online Privacy Protection Act (COPPA, 15 U.S.C. §§ 6501–6506) prohibits the
+                collection of personal information from children under 13 without verifiable parental consent. We do
+                not knowingly collect any information from children under 13. Because all data you enter stays in
+                your own browser's local storage and is never transmitted to or collected by us, no child data is
+                ever received, stored, or processed on our servers.
+              </p>
+              <H>CPRA Minors (California) &amp; U.S. State Law</H>
+              <p>
+                Under the California Privacy Rights Act, a business may not sell or share the personal information of
+                consumers under 16 without opt-in consent. We do not sell or share the personal information of users
+                of any age, so this protection is satisfied by default. Equivalent minor-specific protections under
+                other U.S. state privacy laws are likewise met.
+              </p>
+              <H>GDPR-K (EU/EEA &amp; UK)</H>
+              <p>
+                Under Article 8 of the EU and UK GDPR, the digital age of consent ranges from 13 to 16 depending on
+                the Member State. As a strictly 18+ product that performs no server-side collection of personal
+                data, SalesCloserPro falls outside the scope of children's-data processing, and we design in keeping
+                with the spirit of the UK Age Appropriate Design Code (Children's Code).
+              </p>
+              <H>Parental Requests &amp; Removal</H>
+              <p>
+                If you believe a person under 18 (or under the applicable minimum age) has used the Software, or that
+                a child's information has somehow been submitted to us, contact <Hi>{CONTACT_EMAIL}</Hi> and we will
+                promptly assist with verification and deletion. Because data is stored locally, a parent or guardian
+                can also remove it immediately via the app's Backup &amp; Restore section or by clearing the
+                browser's site data.
+              </p>
+            </Section>
+
+            {/* ── 9A. ACCESSIBILITY / ADA ── */}
+            <Section id="accessibility" icon={Eye} title="Accessibility (ADA &amp; WCAG)" color="text-cyan-400">
+              <p>
+                LLMadvisor ai LLC is committed to digital accessibility and to making SalesCloserPro usable by the
+                widest possible audience, including people with disabilities. We work toward conformance with the{' '}
+                <Hi>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</Hi> and aim to meet the expectations of
+                the <Hi>Americans with Disabilities Act (ADA)</Hi> and <Hi>Section 508</Hi> of the U.S.
+                Rehabilitation Act.
+              </p>
+              <H>Measures We Take</H>
+              <ul className="list-disc list-inside space-y-1.5 ml-2">
+                <li>Semantic HTML, descriptive labels, and alt text on meaningful images</li>
+                <li>Keyboard-operable navigation with visible focus states</li>
+                <li>Sufficient color contrast and responsive, zoom-friendly layouts</li>
+                <li>Respect for reduced-motion and light/dark display preferences</li>
+              </ul>
+              <H>Ongoing Effort &amp; Feedback</H>
+              <p>
+                Accessibility is an ongoing effort and some areas may not yet fully conform. If you encounter any
+                barrier to using SalesCloserPro, or need information provided in an alternative accessible format,
+                contact <Hi>{CONTACT_EMAIL}</Hi>. We will make reasonable efforts to remedy the issue and provide
+                the information or functionality you need. We welcome your feedback and treat accessibility reports
+                as a priority.
               </p>
             </Section>
 
@@ -539,7 +505,7 @@ export default function LegalPage() {
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li>Located in, or a national of, a comprehensively sanctioned country (currently: Cuba, Iran, North Korea, Syria, Russia-occupied regions of Ukraine, as updated by OFAC)</li>
                 <li>Listed on the OFAC SDN list, the BIS Denied Persons List, or any equivalent list</li>
-                <li>Acting on behalf of any entitylisted above</li>
+                <li>Acting on behalf of any entity listed above</li>
               </ul>
               <p>
                 Open-source software is generally authorized for export under License Exception TSU but the above
@@ -552,20 +518,15 @@ export default function LegalPage() {
             <Section id="dmca" icon={Gavel} title="DMCA &amp; Intellectual Property" color="text-rose-400">
               <H>Copyright</H>
               <p>
-                SalesCloserPro source code is copyright © 2026 Brent Girolimon / llmadvisor.ai and is released under
+                SalesCloserPro source code is copyright © 2026 LLMadvisor ai LLC and is released under
                 the <Hi>Apache License 2.0</Hi>. Third-party dependencies retain their respective licenses (see NOTICE file).
               </p>
               <H>Trademarks &amp; Logos</H>
               <p>
-                All third-party logos displayed in SalesCloserPro (MoonPay, Namecheap, Cloudflare, Gemini, Zoho,
-                Google Workspace, Buy Me a Coffee) are trademarks of their respective owners and are used solely for
-                identification/referential purposes under nominative fair use. No endorsement by these brands is implied.
-              </p>
-              <p>
-                Affiliate partner logos are sourced from merchant-provided creative libraries (CJ, AWIN, or
-                direct merchant dashboards). Original network-assigned asset IDs are preserved in the filenames
-                to maintain traceability to the originating program. Images are hosted locally and may be
-                resized for display consistency; their content is unaltered.
+                Any third-party names or logos that appear in SalesCloserPro (for example MoonPay, Namecheap,
+                Cloudflare, Zoho, or Google Workspace, referenced in setup guidance) are trademarks of their
+                respective owners and are used solely for identification and referential purposes under nominative
+                fair use. No affiliation with, or endorsement by, these brands is implied.
               </p>
               <H>DMCA Takedown Notices</H>
               <p>
@@ -642,7 +603,7 @@ export default function LegalPage() {
               </p>
               <H>Indemnification</H>
               <p>
-                You agree to indemnify, defend, and hold harmless llmadvisor.ai, Brent Girolimon, and contributors from
+                You agree to indemnify, defend, and hold harmless LLMadvisor ai LLC and contributors from
                 any claims, liabilities, damages, or expenses (including legal fees) arising from: your use of the
                 Software, your violation of these Terms, or your violation of any third-party rights.
               </p>
@@ -699,7 +660,7 @@ export default function LegalPage() {
 
         {/* ── bottom bar ── */}
         <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© 2026 SalesCloserPro · Brent Girolimon / llmadvisor.ai · Apache-2.0</p>
+          <p>© 2026 LLMadvisor ai LLC · Apache-2.0</p>
           <Link to="/" className="hover:text-white transition-colors">← Back to SalesCloserPro</Link>
         </div>
 

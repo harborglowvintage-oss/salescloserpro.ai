@@ -144,14 +144,6 @@ export default function Dashboard() {
             llmadvisor.ai
           </a>
         </p>
-        <a
-          href="https://buymeacoffee.com/llmadvisor.ai"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-medium text-amber-600 hover:text-amber-700"
-        >
-          ☕ Buy Me a Coffee
-        </a>
       </div>
     </div>
   )

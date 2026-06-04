@@ -266,7 +266,7 @@ export default function GoLiveWizard() {
                       <p>Your free <strong>yourproject.pages.dev</strong> URL is permanent, HTTPS, and fully functional. You can add a domain later anytime.</p>
                     </div>
                   )}
-                  <LinkCard href="https://namecheap.pxf.io/9VgWEj" label="Register a Domain — Namecheap" badge="Affiliate · Free WhoisGuard" sponsored />
+                  <LinkCard href="https://www.namecheap.com" label="Register a Domain — Namecheap" badge="Free WhoisGuard" />
                   <LinkCard href="https://www.cloudflare.com/dns/" label="Cloudflare Free DNS" badge="Recommended" />
                   <div className="flex gap-3">
                     <button onClick={() => setStep(2)} className="btn-secondary">← Back</button>
@@ -294,7 +294,7 @@ export default function GoLiveWizard() {
 
                   <p className="text-sm font-bold text-gray-700 dark:text-gray-300 pt-2">Recommended providers:</p>
                   <div className="space-y-3">
-                    <a href="https://go.zoho.com/x7Vq" target="_blank" rel="noopener noreferrer"
+                    <a href="https://www.zoho.com/mail/" target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-between p-5 rounded-2xl border-2 border-blue-400 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all group">
                       <div>
                         <div className="flex items-center gap-2">
@@ -484,7 +484,7 @@ export default function GoLiveWizard() {
                   {/* Info box */}
                   <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-xs text-gray-500 dark:text-gray-400 leading-relaxed space-y-2">
                     <p><strong className="text-gray-700 dark:text-gray-300">Why MoonPay Commerce?</strong> MoonPay's unified commerce platform — launched globally Oct 2025 and already trusted by Shopify, Ledger, Fortune Media, and 6,000+ merchants. Licensed, regulated, handles KYC/AML so you don't have to. Supports Visa, Mastercard, Apple Pay, Google Pay, bank transfer, and 100+ cryptos.</p>
-                    <p><strong className="text-gray-700 dark:text-gray-300">No chargebacks.</strong> Direct buyer-to-merchant payments mean zero chargeback risk. Merchants also get low fees, Pay Links, subscriptions, split payments, and affiliate tracking built in.</p>
+                    <p><strong className="text-gray-700 dark:text-gray-300">No chargebacks.</strong> Direct buyer-to-merchant payments mean zero chargeback risk. Merchants also get low fees, Pay Links, subscriptions, and split payments.</p>
                     <p><strong className="text-gray-700 dark:text-gray-300">Why stablecoins?</strong> USDC is pegged 1:1 to USD — no volatility. $1,500 invoice = $1,500 USDC. Auto-convert to USD, EUR, or other fiat through MoonPay Commerce anytime.</p>
                     <p><strong className="text-gray-700 dark:text-gray-300">Fees:</strong> MoonPay charges the buyer ~1–4.5% depending on method. You receive the exact invoice amount with zero seller fees and zero chargebacks.</p>
                   </div>

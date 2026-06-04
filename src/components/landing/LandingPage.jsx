@@ -1,7 +1,6 @@
 /**
  * SalesCloserPro - Landing Page
- * Copyright (c) 2026 Brent Girolimon / llmadvisor.ai
- * Powered by highsignal™
+ * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */
 
@@ -17,63 +16,10 @@ import {
   CheckCircle2,
   Lock,
   Zap,
-  Coffee,
   BookOpen,
   ArrowRight,
   ChevronRight
 } from 'lucide-react'
-
-/* ── tiny step pill ── */
-const Step = ({ num, label, accent = '#3b82f6' }) => (
-  <div className="flex items-center gap-2.5">
-    <span
-      className="flex items-center justify-center w-7 h-7 rounded-full text-xs font-bold text-white flex-shrink-0"
-      style={{ background: `radial-gradient(circle at 35% 35%, ${accent}dd, ${accent}88)`, boxShadow: `0 0 12px ${accent}55, 0 2px 4px rgba(0,0,0,0.4)` }}
-    >{num}</span>
-    <span className="text-sm font-medium text-slate-300">{label}</span>
-  </div>
-)
-
-/* ── partner card ── */
-const PartnerCard = ({ href, logo, alt, bg, title, body, cta, ctaColor = 'text-blue-400', note, rel = 'noopener noreferrer', border = 'border-white/[0.06]', tint = 'bg-white/[0.03]', hoverTint = 'hover:bg-white/[0.06]', glowColor = 'rgba(59,130,246,0.15)' }) => (
-  <a
-    href={href}
-    target="_blank"
-    rel={rel}
-    className={`group flex flex-col rounded-2xl border ${border} ${tint} ${hoverTint} transition-all duration-300 overflow-hidden`}
-    style={{ '--glow': glowColor }}
-    onMouseEnter={e => e.currentTarget.style.boxShadow = `0 0 32px ${glowColor}, 0 8px 24px rgba(0,0,0,0.3)`}
-    onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-  >
-    {/* logo strip */}
-    <div className="flex items-center justify-center h-40 p-4">
-      <div
-        className="relative flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-[1.04]"
-        style={{
-          width: 280, height: 96,
-          borderRadius: 16,
-          background: 'rgba(255,255,255,0.05)',
-          border: '1px solid rgba(255,255,255,0.13)',
-          boxShadow: 'inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -1.5px 0 rgba(0,0,0,0.22), inset 1.5px 0 0 rgba(255,255,255,0.07), 0 6px 18px rgba(0,0,0,0.3)'
-        }}
-      >
-        <img src={logo} alt={alt} className="w-full h-full object-contain p-2" />
-      </div>
-    </div>
-
-    {/* body */}
-    <div className="flex flex-col flex-1 p-5 gap-3">
-      <h4 className="text-white text-base font-semibold leading-snug">{title}</h4>
-      <p className="text-slate-400 text-sm leading-relaxed flex-1">{body}</p>
-      <span className={`inline-flex items-center gap-1.5 ${ctaColor} text-sm font-semibold group-hover:gap-2.5 transition-all`}>
-        {cta} <ChevronRight className="w-4 h-4" />
-      </span>
-    </div>
-
-    {/* footer note */}
-    {note && <div className="px-5 pb-4 text-[11px] text-slate-500">{note}</div>}
-  </a>
-)
 
 export default function LandingPage() {
   const [ghStats, setGhStats] = useState({ downloads: null, stars: null })
@@ -115,7 +61,6 @@ export default function LandingPage() {
           <nav className="hidden sm:flex items-center gap-6 text-sm text-slate-400">
             <Link to="/about" className="hover:text-white transition-colors">About</Link>
             <Link to="/help" className="hover:text-white transition-colors">Docs</Link>
-            <Link to="/whitepaper" className="hover:text-white transition-colors">Whitepaper</Link>
             <Link to="/services" className="flex items-center gap-1.5 px-2.5 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-400 hover:bg-amber-500/20 hover:text-amber-300 transition-colors text-xs font-semibold tracking-wide">✦ Custom</Link>
             <a href="https://github.com/harborglowvintage-oss/salescloserpro.ai" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               <Github className="w-5 h-5" />
@@ -444,292 +389,6 @@ export default function LandingPage() {
         </a>
       </section>
 
-      {/* ───────── PARTNER STACK ───────── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-24">
-        <div className="text-center max-w-2xl mx-auto mb-6">
-          <span className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-[10px] font-bold uppercase tracking-widest text-blue-300 rounded-full" style={{ border: '1px solid rgba(59,130,246,0.25)', background: 'rgba(59,130,246,0.07)', boxShadow: '0 0 16px rgba(59,130,246,0.1)' }}>✦ Partner Stack</span>
-          <h2 className="text-3xl font-bold text-white mb-4">Set up your business in 5 steps</h2>
-          <p className="text-slate-400 leading-relaxed">
-            SalesCloserPro handles your quotes and pipeline. These hand-picked services handle
-            everything else — so you can focus on selling, not configuring.
-          </p>
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-3 mb-12">
-          <Step num="1" label="Get a domain" accent="#ef4444" />
-          <span className="text-slate-700 hidden sm:block">—</span>
-          <Step num="2" label="Protect it" accent="#f97316" />
-          <span className="text-slate-700 hidden sm:block">—</span>
-          <Step num="3" label="Set up email" accent="#22c55e" />
-          <span className="text-slate-700 hidden sm:block">—</span>
-          <Step num="4" label="Earn on spend" accent="#f59e0b" />
-          <span className="text-slate-700 hidden sm:block">—</span>
-          <Step num="5" label="Accept payments" accent="#a855f7" />
-        </div>
-
-        {/* ── Bucket 1: Domain & Security (2-up centered) ── */}
-        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 text-center">Step 1 &amp; 2 — Your Online Presence</p>
-        <div className="grid sm:grid-cols-2 gap-5 mb-8 max-w-2xl mx-auto">
-          <PartnerCard
-            href="https://namecheap.pxf.io/9VgWEj"
-            logo="/logos/namecheap.png"
-            alt="Namecheap"
-            bg="bg-white"
-            border="border-red-500/20"
-            tint="bg-red-500/[0.04]"
-            hoverTint="hover:bg-red-500/[0.08]"
-            ctaColor="text-red-400"
-            glowColor="rgba(239,68,68,0.18)"
-            title="Don't let your competition own that domain"
-            body={<>Securing a domain for your business can feel overwhelming — but Namecheap makes it straightforward. Search, register, and manage your <strong className="text-slate-200">.com in minutes</strong>, with free WhoisGuard privacy included. Your domain is the first thing a buyer sees before a proposal is even opened. <strong className="text-red-300">If you don't claim it, someone else will.</strong> Don't hand your competitors that first click.</>}
-            cta="Grab your domain now"
-            rel="noopener noreferrer sponsored"
-          />
-          <PartnerCard
-            href="https://dash.cloudflare.com/sign-up"
-            logo="/logos/cloudflare.png"
-            alt="Cloudflare"
-            bg="bg-white"
-            border="border-orange-400/20"
-            tint="bg-orange-400/[0.04]"
-            hoverTint="hover:bg-orange-400/[0.08]"
-            ctaColor="text-orange-400"
-            glowColor="rgba(251,146,60,0.18)"
-            title="The internet's security layer — free"
-            body={<>Cloudflare protects <strong className="text-orange-300">~20% of all web traffic</strong> — including major banks and Fortune 500s. Their San Francisco HQ literally uses a wall of <strong className="text-orange-300">lava lamps</strong> to generate unpredictable encryption keys (yes, really). Add free SSL, industry-standard 1.1.1.1 DNS, global CDN, and DDoS protection to your site in under 5 minutes.</>}
-            cta="Enable free protection"
-            note="Free plan covers most small businesses"
-          />
-        </div>
-
-        {/* ── Bucket 3: Email (2-up centered) ── */}
-        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 text-center">Step 3 — Professional Email</p>
-        <div className="grid sm:grid-cols-2 gap-5 mb-8 max-w-2xl mx-auto">
-          <PartnerCard
-            href="https://go.zoho.com/x7Vq"
-            logo="/logos/zohologo.jpg"
-            alt="Zoho Mail"
-            bg="bg-white"
-            border="border-emerald-500/20"
-            tint="bg-emerald-500/[0.04]"
-            hoverTint="hover:bg-emerald-500/[0.08]"
-            ctaColor="text-emerald-400"
-            glowColor="rgba(34,197,94,0.18)"
-            title={<><span className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 block mb-1">The Budget Privacy Pick</span>Professional email for $1/month</>}
-            body={<>Get <strong className="text-slate-200">you@yourdomain.com</strong> so every quote you send looks the part. Zoho Mail is <strong className="text-slate-200">secure, ad-free, and built for privacy</strong> — no scanning your inbox to sell you ads. Includes shared calendars, tasks, and built-in collaboration tools. To connect your custom domain you'll need the <strong className="text-emerald-300">Mail Lite plan at $1/user/month</strong>. <strong className="text-emerald-300">Best for: solo operators and small teams who want pro email without the Google tax.</strong></>}
-            cta="Start for $1/mo"
-            rel="noopener noreferrer sponsored"
-          />
-          <PartnerCard
-            href="https://workspace.google.com/intl/en/pricing"
-            logo="/logos/google-workspace.png"
-            alt="Google Workspace"
-            bg="bg-white"
-            border="border-blue-500/20"
-            tint="bg-blue-500/[0.04]"
-            hoverTint="hover:bg-blue-500/[0.08]"
-            ctaColor="text-blue-400"
-            glowColor="rgba(59,130,246,0.18)"
-            title={<><span className="text-[10px] font-bold uppercase tracking-widest text-blue-400 block mb-1">The Full Professional Suite</span>The easiest way to run your business on one login</>}
-            body={<>Google Workspace is the closest thing to a universal business OS. <strong className="text-slate-200">Gmail, Drive, Docs, Meet, Calendar, Sheets — and Gemini AI built in.</strong> Everything synced across every device and teammate. Send quotes from your pro email, collaborate on proposals in real time, and let Gemini draft, summarize, and answer for you. Plans start at <strong className="text-blue-300">$7–$14/user/month</strong>. <strong className="text-blue-300">Best for: teams, growing operations, and anyone who lives inside Google already.</strong></>}
-            cta="Compare plans"
-            note="Billed directly by Google"
-          />
-        </div>
-
-        {/* ── Bucket 2: Payments & Earnings ── */}
-        <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-3 text-center">Steps 4 &amp; 5 — Get Paid &amp; Earn on Spend</p>
-        <div className="grid md:grid-cols-5 gap-5 mb-8 items-stretch">
-
-          {/* MoonPay — spans 3 cols */}
-          <a
-            href="https://commerce.moonpay.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group md:col-span-3 block rounded-2xl overflow-hidden relative"
-            style={{ background: 'linear-gradient(135deg, #1a0a2e 0%, #0f0520 40%, #130a28 100%)' }}
-          >
-            <div className="absolute inset-0 rounded-2xl" style={{ padding: '1px', background: 'linear-gradient(135deg, rgba(168,85,247,0.6), rgba(99,102,241,0.2) 50%, rgba(168,85,247,0.4))', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude' }} />
-            <div className="absolute -top-24 -left-16 w-80 h-80 rounded-full opacity-20 pointer-events-none" style={{ background: 'radial-gradient(circle, #a855f7, transparent 70%)' }} />
-            <div className="absolute -bottom-20 right-10 w-64 h-64 rounded-full opacity-15 pointer-events-none" style={{ background: 'radial-gradient(circle, #6366f1, transparent 70%)' }} />
-            <div className="absolute inset-0 opacity-[0.04] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(168,85,247,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(168,85,247,0.8) 1px, transparent 1px)', backgroundSize: '40px 40px' }} />
-
-            <div className="relative flex flex-col justify-between h-full p-5 sm:p-8 gap-6">
-              <div className="flex flex-col sm:flex-row items-start gap-4">
-                <div className="relative flex-shrink-0 w-full sm:w-auto">
-                  <div className="absolute inset-0 rounded-2xl blur-xl opacity-60" style={{ background: 'radial-gradient(circle, rgba(168,85,247,0.6), transparent 70%)' }} />
-                  <div
-                    className="relative flex items-center justify-center overflow-hidden w-full sm:w-[280px]"
-                    style={{
-                      height: 72,
-                      borderRadius: 16,
-                      background: 'rgba(168,85,247,0.1)',
-                      border: '1px solid rgba(168,85,247,0.28)',
-                      boxShadow: 'inset 0 1.5px 0 rgba(255,255,255,0.22), inset 0 -1.5px 0 rgba(0,0,0,0.25), inset 1.5px 0 0 rgba(255,255,255,0.08), 0 6px 20px rgba(168,85,247,0.25)'
-                    }}
-                  >
-                    <img src="/logos/moonpay.png" alt="MoonPay" className="w-full h-full object-contain p-2" />
-                  </div>
-                </div>
-                <div className="min-w-0">
-                  <span className="inline-block px-2.5 py-1 text-[10px] font-bold uppercase tracking-widest text-purple-200 border border-purple-400/30 rounded-full mb-2" style={{ background: 'rgba(168,85,247,0.15)' }}>✦ Now: MoonPay Commerce</span>
-                  <p className="text-purple-400 text-xs font-semibold uppercase tracking-wide sm:tracking-widest">Trusted by Shopify · Ledger · Fortune Media</p>
-                </div>
-              </div>
-
-              <div>
-                <h3 className="text-2xl font-extrabold text-white leading-snug mb-3">
-                  Get paid faster than your competition<br />
-                  <span style={{ backgroundImage: 'linear-gradient(90deg, #c084fc, #818cf8)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>— from anywhere in the world.</span>
-                </h3>
-                <p className="text-slate-300 text-sm leading-relaxed mb-3">
-                  Cashflow is survival. MoonPay Commerce lets your clients pay by card, Apple Pay, bank transfer, or 100+ cryptos the moment you send a quote.
-                  <strong className="text-white"> No chargebacks. No banks holding your money. No 5-day ACH delays.</strong> Funds settle fast — auto-convert to USD or EUR anytime. Most of your competitors aren't offering this yet. You will be.
-                </p>
-                <p className="text-slate-400 text-xs leading-relaxed mb-3">
-                  International client in Japan? Freelancer in Brazil? Contractor in the EU? They pay in their preferred method. You receive instantly. No foreign transaction drama.
-                </p>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5 mb-4 text-xs text-slate-300">
-                  {[
-                    { icon: '⚡', text: 'Fast settlement — no delays' },
-                    { icon: '🔒', text: 'Zero chargebacks for you' },
-                    { icon: '🌍', text: '160+ countries · any currency' },
-                    { icon: '🏢', text: '6,000+ merchants already live' },
-                  ].map(({ icon, text }) => (
-                    <div key={text} className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-purple-400/15" style={{ background: 'rgba(168,85,247,0.07)' }}>
-                      <span>{icon}</span><span>{text}</span>
-                    </div>
-                  ))}
-                </div>
-                <div className="flex flex-wrap gap-2 mb-5">
-                  {['USDC', 'USDT', 'ETH', 'SOL', 'BTC', '+ more'].map(s => (
-                    <span key={s} className="px-2.5 py-1 rounded-full text-xs text-purple-200 font-medium border border-purple-400/20" style={{ background: 'rgba(168,85,247,0.1)' }}>{s}</span>
-                  ))}
-                </div>
-                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm text-white transition-all group-hover:scale-[1.02]"
-                  style={{ background: 'linear-gradient(135deg, #9333ea, #6366f1)', boxShadow: '0 0 20px rgba(147,51,234,0.4)' }}>
-                  Start with MoonPay Commerce →
-                </span>
-              </div>
-            </div>
-          </a>
-
-          {/* Gemini — spans 2 cols */}
-          <a
-            href="https://creditcard.exchange.gemini.com/credit-card/apply?referral_code=44qnv2qrx"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group md:col-span-2 block rounded-2xl overflow-hidden relative"
-            style={{ background: 'linear-gradient(135deg, #1c1200 0%, #2a1a00 50%, #1c1200 100%)' }}
-            onMouseEnter={e => e.currentTarget.style.boxShadow = '0 0 36px rgba(217,119,6,0.25), 0 8px 24px rgba(0,0,0,0.4)'}
-            onMouseLeave={e => e.currentTarget.style.boxShadow = 'none'}
-          >
-            <div className="absolute inset-0 rounded-2xl" style={{ padding: '1px', background: 'linear-gradient(135deg, rgba(217,119,6,0.5), rgba(251,191,36,0.15) 50%, rgba(217,119,6,0.35))', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude' }} />
-            <div className="absolute -top-16 -right-12 w-56 h-56 rounded-full opacity-15 pointer-events-none" style={{ background: 'radial-gradient(circle, #f59e0b, transparent 70%)' }} />
-            <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(rgba(251,191,36,0.8) 1px, transparent 1px), linear-gradient(90deg, rgba(251,191,36,0.8) 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
-
-            <div className="relative flex flex-col h-full p-6 gap-5">
-
-              {/* ── header: logo + label ── */}
-              <div className="flex items-center gap-3">
-                <div className="relative flex-shrink-0">
-                  <div className="absolute inset-0 rounded-2xl blur-lg opacity-60 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(217,119,6,0.9), transparent 70%)' }} />
-                  <div className="relative flex items-center justify-center overflow-hidden transition-transform duration-300 group-hover:scale-[1.05]"
-                    style={{ width: 52, height: 52, borderRadius: 14, background: 'rgba(217,119,6,0.15)', border: '1px solid rgba(217,119,6,0.4)', boxShadow: 'inset 0 1.5px 0 rgba(255,255,255,0.2), 0 4px 16px rgba(217,119,6,0.3)' }}>
-                    <img src="/logos/gemini.png" alt="Gemini" className="w-full h-full object-contain p-1.5" />
-                  </div>
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold uppercase tracking-widest text-amber-600 leading-none mb-1">Gemini Credit Card®</p>
-                  <p className="text-[11px] text-slate-400">Issued by WebBank · No annual fee</p>
-                </div>
-              </div>
-
-              {/* ── headline ── */}
-              <div>
-                <h3 className="text-2xl font-extrabold text-white leading-tight">
-                  Earn crypto back on<br />
-                  <span style={{ backgroundImage: 'linear-gradient(90deg, #fbbf24, #f97316)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>every purchase.</span>
-                </h3>
-                <p className="text-slate-400 text-sm leading-relaxed mt-2">
-                  Put business spend on the <strong className="text-slate-200">Gemini Mastercard®</strong> and earn crypto automatically — in BTC, ETH, SOL, XRP or more.
-                </p>
-              </div>
-
-              {/* ── reward 2×2 grid ── */}
-              <div className="grid grid-cols-2 gap-2">
-                {[
-                  { cat: 'Gas, EV & Transit', pct: '4%' },
-                  { cat: 'Dining',            pct: '3%' },
-                  { cat: 'Groceries',         pct: '2%' },
-                  { cat: 'Everything else',   pct: '1%' },
-                ].map(({ cat, pct }) => (
-                  <div key={cat} className="flex flex-col items-start p-3 rounded-xl"
-                    style={{ background: 'rgba(217,119,6,0.09)', border: '1px solid rgba(217,119,6,0.2)' }}>
-                    <span className="text-2xl font-black text-amber-300 leading-none tabular-nums">{pct}</span>
-                    <span className="text-[11px] text-slate-400 mt-1 leading-snug">{cat}</span>
-                  </div>
-                ))}
-              </div>
-
-              {/* ── badges ── */}
-              <div className="flex flex-wrap gap-1.5">
-                {[
-                  { label: 'No Annual Fee',         cls: 'bg-emerald-900/50 text-emerald-300 border-emerald-800/60' },
-                  { label: 'Mastercard®',            cls: 'bg-slate-800/70 text-slate-300 border-slate-600/50' },
-                  { label: 'BTC · ETH · SOL · XRP', cls: 'bg-amber-900/40 text-amber-300 border-amber-800/40' },
-                ].map(b => (
-                  <span key={b.label} className={`text-[10px] font-semibold px-2.5 py-1 rounded-full border ${b.cls}`}>{b.label}</span>
-                ))}
-              </div>
-
-              {/* ── CTA pinned to bottom ── */}
-              <div className="mt-auto">
-                <span className="flex items-center justify-center w-full py-3 rounded-xl font-bold text-sm text-amber-950 transition-all group-hover:scale-[1.02]"
-                  style={{ background: 'linear-gradient(135deg, #fbbf24, #f59e0b)', boxShadow: '0 0 24px rgba(251,191,36,0.3)' }}>
-                  Apply for the card →
-                </span>
-                <p className="text-[10px] text-slate-500 mt-2 text-center">Referral · subject to Gemini approval</p>
-              </div>
-
-            </div>
-          </a>
-        </div>
-
-
-
-        {/* buy me a coffee — last */}
-        <div className="max-w-lg mx-auto mt-14">
-          <a
-            href="https://buymeacoffee.com/llmadvisor.ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group flex flex-col items-center text-center rounded-2xl border border-amber-400/20 bg-amber-400/[0.04] hover:bg-amber-400/[0.08] transition-all p-8 gap-4"
-          >
-            <div
-              className="flex items-center justify-center overflow-hidden"
-              style={{
-                width: 300, height: 100,
-                borderRadius: 16,
-                background: 'rgba(251,191,36,0.08)',
-                border: '1px solid rgba(251,191,36,0.22)',
-                boxShadow: 'inset 0 1.5px 0 rgba(255,255,255,0.2), inset 0 -1.5px 0 rgba(0,0,0,0.2), inset 1.5px 0 0 rgba(255,255,255,0.07), 0 6px 18px rgba(251,191,36,0.15)'
-              }}
-            >
-              <img src="/logos/buymeacoffee.png" alt="Buy Me a Coffee" className="w-full h-full object-contain p-3" />
-            </div>
-            <h4 className="text-xl font-bold text-white">Enjoying SalesCloserPro?</h4>
-            <p className="text-slate-400 text-sm max-w-sm leading-relaxed">
-              This app is built and maintained by one developer. If it saved you time or helped you land a deal,
-              a coffee keeps the updates coming.
-            </p>
-            <span className="inline-flex items-center gap-2 px-5 py-2.5 bg-amber-400 hover:bg-amber-300 text-amber-950 rounded-lg font-semibold text-sm transition-colors shadow">
-              <Coffee className="w-4 h-4" /> Buy a Coffee
-            </span>
-            <span className="text-[11px] text-slate-500">llmadvisor.ai · powered by highsignal™</span>
-          </a>
-        </div>
-      </section>
 
       {/* ───────── ABOUT TEASER ───────── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
@@ -750,239 +409,10 @@ export default function LandingPage() {
 
 
 
-      {/* ───────── SPONSOR STRIP ───────── */}
-      <section className="relative border-t border-white/[0.06] overflow-hidden">
-        {/* subtle gradient wash */}
-        <div className="absolute inset-0 bg-gradient-to-r from-indigo-950/30 via-transparent to-indigo-950/20 pointer-events-none" />
-        <div className="relative max-w-6xl mx-auto px-6 sm:px-8 py-10 flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
-
-          {/* left — headline + stats */}
-          <div className="flex-1 min-w-0">
-            <p className="text-[11px] font-semibold tracking-widest uppercase text-indigo-400 mb-2">Partner with us</p>
-            <h3 className="text-white text-xl font-semibold leading-snug mb-4">
-              Put your brand in front of the people who close deals.
-            </h3>
-            <div className="flex flex-wrap gap-x-8 gap-y-3">
-              <div>
-                <p className="text-2xl font-bold text-white leading-none">Growing</p>
-                <p className="text-xs text-slate-400 mt-0.5">network of independent operators</p>
-              </div>
-              <div className="w-px self-stretch bg-white/10 hidden sm:block" />
-              <div>
-                <p className="text-2xl font-bold text-white leading-none">100%</p>
-                <p className="text-xs text-slate-400 mt-0.5">free &amp; open source</p>
-              </div>
-              <div className="w-px self-stretch bg-white/10 hidden sm:block" />
-              <div>
-                <p className="text-2xl font-bold text-white leading-none">B2B</p>
-                <p className="text-xs text-slate-400 mt-0.5">contractors &amp; sales pros</p>
-              </div>
-            </div>
-          </div>
-
-          {/* right — CTA */}
-          <div className="flex-shrink-0 flex flex-col items-center gap-3 text-center">
-            <a
-              href="mailto:sponsor@salescloserpro.ai"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-semibold shadow-lg shadow-indigo-900/40 transition-all duration-200 hover:shadow-indigo-700/40 hover:-translate-y-px"
-            >
-              Inquire about sponsorship
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clipRule="evenodd"/>
-              </svg>
-            </a>
-            <p className="text-[11px] text-slate-500">Your logo. Your brand. Their screen.</p>
-          </div>
-
-        </div>
-      </section>
 
       {/* ───────── FOOTER ───────── */}
       <footer className="border-t border-white/[0.06] mt-12">
         <div className="max-w-6xl mx-auto px-6 sm:px-8 py-12">
-
-          {/* Affiliate Offers — categorized card grid */}
-          <div className="border-b border-white/[0.06] pb-6 mb-10">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-3 mb-6">
-              <span className="text-xs font-bold text-white uppercase tracking-widest">Affiliate Offers</span>
-              <span className="inline-flex items-center gap-1.5 text-xs text-slate-400 bg-white/[0.05] rounded-full px-3 py-1 border border-white/[0.08] ring-1 ring-blue-400/30 shadow-[0_0_12px_rgba(59,130,246,0.2)]">
-                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 inline-block flex-shrink-0" />
-                We earn a commission when you shop through the links below &middot; <Link to="/legal" className="ml-1 text-blue-400 hover:text-blue-300 transition-colors">Full disclosure →</Link>
-              </span>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-              {/* EDUCATION & FINANCE TOOLS */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-amber-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-amber-400 mb-3">🎓 Education &amp; Finance Tools</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.awin1.com/cread.php?awinmid=91823&awinaffid=2848879&ued=https%3A%2F%2Fwww.acobs.org%2Fcpbs-certification-course%2F" target="_blank" rel="sponsored nofollow noopener" title="ACoBS" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/acobs-91823.webp" alt="ACoBS" className="max-h-6 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-17262416" target="_blank" rel="sponsored nofollow noopener" title="EWA" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Ewa-23803634.png" alt="EWA" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-17250447" target="_blank" rel="sponsored nofollow noopener" title="QuickBooks" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Intuit-Quickbooks-15647418.png" alt="QuickBooks" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* FOOD & HEALTH */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-emerald-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-emerald-400 mb-3">🌿 Food &amp; Health</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.dpbolvw.net/click-101696721-17110018" target="_blank" rel="sponsored nofollow noopener" title="Blackout Coffee" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/blackoutcoffee.png" alt="Blackout Coffee" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-15712042" target="_blank" rel="sponsored nofollow noopener" title="M&M's" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/M&Ms-15075557.jpeg" alt="M&M's" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.dpbolvw.net/click-101696721-13443788" target="_blank" rel="sponsored nofollow noopener" title="Peet's Coffee" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Peets-Coffee-13426123.jpeg" alt="Peet's Coffee" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=124484&awinaffid=2848879&ued=https%3A%2F%2Fsurvive-x.com%2F" target="_blank" rel="sponsored nofollow noopener" title="Survive X" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/surviveXlogo.webp" alt="Survive X" className="max-h-6 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-17254505" target="_blank" rel="sponsored nofollow noopener" title="VitalHeal" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Vital-Health-23801187.png" alt="VitalHeal" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* GAMING */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-pink-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-pink-400 mb-3">🎮 Gaming</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.kqzyfj.com/click-101696721-10448329" target="_blank" rel="sponsored nofollow noopener" title="GameFly" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Gamefly-logo-10495782.png" alt="GameFly" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-17235980" target="_blank" rel="sponsored nofollow noopener" title="GearUP" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Gearup-23735360.png" alt="GearUP" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* HOME FURNISHINGS & AUDIO */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-orange-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-orange-400 mb-3">🏠 Home Furnishings &amp; Audio</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.awin1.com/cread.php?awinmid=95201&awinaffid=2848879&ued=https%3A%2F%2Fwww.giftlab.com%2Fcollections%2Fcustom-mirror-light" target="_blank" rel="sponsored nofollow noopener" title="Giftlab" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/giftlab-95201.webp" alt="Giftlab" className="max-h-6 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=45477&awinaffid=2848879&ued=https%3A%2F%2Fgrandpatio.com%2Fcollections%2Fnapoli-patio-umbrella%2Fproducts%2Fnapoli-10x13-ft-rectangular-offset-umbrella-with-base" target="_blank" rel="sponsored nofollow noopener" title="Grand Patio" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/grand-patio-45477.webp" alt="Grand Patio" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=119863&awinaffid=2848879&ued=https%3A%2F%2Fjoydeco.com%2F" target="_blank" rel="sponsored nofollow noopener" title="Joydeco" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/joydecologo.webp" alt="Joydeco" className="max-h-6 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=83073&awinaffid=2848879&ued=https%3A%2F%2Fsleepez.com%2F" target="_blank" rel="sponsored nofollow noopener" title="SleepEZ" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/sleepezUSAlogo-83073.png" alt="SleepEZ" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-15919841" target="_blank" rel="sponsored nofollow noopener" title="TEAC" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Teac--21087655.png" alt="TEAC" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=113200&awinaffid=2848879&ued=https%3A%2F%2Fwww.valerion.com%2Fproduct%2Fvisionmaster-max-free-ceiling-bracket%3Ftitle%3DDefault%2BTitle%26image%3D0" target="_blank" rel="sponsored nofollow noopener" title="Valerion" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/valerion-us-113200.webp" alt="Valerion" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* OFFICE & WORKSPACE */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-amber-600 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-3">💼 Office &amp; Workspace</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.dpbolvw.net/click-101696721-15600474" target="_blank" rel="sponsored nofollow noopener" title="Arka" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/arkalogo.png" alt="Arka" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=91359&awinaffid=2848879&ued=https%3A%2F%2Fwww.giftcards.ca%2F" target="_blank" rel="sponsored nofollow noopener" title="Giftcards.ca" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/giftcardscalogo.webp" alt="Giftcards.ca" className="max-h-8 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=121870&awinaffid=2848879&ued=https%3A%2F%2Fpostermasterstudio.com%2Fproducts%2Fted-teddy-bear" target="_blank" rel="sponsored nofollow noopener" title="Poster Master" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/poster-master-121870.webp" alt="Poster Master" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-15826779" target="_blank" rel="sponsored nofollow noopener" title="Skutchi Designs" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Skutchi-Designs-20918025.jpeg" alt="Skutchi Designs" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* PERSONAL ACCESSORIES */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-cyan-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-cyan-400 mb-3">✦ Personal Accessories</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.awin1.com/cread.php?awinmid=83699&awinaffid=2848879&ued=https%3A%2F%2Fburtongoods.com%2Fproducts%2Fslim-leather-laptop-briefcase-medium-16" target="_blank" rel="sponsored nofollow noopener" title="Burton Goods" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/burton-goods-83699.webp" alt="Burton Goods" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.dpbolvw.net/click-101696721-15153860" target="_blank" rel="sponsored nofollow noopener" title="Oakley" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Oakley-10375170.jpeg" alt="Oakley" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=109230&awinaffid=2848879&ued=https%3A%2F%2Ftsarbomba.com%2Fcollections%2Fpre-sale-collection" target="_blank" rel="sponsored nofollow noopener" title="Tsar Bomba" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Tsarbomba-109230.png" alt="Tsar Bomba" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=120898&awinaffid=2848879&ued=https%3A%2F%2Fvsgotech.com%2Fproducts%2Fvb058" target="_blank" rel="sponsored nofollow noopener" title="VSGO" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/VSGO-120898.webp" alt="VSGO" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* PETS */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-yellow-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-yellow-400 mb-3">🐾 Pets</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.awin1.com/cread.php?awinmid=79708&awinaffid=2848879&ued=https%3A%2F%2Fjugbow.com%2F" target="_blank" rel="sponsored nofollow noopener" title="Jugbow" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Jugbow-79708.png" alt="Jugbow" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=33889&awinaffid=2848879&ued=https%3A%2F%2Fpetcube.com%2Fstore%2Fproduct%2Ffountain%2F%3Fproduct%3Dfountain" target="_blank" rel="sponsored nofollow noopener" title="Petcube" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/petcube-33889.webp" alt="Petcube" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-17234935" target="_blank" rel="sponsored nofollow noopener" title="Raw Paws Pet Food" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Raw-Paws-Petfoods-15878721.jpeg" alt="Raw Paws Pet Food" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* SECURITY & PRIVACY */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-green-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-green-400 mb-3">🔒 Security &amp; Privacy</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.anrdoezrs.net/click-101696721-17124588" target="_blank" rel="sponsored nofollow noopener" title="AdBlocker Ultimate" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Adblocker-17124591.jpeg" alt="AdBlocker Ultimate" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-15178612" target="_blank" rel="sponsored nofollow noopener" title="Carbonite" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Carbonite-logo-15554902.png" alt="Carbonite" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-15740556" target="_blank" rel="sponsored nofollow noopener" title="Surfshark" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Surfshark-20148897.jpeg" alt="Surfshark" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* SOFTWARE & AI */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-blue-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-blue-400 mb-3">💻 Software &amp; AI</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.awin1.com/cread.php?awinmid=125364&awinaffid=2848879&ued=https%3A%2F%2Fairbrush.com%2Fpricing" target="_blank" rel="sponsored nofollow noopener" title="Airbrush" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/airbrush-125364.webp" alt="Airbrush" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=127177&awinaffid=2848879&ued=https%3A%2F%2Fauthoritylayer.app%2Fpricing" target="_blank" rel="sponsored nofollow noopener" title="Authoritylayer" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/authoritylayer-127177.webp" alt="Authoritylayer" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.dpbolvw.net/click-101696721-17222070" target="_blank" rel="sponsored nofollow noopener" title="DomoAI" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/DomoAi-17163300.png" alt="DomoAI" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-17163276" target="_blank" rel="sponsored nofollow noopener" title="Epidemic Sound" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/epidemic-sound-20089917.png" alt="Epidemic Sound" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-17258377" target="_blank" rel="sponsored nofollow noopener" title="FM Software" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/FMSoftwarelogo.png" alt="FM Software" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=123978&awinaffid=2848879&ued=https%3A%2F%2Fretouch4.me%2Fsubscription" target="_blank" rel="sponsored nofollow noopener" title="Retouch4me" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/retouch4me-123978.webp" alt="Retouch4me" className="max-h-6 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* TELECOM & HARDWARE */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-slate-400 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-3">📡 Telecom, Hardware &amp; Cloud</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.anrdoezrs.net/click-101696721-17272885" target="_blank" rel="sponsored nofollow noopener" title="AMBIR" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Ambir-17262056.jpeg" alt="AMBIR" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=123996&awinaffid=2848879&ued=https%3A%2F%2Fwww.digitalocean.com%2F" target="_blank" rel="sponsored nofollow noopener" title="DigitalOcean" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/digitaloceanlogo.png" alt="DigitalOcean" className="max-h-6 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=45751&awinaffid=2848879&ued=https%3A%2F%2Fwww.gmktec.com%2Fproducts%2Famd-ryzen%25E2%2584%25A2-ai-max-395-evo-x2-ai-mini-pc" target="_blank" rel="sponsored nofollow noopener" title="GMKtec" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/gmktec-45751.webp" alt="GMKtec" className="max-h-5 w-auto" /></a>
-                  <a href="https://www.runpod.io/?ref=li2hee5u" target="_blank" rel="sponsored nofollow noopener" title="RunPod" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/runpod-685b36c74aa59531d0f1a347_runpod-logo-black.svg" alt="RunPod" className="max-h-5 w-auto" /></a>
-                  <a href="https://www.anrdoezrs.net/click-101696721-15600687" target="_blank" rel="sponsored nofollow noopener" title="TP-Link Tapo" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/TP-Link-15600687.jpeg" alt="TP-Link Tapo" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-11371807" target="_blank" rel="sponsored nofollow noopener" title="Verizon" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Verizon-10416412.png" alt="Verizon" className="max-h-5 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* TOOLS, EQUIPMENT & PROFESSIONAL SERVICES */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-teal-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-teal-400 mb-3">🔧 Tools, Equipment &amp; Professional Services</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.anrdoezrs.net/click-101696721-17080749" target="_blank" rel="sponsored nofollow noopener" title="Angi" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/angi-23444170.png" alt="Angi" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.awin1.com/cread.php?awinmid=126513&awinaffid=2848879&ued=https%3A%2F%2Fwww.argendon.com%2Fproducts%2Fargendon-wholesale-pack-xstorm-max-180-pint-industrial-commercial-dehumidifier-with-pump" target="_blank" rel="sponsored nofollow noopener" title="Argendon" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/argendon-126513.webp" alt="Argendon" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.tkqlhce.com/click-101696721-15483785" target="_blank" rel="sponsored nofollow noopener" title="Northern Tool" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/NorthernTool-Logo-10356274.gif" alt="Northern Tool" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.jdoqocy.com/click-101696721-15786075" target="_blank" rel="sponsored nofollow noopener" title="OBI" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/OBI-15786075.png" alt="OBI" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-              {/* TRAVEL */}
-              <div className="rounded-xl border border-white/[0.08] border-t-2 border-t-rose-500 bg-white/[0.03] p-4">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-rose-400 mb-3">✈️ Travel</p>
-                <div className="grid grid-cols-3 gap-2">
-                  <a href="https://www.anrdoezrs.net/click-101696721-12843042" target="_blank" rel="sponsored nofollow noopener" title="CheapTickets" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Cheaptickets-Logo-12843040.jpeg" alt="CheapTickets" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.anrdoezrs.net/click-101696721-17133005" target="_blank" rel="sponsored nofollow noopener" title="EF Adventures" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/ef-adventures-23557584.jpeg" alt="EF Adventures" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.dpbolvw.net/click-101696721-17207704" target="_blank" rel="sponsored nofollow noopener" title="Fresh Adventures" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/FreshAdventures-23650288.png" alt="Fresh Adventures" className="max-h-7 w-auto" /></a>
-                  <a href="https://www.kqzyfj.com/click-101696721-10433860" target="_blank" rel="sponsored nofollow noopener" title="Hotels.com" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/hotels-com-10418404.png" alt="Hotels.com" className="max-h-8 w-auto" /></a>
-                  <a href="https://www.anrdoezrs.net/click-101696721-15751514" target="_blank" rel="sponsored nofollow noopener" title="Pelican" className="w-full h-[52px] bg-white rounded-md flex items-center justify-center px-2 hover:opacity-90 transition-all duration-200 ring-1 ring-blue-400/70 shadow-[0_0_14px_rgba(59,130,246,0.55)] hover:shadow-[0_0_24px_rgba(59,130,246,0.90)]"><img src="/logos/Pelican-20815910.png" alt="Pelican" className="max-h-7 w-auto" /></a>
-                </div>
-              </div>
-
-            </div>
-
-            {/* CJ pixel trackers — all 19 */}
-            <img src="https://www.lduhtrp.net/image-101696721-15740556" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-17124588" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-15178612" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-17222070" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.lduhtrp.net/image-101696721-17258377" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-17250447" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.lduhtrp.net/image-101696721-13443788" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-15712042" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.lduhtrp.net/image-101696721-17254505" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-17110018" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-10433860" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-17133005" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.lduhtrp.net/image-101696721-11371807" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.lduhtrp.net/image-101696721-15600687" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.lduhtrp.net/image-101696721-17080749" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-15483785" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-15919841" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-17262416" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-10448329" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.lduhtrp.net/image-101696721-17235980" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-12843042" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-17234935" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-15751514" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-15153860" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.lduhtrp.net/image-101696721-17207704" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-17257661" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-17272885" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.ftjcfx.com/image-101696721-15826779" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-15786075" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.tqlkg.com/image-101696721-17163276" width="1" height="1" border="0" alt="" aria-hidden="true" />
-            <img src="https://www.awltovhc.com/image-101696721-15600474" width="1" height="1" border="0" alt="" aria-hidden="true" />
-          </div>
 
           {/* Brand row */}
           <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6 mb-10">
@@ -995,7 +425,6 @@ export default function LandingPage() {
             </div>
             <div className="text-sm text-slate-500 sm:text-right">
               <p>Built by <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 transition-colors">llmadvisor.ai</a></p>
-              <p className="mt-0.5">Powered by highsignal™</p>
             </div>
           </div>
 
@@ -1009,7 +438,6 @@ export default function LandingPage() {
                 <li><Link to="/help" className="hover:text-white transition-colors">In-App Docs</Link></li>
                 <li><a href="https://github.com/harborglowvintage-oss/salescloserpro.ai/issues" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Report a Bug</a></li>
                 <li><Link to="/services" className="text-amber-400 hover:text-amber-300 transition-colors">✦ Custom &amp; Enterprise</Link></li>
-                <li><Link to="/whitepaper" className="hover:text-white transition-colors">📄 Whitepaper</Link></li>
               </ul>
             </div>
             <div>
@@ -1017,7 +445,6 @@ export default function LandingPage() {
               <ul className="space-y-2 text-sm text-slate-400">
                 <li><Link to="/legal" className="hover:text-white transition-colors">Terms of Use</Link></li>
                 <li><Link to="/legal#privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-                <li><Link to="/legal#affiliate" className="hover:text-white transition-colors">Affiliate Disclosure</Link></li>
                 <li><Link to="/legal#ai" className="hover:text-white transition-colors">AI Disclosure</Link></li>
                 <li><Link to="/legal#payments" className="hover:text-white transition-colors">Payments &amp; Crypto</Link></li>
               </ul>
@@ -1026,7 +453,7 @@ export default function LandingPage() {
 
           {/* Bottom bar */}
           <div className="border-t border-white/[0.06] pt-6 text-center text-xs text-slate-600">
-            © 2026 SalesCloserPro · Apache-2.0 License
+            © 2026 LLMadvisor ai LLC · Apache-2.0 License
           </div>
 
         </div>

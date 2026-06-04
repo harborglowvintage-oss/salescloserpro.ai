@@ -426,7 +426,7 @@ Use [Cloudflare DNS](https://cloudflare.com/dns) for free DNS management. Point 
 
 | | Option | Cost | Link |
 |---|---|---|---|
-| ⭐ | **Zoho Mail** (recommended) | ~$2/mo | [go.zoho.com/x7Vq](https://go.zoho.com/x7Vq) |
+| ⭐ | **Zoho Mail** (recommended) | ~$2/mo | [zoho.com/mail](https://www.zoho.com/mail/) |
 | 📧 | Google Workspace | ~$6–12/mo | [workspace.google.com](https://workspace.google.com) |
 
 ### 5️⃣ Payments (optional)
@@ -518,17 +518,13 @@ This section documents the exact signals Google has indexed and is actively rewa
 | **`og:image`** | `https://salescloserpro.ai/og-cover-v2.png` | `index.html` | This image is actively cached by Google, social platforms, and chat previews |
 | **JSON-LD `SoftwareApplication`** | Type: `SoftwareApplication`, Category: `BusinessApplication / CRM Software`, Price: `0` | `index.html` | Structured data drives rich result eligibility — don't rename fields |
 | **`meta keywords`** | `free CRM, sales quoting tool, proposal builder, pipeline management...` | `index.html` | Low direct impact but part of the indexed document fingerprint |
-| **`impact-site-verification`** | `5392dd5a-0383-498b-ba31-de7c16d0aa63` | `index.html` line 4 | Impact.com tracking verification — removing breaks affiliate attribution |
 
 #### ✅ Safe to Change Below the Fold
 
 These elements are in the footer or below the visible viewport. Google discounts footer content for primary ranking signals. Changes here carry low SEO risk:
 
-- Affiliate partner section (logos, category cards, header text)
 - Footer copyright text and timestamp
 - Social links and "Built by" attribution
-- `Layout.jsx` sidebar affiliate pills
-- `EmailGate.jsx` affiliate section
 
 #### ⚠️ What Triggers a Google Re-Evaluation
 
@@ -538,13 +534,6 @@ These elements are in the footer or below the visible viewport. Google discounts
 - Replacing the JSON-LD schema `@type` or removing fields
 - Changing `og:image` to a new file (social cache takes 7–14 days to refresh)
 - Deploying to a new domain without a 301 redirect chain
-
-#### 📋 Affiliate Section — Safe Edit Protocol
-
-The affiliate section (footer + EmailGate) uses `rel="sponsored"` on all CJ links, which correctly signals to Google that these links are paid placements and should not pass PageRank. CJ pixel trackers are standard 1×1 `<img>` tags. **All edits to the affiliate section are SEO-neutral** as long as:
-1. `rel="sponsored"` remains on every affiliate `<a>` tag
-2. No new external JavaScript is introduced
-3. Logo `<img>` tags use the existing `/logos/*.png` files already indexed by Google
 
 ---
 
@@ -875,9 +864,9 @@ limitations under the License.
 
 ## 🏛️ Trademark & Attribution
 
-**highsignal™** is a registered trademark of llmadvisor.ai.
+**SalesCloserPro** is a project of **LLMadvisor ai LLC**. The "SalesCloserPro" name and logo are the property of LLMadvisor ai LLC.
 
-While this software is **open-source under Apache-2.0**, the **highsignal™** name and branding are protected.
+While this software is **open-source under Apache-2.0**, the **SalesCloserPro** name and logo branding are reserved.
 
 ### For Contributors:
 - ✅ You may contribute code to this project
@@ -888,12 +877,11 @@ While this software is **open-source under Apache-2.0**, the **highsignal™** n
 If you fork this project, you **must**:
 - ✅ Maintain attribution to the original SalesCloserPro project
 - ✅ Keep the Apache 2.0 license intact
-- ❌ **Remove all highsignal™ branding** (name, logo, trademarks)
-- ❌ **Rebrand under a different name**
+- ❌ **Remove the SalesCloserPro name and logo branding** and rebrand under a different name
 
 **Example fork attribution:**
 ```
-Based on SalesCloserPro by highsignal™
+Based on SalesCloserPro by LLMadvisor ai LLC
 Original: https://github.com/harborglowvintage-oss/salescloserpro.ai
 Licensed under Apache-2.0
 ```
@@ -912,14 +900,13 @@ See [NOTICE](NOTICE) for full attribution requirements.
 
 <p align="center">
   <strong>🚀 salescloserpro — Close More. Stress Less. 💪</strong><br/>
-  <em>⚡ Powered by <strong>highsignal™</strong> / <a href="https://llmadvisor.ai">llmadvisor.ai</a></em>
+  <em>⚡ A project of <a href="https://llmadvisor.ai">LLMadvisor ai LLC</a></em>
 </p>
 
 <p align="center">
   <a href="https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai">🤖 salescloserpro.ai GPT</a> ·
   <a href="https://salescloserpro.ai">🌐 salescloserpro.ai</a> ·
-  <a href="https://llmadvisor.ai">⚡ llmadvisor.ai</a> ·
-  <a href="https://buymeacoffee.com/llmadvisor.ai">☕ Buy Me a Coffee</a>
+  <a href="https://llmadvisor.ai">⚡ llmadvisor.ai</a>
 </p>
 
 <p align="center">

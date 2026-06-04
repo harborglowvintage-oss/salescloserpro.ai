@@ -22,7 +22,7 @@ This repo contains **only the landing page** and its assets. The full applicatio
 
 | Route | File | Purpose |
 |---|---|---|
-| `/` | `src/components/landing/LandingPage.jsx` | Main marketing page · hero, features, partner cards |
+| `/` | `src/components/landing/LandingPage.jsx` | Main marketing page · hero, features |
 | `/about` | `src/components/landing/AboutPage.jsx` | About the project |
 | `/legal` | `src/components/landing/LegalPage.jsx` | Terms & privacy |
 
@@ -72,24 +72,7 @@ public/
   _redirects            # Netlify SPA routing
   logos/
     salescloserprologo.png
-    gemini.png
-    moonpay.png
-    cloudflare.png
-    namecheap.png
-    google-workspace.png
-    zohologo.jpg
-    buymeacoffee.png
 ```
-
----
-
-## Partner Cards (Landing Page)
-
-Partner cards are rendered via the `<PartnerCard>` component in `LandingPage.jsx`. To add or edit a card:
-
-1. Add the logo to `public/logos/`
-2. Add a `<PartnerCard>` entry with `href`, `logo`, `title`, `body`, `cta` props
-3. Optionally set `border`, `tint`, `ctaColor`, `glowColor` for theming
 
 ---
 
@@ -105,5 +88,4 @@ All meta tags, Open Graph, Twitter Card, and JSON-LD structured data are in `ind
 
 ## License
 
-Apache 2.0 — © 2026 Brent Girolimon / [llmadvisor.ai](https://llmadvisor.ai)  
-Powered by highsignal™
+Apache 2.0 — © 2026 LLMadvisor ai LLC · [llmadvisor.ai](https://llmadvisor.ai)

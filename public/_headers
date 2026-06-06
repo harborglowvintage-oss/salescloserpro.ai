@@ -25,7 +25,17 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /og-cover.png
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-/favicon.png
+/og-cover-v2.png
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /favicon.svg
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/favicon-32.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/apple-touch-icon.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/icon-192.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/icon-512.png
+  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
+/manifest.webmanifest
+  Cache-Control: public, max-age=86400

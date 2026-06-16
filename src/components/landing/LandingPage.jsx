@@ -192,7 +192,7 @@ export default function LandingPage() {
               {[
                 { t: 'Free forever', d: 'No hidden fees, no premium tiers, no credit card.' },
                 { t: 'Your data stays yours', d: 'Everything lives on your machine — nothing is tracked or uploaded.' },
-                { t: 'Runs anywhere', d: 'Browser, Windows, macOS, or Linux desktop app.' },
+                { t: 'Runs anywhere', d: 'Works in any modern browser — Windows, macOS, Linux, or Chromebook.' },
                 { t: 'Open source', d: 'Apache-2.0 licensed — inspect it, fork it, ship it.' }
               ].map(({ t, d }) => (
                 <div key={t} className="flex items-start gap-3 mb-5">

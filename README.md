@@ -7,8 +7,8 @@
 <p align="center"><strong>Version 1.0.1 | Updated 2026-05-30</strong></p>
 
 <p align="center">
-  <strong>Free, open-source sales quoting, CRM, pipeline, purchase orders & invoicing — browser + desktop.</strong><br/>
-  <em>Built with ⚛️ React · ⚡ Vite · 🎨 Tailwind · 🐻 Zustand · 🖥️ Electron — zero backend, zero sign-up, works offline.</em>
+  <strong>Free, open-source sales quoting, CRM, pipeline, purchase orders & invoicing — browser-based.</strong><br/>
+  <em>Built with ⚛️ React · ⚡ Vite · 🎨 Tailwind · 🐻 Zustand — zero backend, zero sign-up, works offline.</em>
 </p>
 
 <p align="center">
@@ -16,7 +16,6 @@
   <a href="https://github.com/harborglowvintage-oss/salescloserpro.ai"><img src="https://img.shields.io/github/stars/harborglowvintage-oss/salescloserpro.ai?style=social" alt="GitHub Stars" /></a>
   <a href="https://salescloserpro.ai"><img src="https://img.shields.io/badge/Web-salescloserpro.ai-green" alt="Website" /></a>
   <a href="https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai"><img src="https://img.shields.io/badge/GPT-salescloserpro.ai-blueviolet" alt="ChatGPT" /></a>
-  <a href="#️-desktop-app--electron"><img src="https://img.shields.io/badge/Desktop-Windows%20%7C%20macOS%20%7C%20Linux-orange" alt="Desktop" /></a>
 </p>
 
 ### 📸 Screenshots
@@ -64,7 +63,6 @@
 - [🤖 salescloserpro.ai — GPT Assistant](#-salescloserpro-ai--gpt-assistant)
 - [⚡ Quick Start — Install in 60 Seconds](#-quick-start--install-in-60-seconds)
 - [🗄️ Local Zip Backup (Public Repo Safe)](#️-local-zip-backup-public-repo-safe)
-- [🖥️ Desktop App — Electron](#️-desktop-app--electron)
 - [✨ Features at a Glance](#-features-at-a-glance)
 - [📸 Feature Deep Dive](#-feature-deep-dive)
   - [📝 Quote Builder](#-quote-builder)
@@ -106,7 +104,6 @@ The AI assistant can help you with:
 - 🔍 Finding features and navigating the app
 - 📊 Understanding your pipeline, analytics, and margins
 - 🚀 Deploying, configuring, and packaging your own instance
-- 🖥️ Building the Electron desktop app for your OS
 
 ---
 
@@ -161,71 +158,6 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 
 ---
 
-## 🖥️ Desktop App — Electron
-
-SalesCloserPro ships as a **native desktop app** for Windows, macOS, and Linux via Electron. The app wraps the same web UI in a native window with a full application menu, OS-level window management, and all the same features — no browser required.
-
-### 🏗️ Architecture
-
-| File | Purpose |
-|---|---|
-| `electron/main.cjs` | Main process — creates `BrowserWindow` (1280 × 860, min 900 × 600), loads Vite dev server in dev mode or `dist/index.html` in production. Full application menu (File, Edit, View, Window, Help). External links open in default browser. |
-| `electron/preload.cjs` | Preload script — exposes `window.electronAPI.platform` and `window.electronAPI.isElectron` via `contextBridge` for safe IPC. |
-| `electron-builder.json` | Build configuration — multi-platform output (NSIS + portable for Windows, DMG for macOS, AppImage + deb for Linux). App ID: `com.llmadvisor.salescloserpro`. |
-| `build/icons/` | App icons — `icon.png` (1024 × 1024), `icon.ico` (256 × 256), `icon.icns` (512 × 512). |
-
-### 🚀 Quick Start (Desktop)
-
-```bash
-# 🖥️ Run in Electron dev mode (builds Vite first, then opens Electron)
-npm run electron:dev
-```
-
-### 📦 Build Installers
-
-```bash
-# 🪟 Windows — NSIS installer + portable .exe
-npm run electron:build:win
-
-# 🍎 macOS — DMG (x64 + arm64 universal)
-npm run electron:build:mac
-
-# 🐧 Linux — AppImage + .deb package
-npm run electron:build:linux
-
-# 🌐 All platforms at once
-npm run electron:build
-```
-
-All built artifacts are output to the `release/` directory.
-
-### 🪟 Windows Output
-
-| File | Description |
-|---|---|
-| `SalesCloserPro-1.0.1-Setup-x64.exe` | NSIS installer (user choice install directory) |
-| `SalesCloserPro-1.0.1-x64.exe` | Portable — no install needed |
-
-### 🍎 macOS Output
-
-| File | Description |
-|---|---|
-| `SalesCloserPro-1.0.1-x64.dmg` | Intel Macs |
-| `SalesCloserPro-1.0.1-arm64.dmg` | Apple Silicon (M1/M2/M3/M4) |
-
-> ⚠️ **macOS Unsigned App Warning:** Without an Apple Developer account ($99/year), macOS builds are unsigned. Users will see a "Damaged" or "Unidentified Developer" warning. To bypass: **right-click → Open** the app, or run `xattr -cr /Applications/SalesCloserPro.app` in Terminal. Windows & Linux builds work out of the box.
-
-### 🐧 Linux Output
-
-| File | Description |
-|---|---|
-| `SalesCloserPro-1.0.1-x64.AppImage` | Run anywhere — no install needed |
-| `SalesCloserPro-1.0.1-x64.deb` | Debian/Ubuntu package — `sudo dpkg -i *.deb` |
-
-> 💡 **Note:** The `vite.config.js` uses `base: './'` so the app loads correctly from the `file://` protocol inside Electron.
-
----
-
 ## ✨ Features at a Glance
 
 | | Feature | Description |
@@ -241,11 +173,10 @@ All built artifacts are output to the `release/` directory.
 | 💳 | **MoonPay Payments** | Accept credit card / bank / Apple Pay → crypto payments on any invoice |
 | 📄 | **PDF Export** | Color-neutral branded proposals & POs — charcoal palette, 50% deposit terms |
 | 💾 | **Backup & Restore** | Full JSON backup with auto-schedule, File System Access API, Firefox-safe |
-| 🚀 | **Go Live Wizard** | 6-step guide: GitHub → Cloudflare → Domain → Email → Payments → Desktop App |
+| 🚀 | **Go Live Wizard** | 5-step guide: GitHub → Cloudflare → Domain → Email → Payments |
 | 🏢 | **Company Settings** | Logo upload, company info, branding for all PDF exports |
 | ❓ | **Help Center** | 12-section searchable guide with expandable FAQs |
 | 🌙 | **Dark / Light Mode** | System-aware theme toggle, persisted per user, balanced for both modes |
-| 🖥️ | **Desktop App** | Native Electron app for Windows, macOS, and Linux — no browser required |
 | 🔍 | **SEO Ready** | Open Graph, Twitter Cards, JSON-LD structured data out of the box |
 
 ---
@@ -389,14 +320,13 @@ Both the **Quote/Proposal PDF** and the **Purchase Order PDF** share a refined d
 - 🦊 **Firefox-safe** — download uses delayed `revokeObjectURL` for cross-browser compatibility
 
 ### 🚀 Go Live Wizard
-> 🌐 Deploy your own SalesCloserPro instance in 6 easy steps.
+> 🌐 Deploy your own SalesCloserPro instance in 5 easy steps.
 
 1. 🐙 **GitHub** — Fork the repo and push your customizations
 2. ☁️ **Cloudflare Pages** — Free hosting with automatic deployments
 3. 🌍 **Custom Domain** — Connect your own domain name
 4. 📧 **Business Email** — Set up professional email (Zoho / Google)
 5. 💳 **Payments** — Configure MoonPay for invoice payments
-6. 🖥️ **Desktop App** — Build branded .exe, .dmg & .AppImage via GitHub Actions (no Node.js required)
 
 ---
 
@@ -545,7 +475,7 @@ These elements are in the footer or below the visible viewport. Google discounts
 |---|---|---|---|
 | ⚛️ | **React** | 18.3 | UI component library |
 | ⚛️ | **React DOM** | 18.3 | React renderer for the browser |
-| 🧭 | **React Router DOM** | 6.22 | SPA navigation (HashRouter for static hosting & Electron) |
+| 🧭 | **React Router DOM** | 6.22 | SPA navigation (HashRouter for static hosting) |
 | 🐻 | **Zustand** | 4.5 | Lightweight state management + IndexedDB persist middleware |
 | 🗄️ | **Dexie.js** | 4.x | IndexedDB wrapper — scalable local storage for 50,000+ records |
 | 📄 | **jsPDF** | 2.5 | Client-side PDF generation |
@@ -563,8 +493,6 @@ These elements are in the footer or below the visible viewport. Google discounts
 | 🎨 | **Tailwind CSS** | 3.4 | Utility-first CSS framework with dark mode (`class` strategy) |
 | 🔄 | **PostCSS** | 8.4 | CSS processing pipeline |
 | 🌐 | **Autoprefixer** | 10.4 | Automatic vendor prefixes |
-| 🖥️ | **Electron** | 33+ | Native desktop shell (Windows, macOS, Linux) |
-| 📦 | **electron-builder** | 26.8 | Package Electron apps into distributable installers |
 | 📋 | **@types/react** | 18.3 | TypeScript type definitions for React (IDE support) |
 | 📋 | **@types/react-dom** | 18.3 | TypeScript type definitions for React DOM (IDE support) |
 
@@ -574,9 +502,8 @@ These elements are in the footer or below the visible viewport. Google discounts
 - 🔒 **No accounts** — zero authentication, zero sign-up friction
 - 📱 **Responsive** — works on desktop, tablet, and mobile
 - 🌙 **Dark mode** — system-aware with manual toggle, preference persisted
-- 🗂️ **Hash routing** — works perfectly on static hosts and within Electron `file://`
+- 🗂️ **Hash routing** — works perfectly on static hosts
 - 📦 **Zero cloud dependency** — PDFs generated client-side, no external APIs for core features
-- 🖥️ **Electron-ready** — `base: './'` in Vite config for file:// protocol compatibility
 - 🔗 **Integrated data** — quotes, pipeline, and POs are cross-linked and auto-synced
 - 🔍 **SEO-ready** — Open Graph, Twitter Cards, and JSON-LD baked into index.html
 
@@ -587,25 +514,15 @@ These elements are in the footer or below the visible viewport. Google discounts
 ```
 📦 salescloserpro/
 ├── 📄 index.html                → App shell — SEO meta, OG tags, JSON-LD, dark-mode pre-flash
-├── 📄 package.json              → Dependencies, scripts, Electron config, author info
+├── 📄 package.json              → Dependencies, scripts, author info
 ├── 📄 vite.config.js            → Vite configuration + React plugin + base: './'
 ├── 📄 tailwind.config.js        → Tailwind CSS config (dark mode: 'class')
 ├── 📄 postcss.config.js         → PostCSS pipeline (Tailwind + Autoprefixer)
-├── 📄 electron-builder.json     → Electron builder config — Win/Mac/Linux targets
-├── 📂 electron/
-│   ├── 📄 main.cjs              → 🖥️ Electron main process — BrowserWindow, menu, lifecycle
-│   └── 📄 preload.cjs           → 🔐 Preload script — contextBridge with platform info
-├── 📂 build/
-│   └── 📂 icons/
-│       ├── 🖼️ icon.png          → App icon 1024 × 1024 (Linux, generic)
-│       ├── 🖼️ icon.ico          → App icon 256 × 256 (Windows)
-│       └── 🖼️ icon.icns         → App icon 512 × 512 (macOS)
 ├── 📂 public/
 │   ├── 🖼️ favicon.svg           → Browser tab icon
 │   ├── 🖼️ salescloserpro-logo.svg → Main app logo (sidebar, PDFs)
 │   ├── 🖼️ gptlogo.png           → GPT assistant logo (sidebar + dashboard)
 │   └── 📄 _redirects            → Cloudflare Pages SPA redirect rules
-├── 📂 release/                   → 🚀 Built desktop installers (git-ignored)
 └── 📂 src/
     ├── 📄 main.jsx              → ⚡ Entry point — renders <App />
     ├── 📄 App.jsx               → 🧭 Router + startup sync (syncAllQuotesToPipeline)
@@ -654,18 +571,6 @@ These elements are in the footer or below the visible viewport. Google discounts
 | 📦 `npm run build` | Create an optimized production build in `dist/` |
 | 👀 `npm run preview` | Preview the production build locally |
 
-### 🖥️ Electron Desktop
-
-| Command | Description |
-|---|---|
-| 🖥️ `npm run electron:dev` | Build Vite + launch Electron in development mode |
-| 📦 `npm run electron:build` | Build Vite + package all platforms (Win + Mac + Linux) |
-| 🪟 `npm run electron:build:win` | Build Vite + package Windows (NSIS installer + portable) |
-| 🍎 `npm run electron:build:mac` | Build Vite + package macOS (DMG for x64 + arm64) |
-| 🐧 `npm run electron:build:linux` | Build Vite + package Linux (AppImage + .deb) |
-
-> 💡 All `electron:build:*` commands run `vite build` first, then invoke `electron-builder` with the config in `electron-builder.json`. Output goes to the `release/` directory.
-
 ---
 
 ## 🌙 Dark Mode
@@ -713,7 +618,6 @@ SalesCloserPro stores **all data locally** in your browser's **IndexedDB** via [
 | 🌐 Chrome / Edge | **Up to 80% of disk** | ~5 MB |
 | 🦊 Firefox | **Up to 2 GB+** | ~5 MB |
 | 🧭 Safari | **Up to 1 GB** | ~5 MB |
-| 🖥️ Electron | **Up to 80% of disk** | ~5 MB |
 
 > 💡 With IndexedDB, you can store **tens of thousands of quotes, clients, and attachments** without hitting limits. The old 5 MB cap is gone — file attachments, audit history, and large datasets all fit comfortably.
 
@@ -743,7 +647,6 @@ The integrated data sync ensures consistency across modules:
 | ♿ | **Accessibility** | Screen reader improvements, keyboard navigation |
 | 🧪 | **Tests** | Unit tests, integration tests, E2E tests |
 | 📖 | **Documentation** | Tutorials, video guides, API docs |
-| 🖥️ | **Electron features** | Tray icon, auto-update, native file dialogs |
 
 ### 📋 Contribution Guidelines
 
@@ -762,19 +665,13 @@ The integrated data sync ensures consistency across modules:
 <details>
 <summary>🔒 Is my data secure?</summary>
 
-✅ **Yes!** All data stays in your browser's IndexedDB (or Electron's local storage). Nothing is sent to any server. SalesCloserPro is 100% offline-first with zero cloud dependency for core features. Only MoonPay payments (if enabled) communicate with external services.
+✅ **Yes!** All data stays in your browser's IndexedDB. Nothing is sent to any server. SalesCloserPro is 100% offline-first with zero cloud dependency for core features. Only MoonPay payments (if enabled) communicate with external services.
 </details>
 
 <details>
 <summary>📱 Does it work on mobile?</summary>
 
 ✅ **Yes!** SalesCloserPro is fully responsive and works on phones, tablets, and desktops. The UI adapts gracefully to smaller screens with a collapsible sidebar and mobile-optimized layouts.
-</details>
-
-<details>
-<summary>🖥️ Is there a desktop app?</summary>
-
-✅ **Yes!** SalesCloserPro packages as a native desktop app via Electron. Build installers for Windows (NSIS + portable), macOS (DMG for Intel + Apple Silicon), and Linux (AppImage + .deb). See the [Desktop App](#️-desktop-app--electron) section for build commands.
 </details>
 
 <details>
@@ -823,7 +720,7 @@ The tax database covers all 50 US states + DC with general state-level rates, in
 <details>
 <summary>💾 What if I clear my browser data?</summary>
 
-⚠️ Clearing browser/site data will erase all SalesCloserPro data (stored in IndexedDB). Use the **Backup & Restore** feature to regularly export your data. Enable auto-backup for peace of mind. In the desktop Electron app, data persists in the Chromium profile directory.
+⚠️ Clearing browser/site data will erase all SalesCloserPro data (stored in IndexedDB). Use the **Backup & Restore** feature to regularly export your data. Enable auto-backup for peace of mind.
 </details>
 
 <details>

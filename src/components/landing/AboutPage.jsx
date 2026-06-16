@@ -107,19 +107,11 @@ export default function AboutPage() {
 
         {/* ── getting started ── */}
         <Section icon={Download} color="text-emerald-400 bg-emerald-500/10" title="Getting started (2 minutes)">
-          <p><strong className="text-white">Option A — Use in your browser</strong></p>
           <ol className="list-decimal ml-5 space-y-1">
             <li>Visit <Link to="/dashboard" className="text-blue-400 hover:underline">salescloserpro.ai → Launch App</Link></li>
             <li>You'll land on the Dashboard. That's it — you're ready to go.</li>
           </ol>
-          <p><strong className="text-white">Option B — Download the desktop app</strong></p>
-          <ol className="list-decimal ml-5 space-y-1">
-            <li>Go to the <a href="https://github.com/harborglowvintage-oss/salescloserpro.ai/releases" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">GitHub releases page</a></li>
-            <li>Download the installer for your OS (Windows, macOS, or Linux)</li>
-            <li>Run the installer — no admin rights needed on most systems</li>
-            <li>Open SalesCloserPro from your applications</li>
-          </ol>
-          <p className="text-slate-500">Both the web and desktop versions are identical. Your data is stored locally using your browser's built-in database (IndexedDB).</p>
+          <p className="text-slate-500">No install or sign-up required. Your data is stored locally using your browser's built-in database (IndexedDB).</p>
         </Section>
 
         {/* ── company settings ── */}

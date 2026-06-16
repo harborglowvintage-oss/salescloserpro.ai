@@ -3,8 +3,8 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig(() => ({
   plugins: [react()],
-  // Relative paths for Electron (file://), absolute for Cloudflare Pages / web
-  base: process.env.VITE_ELECTRON === 'true' ? './' : '/',
+  // Absolute paths for Cloudflare Pages / web
+  base: '/',
   build: {
     chunkSizeWarningLimit: 600,
     rollupOptions: {

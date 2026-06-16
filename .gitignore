@@ -27,9 +27,6 @@ npm-debug.log*
 # Vite
 vite.config.js.timestamp-*
 
-# Electron release builds
-release/
-
 # Scratch files
 Untitled-1.ini
 

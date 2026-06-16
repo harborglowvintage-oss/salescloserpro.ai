@@ -48,7 +48,7 @@ Licensed under Apache-2.0
 
 - Search existing issues first
 - Provide clear reproduction steps
-- Include your OS, Node version, and Electron version
+- Include your OS, browser, and Node version
 - Screenshots help!
 
 ## 📧 Questions?

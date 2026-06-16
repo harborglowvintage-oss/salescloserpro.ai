@@ -220,9 +220,8 @@ export default function LegalPage() {
             <Section id="data" icon={Shield} title="Data Storage &amp; Security" color="text-cyan-400">
               <p>
                 All application data — quotes, clients, pipeline, settings, company logo, and purchase orders — is
-                stored exclusively in your browser's <Hi>localStorage</Hi> (web app) or in the Electron app's local
-                data directory (desktop). No data is transmitted to any server operated by SalesCloserPro or
-                llmadvisor.ai.
+                stored exclusively in your browser's <Hi>localStorage</Hi>. No data is transmitted to any server
+                operated by SalesCloserPro or llmadvisor.ai.
               </p>
               <H>Data Portability</H>
               <p>
@@ -241,12 +240,6 @@ export default function LegalPage() {
                 Your MoonPay <Hi>publishable API key</Hi> (pk_live_ / pk_test_) is stored in localStorage. Publishable
                 keys are designed for client-side use and cannot access funds. Never enter your MoonPay secret key
                 in any frontend application. Rotate keys immediately if you suspect compromise.
-              </p>
-              <H>Electron Desktop App</H>
-              <p>
-                The desktop build uses Electron with <Hi>contextIsolation: true</Hi> and <Hi>nodeIntegration: false</Hi>.
-                The preload script exposes a minimal, scoped API surface. Auto-update is not enabled; updates are distributed
-                manually through GitHub Releases.
               </p>
             </Section>
 
@@ -383,7 +376,7 @@ export default function LegalPage() {
               </ul>
               <H>Data Transfers</H>
               <p>
-                Storing client data in an Electron app on your device does not constitute a cross-border data transfer.
+                Storing client data locally in your browser on your device does not constitute a cross-border data transfer.
                 If you use cloud backup (e.g., copying the exported JSON to cloud storage), ensure that the cloud provider
                 offers GDPR-adequate protections (standard contractual clauses or adequacy decision).
               </p>

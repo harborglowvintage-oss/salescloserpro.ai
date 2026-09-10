@@ -4,14 +4,12 @@
  * Licensed under Apache-2.0
  */
 
-import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import {
   FileText,
   Users,
   TrendingUp,
   ShoppingCart,
-  Download,
   Github,
   CheckCircle2,
   Lock,
@@ -22,31 +20,6 @@ import {
 } from 'lucide-react'
 
 export default function LandingPage() {
-  const [ghStats, setGhStats] = useState({ downloads: null, stars: null })
-
-  useEffect(() => {
-    // Real GitHub release download counts — public API, no auth required
-    fetch('https://api.github.com/repos/harborglowvintage-oss/salescloserpro.ai/releases')
-      .then(r => r.ok ? r.json() : [])
-      .then(releases => {
-        const total = releases.reduce((sum, rel) =>
-          sum + rel.assets.reduce((s, a) => s + (a.download_count || 0), 0), 0)
-        setGhStats(prev => ({ ...prev, downloads: total }))
-      })
-      .catch(() => {})
-
-    // GitHub repo stars
-    fetch('https://api.github.com/repos/harborglowvintage-oss/salescloserpro.ai')
-      .then(r => r.ok ? r.json() : {})
-      .then(data => {
-        if (data.stargazers_count != null)
-          setGhStats(prev => ({ ...prev, stars: data.stargazers_count }))
-      })
-      .catch(() => {})
-  }, [])
-
-  const fmtNum = n => n == null ? '—' : n >= 1000 ? `${(n / 1000).toFixed(1)}k` : String(n)
-
   return (
     <div className="min-h-screen bg-slate-950 text-slate-200 antialiased pt-[env(safe-area-inset-top)] pb-[env(safe-area-inset-bottom)]">
 
@@ -125,13 +98,13 @@ export default function LandingPage() {
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-white leading-[1.1] mb-6">
             The Free CRM. No gimmicks.{' '}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-300">
-              Send a quote in minutes — get paid instantly ⚡
+              Send a professional quote or PO in minutes.
             </span>
           </h1>
 
           <p className="text-lg sm:text-xl text-slate-400 leading-relaxed max-w-2xl mx-auto mb-10">
             Create professional proposals, track every deal in your pipeline, manage clients,
-            and export polished PDFs — all from your browser or desktop. Zero cost, zero sign-up.
+            and export polished PDFs — all from your browser. Zero cost, zero sign-up.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
@@ -147,7 +120,7 @@ export default function LandingPage() {
               rel="noopener noreferrer"
               className="w-full sm:w-auto px-7 py-3.5 border border-slate-700 hover:border-slate-500 text-white rounded-lg font-semibold text-base transition-all flex items-center justify-center gap-2"
             >
-              <Download className="w-5 h-5" /> Download Desktop
+              <Github className="w-5 h-5" /> View on GitHub
             </a>
           </div>
         </div>
@@ -164,9 +137,9 @@ export default function LandingPage() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {[
             { icon: FileText, color: 'text-blue-400 bg-blue-500/10', glow: 'rgba(59,130,246,0.2)', title: 'Quote Builder', desc: 'Line items, taxes, custom branding — export a polished PDF in one click.' },
-            { icon: Users, color: 'text-emerald-400 bg-emerald-500/10', glow: 'rgba(52,211,153,0.2)', title: 'Client Manager', desc: 'Contact details, quote history, and deal notes all in one clean view.' },
-            { icon: TrendingUp, color: 'text-violet-400 bg-violet-500/10', glow: 'rgba(167,139,250,0.2)', title: 'Pipeline Board', desc: 'Drag-and-drop kanban — move deals from lead to won at a glance.' },
-            { icon: ShoppingCart, color: 'text-amber-400 bg-amber-500/10', glow: 'rgba(251,191,36,0.2)', title: 'Purchase Orders', desc: 'Generate POs with vendor details and tracking numbers instantly.' }
+            { icon: Users, color: 'text-emerald-400 bg-emerald-500/10', glow: 'rgba(52,211,153,0.2)', title: 'Client Manager', desc: 'Contact details, addresses, and private notes for every client in one clean view.' },
+            { icon: TrendingUp, color: 'text-violet-400 bg-violet-500/10', glow: 'rgba(167,139,250,0.2)', title: 'Pipeline Board', desc: 'Kanban board — every saved quote becomes a deal you move from lead to won.' },
+            { icon: ShoppingCart, color: 'text-amber-400 bg-amber-500/10', glow: 'rgba(251,191,36,0.2)', title: 'Purchase Orders', desc: 'Issue vendor POs with ship-to details and track margin against each quote line.' }
           ].map(({ icon: Icon, color, glow, title, desc }) => (
             <div key={title}
               className="group rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 transition-all duration-300 cursor-default"
@@ -242,11 +215,8 @@ export default function LandingPage() {
               <p className="text-slate-400 leading-relaxed text-[15px] mb-6">
                 If you're running a <strong className="text-white">contracting business</strong>, managing a <strong className="text-white">sales operation</strong>, or closing <strong className="text-white">high-ticket deals</strong> — you need a tool built for operators who take their numbers seriously. Not a toy. Not a subscription trap. Something that runs lean, looks executive, and keeps your pipeline moving.
               </p>
-              <p className="text-slate-400 leading-relaxed text-[15px] mb-6">
-                And here's the edge most of your competition doesn't have yet: <strong className="text-white">integrated crypto and card payments via MoonPay Commerce.</strong> Get paid the moment a client accepts your quote — no bank holds, no 5-day ACH waits, no chargebacks erasing your margin. Have a client in Canada, Europe, or Southeast Asia? They pay in their preferred method. You receive it. Cashflow solved.
-              </p>
               <div className="flex flex-wrap gap-3">
-                {['$0/month forever', 'No license fees', 'No subscriptions', 'No gatekeeping', 'Crypto payments built in', 'International-ready'].map(tag => (
+                {['$0/month forever', 'No license fees', 'No subscriptions', 'No gatekeeping', 'No account required', 'Your data stays on your device'].map(tag => (
                   <span key={tag} className="px-3 py-1.5 rounded-full text-xs font-semibold text-emerald-300" style={{ background: 'rgba(52,211,153,0.08)', border: '1px solid rgba(52,211,153,0.2)' }}>
                     ✓ {tag}
                   </span>
@@ -261,7 +231,7 @@ export default function LandingPage() {
                 "Turn your side hustle into a professional business — overnight."
               </p>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Send a quote that looks like it came from a $10M agency. Accept card, Apple Pay, or crypto from clients in 160+ countries. Keep 100% of the profit. Pay nothing.
+                Send a quote that looks like it came from a $10M agency. Track every deal from lead to closed. Keep 100% of the profit. Pay nothing.
               </p>
               <div className="mt-5 w-full">
                 <Link to="/dashboard" className="block w-full text-center px-5 py-3 rounded-xl text-sm font-bold text-white transition-all" style={{ background: 'linear-gradient(135deg, #7c3aed, #3b82f6)', boxShadow: '0 0 20px rgba(124,58,237,0.3)' }}>
@@ -398,7 +368,7 @@ export default function LandingPage() {
             <h3 className="text-xl font-bold text-white mb-1">New here? Read the guide.</h3>
             <p className="text-slate-400 text-sm">
               Step-by-step walkthrough for first-time users — from creating your first quote to
-              setting up your company branding and exporting invoices.
+              setting up your company branding and exporting PDFs.
             </p>
           </div>
           <Link to="/about" className="px-5 py-2.5 bg-white/[0.06] hover:bg-white/10 border border-white/10 text-white rounded-lg font-semibold text-sm transition-colors whitespace-nowrap">
@@ -446,7 +416,6 @@ export default function LandingPage() {
                 <li><Link to="/legal" className="hover:text-white transition-colors">Terms of Use</Link></li>
                 <li><Link to="/legal#privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
                 <li><Link to="/legal#ai" className="hover:text-white transition-colors">AI Disclosure</Link></li>
-                <li><Link to="/legal#payments" className="hover:text-white transition-colors">Payments &amp; Crypto</Link></li>
               </ul>
             </div>
           </div>

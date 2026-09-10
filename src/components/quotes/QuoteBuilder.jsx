@@ -3,12 +3,11 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {
   Package, Wrench, Truck, Plus, Trash2, ChevronDown,
   Save, Printer, ArrowLeft, CheckCircle, FileText,
-  DollarSign, Info, User, Building2, Phone, Mail, MapPin, CreditCard
+  DollarSign, Info, User, Building2, Phone, Mail, MapPin
 } from 'lucide-react'
 import useStore from '../../store'
 import { calculateTax, stateTaxData, stateList } from '../../data/taxDatabase'
 import { generatePDF } from '../../utils/pdfExport'
-import PayInvoiceModal from './PayInvoiceModal'
 import FileUploader from './FileUploader'
 import clsx from 'clsx'
 
@@ -162,7 +161,6 @@ export default function QuoteBuilder() {
   const updateQuote = useStore((s) => s.updateQuote)
   const syncQuoteToPipeline = useStore((s) => s.syncQuoteToPipeline)
   const company     = useStore((s) => s.company)
-  const paymentSettings = useStore((s) => s.paymentSettings)
 
   const existing = id ? quotes.find((q) => q.id === id) : null
 
@@ -175,7 +173,6 @@ export default function QuoteBuilder() {
   const [attachments, setAttachments] = useState(existing?.attachments || [])
   const [lines, setLines]             = useState(existing?.lines || [newLine()])
   const [saved, setSaved]             = useState(false)
-  const [payModalOpen, setPayModalOpen] = useState(false)
 
   const computed = lines.map((line) => {
     const subtotal = line.qty * line.price
@@ -214,7 +211,7 @@ export default function QuoteBuilder() {
     const quote = existing
       ? { ...existing, clientName, clientEmail, clientPhone, state, status, notes, attachments, lines, total: grandTotal }
       : { quoteNumber: 'Q-DRAFT', clientName, clientEmail, clientPhone, state, status, notes, attachments, lines, total: grandTotal }
-    generatePDF({ quote, company, lines: computed, subtotal: subtotalAll, tax: taxAll, grandTotal, paymentSettings })
+    generatePDF({ quote, company, lines: computed, subtotal: subtotalAll, tax: taxAll, grandTotal })
   }
 
   const stateInfo = stateTaxData[state]
@@ -259,12 +256,6 @@ export default function QuoteBuilder() {
               className="flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-white/20 text-white hover:bg-white/30 transition-all active:scale-95 select-none">
               <Printer className="w-4 h-4" /> PDF
             </button>
-            {paymentSettings.enabled && (
-              <button onClick={() => setPayModalOpen(true)}
-                className="flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-green-500 text-white hover:bg-green-600 transition-all active:scale-95 select-none shadow-sm">
-                <CreditCard className="w-4 h-4" /> Pay
-              </button>
-            )}
           </div>
         </div>
       </div>
@@ -404,25 +395,11 @@ export default function QuoteBuilder() {
           className="flex items-center gap-2.5 px-10 py-4 rounded-2xl font-bold text-base bg-white border-2 border-gray-200 hover:border-blue-400 text-gray-700 hover:text-blue-700 transition-all shadow-sm hover:shadow-md active:scale-[0.97] select-none">
           <Printer className="w-5 h-5" /> Export PDF
         </button>
-        {paymentSettings.enabled && (
-          <button onClick={() => setPayModalOpen(true)}
-            className="flex items-center gap-2.5 px-10 py-4 rounded-2xl font-bold text-base bg-green-600 hover:bg-green-700 text-white transition-all shadow-md hover:shadow-lg active:scale-[0.97] select-none">
-            <CreditCard className="w-5 h-5" /> Pay Invoice
-          </button>
-        )}
         <button onClick={() => navigate('/quotes')}
           className="flex items-center gap-2 px-6 py-4 rounded-2xl font-medium text-sm text-gray-400 hover:text-gray-600 transition-colors ml-auto select-none">
           Cancel
         </button>
       </div>
-
-      {/* Pay Invoice Modal */}
-      <PayInvoiceModal
-        open={payModalOpen}
-        onClose={() => setPayModalOpen(false)}
-        quote={existing || { quoteNumber: 'Q-DRAFT', clientName, clientEmail, clientPhone, state, status, notes, attachments, lines }}
-        grandTotal={grandTotal}
-      />
     </div>
   )
 }

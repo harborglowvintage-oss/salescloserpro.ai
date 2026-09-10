@@ -4,7 +4,7 @@
 
 <h1 align="center">salescloserpro.ai — Close More. Stress Less. 💪</h1>
 
-<p align="center"><strong>Version 1.0.1 | Updated 2026-05-30</strong></p>
+<p align="center"><strong>Version 1.1.0 | Updated 2026-09-10</strong></p>
 
 <p align="center">
   <strong>Free, open-source sales quoting, CRM, pipeline, purchase orders & invoicing — browser-based.</strong><br/>
@@ -58,8 +58,21 @@
 
 ---
 
+## 🆕 What's new in 1.1.0 (2026-09-10)
+
+- 🛠️ **Data now actually persists.** The IndexedDB adapter was missing Zustand's `createJSONStorage` wrapper, so every write threw `DataCloneError` and nothing survived a reload. Fixed.
+- 💾 **Backup & Restore fixed** — it was still reading the retired localStorage key (always empty) and restores were ignored on reload. Both now go through IndexedDB.
+- 🔢 **Quote / PO numbers are never reused** after a delete (monotonic counters).
+- 🧹 **MoonPay payments removed** — the integration never launched. A generic pay-by-link + QR code on PDFs is planned instead.
+- 🖥️ **Desktop-app references removed** (web-only since June); the Go Live wizard is now 4 steps.
+- 📖 **Docs rewritten to match the product** — Help Guide, About, Legal, and this README no longer describe change orders, drag-and-drop, or invoicing that were never built.
+- 🌙 Theme applies before first paint again; PDFs show the quote's creation date and full state name; `/whitepaper` now redirects home.
+
+---
+
 ## 📑 Table of Contents
 
+- [🆕 What's new in 1.1.0](#-whats-new-in-110-2026-09-10)
 - [🤖 salescloserpro.ai — GPT Assistant](#-salescloserpro-ai--gpt-assistant)
 - [⚡ Quick Start — Install in 60 Seconds](#-quick-start--install-in-60-seconds)
 - [🗄️ Local Zip Backup (Public Repo Safe)](#️-local-zip-backup-public-repo-safe)
@@ -73,7 +86,6 @@
   - [📦 Purchase Orders & Margin Analytics](#-purchase-orders--margin-analytics)
   - [🚚 Ship-To Address on POs](#-ship-to-address-on-pos)
   - [📄 PDF Export Engine](#-pdf-export-engine)
-  - [💳 Payment Processing](#-payment-processing)
   - [💾 Backup & Restore](#-backup--restore)
   - [🚀 Go Live Wizard](#-go-live-wizard)
 - [🌐 Deploy Your Own (Free)](#-deploy-your-own-free)
@@ -122,7 +134,7 @@ The AI assistant can help you with:
 ```bash
 # 1️⃣  Clone the repo
 git clone https://github.com/harborglowvintage-oss/salescloserpro.ai.git
-cd salescloserpro
+cd salescloserpro.ai
 
 # 2️⃣  Install dependencies
 npm install
@@ -163,20 +175,18 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 | | Feature | Description |
 |---|---|---|
 | 📝 | **Quote Builder** | Big-button UI — add Products, Services, Labor, Freight with one click |
-| 🔄 | **Change Orders** | A-B-C suffix system for revision tracking on any quote |
 | 📎 | **File Attachments** | Drag-and-drop uploader — images and PDFs attached to any quote |
 | 🧮 | **Auto Tax Engine** | All 50 US states + DC — freight, labor & sales tax rules calculated automatically |
-| 👥 | **Client CRM** | Store clients, contacts, addresses, notes — tied to every quote |
+| 👥 | **Client Manager** | Store clients, contacts, addresses, and notes — click-to-email and click-to-call |
 | 📊 | **Sales Pipeline** | Kanban board — Lead → Quoted → Sent → Negotiating → Won / Lost |
 | 🔗 | **Data Integration** | Quotes auto-sync to pipeline; POs link to quotes for margin analysis |
 | 📦 | **Purchase Orders** | Full PO system with ship-to address, margin tracking, analytics, charts |
-| 💳 | **MoonPay Payments** | Accept credit card / bank / Apple Pay → crypto payments on any invoice |
 | 📄 | **PDF Export** | Color-neutral branded proposals & POs — charcoal palette, 50% deposit terms |
 | 💾 | **Backup & Restore** | Full JSON backup with auto-schedule, File System Access API, Firefox-safe |
-| 🚀 | **Go Live Wizard** | 5-step guide: GitHub → Cloudflare → Domain → Email → Payments |
+| 🚀 | **Go Live Wizard** | 4-step guide: GitHub → Cloudflare → Domain → Email |
 | 🏢 | **Company Settings** | Logo upload, company info, branding for all PDF exports |
-| ❓ | **Help Center** | 12-section searchable guide with expandable FAQs |
-| 🌙 | **Dark / Light Mode** | System-aware theme toggle, persisted per user, balanced for both modes |
+| ❓ | **Help Center** | 11-section searchable guide with expandable FAQs |
+| 🌙 | **Dark / Light Mode** | One-click theme toggle (dark by default), persisted locally, balanced for both modes |
 | 🔍 | **SEO Ready** | Open Graph, Twitter Cards, JSON-LD structured data out of the box |
 
 ---
@@ -187,13 +197,12 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 > 🎯 The heart of SalesCloserPro — create professional quotes in minutes, not hours.
 
 - ➕ **One-click line items** — Products, Services, Labor, Freight categories
-- 🔢 **Auto-numbering** — Sequential quote numbers with configurable prefix
-- 🔄 **Change order tracking** — Automatic A, B, C suffixes for revisions
+- 🔢 **Auto-numbering** — Sequential quote numbers (Q-0001, Q-0002 …) that are never reused
 - 🧮 **Real-time totals** — Subtotal, tax, and grand total update instantly
-- 👤 **Client linking** — Tie every quote to a CRM client
-- 📝 **Notes field** — Internal notes for context and instructions
+- 👤 **Client details** — Name, email, phone, and state captured on every quote (state drives the tax rules)
+- 📝 **Notes & terms** — Free-text notes printed on the PDF
 - 📎 **File attachments** — Drag-and-drop images, PDFs, specs to any quote (see below)
-- 📄 **PDF export** — One-click branded invoice/proposal generation
+- 📄 **PDF export** — One-click branded proposal generation
 - 🔗 **Pipeline sync** — Saving a quote automatically creates or updates the connected pipeline deal
 
 ### 📎 File Attachments
@@ -201,10 +210,10 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 
 - 🖱️ **Drag-and-drop** — or click to browse; supports images (JPEG, PNG, GIF, WebP) and PDFs
 - 📏 **Size limits** — max 5 files per quote, max 2 MB per file
-- 🖼️ **Visual thumbnails** — large, centered preview grid (44 × 40 rem) so you can see what you attached
+- 🖼️ **Visual thumbnails** — centered preview grid so you can see what you attached
 - 🗑️ **Remove** — click the ✕ on any thumbnail to detach
 - 💾 **Persisted** — attachments are saved with the quote in Zustand (base64 in IndexedDB)
-- 🖨️ **Print-ready** — attachments are included in the save and print payload
+- 🖨️ **Print-ready** — image attachments are embedded in the PDF; PDF attachments are listed by name
 
 ### 🧮 50-State Tax Engine
 > 🇺🇸 Automatic sales tax calculations for all 50 US states + Washington DC.
@@ -213,7 +222,7 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 - 🚚 **Freight taxability** — knows which states tax shipping
 - 🔧 **Labor taxability** — knows which states tax labor/services
 - 🔄 **Auto-calculation** — tax updates in real-time as you edit quotes
-- 📊 **Rate accuracy** — community-updatable JSON database in `src/data/taxDatabase.js`
+- 📊 **Rate accuracy** — community-updatable table in `src/data/taxDatabase.js` (2025 rates — verify with your accountant)
 
 ### 📊 Sales Pipeline (Kanban)
 > 🏗️ Visual deal tracking from first contact to closed-won.
@@ -224,7 +233,7 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 - 💰 **Deal values** — track expected revenue per deal
 - 📝 **Notes** — add context notes to any deal
 - 🔗 **Quote linking** — linked deals show the quote number and badge the connected PO
-- 📈 **Win/loss tracking** — see your close rate at a glance
+- 📈 **Aging cues** — cards turn amber after 7 days and red after 14 so stale deals stand out
 - 🌗 **Balanced modes** — rich card shadows and stage backgrounds in light mode, vibrant colors in dark mode
 
 ### 🔗 Pipeline ↔ Quotes ↔ PO Integration
@@ -232,26 +241,25 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 
 - 📝 **Saving a quote** → automatically creates a pipeline deal (or updates the existing one)
 - 💰 **Deal value** = quote grand total, always in sync
-- 📊 **Pipeline stage** auto-set to "Quoted" on creation, "Won" if a PO is linked
+- 📊 **Pipeline stage** follows the quote status — Draft → Quoted, Sent → Proposal Sent, Won → Closed Won, Lost → Closed Lost
 - 🏷️ **Deal cards** display linked quote number and PO badge
 - 🔄 **Startup sync** — `syncAllQuotesToPipeline()` runs on app mount to reconcile all data
-- 🗑️ **Orphan cleanup** — deals missing their source quote are cleaned up automatically
 
 **How it works under the hood:**
 
 | Action | Store Method | Result |
 |---|---|---|
 | Save/update a quote | `syncQuoteToPipeline(quoteId)` | Creates or updates pipeline deal with matching `quoteId`, sets value to grand total |
-| App start | `syncAllQuotesToPipeline()` | Iterates all quotes, syncs each to pipeline, removes orphaned deals |
-| Link PO to quote | Automatic via pipeline | Deal marked "Won" when a PO references its quote |
+| App start | `syncAllQuotesToPipeline()` | Iterates all quotes and syncs each to the pipeline |
+| Link PO to quote | Read at render | Deal card shows a PO badge; margin analytics update |
 
 ### 📦 Purchase Orders & Margin Analytics
 > 📈 Track costs, calculate margins, and visualize profitability.
 
-- 📋 **Full PO creation** — vendor name, vendor contact, items, quantities, costs
+- 📋 **PO creation** — vendor, vendor contact, description, quantity, and unit cost (one line per PO)
 - 🚚 **Ship-to address** — dedicated field for delivery destination (see below)
 - 🔗 **Quote linking** — tie POs to quotes for automatic margin analysis
-- 📊 **Interactive charts** — margin %, cost vs. sell price, vendor breakdown
+- 📊 **Charts** — cost by line type, margin % by quote, sell vs. cost by quote
 - 📈 **Analytics dashboard** — total cost, total sell, average margin, count
 - 🔍 **Search & filter** — find POs by vendor, quote, status, or keyword
 - 📄 **PDF export** — professional PO document with all details and terms
@@ -270,7 +278,7 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 Both the **Quote/Proposal PDF** and the **Purchase Order PDF** share a refined design:
 
 #### 🎨 Design Language
-- **Color-neutral palette** — charcoal (`#1e293b`), gray (`#334155`), and white — no blue or colored branding
+- **Color-neutral palette** — charcoal, gray, and white — no blue or colored branding
 - **Charcoal table headers** — dark header row with white text for clarity
 - **Charcoal total band** — grand total row with the same dark treatment
 - **Wider margins** — 16 mm on all sides for a clean, breathable layout
@@ -281,32 +289,23 @@ Both the **Quote/Proposal PDF** and the **Purchase Order PDF** share a refined d
 - Itemized table with description, quantity, unit price, total
 - Subtotal, tax, and grand total summary
 - **Terms & Payment section** — printed at the bottom of every quote:
-  - 📅 Quote valid for 30 days from issue
-  - 💰 50% deposit due upon PO issuance
-  - 💳 Remaining balance due net 30 days
-  - 📜 Subject to standard terms and conditions
+  - 💰 50% deposit due upon acceptance of the proposal
+  - 💳 Remaining balance due net 30 days from date of invoice
+  - 📅 Proposal valid for 30 days from the date shown
+- **Attachments** — image thumbnails embedded, PDF attachments listed by name
 
 #### 📦 Purchase Order PDF (`generatePO_PDF`)
 - Vendor details, PO number, date
 - Ship-to address (or company address fallback)
 - Itemized table with description, quantity, unit cost, total
 - **No margin summary** — margins are internal analytics only, never shown on the PO document
-- **Payment terms block** with 5 terms:
-  1. 💰 50% deposit due upon PO issuance; remaining balance due net 30 days
-  2. 📦 Delivery per agreed schedule
-  3. ⚠️ Inspect goods within 48 hours of delivery
-  4. 📜 Subject to standard purchase terms
-  5. ✅ This PO is not valid until signed by both parties
-- **Signature lines** — Authorized Buyer and Vendor Acceptance with date fields
-
-### 💳 Payment Processing
-> 💰 Accept payments on any invoice via MoonPay integration.
-
-- 💳 **Credit/debit cards** — Visa, Mastercard, Amex
-- 🏦 **Bank transfers** — ACH / wire
-- 🍎 **Apple Pay** — one-tap mobile payments
-- 🪙 **Crypto settlement** — funds settle as USDC (stablecoins) to your wallet
-- 🔐 **Secure** — payments handled by MoonPay's PCI-compliant infrastructure
+- **Terms & Conditions block** with 5 terms:
+  1. 🔖 Reference the PO number on all correspondence, invoices, and shipping documents
+  2. 📦 Deliver to the Ship To address unless otherwise specified
+  3. ⚠️ Vendor must notify buyer immediately of delays or changes
+  4. 💰 50% deposit on PO issuance; balance net 30 from receipt of goods and valid invoice
+  5. 📜 Subject to the terms agreed between buyer and vendor
+- **Signature lines** — Authorized By and Date fields
 
 ### 💾 Backup & Restore
 > 🛡️ Never lose your data — comprehensive backup system with auto-scheduling.
@@ -320,13 +319,12 @@ Both the **Quote/Proposal PDF** and the **Purchase Order PDF** share a refined d
 - 🦊 **Firefox-safe** — download uses delayed `revokeObjectURL` for cross-browser compatibility
 
 ### 🚀 Go Live Wizard
-> 🌐 Deploy your own SalesCloserPro instance in 5 easy steps.
+> 🌐 Deploy your own SalesCloserPro instance in 4 easy steps.
 
 1. 🐙 **GitHub** — Fork the repo and push your customizations
 2. ☁️ **Cloudflare Pages** — Free hosting with automatic deployments
 3. 🌍 **Custom Domain** — Connect your own domain name
 4. 📧 **Business Email** — Set up professional email (Zoho / Google)
-5. 💳 **Payments** — Configure MoonPay for invoice payments
 
 ---
 
@@ -359,11 +357,6 @@ Use [Cloudflare DNS](https://cloudflare.com/dns) for free DNS management. Point 
 | ⭐ | **Zoho Mail** (recommended) | ~$2/mo | [zoho.com/mail](https://www.zoho.com/mail/) |
 | 📧 | Google Workspace | ~$6–12/mo | [workspace.google.com](https://workspace.google.com) |
 
-### 5️⃣ Payments (optional)
-> 💳 Set up [MoonPay](https://dashboard.moonpay.com) in the Go Live wizard to accept invoice payments.
-
-Accept credit card, bank transfer, or Apple Pay. Funds settle as stablecoins (USDC recommended) to your crypto wallet.
-
 ---
 
 ## ☁️ Cloudflare Edge Configuration
@@ -394,7 +387,7 @@ Production edge behavior is managed in Cloudflare and should be treated as part 
 
 > **Need more than the free version?** We offer private technical partnerships for businesses that need a tailored implementation.
 
-Visit **[salescloserpro.ai/services](https://salescloserpro.ai/#/services)** for full details.
+Visit **[salescloserpro.ai/services](https://salescloserpro.ai/services)** for full details.
 
 ### What we offer
 
@@ -411,7 +404,7 @@ Visit **[salescloserpro.ai/services](https://salescloserpro.ai/#/services)** for
 2. **Scope** — We assess feasibility, define deliverables, and present a clear proposal.
 3. **Execute** — Work begins with direct communication and full transparency.
 
-> Engagements typically start at **$2,500**. Contact **brent@llmadvisor.ai** or click **Request a Build Conversation** on the [services page](https://salescloserpro.ai/#/services).
+> Engagements typically start at **$2,500**. Contact **brent@llmadvisor.ai** or click **Request a Build Conversation** on the [services page](https://salescloserpro.ai/services).
 
 ---
 
@@ -425,7 +418,7 @@ The `index.html` ships with production-ready SEO markup so search engines and so
 | 🌐 **Open Graph** | `og:type`, `og:url`, `og:title`, `og:description`, `og:image`, `og:site_name`, `og:locale` |
 | 🐦 **Twitter Cards** | `twitter:card` (summary_large_image), `twitter:url`, `twitter:title`, `twitter:description`, `twitter:image` |
 | 📊 **Structured Data** | JSON-LD `SoftwareApplication` schema — name, description, category, OS, price (free), author, license |
-| 🎨 **App Meta** | `theme-color` (#0f172a), Apple touch icon, favicon (SVG) |
+| 🎨 **App Meta** | `theme-color` (#0f172a), Apple touch icon, favicon (ICO + PNG), web app manifest |
 
 > 💡 To customize for your fork: update the `canonical` URL, `og:url`, `og:image`, `twitter:url`, and `twitter:image` in `index.html` to point to your domain.
 
@@ -435,15 +428,17 @@ The `index.html` ships with production-ready SEO markup so search engines and so
 
 **Last verified:** April 10, 2026 — salescloserpro.ai ranks **#1 on Google** for `salescloserpro` organically.
 
+> ℹ️ On 2026-09-10 the title, description, and H1 were refreshed to drop retired claims (desktop app, payments, usage figures). Re-verify ranking after the next crawl.
+
 This section documents the exact signals Google has indexed and is actively rewarding. Before changing any of the values below, understand that Google re-evaluates the page on the next crawl cycle. Even "safe-looking" edits to these fields can cause ranking fluctuation that takes weeks to recover.
 
 #### 🔒 Do Not Change — Core Ranking Signals
 
 | Signal | Current Value | Location | Risk if Changed |
 |--------|--------------|----------|-----------------|
-| **`<title>`** | `salescloserpro.ai — Free Sales CRM, Quoting & Pipeline Tool` | `index.html` line 7 | Direct ranking impact — this exact phrasing is indexed |
-| **`meta description`** | `Build professional quotes, manage your pipeline, and close more deals — 100% free and open source. No login, no fees, no limits. Download or use in your browser.` | `index.html` line 8 | Changes the snippet shown in search results |
-| **`H1` text** | `The Free CRM. No gimmicks. Send a quote in minutes — get paid instantly ⚡` | `LandingPage.jsx` line 182 | H1 must semantically match the title tag intent |
+| **`<title>`** | `SalesCloserPro.ai \| The Free CRM. No gimmicks. Send a professional quote and/or PO in minutes` | `index.html` | Direct ranking impact — this exact phrasing is indexed |
+| **`meta description`** | `Build professional quotes, track deals, issue POs, and export polished PDFs — 100% free and open source. No login required. Built for freelancers, contractors, and small businesses.` | `index.html` | Changes the snippet shown in search results |
+| **`H1` text** | `The Free CRM. No gimmicks. Send a professional quote or PO in minutes.` | `LandingPage.jsx` | H1 must semantically match the title tag intent |
 | **`link rel="canonical"`** | `https://salescloserpro.ai/` | `index.html` | Changing domain/path tells Google to re-index a "new" page |
 | **`og:image`** | `https://salescloserpro.ai/og-cover-v2.png` | `index.html` | This image is actively cached by Google, social platforms, and chat previews |
 | **JSON-LD `SoftwareApplication`** | Type: `SoftwareApplication`, Category: `BusinessApplication / CRM Software`, Price: `0` | `index.html` | Structured data drives rich result eligibility — don't rename fields |
@@ -475,7 +470,7 @@ These elements are in the footer or below the visible viewport. Google discounts
 |---|---|---|---|
 | ⚛️ | **React** | 18.3 | UI component library |
 | ⚛️ | **React DOM** | 18.3 | React renderer for the browser |
-| 🧭 | **React Router DOM** | 6.22 | SPA navigation (HashRouter for static hosting) |
+| 🧭 | **React Router DOM** | 6.22 | SPA navigation (BrowserRouter; Cloudflare Pages serves index.html for deep links) |
 | 🐻 | **Zustand** | 4.5 | Lightweight state management + IndexedDB persist middleware |
 | 🗄️ | **Dexie.js** | 4.x | IndexedDB wrapper — scalable local storage for 50,000+ records |
 | 📄 | **jsPDF** | 2.5 | Client-side PDF generation |
@@ -498,11 +493,11 @@ These elements are in the footer or below the visible viewport. Google discounts
 
 ### 🏗️ Architecture Highlights
 
-- 🏠 **Offline-first** — all data stored in IndexedDB (via Dexie.js), no server required
+- 🏠 **Local-first** — all data stored in IndexedDB (via Dexie.js), no server required
 - 🔒 **No accounts** — zero authentication, zero sign-up friction
 - 📱 **Responsive** — works on desktop, tablet, and mobile
-- 🌙 **Dark mode** — system-aware with manual toggle, preference persisted
-- 🗂️ **Hash routing** — works perfectly on static hosts
+- 🌙 **Dark mode** — dark by default with a manual toggle, preference persisted
+- 🗂️ **Browser routing** — clean URLs with SPA fallback on Cloudflare Pages
 - 📦 **Zero cloud dependency** — PDFs generated client-side, no external APIs for core features
 - 🔗 **Integrated data** — quotes, pipeline, and POs are cross-linked and auto-synced
 - 🔍 **SEO-ready** — Open Graph, Twitter Cards, and JSON-LD baked into index.html
@@ -513,50 +508,45 @@ These elements are in the footer or below the visible viewport. Google discounts
 
 ```
 📦 salescloserpro/
-├── 📄 index.html                → App shell — SEO meta, OG tags, JSON-LD, dark-mode pre-flash
-├── 📄 package.json              → Dependencies, scripts, author info
-├── 📄 vite.config.js            → Vite configuration + React plugin + base: './'
+├── 📄 index.html                → App shell — SEO meta, OG tags, JSON-LD, dark-mode pre-paint
+├── 📄 package.json              → Dependencies, scripts, author info, version
+├── 📄 vite.config.js            → Vite config — React plugin, vendor chunks, __APP_VERSION__
 ├── 📄 tailwind.config.js        → Tailwind CSS config (dark mode: 'class')
 ├── 📄 postcss.config.js         → PostCSS pipeline (Tailwind + Autoprefixer)
+├── 📂 scripts/
+│   └── 📄 generate-og.mjs       → Regenerates public/og-cover-v2.png (1200×630) with sharp
 ├── 📂 public/
-│   ├── 🖼️ favicon.svg           → Browser tab icon
-│   ├── 🖼️ salescloserpro-logo.svg → Main app logo (sidebar, PDFs)
-│   ├── 🖼️ gptlogo.png           → GPT assistant logo (sidebar + dashboard)
-│   └── 📄 _redirects            → Cloudflare Pages SPA redirect rules
+│   ├── 🖼️ favicon.ico · favicon-32.png · apple-touch-icon.png · icon-192.png · icon-512.png
+│   ├── 📄 manifest.webmanifest  → Web app manifest (installable, standalone)
+│   ├── 🖼️ og-cover-v2.png       → Social share card
+│   ├── 🖼️ salescloserpro-logo.svg → Default sidebar logo
+│   ├── 🖼️ gptlogo.png           → GPT assistant card logo
+│   ├── 📂 logos/                → Landing page artwork
+│   ├── 📄 _headers              → Cloudflare Pages cache + security headers
+│   ├── 📄 _redirects            → Retired-page redirects + SPA fallback
+│   └── 📄 sitemap.xml
 └── 📂 src/
-    ├── 📄 main.jsx              → ⚡ Entry point — renders <App />
+    ├── 📄 main.jsx              → ⚡ Entry point — legacy localStorage migration, renders <App />
     ├── 📄 App.jsx               → 🧭 Router + startup sync (syncAllQuotesToPipeline)
-    ├── 📄 store.js              → 🐻 Zustand global state — quotes, clients, pipeline, POs, settings, sync actions
-    ├── 📄 index.css             → 🎨 Tailwind base + custom utilities + scrollbar styles
+    ├── 📄 store.js              → 🐻 Zustand global state — quotes, clients, pipeline, POs, settings, counters
+    ├── 📄 db.js                 → 🗄️ Dexie/IndexedDB storage adapter + raw export/import for backups
+    ├── 📄 index.css             → 🎨 Tailwind base + custom utilities
     ├── 📂 components/
-    │   ├── 📂 backup/
-    │   │   └── 📄 BackupRestore.jsx  → 💾 Backup & Restore — download, upload, folder save, auto-schedule
-    │   ├── 📂 clients/
-    │   │   └── 📄 Clients.jsx        → 👥 Client CRM — add, edit, search, notes, linked quotes
-    │   ├── 📂 dashboard/
-    │   │   └── 📄 Dashboard.jsx      → 📊 KPI dashboard — per-stage values, charts, welcome card
-    │   ├── 📂 help/
-    │   │   └── 📄 HelpGuide.jsx      → ❓ 12-section searchable help center with FAQs
-    │   ├── 📂 layout/
-    │   │   └── 📄 Layout.jsx         → 🏗️ Layout shell — sidebar, mobile header, GPT button, footer
-    │   ├── 📂 pipeline/
-    │   │   └── 📄 Pipeline.jsx       → 📈 Kanban board — 6 color-coded stages, deal cards, linked badges
-    │   ├── 📂 po/
-    │   │   └── 📄 PurchaseOrders.jsx → 📦 POs — create, edit, ship-to address, margin charts, analytics
-    │   ├── 📂 quotes/
-    │   │   ├── 📄 QuoteBuilder.jsx   → 📝 Quote form — line items, tax, notes, attachments, PDF
-    │   │   ├── 📄 QuoteList.jsx      → 📋 All quotes — search, filter, status, actions
-    │   │   ├── 📄 FileUploader.jsx   → 📎 Drag-and-drop file uploader — thumbnails, max 5 files
-    │   │   └── 📄 PayInvoiceModal.jsx→ 💳 MoonPay payment modal for invoices
-    │   ├── 📂 settings/
-    │   │   └── 📄 CompanySettings.jsx→ 🏢 Company info, logo upload, branding config
-    │   └── 📂 wizard/
-    │       └── 📄 GoLiveWizard.jsx   → 🚀 5-step deployment wizard
-    ├── 📂 data/
-    │   └── 📄 taxDatabase.js    → 🧮 All 50 states + DC: rates, freight rules, labor rules
-    ├── 📂 hooks/                → 🪝 Custom React hooks (extensible)
-    └── 📂 utils/
-        └── 📄 pdfExport.js     → 📄 PDF engine — generatePDF() + generatePO_PDF(), color-neutral
+    │   ├── 📂 backup/BackupRestore.jsx     → 💾 Download, save-to-folder, auto-schedule, restore
+    │   ├── 📂 clients/Clients.jsx          → 👥 Client address book — add, edit, search, notes
+    │   ├── 📂 dashboard/Dashboard.jsx      → 📊 KPI cards, recent quotes, pipeline overview
+    │   ├── 📂 help/HelpGuide.jsx           → ❓ 11-section searchable help center
+    │   ├── 📂 landing/                     → 🌐 LandingPage, AboutPage, ServicesPage, LegalPage
+    │   ├── 📂 layout/Layout.jsx            → 🏗️ Sidebar, mobile header, theme toggle, GPT card
+    │   ├── 📂 pipeline/Pipeline.jsx        → 📈 Kanban board — 6 stages, deal cards, Move/Back
+    │   ├── 📂 po/PurchaseOrders.jsx        → 📦 POs — form, list, margin table, charts, PDF
+    │   ├── 📂 quotes/QuoteBuilder.jsx      → 📝 Quote form — line items, tax, notes, attachments, PDF
+    │   ├── 📂 quotes/QuoteList.jsx         → 📋 All quotes — search, status, delete
+    │   ├── 📂 quotes/FileUploader.jsx      → 📎 Drag-and-drop attachments (max 5 × 2 MB)
+    │   ├── 📂 settings/CompanySettings.jsx → 🏢 Company info, logo, home state
+    │   └── 📂 wizard/GoLiveWizard.jsx      → 🚀 4-step self-hosting checklist
+    ├── 📂 data/taxDatabase.js   → 🧮 All 50 states + DC: rates, freight rules, labor rules
+    └── 📂 utils/pdfExport.js    → 📄 PDF engine — generatePDF() + generatePO_PDF()
 ```
 
 ---
@@ -577,15 +567,15 @@ These elements are in the footer or below the visible viewport. Google discounts
 
 SalesCloserPro ships with a **fully integrated dark mode** experience:
 
-- 🎨 **System-aware** — automatically matches your OS preference on first visit
+- 🎨 **Dark by default** — the app opens in dark mode on first visit
 - 🔘 **Manual toggle** — switch between light/dark from the sidebar
-- 💾 **Persisted** — your preference is saved to IndexedDB (key: `salescloserpro-data`)
+- 💾 **Persisted** — saved with the rest of your data in IndexedDB, plus a tiny localStorage mirror (`scp-theme`) for the pre-render script
 - 🖥️ **Flash-free** — a pre-render script in `index.html` prevents white flash on dark mode load
 - 🎯 **Full coverage** — every component, modal, card, input, chart, and pipeline stage has dark variants
 - 🎨 **Balanced light mode** — stronger card shadows, richer stage backgrounds for pipeline cards
 - 🌈 **Color-coded pipeline** — each stage (Lead, Quoted, Sent, Negotiating, Won, Lost) has distinct, carefully tuned colors in both modes
 
-> 💡 **Tip:** Dark mode is controlled via the `class` strategy in Tailwind. A `dark` class is toggled on the `<html>` element. The pre-flash script reads the Zustand persisted state from IndexedDB.
+> 💡 **Tip:** Dark mode is controlled via the `class` strategy in Tailwind. A `dark` class is toggled on the `<html>` element. The pre-flash script reads the `scp-theme` localStorage mirror (IndexedDB is asynchronous, so it can't be read before first paint).
 
 ---
 
@@ -593,7 +583,7 @@ SalesCloserPro ships with a **fully integrated dark mode** experience:
 
 ### 🏗️ How It Works
 
-SalesCloserPro stores **all data locally** in your browser's **IndexedDB** via [Dexie.js](https://dexie.org) (upgraded from localStorage in v1.0.0):
+SalesCloserPro stores **all data locally** in your browser's **IndexedDB** via [Dexie.js](https://dexie.org) (upgraded from localStorage in v1.0.1):
 
 | Data | Storage Key | Details |
 |---|---|---|
@@ -602,7 +592,6 @@ SalesCloserPro stores **all data locally** in your browser's **IndexedDB** via [
 | 📝 Quotes | `salescloserpro-data` | Quotes, line items, totals, attachments (base64) |
 | 📊 Pipeline deals | `salescloserpro-data` | Kanban stage, value, notes, linked quoteId |
 | 📦 Purchase orders | `salescloserpro-data` | POs, costs, vendor info, ship-to address |
-| 💳 Payment settings | `salescloserpro-data` | MoonPay wallet address |
 | 🚀 Go Live checklist | `salescloserpro-data` | Wizard completion status |
 | 💾 Backup settings | `salescloserpro-data` | Auto-backup config, schedule & history |
 | 🌙 Theme preference | `salescloserpro-data` | `"dark"` or `"light"` |
@@ -628,8 +617,8 @@ The integrated data sync ensures consistency across modules:
 | Event | Sync Action |
 |---|---|
 | 📝 Quote saved | Pipeline deal created/updated with matching value |
-| 🚀 App starts | All quotes synced to pipeline; orphaned deals cleaned |
-| 📦 PO linked to quote | Deal stage reflects PO status |
+| 🚀 App starts | All quotes synced to pipeline |
+| 📦 PO linked to quote | Deal card shows a PO badge; margin analytics update |
 
 ---
 
@@ -643,7 +632,7 @@ The integrated data sync ensures consistency across modules:
 | 📝 | **Quote templates** | Industry-specific line item presets (HVAC, electrical, plumbing, etc.) |
 | 🌍 | **Translations / i18n** | Help make SalesCloserPro available globally |
 | 🎨 | **Themes** | Brand color presets beyond light/dark |
-| 💳 | **Payment integrations** | Additional payment gateways (Stripe, PayPal, etc.) |
+| 💳 | **Pay-by-link** | A payment link + QR code on quote PDFs (Stripe, PayPal, Square, etc.) |
 | ♿ | **Accessibility** | Screen reader improvements, keyboard navigation |
 | 🧪 | **Tests** | Unit tests, integration tests, E2E tests |
 | 📖 | **Documentation** | Tutorials, video guides, API docs |
@@ -665,7 +654,7 @@ The integrated data sync ensures consistency across modules:
 <details>
 <summary>🔒 Is my data secure?</summary>
 
-✅ **Yes!** All data stays in your browser's IndexedDB. Nothing is sent to any server. SalesCloserPro is 100% offline-first with zero cloud dependency for core features. Only MoonPay payments (if enabled) communicate with external services.
+✅ **Yes!** All data stays in your browser's IndexedDB. Nothing is sent to any server. The only outbound requests are the site itself (Cloudflare) and the Inter font from Google Fonts; optional links (GitHub, the ChatGPT GPT) open in a new tab.
 </details>
 
 <details>
@@ -700,7 +689,7 @@ git push origin main
 </details>
 
 <details>
-<summary>🖨️ Can I customize the PDF invoices?</summary>
+<summary>🖨️ Can I customize the PDF quotes and POs?</summary>
 
 ✅ **Yes!** Upload your company logo and fill in your business details in **Company Settings**. The PDF export uses your branding automatically. The PDFs use a color-neutral charcoal palette with 50% deposit terms. For deeper customization, edit `src/utils/pdfExport.js`.
 </details>
@@ -755,7 +744,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ```
 
-⚠️ **Disclaimer:** This software is provided "as is" without warranty of any kind. The authors and contributors are not responsible for any damages, data loss, financial loss, or other liabilities arising from the use of this software. Tax calculations are approximations — always verify with a licensed tax professional. MoonPay payment processing is provided by MoonPay and subject to their terms of service and fee schedule.
+⚠️ **Disclaimer:** This software is provided "as is" without warranty of any kind. The authors and contributors are not responsible for any damages, data loss, financial loss, or other liabilities arising from the use of this software. Tax calculations are approximations — always verify with a licensed tax professional.
 
 ---
 

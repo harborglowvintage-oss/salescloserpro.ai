@@ -1,5 +1,5 @@
 /**
- * Generates public/og-cover.png — 1200×630 OG social card
+ * Generates public/og-cover-v2.png — 1200×630 OG social card
  * Run: node scripts/generate-og.mjs
  */
 

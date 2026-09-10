@@ -17,14 +17,13 @@ import {
   ExternalLink,
   Scale,
   Eye,
-  CreditCard,
   Bot,
   Package,
   Gavel,
 } from 'lucide-react'
 
-const LAST_UPDATED = 'June 4, 2026'
-const APP_VERSION  = '1.0.0'
+const LAST_UPDATED = 'September 10, 2026'
+const APP_VERSION  = __APP_VERSION__
 const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
 /* ── collapsible section ── */
@@ -129,7 +128,6 @@ export default function LegalPage() {
                 <TocItem href="#privacy">Privacy Policy</TocItem>
                 <TocItem href="#data">Data Storage</TocItem>
                 <TocItem href="#ai">AI &amp; ChatGPT Usage</TocItem>
-                <TocItem href="#payments">Payments &amp; Crypto</TocItem>
                 <TocItem href="#affiliate">Affiliate Disclosure</TocItem>
                 <TocItem href="#gdpr">GDPR (EU)</TocItem>
                 <TocItem href="#ccpa">CCPA (California)</TocItem>
@@ -165,7 +163,7 @@ export default function LegalPage() {
                 <li>Using the Software to engage in fraud, misrepresentation, or illegal activity</li>
                 <li>Rebranding and selling the Software while misrepresenting it as originally authored by you</li>
                 <li>Using the Software to send unsolicited commercial messages (spam) in violation of CAN-SPAM, CASL, or GDPR</li>
-                <li>Attempting to reverse-engineer third-party integrations (MoonPay, Google, etc.) beyond their published APIs</li>
+                <li>Attempting to reverse-engineer third-party services linked from the Software beyond their published APIs</li>
                 <li>Using the Software in violation of any applicable local, national, or international law</li>
               </ul>
               <H>No Warranties</H>
@@ -204,15 +202,19 @@ export default function LegalPage() {
               </p>
               <H>Third-Party Services</H>
               <p>
-                When you use integrations (MoonPay Commerce, Google Workspace, Namecheap, Cloudflare, Gemini, etc.),
-                those services' own privacy policies govern data you submit to them. We encourage you to review:
+                The Software makes no requests to servers we operate. Two things do reach third parties: the site
+                is served by Cloudflare, and the page loads the Inter typeface from Google Fonts (which receives your
+                IP address as part of that request). If you follow optional links from the app — the SalesCloserPro
+                GPT on ChatGPT, GitHub, Google Workspace, Zoho, or Namecheap — those services' own privacy policies
+                govern anything you submit to them. We encourage you to review:
               </p>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
-                <li><Ext href="https://www.moonpay.com/legal/privacy_policy">MoonPay Privacy Policy</Ext></li>
-                <li><Ext href="https://policies.google.com/privacy">Google Privacy Policy</Ext></li>
-                <li><Ext href="https://www.namecheap.com/legal/general/privacy-policy/">Namecheap Privacy Policy</Ext></li>
                 <li><Ext href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</Ext></li>
-                <li><Ext href="https://www.gemini.com/legal/privacy-policy">Gemini Privacy Policy</Ext></li>
+                <li><Ext href="https://policies.google.com/privacy">Google Privacy Policy</Ext> (Google Fonts, Google Workspace)</li>
+                <li><Ext href="https://openai.com/policies/privacy-policy">OpenAI Privacy Policy</Ext> (ChatGPT GPT)</li>
+                <li><Ext href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</Ext></li>
+                <li><Ext href="https://www.zoho.com/privacy.html">Zoho Privacy Policy</Ext></li>
+                <li><Ext href="https://www.namecheap.com/legal/general/privacy-policy/">Namecheap Privacy Policy</Ext></li>
               </ul>
             </Section>
 
@@ -220,33 +222,27 @@ export default function LegalPage() {
             <Section id="data" icon={Shield} title="Data Storage &amp; Security" color="text-cyan-400">
               <p>
                 All application data — quotes, clients, pipeline, settings, company logo, and purchase orders — is
-                stored exclusively in your browser's <Hi>localStorage</Hi>. No data is transmitted to any server
+                stored exclusively in your browser's local database (<Hi>IndexedDB</Hi>). No data is transmitted to any server
                 operated by SalesCloserPro or llmadvisor.ai.
               </p>
               <H>Data Portability</H>
               <p>
                 The built-in Backup &amp; Restore feature lets you export a complete JSON snapshot of all your data
-                at any time. You own your data fully and may delete it by clearing localStorage or uninstalling the app.
+                at any time. You own your data fully and may delete it by clearing site data for salescloserpro.ai in your browser.
               </p>
               <H>Security Responsibilities</H>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li>Protect your device with appropriate physical and software security measures</li>
                 <li>Do not store the app on shared or publicly accessible computers if data is sensitive</li>
                 <li>Encrypt your drive if the database contains personally identifiable information (PII) of clients</li>
-                <li>Regularly back up your data; we cannot recover lost localStorage data</li>
+                <li>Regularly back up your data; we cannot recover data lost from your browser</li>
               </ul>
-              <H>MoonPay API Key Security</H>
-              <p>
-                Your MoonPay <Hi>publishable API key</Hi> (pk_live_ / pk_test_) is stored in localStorage. Publishable
-                keys are designed for client-side use and cannot access funds. Never enter your MoonPay secret key
-                in any frontend application. Rotate keys immediately if you suspect compromise.
-              </p>
             </Section>
 
             {/* ── 4. AI USAGE ── */}
             <Section id="ai" icon={Bot} title="AI &amp; ChatGPT Usage Disclosure" color="text-violet-400">
               <p>
-                SalesCloserPro was <Hi>developed with assistance from AI tools</Hi> including OpenAI ChatGPT (GPT-4o),
+                SalesCloserPro was <Hi>developed with assistance from AI tools</Hi> including OpenAI ChatGPT,
                 Anthropic Claude, and GitHub Copilot. This section discloses how AI is involved in the product and
                 what users should know.
               </p>
@@ -260,6 +256,11 @@ export default function LegalPage() {
               <p>
                 SalesCloserPro does <Hi>not</Hi> send your data (quotes, client names, amounts, etc.) to any AI service.
                 There are no AI APIs called by the application at runtime. Your business data stays on your device.
+              </p>
+              <p>
+                The optional <Hi>SalesCloserPro GPT</Hi> linked from the sidebar and homepage is a separate ChatGPT
+                experience operated by OpenAI. Nothing from the app is sent to it automatically; anything you choose
+                to type there is governed by OpenAI's policies.
               </p>
               <H>OpenAI Usage Policy Compliance</H>
               <p>
@@ -282,51 +283,6 @@ export default function LegalPage() {
               </p>
             </Section>
 
-            {/* ── 5. PAYMENTS ── */}
-            <Section id="payments" icon={CreditCard} title="Payments, Crypto &amp; MoonPay Disclosure" color="text-purple-400">
-              <p>
-                SalesCloserPro integrates with <Hi>MoonPay Commerce</Hi> to enable optional crypto payment acceptance.
-                This section discloses the nature of that integration and important legal considerations.
-              </p>
-              <H>Nature of Integration</H>
-              <p>
-                SalesCloserPro is a <Hi>software tool</Hi>, not a payment processor, money transmitter, or financial
-                institution. The MoonPay integration constructs a payment URL using your API key and wallet address.
-                All payment processing, KYC/AML verification, and fund custody are handled solely by MoonPay.
-              </p>
-              <p>
-                MoonPay USA LLC is a registered money service business (NMLS ID: 2071245) and is regulated in multiple
-                jurisdictions. Learn more at{' '}
-                <Ext href="https://www.moonpay.com/legal">moonpay.com/legal</Ext>.
-              </p>
-              <H>No Money Transmission License Required from Users</H>
-              <p>
-                When using MoonPay Commerce to accept payments, you are a <Hi>merchant</Hi> receiving funds into your
-                own wallet — not a money transmitter. However, depending on your jurisdiction and business model, you
-                may have obligations under tax law, MSB regulations, or securities law. Consult a legal professional.
-              </p>
-              <H>Cryptocurrency Risks</H>
-              <ul className="list-disc list-inside space-y-1.5 ml-2">
-                <li><Hi>Price volatility:</Hi> Non-stablecoin crypto (ETH, BTC, SOL) can change value rapidly. You bear all volatility risk.</li>
-                <li><Hi>Irreversibility:</Hi> On-chain transactions cannot be reversed. Verify all wallet addresses before sharing with clients.</li>
-                <li><Hi>Regulatory uncertainty:</Hi> Crypto regulations vary by country and evolve frequently. Check local law before accepting crypto payments commercially.</li>
-                <li><Hi>Tax obligations:</Hi> Receiving cryptocurrency may be a taxable event in your jurisdiction. The app does not provide tax advice.</li>
-                <li><Hi>Wallet security:</Hi> You are solely responsible for securing your private keys and wallet.</li>
-              </ul>
-              <H>Stablecoins (USDC, USDT)</H>
-              <p>
-                USDC is issued by Circle Internet Financial and is regulated as an e-money product in some jurisdictions.
-                USDT is issued by Tether Operations Limited. These assets aim for 1:1 USD parity but are not guaranteed
-                by any government or deposit insurance scheme.
-              </p>
-              <H>AML / Sanctions Compliance</H>
-              <p>
-                MoonPay performs identity verification and AML screening on transaction counterparties per applicable law.
-                You must not use this integration to receive funds from sanctioned individuals, entities, or countries
-                as defined by OFAC, HM Treasury, or equivalent authorities.
-              </p>
-            </Section>
-
             {/* ── 6. AFFILIATE ── */}
             <Section id="affiliate" icon={Globe} title="Affiliate &amp; Referral Disclosure" color="text-amber-400">
               <p>
@@ -338,8 +294,7 @@ export default function LegalPage() {
               <p>
                 The application links to a small number of independent third-party services purely as a
                 convenience to help you operate your business — for example, optional domain registration, email
-                hosting, and the MoonPay payment integration described in the{' '}
-                <a href="#payments" className="text-blue-400 hover:text-blue-300">Payments</a> section. These are{' '}
+                hosting, and the free SalesCloserPro GPT on ChatGPT. These are{' '}
                 <Hi>ordinary, non-affiliate links</Hi>: we receive no commission, referral reward, or other
                 compensation when you follow them, no tracking or attribution identifiers are attached, and you
                 are never required to use any of them.
@@ -382,11 +337,11 @@ export default function LegalPage() {
               </p>
               <H>Right to Erasure (Right to Be Forgotten)</H>
               <p>
-                To delete all application data: clear your browser's localStorage under the key{' '}
-                <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-xs font-mono">salescloserpro-data</code>{' '}
-                or run{' '}
-                <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-xs font-mono">localStorage.clear()</code>{' '}
-                in DevTools. Individual records can be deleted by their respective Delete buttons in the UI.
+                To delete all application data: clear site data for salescloserpro.ai in your browser settings, or
+                delete the{' '}
+                <code className="bg-white/[0.06] px-1.5 py-0.5 rounded text-xs font-mono">salescloserpro</code>{' '}
+                IndexedDB database from DevTools → Application → Storage. Individual records can be deleted with
+                their respective Delete buttons in the UI.
               </p>
             </Section>
 
@@ -405,7 +360,7 @@ export default function LegalPage() {
               <H>California Rights (as applicable)</H>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li><Hi>Right to Know:</Hi> What personal information is collected — none by us; your data stays local.</li>
-                <li><Hi>Right to Delete:</Hi> Delete all data via localStorage.clear() or the app's Backup section.</li>
+                <li><Hi>Right to Delete:</Hi> Delete all data by clearing site data for salescloserpro.ai in your browser; individual records via their Delete buttons.</li>
                 <li><Hi>Right to Opt-Out:</Hi> Not applicable — no selling or sharing of data occurs.</li>
                 <li><Hi>Right to Non-Discrimination:</Hi> Exercising your privacy rights will not affect your ability to use the free software.</li>
               </ul>
@@ -516,8 +471,8 @@ export default function LegalPage() {
               </p>
               <H>Trademarks &amp; Logos</H>
               <p>
-                Any third-party names or logos that appear in SalesCloserPro (for example MoonPay, Namecheap,
-                Cloudflare, Zoho, or Google Workspace, referenced in setup guidance) are trademarks of their
+                Any third-party names or logos that appear in SalesCloserPro (for example GitHub, Cloudflare, Namecheap,
+                Zoho, Google Workspace, or OpenAI's ChatGPT, referenced in setup guidance and links) are trademarks of their
                 respective owners and are used solely for identification and referential purposes under nominative
                 fair use. No affiliation with, or endorsement by, these brands is implied.
               </p>

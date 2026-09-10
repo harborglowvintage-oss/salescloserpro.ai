@@ -1,2 +1,5 @@
+# Retired pages
+/whitepaper  /  301
+
 # SPA fallback — serve index.html for all non-asset routes
 /404.html /index.html 200

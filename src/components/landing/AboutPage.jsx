@@ -118,11 +118,11 @@ export default function AboutPage() {
         <Section icon={Settings} color="text-amber-400 bg-amber-500/10" title="Step 1 — Set up your company details">
           <p>Before you create your first quote, personalize SalesCloserPro:</p>
           <ol className="list-decimal ml-5 space-y-2">
-            <li>Click <strong className="text-white">Settings</strong> in the left sidebar (gear icon).</li>
+            <li>Click <strong className="text-white">Company Info</strong> in the left sidebar.</li>
             <li><strong className="text-white">Company name</strong> — Enter your business name. This appears at the top of every quote and PO.</li>
             <li><strong className="text-white">Address &amp; contact</strong> — Add your business address, phone, and email.</li>
-            <li><strong className="text-white">Logo</strong> — Click "Upload Logo" and pick an image file (PNG or JPG recommended, under 1 MB). Your logo will appear on exported PDFs.</li>
-            <li><strong className="text-white">Tax settings</strong> — Choose your default tax rate or enable multi-tax support if needed.</li>
+            <li><strong className="text-white">Logo</strong> — Click "Upload Logo" and pick an image file (PNG or JPG, under 2 MB). It is resized to 256px and appears in the sidebar and on every exported PDF.</li>
+            <li><strong className="text-white">Home state</strong> — Pick the state you normally sell in. Sales-tax rules for all 50 states and DC are built in, and each quote can override the state.</li>
             <li>Click <strong className="text-white">Save</strong> — your settings are stored locally and apply to all future quotes.</li>
           </ol>
           <p className="text-slate-500">Tip: You can update these at any time. Changes only affect new quotes — existing PDFs won't change.</p>
@@ -133,19 +133,19 @@ export default function AboutPage() {
           <ol className="list-decimal ml-5 space-y-2">
             <li>Click <strong className="text-white">Quotes</strong> in the sidebar.</li>
             <li>Click <strong className="text-white">+ New Quote</strong>.</li>
-            <li>Select a client from the dropdown (or create a new one inline by typing a name).</li>
-            <li>Add line items:
+            <li>Enter the client's name, email, and phone, and pick their <strong className="text-white">state</strong> — this sets the sales-tax rules for the quote.</li>
+            <li>Add line items by type — <strong className="text-white">Product</strong>, <strong className="text-white">Service</strong>, <strong className="text-white">Install / Labor</strong>, or <strong className="text-white">Freight</strong>:
               <ul className="list-disc ml-5 mt-1 space-y-1">
                 <li><strong className="text-white">Description</strong> — what you're selling (e.g., "Web Design Package")</li>
-                <li><strong className="text-white">Quantity</strong> — how many</li>
-                <li><strong className="text-white">Unit price</strong> — price per item</li>
+                <li><strong className="text-white">Quantity &amp; unit</strong> — each, hour, sq ft, day, per job, and more</li>
+                <li><strong className="text-white">Unit price</strong> — price per unit</li>
               </ul>
             </li>
-            <li>The total updates automatically including tax.</li>
-            <li>Add optional notes at the bottom (payment terms, scope details, etc.).</li>
+            <li>Tax is applied per line from the client's state — freight and labor are only taxed where that state taxes them. The total updates automatically.</li>
+            <li>Add optional notes and terms, and attach drawings, photos, or PDFs (up to 5 files).</li>
             <li>Click <strong className="text-white">Save Quote</strong> to store it, or <strong className="text-white">Export PDF</strong> to download a ready-to-send file.</li>
           </ol>
-          <p className="text-slate-500">Pro tip: Use the "Duplicate" button to reuse a previous quote as a template — saves a ton of time for repeat services.</p>
+          <p className="text-slate-500">Tip: Set the quote's status (Draft, Sent, Won, Lost) from the dropdown in the header. Every saved quote automatically appears as a deal on your Pipeline.</p>
         </Section>
 
         {/* ── clients ── */}
@@ -156,16 +156,17 @@ export default function AboutPage() {
             <li>Fill in their name, company, email, phone, and address.</li>
             <li>Click <strong className="text-white">Save</strong>.</li>
           </ol>
-          <p>Once saved, the client appears in your dropdown when creating quotes. Every quote and PO linked to them will show in their profile, giving you a full history at a glance.</p>
+          <p>Clients is your address book — contact details, address, state, and private notes, with click-to-email and click-to-call. Quotes carry their own client details, so you can quote someone before adding them here.</p>
         </Section>
 
         {/* ── pipeline ── */}
         <Section icon={TrendingUp} color="text-violet-400 bg-violet-500/10" title="Step 4 — Track deals in the pipeline">
           <ol className="list-decimal ml-5 space-y-2">
             <li>Click <strong className="text-white">Pipeline</strong> in the sidebar.</li>
-            <li>You'll see a kanban board with columns like <em>Lead</em>, <em>Proposal Sent</em>, <em>Negotiation</em>, and <em>Won</em>.</li>
-            <li><strong className="text-white">Add a deal</strong> — Click "+ Add Deal" at the top of any column, enter a name and value.</li>
-            <li><strong className="text-white">Move deals</strong> — Drag and drop cards between columns as the deal progresses.</li>
+            <li>You'll see a kanban board with six columns: <em>Lead</em>, <em>Quoted</em>, <em>Proposal Sent</em>, <em>Negotiating</em>, <em>Closed Won</em>, and <em>Closed Lost</em>.</li>
+            <li><strong className="text-white">Add a deal</strong> — Click "Add Deal" at the bottom of any column, enter a name and value.</li>
+            <li><strong className="text-white">Move deals</strong> — Use the Move and Back buttons on each card as the deal progresses.</li>
+            <li><strong className="text-white">Quotes sync automatically</strong> — every saved quote shows up as a deal linked to its quote number, and the quote status picks the column.</li>
             <li>The dashboard shows a summary of your pipeline's total value.</li>
           </ol>
           <p className="text-slate-500">The pipeline is a visual tool — it doesn't send emails or notifications. It's your personal bird's-eye view of where every deal stands.</p>
@@ -176,11 +177,11 @@ export default function AboutPage() {
           <ol className="list-decimal ml-5 space-y-2">
             <li>Click <strong className="text-white">Purchase Orders</strong> in the sidebar.</li>
             <li>Click <strong className="text-white">+ New PO</strong>.</li>
-            <li>Enter the vendor's name, address, and any reference number.</li>
-            <li>Add line items for what you're ordering.</li>
-            <li>Save or export as PDF — just like quotes.</li>
+            <li>Optionally link the PO to a quote and one of its line items — this unlocks margin tracking.</li>
+            <li>Enter the vendor, contact, ship-to address, description, quantity, and unit cost.</li>
+            <li>Click <strong className="text-white">Save PO</strong>, or <strong className="text-white">Issue PO &amp; Download PDF</strong> to mark it issued and get the vendor-ready PDF.</li>
           </ol>
-          <p className="text-slate-500">POs are useful for documenting what you buy from suppliers. They pair well with your quotes when you need to track both revenue and cost.</p>
+          <p className="text-slate-500">The Margin Table and Charts tabs compare what you sold each line for against what you paid. Margin data stays internal — it is never printed on the PO PDF.</p>
         </Section>
 
         {/* ── PDF export ── */}
@@ -188,7 +189,7 @@ export default function AboutPage() {
           <p>Every quote and purchase order can be exported as a clean PDF:</p>
           <ol className="list-decimal ml-5 space-y-1">
             <li>Open any quote or PO.</li>
-            <li>Click <strong className="text-white">Export PDF</strong>.</li>
+            <li>Click <strong className="text-white">Export PDF</strong> (quotes) or the <strong className="text-white">print icon</strong> (purchase orders).</li>
             <li>A file downloads to your computer instantly.</li>
           </ol>
           <p>The PDF includes your company logo, address, all line items, tax breakdown, and any notes — ready to email directly to your client.</p>
@@ -199,8 +200,8 @@ export default function AboutPage() {
           <p>Since everything is stored locally, regular backups keep your data safe:</p>
           <ol className="list-decimal ml-5 space-y-2">
             <li>Click <strong className="text-white">Backup</strong> in the sidebar.</li>
-            <li>Click <strong className="text-white">Export Backup</strong> — this downloads a JSON file with all your data.</li>
-            <li>To restore: click <strong className="text-white">Import Backup</strong> and select a previously exported JSON file.</li>
+            <li>Click <strong className="text-white">Download Backup</strong> — this saves a JSON file with all your data. In Chrome or Edge you can also <strong className="text-white">Save to Folder</strong> and turn on automatic backups.</li>
+            <li>To restore: click <strong className="text-white">Restore from Backup</strong>, pick the JSON file, review the preview, and confirm.</li>
           </ol>
           <p className="text-slate-500">
             We recommend backing up weekly, or before clearing browser data. Store the file on a USB drive,

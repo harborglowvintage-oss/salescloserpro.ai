@@ -94,7 +94,7 @@ export default function CompanySettings() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Company Settings</h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Your info auto-fills quotes, PDFs, and invoices</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Your info auto-fills every quote and purchase order PDF</p>
             </div>
           </div>
         </div>
@@ -273,7 +273,7 @@ export default function CompanySettings() {
 
           {/* Info note */}
           <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-xl p-3 text-xs text-indigo-700 dark:text-indigo-300 leading-relaxed">
-            <strong>This info becomes your default</strong> — it auto-fills the header on every PDF quote and invoice you generate. You can change it any time.
+            <strong>This info becomes your default</strong> — it auto-fills the header on every PDF quote and purchase order you generate. You can change it any time.
           </div>
 
           {/* Save */}

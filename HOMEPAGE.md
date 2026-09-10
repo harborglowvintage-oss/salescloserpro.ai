@@ -1,90 +1,52 @@
-# salescloserpro.ai — Marketing Homepage
+# salescloserpro.ai — Homepage deployment notes
 
-> The public-facing marketing site for [salescloserpro.ai](https://salescloserpro.ai) — a free, open-source sales CRM, quoting, and pipeline tool.
+> Notes for the second deployment of this codebase, `salescloserprohomepage.ai`.
 
-This repo contains **only the landing page** and its assets. The full application lives at [harborglowvintage-oss/salescloserpro.ai](https://github.com/harborglowvintage-oss/salescloserpro.ai).
+The public site at [salescloserpro.ai](https://salescloserpro.ai) and the homepage repo are built from the **same source**. Both are React 18 + Vite apps deployed to **Cloudflare Pages**, which runs `npm run build` on every push to `main` and serves `dist/`.
 
----
+## Keeping the two repos in sync
 
-## Stack
-
-| Layer | Tech |
+| Path | Rule |
 |---|---|
-| Framework | React 18 + Vite |
-| Styling | Tailwind CSS |
-| Routing | React Router (HashRouter) |
-| Deployment | Netlify |
-| OG Image | Generated via `sharp` (Node) |
+| `src/`, `public/`, `index.html`, `package.json`, `vite.config.js` | Keep **byte-identical** across both repos |
+| `README.md` | The homepage copy omits the homepage screenshot row and the local zip-backup section |
 
----
+Make changes in one repo, build, copy the shared paths to the other, and build again before pushing.
 
-## Pages
+## Routes (React Router, BrowserRouter)
 
-| Route | File | Purpose |
-|---|---|---|
-| `/` | `src/components/landing/LandingPage.jsx` | Main marketing page · hero, features |
-| `/about` | `src/components/landing/AboutPage.jsx` | About the project |
-| `/legal` | `src/components/landing/LegalPage.jsx` | Terms & privacy |
+| Route | File |
+|---|---|
+| `/` | `src/components/landing/LandingPage.jsx` |
+| `/about` | `src/components/landing/AboutPage.jsx` |
+| `/services` | `src/components/landing/ServicesPage.jsx` |
+| `/legal` | `src/components/landing/LegalPage.jsx` |
+| `/dashboard`, `/quotes`, `/clients`, … | App routes rendered inside `src/components/layout/Layout.jsx` |
 
----
+Deep links work because Cloudflare Pages serves `index.html` for unknown paths. `public/_redirects` also 301s retired pages (for example `/whitepaper`).
 
-## Local Development
+## Local development
 
 ```bash
 npm install
-npm run dev
-# → http://localhost:5173
+npm run dev      # http://localhost:5173
+npm run build    # outputs dist/
+npm run preview
 ```
 
-## Build & Deploy
+## Regenerate the social card
 
-```bash
-npm run build        # outputs to dist/
-```
-
-Netlify auto-deploys on push to `main`. Build command: `npm run build` · Publish directory: `dist`.
-
-The `public/_redirects` file handles SPA routing on Netlify:
-```
-/*  /index.html  200
-```
-
----
-
-## Regenerate OG Social Card
-
-The `public/og-cover.png` (1200×630) is pre-generated and committed. To regenerate after logo or copy changes:
+`public/og-cover-v2.png` (1200×630) is committed. After logo or copy changes:
 
 ```bash
 npm run generate-og
 ```
 
-Source: `scripts/generate-og.mjs`
-
----
-
-## Static Assets
-
-```
-public/
-  favicon.png
-  og-cover.png          # Social card — 1200×630
-  _redirects            # Netlify SPA routing
-  logos/
-    salescloserprologo.png
-```
-
----
+Source: `scripts/generate-og.mjs`.
 
 ## SEO
 
-All meta tags, Open Graph, Twitter Card, and JSON-LD structured data are in `index.html`.
-
-- Canonical: `https://salescloserpro.ai/`
-- OG image: `https://salescloserpro.ai/og-cover.png`
-- Schema.org type: `SoftwareApplication`
-
----
+All meta tags, Open Graph, Twitter Card, and JSON-LD structured data live in `index.html`. Canonical URL: `https://salescloserpro.ai/`.
 
 ## License
 

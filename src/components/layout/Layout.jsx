@@ -70,6 +70,9 @@ export default function Layout() {
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', theme === 'dark')
+    // Mirror to localStorage so the pre-paint script in index.html can apply the
+    // theme before React loads (IndexedDB is async, so it can't be read there).
+    try { localStorage.setItem('scp-theme', theme) } catch { /* private mode etc. */ }
   }, [theme])
 
   return (

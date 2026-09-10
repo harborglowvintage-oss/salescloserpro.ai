@@ -1,26 +1,15 @@
 import { useState } from 'react'
 import {
   Github, Globe, Mail, ChevronRight, ChevronDown, CheckCircle, ExternalLink,
-  CreditCard, Wallet, Shield, Zap, AlertCircle, Copy, Check, Eye, EyeOff,
-  Circle, RotateCcw, ArrowRight, Sparkles, Clock, Info,
+  Circle, RotateCcw, Sparkles, Clock, Info,
 } from 'lucide-react'
 import useStore from '../../store'
-
-const CURRENCIES = [
-  { id: 'usdc_polygon', label: 'USDC (Polygon)',    desc: 'Low fees, fast settlement',    badge: '⭐ Recommended' },
-  { id: 'usdc',         label: 'USDC (Ethereum)',    desc: 'Stablecoin on Ethereum',       badge: null },
-  { id: 'usdt',         label: 'USDT (Tether)',      desc: 'Most widely used stablecoin',  badge: null },
-  { id: 'eth',          label: 'Ethereum (ETH)',     desc: 'Native Ethereum',               badge: null },
-  { id: 'btc',          label: 'Bitcoin (BTC)',      desc: 'Original cryptocurrency',       badge: null },
-  { id: 'matic_polygon',label: 'MATIC (Polygon)',    desc: 'Polygon native token',          badge: null },
-]
 
 const STEP_META = [
   { id: 1, label: 'GitHub',     icon: Github,     color: 'bg-gray-900',                          keys: ['github_account','github_forked','github_cloned'] },
   { id: 2, label: 'Cloudflare', icon: Globe,       color: 'bg-orange-500',                        keys: ['cf_account','cf_project','cf_build','cf_deployed'] },
   { id: 3, label: 'Domain',     icon: Globe,       color: 'bg-purple-600',                        keys: ['domain_decided','domain_configured'] },
   { id: 4, label: 'Email',      icon: Mail,        color: 'bg-red-500',                           keys: ['email_decided','email_configured'] },
-  { id: 5, label: 'Payments',   icon: CreditCard,  color: 'bg-gradient-to-br from-violet-600 to-blue-600', keys: ['pay_account','pay_keys','pay_wallet','pay_enabled'] },
 ]
 
 /* ── Reusable checkbox task ─────────────────────────────── */
@@ -77,19 +66,12 @@ function Tip({ children }) {
 export default function GoLiveWizard() {
   const [step, setStep]           = useState(0)  // 0 = overview
   const company                   = useStore((s) => s.company)
-  const paymentSettings           = useStore((s) => s.paymentSettings)
-  const setPaymentSettings        = useStore((s) => s.setPaymentSettings)
   const cl                        = useStore((s) => s.goLiveChecklist)
   const setCheck                  = useStore((s) => s.setGoLiveCheck)
   const resetChecklist            = useStore((s) => s.resetGoLiveChecklist)
 
-  const [showKey, setShowKey]     = useState(false)
-  const [copied, setCopied]       = useState('')
   const [expandedTip, setExpandedTip] = useState(null)
 
-  const copyText = (text, label) => {
-    navigator.clipboard.writeText(text).then(() => { setCopied(label); setTimeout(() => setCopied(''), 1500) })
-  }
   const tog = (key) => setCheck(key, !cl[key])
 
   /* Progress helpers */
@@ -316,182 +298,12 @@ export default function GoLiveWizard() {
                   <Tip>Both services use MX records in your DNS. In Cloudflare → DNS → Add Record → type: MX. Your email provider's setup guide will give you the exact values.</Tip>
                   <div className="flex gap-3">
                     <button onClick={() => setStep(3)} className="btn-secondary">← Back</button>
-                    <button onClick={() => setStep(5)} className="btn-primary flex-1 flex items-center justify-center gap-2">
-                      Continue to Payments <ChevronRight className="w-4 h-4" />
+                    <button onClick={() => setStep(0)} className="btn-primary flex-1 flex items-center justify-center gap-2">
+                      Finish <CheckCircle className="w-4 h-4" />
                     </button>
                   </div>
                 </>)}
 
-                {/* ── STEP 5: MoonPay Commerce Payments ───── */}
-                {s.id === 5 && (<>
-                  {/* How it works */}
-                  <div className="bg-gradient-to-br from-violet-50 to-blue-50 dark:from-violet-900/20 dark:to-blue-900/20 border border-violet-200 dark:border-violet-800 rounded-2xl p-5 space-y-4">
-                    <h3 className="font-bold text-violet-900 dark:text-violet-200 flex items-center gap-2">
-                      <Zap className="w-5 h-5" /> How MoonPay Commerce Works
-                    </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-sm">
-                      <div className="text-center space-y-2">
-                        <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto shadow-sm"><CreditCard className="w-5 h-5 text-violet-600" /></div>
-                        <div className="font-semibold text-gray-800 dark:text-gray-200">1. Client clicks "Pay"</div>
-                        <div className="text-gray-500 dark:text-gray-400 text-xs">Pay Invoice button on every quote</div>
-                      </div>
-                      <div className="text-center space-y-2">
-                        <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto shadow-sm"><Shield className="w-5 h-5 text-blue-600" /></div>
-                        <div className="font-semibold text-gray-800 dark:text-gray-200">2. MoonPay widget opens</div>
-                        <div className="text-gray-500 dark:text-gray-400 text-xs">Client pays with card, bank, or Apple Pay</div>
-                      </div>
-                      <div className="text-center space-y-2">
-                        <div className="w-10 h-10 bg-white dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto shadow-sm"><Wallet className="w-5 h-5 text-green-600" /></div>
-                        <div className="font-semibold text-gray-800 dark:text-gray-200">3. You receive funds</div>
-                        <div className="text-gray-500 dark:text-gray-400 text-xs">Crypto deposited to your wallet</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Checklist */}
-                  <div className="space-y-2">
-                    <TaskCheck checked={cl.pay_account} onChange={() => tog('pay_account')} timeEst="3 min"
-                      sub="Visit commerce.moonpay.com → Sign up for a free account. You'll need to verify your identity for production mode. Trusted by Shopify, Ledger, Fortune Media, and 6,000+ merchants worldwide.">
-                      Create a MoonPay account
-                    </TaskCheck>
-                    <TaskCheck checked={cl.pay_keys} onChange={() => tog('pay_keys')} timeEst="1 min"
-                      sub={<>In your MoonPay dashboard: <strong>Developers → API Keys</strong>. Copy the <strong>Publishable Key</strong> (starts with <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-xs">pk_test_</code> or <code className="bg-gray-100 dark:bg-gray-700 px-1 py-0.5 rounded text-xs">pk_live_</code>).</>}>
-                      Get your publishable API key
-                    </TaskCheck>
-                    <TaskCheck checked={cl.pay_wallet} onChange={() => tog('pay_wallet')} timeEst="2 min"
-                      sub="Use Coinbase, MetaMask, Trezor, Ledger, or any wallet. For USDC (Polygon), make sure your wallet supports the Polygon network.">
-                      Have a wallet address ready
-                    </TaskCheck>
-                    <TaskCheck checked={cl.pay_enabled} onChange={() => tog('pay_enabled')} timeEst="1 min"
-                      sub="Fill in the configuration below and toggle 'Enable Payments'. The Pay button will then appear on all quotes.">
-                      Configure & enable payments below
-                    </TaskCheck>
-                  </div>
-
-                  <LinkCard href="https://commerce.moonpay.com" label="Go to MoonPay Commerce" badge="Free · Live globally" />
-
-                  {/* Configuration */}
-                  <div className="space-y-4 border-t border-gray-100 dark:border-gray-700 pt-5">
-                    <div className="flex items-center justify-between">
-                      <h3 className="font-bold text-gray-900 dark:text-gray-100">Configuration</h3>
-                      <label className="relative inline-flex items-center cursor-pointer">
-                        <input type="checkbox" checked={paymentSettings.enabled} onChange={(e) => setPaymentSettings({ enabled: e.target.checked })} className="sr-only peer" />
-                        <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:after:border-gray-600 peer-checked:bg-blue-600" />
-                        <span className="ml-2 text-sm font-semibold text-gray-700 dark:text-gray-300">{paymentSettings.enabled ? 'Enabled' : 'Disabled'}</span>
-                      </label>
-                    </div>
-
-                    {/* Environment */}
-                    <div>
-                      <label className="block text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1.5">Environment</label>
-                      <div className="grid grid-cols-2 gap-2">
-                        <button onClick={() => setPaymentSettings({ environment: 'sandbox' })}
-                          className={`py-3 px-4 rounded-xl text-sm font-bold border-2 transition-all ${paymentSettings.environment === 'sandbox' ? 'border-amber-400 bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-300' : 'border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300'}`}>
-                          🧪 Sandbox (Test)
-                        </button>
-                        <button onClick={() => setPaymentSettings({ environment: 'production' })}
-                          className={`py-3 px-4 rounded-xl text-sm font-bold border-2 transition-all ${paymentSettings.environment === 'production' ? 'border-green-400 bg-green-50 dark:bg-green-900/20 text-green-700 dark:text-green-300' : 'border-gray-200 dark:border-gray-600 text-gray-500 dark:text-gray-400 hover:border-gray-300'}`}>
-                          🟢 Production (Live)
-                        </button>
-                      </div>
-                    </div>
-
-                    {/* API Key */}
-                    <div>
-                      <label className="block text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1.5">MoonPay Publishable API Key</label>
-                      <div className="relative">
-                        <input type={showKey ? 'text' : 'password'} className="input-field pr-20 font-mono text-sm w-full"
-                          placeholder={paymentSettings.environment === 'sandbox' ? 'pk_test_...' : 'pk_live_...'}
-                          value={paymentSettings.moonpayApiKey}
-                          onChange={(e) => setPaymentSettings({ moonpayApiKey: e.target.value.trim() })} />
-                        <div className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center gap-1">
-                          <button onClick={() => setShowKey(!showKey)} className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" title={showKey ? 'Hide' : 'Show'}>
-                            {showKey ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
-                          </button>
-                          {paymentSettings.moonpayApiKey && (
-                            <button onClick={() => copyText(paymentSettings.moonpayApiKey, 'key')} className="p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" title="Copy">
-                              {copied === 'key' ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                            </button>
-                          )}
-                        </div>
-                      </div>
-                      <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Your <strong>publishable</strong> key is safe client-side. Never enter your secret key.</p>
-                    </div>
-
-                    {/* Wallet Address */}
-                    <div>
-                      <label className="block text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1.5">Wallet Address (receives payments)</label>
-                      <div className="relative">
-                        <input type="text" className="input-field font-mono text-sm w-full pr-10"
-                          placeholder="0x... or bc1... or your exchange deposit address"
-                          value={paymentSettings.walletAddress}
-                          onChange={(e) => setPaymentSettings({ walletAddress: e.target.value.trim() })} />
-                        {paymentSettings.walletAddress && (
-                          <button onClick={() => copyText(paymentSettings.walletAddress, 'wallet')} className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700" title="Copy">
-                            {copied === 'wallet' ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
-                          </button>
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Default Currency */}
-                    <div>
-                      <label className="block text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest mb-1.5">Default Payment Currency</label>
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        {CURRENCIES.map((c) => (
-                          <button key={c.id} onClick={() => setPaymentSettings({ defaultCurrency: c.id })}
-                            className={`flex items-center gap-3 p-3 rounded-xl border-2 text-left transition-all ${paymentSettings.defaultCurrency === c.id ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/20' : 'border-gray-200 dark:border-gray-600 hover:border-gray-300 dark:hover:border-gray-500'}`}>
-                            <div className="flex-1 min-w-0">
-                              <div className="flex items-center gap-2">
-                                <span className="font-bold text-sm text-gray-900 dark:text-gray-100">{c.label}</span>
-                                {c.badge && <span className="text-[10px] font-bold text-blue-600 dark:text-blue-400">{c.badge}</span>}
-                              </div>
-                              <div className="text-xs text-gray-400 dark:text-gray-500">{c.desc}</div>
-                            </div>
-                            {paymentSettings.defaultCurrency === c.id && <CheckCircle className="w-5 h-5 text-blue-500 flex-shrink-0" />}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Validation status */}
-                    {paymentSettings.enabled && (
-                      <div className={`rounded-xl p-4 text-sm flex items-start gap-3 ${paymentSettings.moonpayApiKey && paymentSettings.walletAddress ? 'bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800' : 'bg-amber-50 dark:bg-amber-900/20 border border-amber-200 dark:border-amber-800'}`}>
-                        {paymentSettings.moonpayApiKey && paymentSettings.walletAddress ? (
-                          <><CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400 flex-shrink-0 mt-0.5" />
-                            <div>
-                              <p className="font-bold text-green-800 dark:text-green-300">Ready to accept payments!</p>
-                              <p className="text-green-700 dark:text-green-400 mt-0.5">
-                                "Pay Invoice" button will appear on all quotes. Clients pay in {CURRENCIES.find((c) => c.id === paymentSettings.defaultCurrency)?.label || paymentSettings.defaultCurrency}.
-                                {paymentSettings.environment === 'sandbox' && ' (Sandbox — no real money charged)'}
-                              </p>
-                            </div></>
-                        ) : (
-                          <><AlertCircle className="w-5 h-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-                            <div>
-                              <p className="font-bold text-amber-800 dark:text-amber-300">Missing required fields</p>
-                              <ul className="text-amber-700 dark:text-amber-400 mt-0.5 space-y-0.5">
-                                {!paymentSettings.moonpayApiKey && <li>• MoonPay API key is required</li>}
-                                {!paymentSettings.walletAddress && <li>• Wallet address is required</li>}
-                              </ul>
-                            </div></>
-                        )}
-                      </div>
-                    )}
-                  </div>
-
-                  {/* Info box */}
-                  <div className="bg-gray-50 dark:bg-gray-800 rounded-xl p-4 text-xs text-gray-500 dark:text-gray-400 leading-relaxed space-y-2">
-                    <p><strong className="text-gray-700 dark:text-gray-300">Why MoonPay Commerce?</strong> MoonPay's unified commerce platform — launched globally Oct 2025 and already trusted by Shopify, Ledger, Fortune Media, and 6,000+ merchants. Licensed, regulated, handles KYC/AML so you don't have to. Supports Visa, Mastercard, Apple Pay, Google Pay, bank transfer, and 100+ cryptos.</p>
-                    <p><strong className="text-gray-700 dark:text-gray-300">No chargebacks.</strong> Direct buyer-to-merchant payments mean zero chargeback risk. Merchants also get low fees, Pay Links, subscriptions, and split payments.</p>
-                    <p><strong className="text-gray-700 dark:text-gray-300">Why stablecoins?</strong> USDC is pegged 1:1 to USD — no volatility. $1,500 invoice = $1,500 USDC. Auto-convert to USD, EUR, or other fiat through MoonPay Commerce anytime.</p>
-                    <p><strong className="text-gray-700 dark:text-gray-300">Fees:</strong> MoonPay charges the buyer ~1–4.5% depending on method. You receive the exact invoice amount with zero seller fees and zero chargebacks.</p>
-                  </div>
-
-                  <div className="flex gap-3">
-                    <button onClick={() => setStep(4)} className="btn-secondary">← Back</button>
-                  </div>
-                </>)}
               </div>
             )}
           </div>

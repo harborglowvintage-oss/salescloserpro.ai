@@ -1,11 +1,12 @@
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import { format } from 'date-fns'
+import { stateTaxData } from '../data/taxDatabase'
 
 /**
  * Generates a polished, color-neutral PDF quote / proposal.
  */
-export function generatePDF({ quote, company, lines, subtotal, tax, grandTotal, paymentSettings }) {
+export function generatePDF({ quote, company, lines, subtotal, tax, grandTotal }) {
   const doc = new jsPDF()
   const W = doc.internal.pageSize.getWidth()   // 210
   const H = doc.internal.pageSize.getHeight()  // 297
@@ -69,7 +70,7 @@ export function generatePDF({ quote, company, lines, subtotal, tax, grandTotal, 
   doc.setTextColor(...midGray)
   doc.setFontSize(8)
   doc.setFont('helvetica', 'normal')
-  doc.text(format(new Date(), 'MMMM d, yyyy'), rX, 33, { align: 'right' })
+  doc.text(format(quote.createdAt ? new Date(quote.createdAt) : new Date(), 'MMMM d, yyyy'), rX, 33, { align: 'right' })
 
   // Status badge
   const statusText = (quote.status || 'DRAFT').toUpperCase()
@@ -106,8 +107,7 @@ export function generatePDF({ quote, company, lines, subtotal, tax, grandTotal, 
   if (quote.clientEmail) { doc.text(quote.clientEmail, M, billY); billY += 4.5 }
   if (quote.clientPhone) { doc.text(quote.clientPhone, M, billY); billY += 4.5 }
   if (quote.state) {
-    const stateNames = { TX: 'Texas', CA: 'California', NY: 'New York', FL: 'Florida', MA: 'Massachusetts' }
-    doc.text(stateNames[quote.state] || quote.state, M, billY)
+    doc.text(stateTaxData[quote.state]?.name || quote.state, M, billY)
   }
 
   // ── LINE ITEMS TABLE ───────────────────────────────────────
@@ -286,31 +286,6 @@ export function generatePDF({ quote, company, lines, subtotal, tax, grandTotal, 
         y += 5
       }
     }
-  }
-
-  // ── PAY ONLINE (MoonPay) ─────────────────────────────────
-  if (paymentSettings?.enabled && paymentSettings.moonpayApiKey && paymentSettings.walletAddress) {
-    y += 12
-    if (y > 255) { doc.addPage(); y = 20 }
-
-    doc.setFillColor(245, 245, 247)
-    doc.roundedRect(M, y, W - M * 2, 22, 3, 3, 'F')
-    doc.setDrawColor(...softGray)
-    doc.setLineWidth(0.4)
-    doc.roundedRect(M, y, W - M * 2, 22, 3, 3, 'S')
-
-    doc.setTextColor(...charcoal)
-    doc.setFontSize(9)
-    doc.setFont('helvetica', 'bold')
-    doc.text('PAY THIS INVOICE ONLINE', M + 6, y + 7)
-
-    doc.setTextColor(...midGray)
-    doc.setFontSize(7.5)
-    doc.setFont('helvetica', 'normal')
-    doc.text('This invoice supports secure online payment via MoonPay.', M + 6, y + 12.5)
-    doc.text('Open this quote in SalesCloserPro and click "Pay Invoice" to pay by card, bank, or Apple Pay.', M + 6, y + 17)
-
-    y += 24
   }
 
   // ── FOOTER ─────────────────────────────────────────────────

@@ -6,15 +6,14 @@ import {
   History, Info, ChevronDown, ChevronRight, X
 } from 'lucide-react'
 import useStore from '../../store'
+import { exportRawState, importRawState } from '../../db'
 import { format, formatDistanceToNow } from 'date-fns'
 
 // ── Helpers ─────────────────────────────────────────────
-const STORAGE_KEY = 'salescloserpro-data'
-
-function getBackupPayload() {
-  const raw = localStorage.getItem(STORAGE_KEY)
-  return raw || '{}'
-}
+// Backups read the persisted Zustand JSON straight from IndexedDB (see db.js).
+// NOTE: the store has NOT lived in localStorage since v1.0.1 — reading it there
+// silently produced empty backups.
+const getBackupPayload = () => exportRawState()
 
 function getBackupSize(payload) {
   const bytes = new Blob([payload]).size
@@ -74,7 +73,15 @@ export default function BackupRestore() {
   const [feedback, setFeedback] = useState(null) // { type: 'success'|'error', msg }
   const [showHistory, setShowHistory] = useState(false)
   const [dirHandle, setDirHandle] = useState(null)
+  const [currentSize, setCurrentSize] = useState('…')
   const fileInputRef = useRef(null)
+
+  // Live size of the persisted data — re-read after each backup / restore / feedback change
+  useEffect(() => {
+    let cancelled = false
+    getBackupPayload().then((p) => { if (!cancelled) setCurrentSize(getBackupSize(p)) }).catch(() => {})
+    return () => { cancelled = true }
+  }, [feedback, backupSettings.lastBackupAt])
 
   // ── Folder directory handle (persisted via IndexedDB for auto-backup) ──
   useEffect(() => {
@@ -149,7 +156,7 @@ export default function BackupRestore() {
         const req = await handle.requestPermission({ mode: 'readwrite' })
         if (req !== 'granted') return false
       }
-      const payload = getBackupPayload()
+      const payload = await getBackupPayload()
       const filename = makeFilename()
       const fileHandle = await handle.getFileHandle(filename, { create: true })
       const writable = await fileHandle.createWritable()
@@ -167,8 +174,8 @@ export default function BackupRestore() {
   }, [addBackupRecord])
 
   // ── Download backup (fallback) ────────────────────────
-  const handleDownloadBackup = () => {
-    const payload = getBackupPayload()
+  const handleDownloadBackup = async () => {
+    const payload = await getBackupPayload()
     const filename = makeFilename()
     downloadFile(payload, filename)
     const record = { at: new Date().toISOString(), size: getBackupSize(payload), method: 'download', location: 'Downloads', filename }
@@ -213,11 +220,14 @@ export default function BackupRestore() {
     e.target.value = ''
   }
 
-  const confirmRestore = () => {
+  const confirmRestore = async () => {
     if (!restorePreview?.raw) return
     if (!window.confirm('This will REPLACE all current data with the backup. This action cannot be undone. Continue?')) return
     try {
-      localStorage.setItem(STORAGE_KEY, restorePreview.raw)
+      // Accept both the native persist envelope ({ state, version }) and a bare state object
+      const parsed = JSON.parse(restorePreview.raw)
+      const envelope = parsed && typeof parsed === 'object' && 'state' in parsed ? parsed : { state: parsed, version: 0 }
+      await importRawState(JSON.stringify(envelope))
       setFeedback({ type: 'success', msg: 'Data restored successfully! Reloading app…' })
       setRestoreFile(null)
       setRestorePreview(null)
@@ -264,8 +274,6 @@ export default function BackupRestore() {
     return () => clearTimeout(t)
   }, [feedback])
 
-  const payload = getBackupPayload()
-  const currentSize = getBackupSize(payload)
   const { backupHistory } = backupSettings
   const lastBackup = backupSettings.lastBackupAt
     ? formatDistanceToNow(new Date(backupSettings.lastBackupAt), { addSuffix: true })

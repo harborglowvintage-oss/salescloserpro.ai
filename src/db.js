@@ -30,6 +30,19 @@ export const indexedDBStorage = {
   },
 }
 
+// ── Raw state access (used by Backup & Restore) ─────────
+// The persisted Zustand JSON lives in the `keyval` table, NOT localStorage.
+export const STORE_NAME = 'salescloserpro-data'
+
+export async function exportRawState() {
+  const row = await db.keyval.get(STORE_NAME)
+  return row?.value ?? '{}'
+}
+
+export async function importRawState(raw) {
+  await db.keyval.put({ key: STORE_NAME, value: raw })
+}
+
 // ── One-time migration from localStorage → IndexedDB ────
 export async function migrateFromLocalStorage(storeName) {
   const existing = await db.keyval.get(storeName)

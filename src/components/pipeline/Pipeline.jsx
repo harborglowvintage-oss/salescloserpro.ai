@@ -157,7 +157,7 @@ export default function Pipeline() {
             Pipeline value: ${totalValue.toLocaleString()}
           </div>
         </div>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Drag deals across stages or use the Move buttons</p>
+        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Use the Move and Back buttons on each card to advance deals between stages</p>
       </div>
 
       <div className="overflow-x-auto pb-4">

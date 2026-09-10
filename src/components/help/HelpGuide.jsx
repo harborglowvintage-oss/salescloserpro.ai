@@ -1,10 +1,9 @@
 import { useState } from 'react'
 import {
-  HelpCircle, FileText, Users, GitBranch, Rocket, DollarSign,
-  Layers, Paperclip, Sun, Moon, Upload, Printer, Download,
+  HelpCircle, FileText, Users, GitBranch, Rocket, ShoppingCart,
+  Paperclip, Sun, Upload, Printer, Send, HardDrive,
   ChevronDown, ChevronRight, Search, BookOpen, Zap, Shield,
-  BarChart3, Settings, ArrowRight, ExternalLink,
-  PlusCircle, Edit3, Trash2, Eye, CheckCircle, CreditCard, Wallet
+  BarChart3, Settings, PlusCircle, Eye
 } from 'lucide-react'
 
 const sections = [
@@ -17,19 +16,23 @@ const sections = [
     content: [
       {
         q: 'What is SalesCloserPro?',
-        a: 'SalesCloserPro is a free, open-source universal sales quoting application. It runs entirely in your browser — no server, no sign-up, no subscription. Create professional quotes, manage clients, track your pipeline, and export polished PDF proposals in seconds.'
+        a: 'SalesCloserPro is a free, open-source sales quoting tool. It runs entirely in your browser — no server, no sign-up, no subscription. Build professional quotes, keep a client list, track deals on a pipeline board, issue purchase orders to vendors, and export polished PDFs in seconds.'
+      },
+      {
+        q: 'Do I need an account?',
+        a: 'No. Click "Launch App" and you are in. There is no email, password, or verification step. Everything you create is saved on this device automatically.'
       },
       {
         q: 'Where is my data stored?',
-        a: 'All data is stored locally in your browser\'s localStorage. Nothing is sent to any server. Your quotes, clients, pipeline, and settings stay on your machine. To back up your data, use the Export feature in the Go Live section.'
+        a: 'All data is stored locally in your browser\'s built-in database (IndexedDB) under the name "salescloserpro". Nothing is sent to any server. Because the data lives in this browser on this device, clearing site data will erase it — use the Backup page to keep a copy.'
       },
       {
         q: 'How do I set up my company info?',
-        a: 'Go to Company Info in the sidebar. Enter your company name, address, phone, email, and website, then click Save. This information becomes your default — it auto-fills the header on every PDF quote and invoice. You can also upload a custom logo right from that page. A profile completeness bar shows you what\'s missing.'
+        a: 'Go to Company Info in the sidebar. Enter your company name, address, phone, email, website, and home state, then click Save. This information auto-fills the header on every PDF quote and purchase order. You can upload a logo on the same page, and a profile-completeness bar shows what is still missing.'
       },
       {
         q: 'Is it really free?',
-        a: 'Yes — 100% free and open source. No hidden fees, no feature gates, no time limits.'
+        a: 'Yes — 100% free and open source under the Apache 2.0 license. No hidden fees, no feature gates, no time limits.'
       }
     ]
   },
@@ -42,56 +45,27 @@ const sections = [
     content: [
       {
         q: 'How do I create a new quote?',
-        a: 'Click the "New Quote" button in the sidebar, or go to Quotes → click "New Quote". Fill in the client info, add line items with description, quantity, unit price, and optional tax. The total calculates automatically. Click Save when done.'
+        a: 'Click "New Quote" in the sidebar (or Quotes → New Quote). Enter the client\'s name, email, phone, and state, then add line items using the four big buttons — Product, Service, Install / Labor, or Freight. Fill in a description, quantity, unit, and unit price for each line. The subtotal, tax, and grand total update as you type. Click Save Quote when you are done.'
       },
       {
-        q: 'How do I add line items?',
-        a: 'In the Quote Builder, click "Add Line Item" to add rows. Each line has: Description, Quantity, Unit Price, and Tax %. You can reorder or remove lines as needed. The subtotal, tax, and grand total update in real time.'
+        q: 'How does tax work?',
+        a: 'Tax is calculated per line from the client\'s state. Rates for all 50 states and DC are built in, including whether that state taxes freight and installation labor. Each line shows its tax amount, or "TAX EXEMPT" when that line type is not taxable in the selected state. A note under the state picker summarizes that state\'s rules. Always confirm rates with your accountant before invoicing.'
       },
       {
         q: 'How does auto-numbering work?',
-        a: 'Quotes are automatically numbered sequentially starting from Q-0001. Each new quote gets the next available number. Change Orders inherit the parent quote number with a letter suffix (e.g., Q-0001-A, Q-0001-B).'
-      },
-      {
-        q: 'How do I edit an existing quote?',
-        a: 'Go to the Quotes list and click on any quote card to open it in the Quote Builder. Make your changes and click Save. The quote number stays the same.'
-      },
-      {
-        q: 'How do I print or export a quote as PDF?',
-        a: 'Open any quote in the Quote Builder and click the "Print / PDF" button. This generates a professional PDF with your company branding, line items, totals, notes, and any attached files. The PDF opens in a new tab for printing or downloading.'
+        a: 'Quotes are numbered sequentially starting from Q-0001. Numbers are never reused, so deleting a quote does not renumber the others.'
       },
       {
         q: 'What statuses can a quote have?',
-        a: 'Quotes can be: Draft (in progress), Sent (delivered to client), Accepted (client approved), Rejected (client declined), or Invoiced (converted to invoice). Change the status from the dropdown in the Quote Builder.'
-      }
-    ]
-  },
-  {
-    id: 'change-orders',
-    icon: Layers,
-    title: 'Change Orders (Extensions)',
-    color: 'text-purple-500',
-    bg: 'bg-purple-50 dark:bg-purple-900/20',
-    content: [
-      {
-        q: 'What are Change Orders?',
-        a: 'Change Orders (COs) let you add modifications to an existing quote without creating a new one. They appear as tabs within the original quote and are numbered with letter suffixes — e.g., Q-0001-A, Q-0001-B.'
+        a: 'Draft, Sent, Won, or Lost. Change it from the dropdown in the quote header. The status also sets the deal\'s column on the Pipeline, and quotes marked Won count toward Revenue Won on the Dashboard.'
       },
       {
-        q: 'How do I create a Change Order?',
-        a: 'Open an existing quote in the Quote Builder. Click the "+" tab (or "Add CO" button) next to the existing tabs. A new tab appears with its own line items, notes, attachments, and status — all under the same parent quote number.'
+        q: 'How do I export a quote as a PDF?',
+        a: 'Open the quote and click PDF in the header or Export PDF at the bottom. The quote is saved first, then a branded PDF downloads with your logo and company info, the client details, every line item with tax, the totals, your notes, the standard terms, and any attached images.'
       },
       {
-        q: 'Can each CO have its own status?',
-        a: 'Yes. Each Change Order tab has its own independent status (Draft, Sent, Accepted, etc.), line items, notes, and attachments. This lets you track acceptance of each modification separately.'
-      },
-      {
-        q: 'How do COs appear in the Quote List?',
-        a: 'In the Quote List, quotes that have COs show a "Layers" badge indicating the number of extensions. Below the main quote card, you\'ll see colored pills for each CO showing the suffixed number, status dot, and total amount.'
-      },
-      {
-        q: 'Can I delete a Change Order?',
-        a: 'Yes. Hover over a CO tab and click the ✕ icon that appears. You\'ll be asked to confirm the deletion. The original quote tab cannot be deleted.'
+        q: 'How do I edit or delete a quote?',
+        a: 'Go to Quotes and click any quote to open it in the builder; make your changes and click Save. To delete, hover over the quote in the list and click the trash icon. You will be asked to confirm.'
       }
     ]
   },
@@ -104,19 +78,19 @@ const sections = [
     content: [
       {
         q: 'How do I attach files to a quote?',
-        a: 'In the Quote Builder, scroll to the Attachments section. Drag & drop files onto the upload area, or click to browse. Supports images (JPG, PNG, GIF, WebP) and PDFs.'
+        a: 'In the Quote Builder, scroll to the Attachments section. Drag and drop files onto the upload area, or click to browse. Images (JPG, PNG, GIF, WebP) and PDFs are supported.'
       },
       {
         q: 'What are the file size limits?',
-        a: 'Each file can be up to 2 MB and you can attach up to 5 files per quote (or per Change Order tab). Images are automatically resized to a max of 1200px for efficient storage.'
+        a: 'Up to 5 files per quote, each up to 2 MB. Images are automatically resized to a maximum of 1200 px so they stay small in storage.'
       },
       {
         q: 'Do attachments appear in the PDF?',
-        a: 'Yes. Image attachments are embedded as thumbnails in the ATTACHMENTS section of the generated PDF. PDF files are listed by name with a 📎 icon. The layout handles page overflow automatically.'
+        a: 'Yes. Image attachments are embedded as thumbnails in the Attachments section of the generated PDF. PDF attachments are listed by file name.'
       },
       {
         q: 'How do I remove an attachment?',
-        a: 'Click the ✕ button on any thumbnail in the attachments grid to remove it.'
+        a: 'Hover over any thumbnail in the attachments grid and click the ✕ button.'
       }
     ]
   },
@@ -129,15 +103,15 @@ const sections = [
     content: [
       {
         q: 'How do I add a client?',
-        a: 'Go to the Clients page and click "New Client". Fill in the name, company, email, and phone. Clients are saved and can be quickly selected when creating new quotes.'
+        a: 'Go to Clients and click "Add Client". Enter their name, company, email, phone, address, state, and any private notes, then click Add Client.'
       },
       {
         q: 'Can I edit or delete clients?',
-        a: 'Yes. On the Clients page, each client card has Edit and Delete options. Editing opens a form with the existing info pre-filled. Deleting removes the client from your local database.'
+        a: 'Yes. Each client card has Edit and delete (trash) buttons. Editing opens the form with the existing details pre-filled.'
       },
       {
         q: 'Are clients linked to quotes?',
-        a: 'When you create a quote, you select a client. The client\'s info is embedded in the quote. Changing a client\'s details later won\'t retrospectively update existing quotes — this is by design to preserve quote accuracy.'
+        a: 'Not yet. Clients is a standalone address book with click-to-email and click-to-call. Quotes carry their own client fields, so you can quote someone before adding them to Clients. A client picker for the Quote Builder is on the roadmap.'
       }
     ]
   },
@@ -150,57 +124,90 @@ const sections = [
     content: [
       {
         q: 'What is the Pipeline view?',
-        a: 'The Pipeline is a Kanban-style board that shows your deals across stages: Lead, Qualified, Proposal, Negotiation, and Closed Won. Drag deals between columns to update their stage.'
+        a: 'A kanban-style board with six columns: Lead, Quoted, Proposal Sent, Negotiating, Closed Won, and Closed Lost. Each column shows its deal count and total value, and the header shows total pipeline value.'
       },
       {
-        q: 'How do I add a deal to the pipeline?',
-        a: 'Click "Add Deal" on the Pipeline page. Enter the deal name, value, client, and stage. Deals appear as cards in the corresponding column.'
+        q: 'How do quotes get onto the pipeline?',
+        a: 'Automatically. Every saved quote creates a deal card linked to its quote number, with the deal value set to the quote\'s grand total. The quote status picks the column — Draft → Quoted, Sent → Proposal Sent, Won → Closed Won, Lost → Closed Lost. Click the quote badge on a card to open the quote.'
       },
       {
-        q: 'How does the pipeline relate to quotes?',
-        a: 'The pipeline gives you a high-level view of your sales funnel. While quotes track the specific deliverables and pricing, pipeline deals track the overall sales status and expected revenue.'
+        q: 'How do I move a deal?',
+        a: 'Use the Move and Back buttons at the bottom of each card. Deals that came from a quote will jump back to the column matching the quote\'s status the next time that quote is saved.'
+      },
+      {
+        q: 'Can I add a deal that has no quote?',
+        a: 'Yes. Click "Add Deal" at the bottom of any column and enter a name, company, value, and note.'
+      },
+      {
+        q: 'What do the card border colors mean?',
+        a: 'Cards get an amber border after 7 days and a red border after 14 days, so stale deals stand out. Cards also show a PO badge when purchase orders are linked to the deal\'s quote.'
+      }
+    ]
+  },
+  {
+    id: 'purchase-orders',
+    icon: ShoppingCart,
+    title: 'Purchase Orders & Margins',
+    color: 'text-violet-500',
+    bg: 'bg-violet-50 dark:bg-violet-900/20',
+    content: [
+      {
+        q: 'What are purchase orders for?',
+        a: 'POs document what you buy from vendors to fulfil a job. Each PO records the vendor, contact, ship-to address, a description, quantity, and unit cost. Optionally link it to a quote line item to track margin.'
+      },
+      {
+        q: 'How do I issue a PO?',
+        a: 'Go to Purchase Orders and click "New PO". Fill in the form, then either "Save PO" (keeps it as a draft) or "Issue PO & Download PDF" (marks it Issued with today\'s date and downloads a vendor-ready PDF). Draft POs in the list have a send icon that does the same.'
+      },
+      {
+        q: 'What statuses can a PO have?',
+        a: 'Draft, Issued, Ordered, Received, and Paid. Filter the list by status, or search by PO number, vendor, description, quote, or client.'
+      },
+      {
+        q: 'How does margin tracking work?',
+        a: 'When a PO is linked to a quote line item, the app compares that line\'s sell price against the PO cost. The Margin Table tab lists sell, cost, margin, and margin % per PO with totals, and the Charts tab shows cost by line type, margin % by quote, and sell vs. cost per quote. Margin data is internal only — it is never printed on the PO PDF.'
+      },
+      {
+        q: 'What is the Ship To address?',
+        a: 'The delivery address printed on the PO PDF. Leave it blank to use your company address from Company Info.'
       }
     ]
   },
   {
     id: 'dashboard',
     icon: BarChart3,
-    title: 'Dashboard & Analytics',
+    title: 'Dashboard',
     color: 'text-rose-500',
     bg: 'bg-rose-50 dark:bg-rose-900/20',
     content: [
       {
         q: 'What does the Dashboard show?',
-        a: 'The Dashboard provides an at-a-glance overview: total quotes, total revenue, accepted vs. rejected rates, recent activity, and pipeline value. It updates in real time as you create quotes and update statuses.'
-      },
-      {
-        q: 'What are the key metrics?',
-        a: 'Key metrics include: Total Quotes (count), Total Revenue (sum of accepted quotes), Win Rate (accepted ÷ total), Average Deal Size, and Pipeline Value (sum of open deals).'
+        a: 'Four cards — Open Quotes (drafts + sent), Total Clients, Deals Won, and Revenue Won (the total of quotes marked Won) — plus your five most recent quotes and a count of deals in each pipeline stage. It updates instantly as you work.'
       }
     ]
   },
   {
     id: 'branding',
     icon: Upload,
-    title: 'Logo & Branding',
+    title: 'Logo, Branding & Theme',
     color: 'text-orange-500',
     bg: 'bg-orange-50 dark:bg-orange-900/20',
     content: [
       {
         q: 'How do I upload my company logo?',
-        a: 'Click the logo area in the top-left of the sidebar (shows a blue $ icon by default). Select an image file (JPG, PNG, etc.) up to 2 MB. The logo is automatically resized to 256px and displayed in the sidebar and on PDF exports.'
+        a: 'Either click the logo square at the top of the sidebar, or use the Company Logo card on the Company Info page. Pick an image file (JPG or PNG) up to 2 MB. It is resized to 256 px and shown in the sidebar and on every PDF export.'
       },
       {
         q: 'How do I remove my logo?',
-        a: 'Right-click the logo in the sidebar and confirm removal. The default blue icon will return.'
+        a: 'Right-click the logo in the sidebar and confirm, or click "Remove Logo" on the Company Info page.'
       },
       {
         q: 'Does my logo appear on PDFs?',
-        a: 'Yes. When you have a custom logo uploaded, it appears in the top-left corner of every PDF export — next to your company name and contact info.'
+        a: 'Yes. It appears in the top-left corner of every quote and purchase order PDF, next to your company name and contact details.'
       },
       {
-        q: 'How do I toggle dark mode?',
-        a: 'Click the Sun/Moon icon in the sidebar header (desktop) or top bar (mobile). Your preference is saved and persists across sessions. The app loads in your last-chosen theme without any flash.'
+        q: 'How do I switch between dark and light mode?',
+        a: 'Click the sun/moon icon in the sidebar header (desktop) or the top bar (mobile). The app opens in dark mode by default; your choice is saved and applied before the page paints on the next visit.'
       }
     ]
   },
@@ -213,11 +220,11 @@ const sections = [
     content: [
       {
         q: 'What is the Go Live wizard?',
-        a: 'The Go Live section walks you through setting up your business\'s online presence: domain registration, email setup, CRM integration, and deploying SalesCloserPro to your own domain. It\'s an optional guided checklist for taking your quoting workflow professional.'
+        a: 'An optional four-step checklist for hosting your own copy of SalesCloserPro: fork the code on GitHub, deploy it for free on Cloudflare Pages, optionally connect a custom domain, and optionally set up business email. Progress is saved as you tick items off.'
       },
       {
         q: 'Do I need to complete Go Live to use the app?',
-        a: 'No. Go Live is entirely optional. SalesCloserPro works fully without it. The wizard is there for users who want to set up a branded, hosted version of the app.'
+        a: 'No. Go Live is only for people who want their own branded, self-hosted copy. Everything else works right here without it.'
       }
     ]
   },
@@ -230,93 +237,52 @@ const sections = [
     content: [
       {
         q: 'How do I back up my data?',
-        a: 'Go to Backup in the sidebar. You have three options: (1) Save to Folder — pick any local drive, USB, or network share folder to write a .json backup file directly, (2) Download — saves a .json file to your Downloads folder (works in all browsers), (3) Auto-backup — set a schedule (1hr to weekly) and a target folder, and backups happen automatically.'
+        a: 'Go to Backup in the sidebar. Three options: (1) Download Backup — saves a .json file to your Downloads folder and works in every browser, (2) Save to Folder — pick any local drive, USB stick, or network share and write the file there directly (Chrome and Edge), (3) Automatic Backup — choose an interval from 1 hour to weekly and a target folder, and backups happen on their own while the app is open.'
       },
       {
         q: 'Can I back up to a USB drive or network share?',
-        a: 'Yes. When using "Save to Folder" or setting an auto-backup location, the folder picker lets you select any mounted drive — including USB sticks, external hard drives, and mapped network shares (SMB/NFS). This requires Chrome or Edge.'
+        a: 'Yes. The folder picker in Chrome or Edge lets you choose any mounted drive, including USB sticks, external drives, and mapped network shares.'
       },
       {
         q: 'How does auto-backup work?',
-        a: 'Enable the toggle on the Backup page, choose an interval (e.g. every 24 hours), and select a target folder. The app checks every minute whether it\'s time for a backup and writes the file automatically. Each backup is timestamped so you build a history.'
+        a: 'Turn on the toggle, choose an interval, and pick a folder. While the Backup page is open the app checks every minute whether a backup is due and writes a timestamped file when it is. Each backup is recorded in the history table.'
       },
       {
         q: 'How do I restore from a backup?',
-        a: 'On the Backup page, click "Restore from Backup" and select a .json file. You\'ll see a preview of what the backup contains (number of quotes, clients, etc). Confirm to replace all current data. The app reloads automatically after restore.'
+        a: 'Click "Restore from Backup" and choose a .json file. You will see a preview of what it contains (quotes, clients, purchase orders, company). Confirm to replace all current data — the app reloads automatically.'
       },
       {
-        q: 'What\'s included in a backup?',
-        a: 'Everything — quotes, line items, clients, pipeline deals, purchase orders, company settings, logo, theme preference, and backup settings. File attachments are included as base64 data. Each backup is a complete snapshot.'
+        q: 'What is included in a backup?',
+        a: 'Everything: quotes and line items, clients, pipeline deals, purchase orders, company settings and logo, theme preference, and backup settings. Attachments are included as embedded data. Each backup is a complete snapshot.'
       }
     ]
   },
   {
-    id: 'payments',
-    icon: CreditCard,
-    title: 'Payments (MoonPay Commerce)',
-    color: 'text-violet-500',
-    bg: 'bg-violet-50 dark:bg-violet-900/30',
-    content: [
-      {
-        q: 'What is MoonPay Commerce and how does it work?',
-        a: 'MoonPay Commerce is the unified crypto payments platform by MoonPay — launched globally in October 2025 and already trusted by 6,000+ merchants including Shopify, Ledger, and Fortune Media. It lets your clients pay invoices using credit card, debit card, Apple Pay, Google Pay, bank transfer, or 100+ cryptocurrencies. Payments land directly in your crypto wallet, and you can auto-convert to USD or EUR anytime. Unlike card processors, there are zero chargebacks — all payments are final and direct from buyer to merchant.'
-      },
-      {
-        q: 'How do I set up MoonPay Commerce payments?',
-        a: 'Go to Go Live → Step 5 (Payments). You\'ll need: 1) A MoonPay Commerce account — sign up free at commerce.moonpay.com, 2) Your publishable API key (starts with pk_test_ for sandbox or pk_live_ for production), 3) A crypto wallet address to receive payments. Enter these in the configuration form, toggle "Enable Payments" on, and you\'re ready to accept payments.'
-      },
-      {
-        q: 'What currencies can I accept?',
-        a: 'SalesCloserPro supports six cryptocurrency options: USDC on Polygon (recommended — lowest fees, fastest settlement), USDC on Ethereum, USDT (Tether), Ethereum (ETH), Bitcoin (BTC), and MATIC on Polygon. USDC on Polygon is recommended because it\'s a stablecoin pegged to the US dollar with minimal transaction fees.'
-      },
-      {
-        q: 'How does the Pay button work on quotes?',
-        a: 'When payments are enabled, a green "Pay" button appears in the quote header and a "Pay Invoice" button in the bottom actions. Clicking it opens a payment modal showing the invoice total, selected currency, and a "Pay with MoonPay" button. This launches the MoonPay widget in a new tab where your client completes payment using their preferred method.'
-      },
-      {
-        q: 'Does the PDF invoice include payment info?',
-        a: 'Yes! When payments are enabled, exported PDF invoices include a violet "Pay This Invoice Online" section above the footer. It informs the recipient that secure online payment is available via MoonPay, prompting them to contact you for the payment link or visit your online quote.'
-      },
-      {
-        q: 'What is sandbox vs production mode?',
-        a: 'Sandbox mode uses test API keys (pk_test_) and the MoonPay test environment — no real money is transferred. Use this to test the payment flow before going live. Production mode uses live API keys (pk_live_) and processes real payments. Always test thoroughly in sandbox before switching to production.'
-      },
-      {
-        q: 'What are MoonPay Commerce fees? Are there chargebacks?',
-        a: 'MoonPay charges the buyer a processing fee (typically 1–4.5% depending on payment method and region). Card payments have higher fees than bank transfers. You (the merchant) receive the full invoice amount with zero seller fees. Critically, there are NO chargebacks — crypto payments are irreversible and direct from buyer to your wallet. Check the current fee schedule at commerce.moonpay.com.'
-      },
-      {
-        q: 'Is it secure?',
-        a: 'Yes. Your publishable API key is safe for frontend use — it can only initiate payment sessions, not access funds. All payment processing happens on MoonPay\'s PCI-compliant servers. Client card details never touch your app. Funds go directly to your wallet address.'
-      },
-      {
-        q: 'Do I need a crypto wallet?',
-        a: 'Yes, you need a wallet address to receive payments. Popular options include MetaMask, Coinbase Wallet, or any wallet that supports your chosen currency. For USDC on Polygon, make sure your wallet supports the Polygon network. You can then convert received crypto to fiat through your exchange of choice.'
-      }
-    ]
-  },
-  {
-    id: 'keyboard',
+    id: 'tips',
     icon: Settings,
-    title: 'Tips & Shortcuts',
+    title: 'Tips & Troubleshooting',
     color: 'text-gray-500',
     bg: 'bg-gray-50 dark:bg-gray-800/40',
     content: [
       {
-        q: 'Data backup & restore',
-        a: 'Go to Backup in the sidebar for built-in backup/restore with auto-scheduling, USB, and network support. You can also manually access your data in DevTools → Application → Local Storage under "salescloserpro-data".'
+        q: 'Where can I see my raw data?',
+        a: 'In your browser\'s DevTools go to Application → Storage → IndexedDB → salescloserpro → keyval. The single row holds everything as JSON. Prefer the Backup page for a readable copy.'
       },
       {
-        q: 'Browser compatibility',
-        a: 'SalesCloserPro works in all modern browsers: Chrome, Firefox, Safari, Edge. For the best experience, use the latest version of your browser. PDF generation uses jsPDF which is supported across all major browsers.'
+        q: 'Which browsers are supported?',
+        a: 'Current versions of Chrome, Edge, Firefox, and Safari. Folder-based and automatic backups need Chrome or Edge; download and restore work everywhere.'
       },
       {
         q: 'How much data can I store?',
-        a: 'localStorage typically allows 5–10 MB per origin. With image attachments stored as base64, this is enough for hundreds of quotes. If you approach the limit, consider removing old attachments or exporting data.'
+        a: 'IndexedDB allows hundreds of megabytes or more in modern browsers, so thousands of quotes with attachments fit comfortably. Images are resized on upload to keep things lean.'
       },
       {
-        q: 'Can I use this on mobile?',
-        a: 'Yes. SalesCloserPro is fully responsive. On mobile, the sidebar collapses into a hamburger menu. All features — including quote creation, file upload, and PDF export — work on mobile browsers.'
+        q: 'Can I use this on my phone?',
+        a: 'Yes. The layout is responsive and the sidebar collapses into a menu. Quotes, attachments, and PDF export all work on mobile, though a laptop or tablet is more comfortable for building longer quotes.'
+      },
+      {
+        q: 'I found a bug — where do I report it?',
+        a: 'Open an issue at github.com/harborglowvintage-oss/salescloserpro.ai/issues with what you expected, what happened, and your browser. Screenshots help.'
       }
     ]
   }
@@ -478,14 +444,14 @@ export default function HelpGuide() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
             { icon: PlusCircle, label: 'New Quote', desc: 'Sidebar → New Quote button', color: 'text-blue-500' },
-            { icon: Layers, label: 'Add Change Order', desc: 'Open quote → click "+" tab', color: 'text-purple-500' },
-            { icon: Printer, label: 'Export PDF', desc: 'Quote Builder → Print / PDF', color: 'text-green-500' },
-            { icon: Upload, label: 'Upload Logo', desc: 'Click logo in sidebar top-left', color: 'text-orange-500' },
-            { icon: Sun, label: 'Toggle Theme', desc: 'Sun/Moon icon in sidebar header', color: 'text-amber-500' },
-            { icon: Users, label: 'Add Client', desc: 'Clients page → New Client', color: 'text-cyan-500' },
-            { icon: Eye, label: 'View Pipeline', desc: 'Pipeline → Kanban board', color: 'text-indigo-500' },
+            { icon: Printer, label: 'Export PDF', desc: 'Open a quote → PDF / Export PDF', color: 'text-green-500' },
+            { icon: Send, label: 'Issue a PO', desc: 'Purchase Orders → New PO → Issue PO & Download PDF', color: 'text-violet-500' },
+            { icon: Upload, label: 'Upload Logo', desc: 'Click the logo in the sidebar, or Company Info', color: 'text-orange-500' },
+            { icon: Sun, label: 'Toggle Theme', desc: 'Sun/Moon icon in the sidebar header', color: 'text-amber-500' },
+            { icon: Users, label: 'Add Client', desc: 'Clients → Add Client', color: 'text-cyan-500' },
+            { icon: Eye, label: 'Move a Deal', desc: 'Pipeline → Move / Back buttons on a card', color: 'text-indigo-500' },
             { icon: Paperclip, label: 'Attach Files', desc: 'Quote → Attachments → drag or click', color: 'text-green-500' },
-            { icon: Trash2, label: 'Remove Logo', desc: 'Right-click logo in sidebar', color: 'text-red-500' },
+            { icon: HardDrive, label: 'Back Up Data', desc: 'Backup → Download Backup or Save to Folder', color: 'text-teal-500' },
           ].map((item, i) => {
             const Icon = item.icon
             return (
@@ -503,7 +469,7 @@ export default function HelpGuide() {
 
       {/* Version + support footer */}
       <div className="card p-5 text-center space-y-2">
-        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">SalesCloserPro v1.0.0</p>
+        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">SalesCloserPro v{__APP_VERSION__}</p>
         <p className="text-xs text-gray-400 dark:text-gray-500">
           Free & Open Source · Powered by{' '}
           <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 font-medium">

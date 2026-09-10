@@ -6,7 +6,7 @@
  */
 
 import { create } from 'zustand'
-import { persist } from 'zustand/middleware'
+import { persist, createJSONStorage } from 'zustand/middleware'
 import { indexedDBStorage } from './db'
 
 const useStore = create(
@@ -18,13 +18,13 @@ const useStore = create(
 
       // ── Company Settings ──────────────────────────────
       company: {
-        name: 'llmadvisor.ai',
-        logo: '/gptlogo.png',
+        name: '',
+        logo: '',
         address: '',
         phone: '',
         email: '',
-        website: 'https://llmadvisor.ai',
-        homeState: 'MA',
+        website: '',
+        homeState: 'TX',
       },
       setCompany: (data) => set((s) => ({ company: { ...s.company, ...data } })),
 
@@ -46,19 +46,25 @@ const useStore = create(
 
       // ── Quotes ────────────────────────────────────────
       quotes: [],
+      quoteCounter: 0, // monotonic — numbers are never reused after a delete
       addQuote: (quote) =>
-        set((s) => ({
-          quotes: [
-            ...s.quotes,
-            {
-              ...quote,
-              id: crypto.randomUUID(),
-              quoteNumber: `Q-${String(s.quotes.length + 1).padStart(4, '0')}`,
-              createdAt: new Date().toISOString(),
-              status: 'draft',
-            },
-          ],
-        })),
+        set((s) => {
+          const highest = s.quotes.reduce((m, q) => Math.max(m, parseInt((q.quoteNumber || '').replace(/\D/g, ''), 10) || 0), 0)
+          const n = Math.max(s.quoteCounter || 0, highest) + 1
+          return {
+            quoteCounter: n,
+            quotes: [
+              ...s.quotes,
+              {
+                ...quote,
+                id: crypto.randomUUID(),
+                quoteNumber: `Q-${String(n).padStart(4, '0')}`,
+                createdAt: new Date().toISOString(),
+                status: 'draft',
+              },
+            ],
+          }
+        }),
       updateQuote: (id, data) =>
         set((s) => ({
           quotes: s.quotes.map((q) => (q.id === id ? { ...q, ...data } : q)),
@@ -215,37 +221,31 @@ const useStore = create(
 
       // ── Purchase Orders ───────────────────────────────
       purchaseOrders: [],
+      poCounter: 0, // monotonic — numbers are never reused after a delete
       addPO: (po) =>
-        set((s) => ({
-          purchaseOrders: [
-            ...s.purchaseOrders,
-            {
-              ...po,
-              id: crypto.randomUUID(),
-              poNumber: `PO-${String(s.purchaseOrders.length + 1).padStart(4, '0')}`,
-              createdAt: new Date().toISOString(),
-              status: po.status || 'draft',
-            },
-          ],
-        })),
+        set((s) => {
+          const highest = s.purchaseOrders.reduce((m, p) => Math.max(m, parseInt((p.poNumber || '').replace(/\D/g, ''), 10) || 0), 0)
+          const n = Math.max(s.poCounter || 0, highest) + 1
+          return {
+            poCounter: n,
+            purchaseOrders: [
+              ...s.purchaseOrders,
+              {
+                ...po,
+                id: crypto.randomUUID(),
+                poNumber: `PO-${String(n).padStart(4, '0')}`,
+                createdAt: new Date().toISOString(),
+                status: po.status || 'draft',
+              },
+            ],
+          }
+        }),
       updatePO: (id, data) =>
         set((s) => ({
           purchaseOrders: s.purchaseOrders.map((p) => (p.id === id ? { ...p, ...data } : p)),
         })),
       deletePO: (id) =>
         set((s) => ({ purchaseOrders: s.purchaseOrders.filter((p) => p.id !== id) })),
-
-      // ── Payment Settings (MoonPay) ──────────────────────
-      paymentSettings: {
-        enabled: false,
-        moonpayApiKey: '',                // publishable key (pk_live_… or pk_test_…)
-        walletAddress: '',                // crypto wallet to receive payments
-        defaultCurrency: 'usdc_polygon',  // stablecoin — best for invoices
-        acceptedCurrencies: ['usdc_polygon', 'usdc', 'eth', 'btc'],
-        environment: 'sandbox',           // 'sandbox' or 'production'
-      },
-      setPaymentSettings: (data) =>
-        set((s) => ({ paymentSettings: { ...s.paymentSettings, ...data } })),
 
       // ── Go Live Progress ──────────────────────────────
       goLiveChecklist: {
@@ -260,10 +260,6 @@ const useStore = create(
         domain_configured: false,
         email_decided: false,
         email_configured: false,
-        pay_account: false,
-        pay_keys: false,
-        pay_wallet: false,
-        pay_enabled: false,
       },
       setGoLiveCheck: (key, val) =>
         set((s) => ({ goLiveChecklist: { ...s.goLiveChecklist, [key]: val } })),
@@ -274,7 +270,6 @@ const useStore = create(
             cf_account: false, cf_project: false, cf_build: false, cf_deployed: false,
             domain_decided: false, domain_configured: false,
             email_decided: false, email_configured: false,
-            pay_account: false, pay_keys: false, pay_wallet: false, pay_enabled: false,
           },
         })),
 
@@ -297,7 +292,13 @@ const useStore = create(
           },
         })),
     }),
-    { name: 'salescloserpro-data', storage: indexedDBStorage }
+    {
+      name: 'salescloserpro-data',
+      // createJSONStorage is REQUIRED for a string-based adapter: without it persist hands
+      // the raw state object (including action functions) to IndexedDB, which throws
+      // DataCloneError on every write — nothing was ever persisted before this fix.
+      storage: createJSONStorage(() => indexedDBStorage),
+    }
   )
 )
 

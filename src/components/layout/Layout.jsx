@@ -166,18 +166,19 @@ export default function Layout() {
             className="block rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 via-gray-50 to-white dark:from-gray-700 dark:via-gray-750 dark:to-gray-800 border border-gray-200 dark:border-gray-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 group"
           >
             {/* Logo area — generous padding */}
-            <div className="flex items-center justify-center pt-5 pb-3">
-              <div className="w-16 h-16 rounded-2xl bg-white dark:bg-gray-700 flex items-center justify-center ring-2 ring-gray-200 dark:ring-gray-600 shadow-sm group-hover:ring-gray-300 dark:group-hover:ring-gray-500 transition-all duration-200 overflow-hidden">
-                <img src="/gptlogo.png" alt="salescloserpro.ai" className="w-14 h-14 object-cover rounded-xl drop-shadow-sm" />
+            <div className="flex items-center justify-center pt-4 pb-2">
+              <div className="w-12 h-12 rounded-xl bg-white dark:bg-gray-700 flex items-center justify-center ring-2 ring-gray-200 dark:ring-gray-600 shadow-sm group-hover:ring-gray-300 dark:group-hover:ring-gray-500 transition-all duration-200 overflow-hidden">
+                <img src="/gptlogo.png" alt="salescloserpro.ai" className="w-10 h-10 object-cover rounded-lg drop-shadow-sm" />
               </div>
             </div>
             {/* Text area — centered */}
-            <div className="text-center pb-4 px-4">
-              <div className="text-[15px] font-extrabold text-gray-800 dark:text-gray-100 leading-tight tracking-tight">salescloserpro.ai</div>
+            <div className="text-center pb-3 px-3">
+              <div className="text-[13px] font-extrabold text-gray-800 dark:text-gray-100 leading-tight tracking-tight">salescloserpro.ai</div>
               <div className="text-[11px] text-gray-500 dark:text-gray-400 font-semibold mt-0.5 flex items-center justify-center gap-1">
                 GPT Assistant
                 <ExternalLink className="w-3 h-3 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" />
               </div>
+              <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">ChatGPT · GPT-5.6 Sol</div>
             </div>
           </a>
 

@@ -243,8 +243,8 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── GPT PROMO ───────── */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      {/* ───────── GPT PROMO (compact) ───────── */}
+      <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <a
           href="https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai"
           target="_blank"
@@ -260,7 +260,7 @@ export default function LandingPage() {
 
           <div className="relative grid md:grid-cols-2 gap-0 items-center">
             {/* left — mirrors the ChatGPT GPT preview card */}
-            <div className="flex flex-col items-center justify-center p-10 gap-4 border-b md:border-b-0 md:border-r border-emerald-500/10">
+            <div className="flex flex-col items-center justify-center p-6 gap-3 border-b md:border-b-0 md:border-r border-emerald-500/10">
               {/* collab avatar lockup: SCP × OpenAI */}
               <div className="flex items-center gap-3">
                 {/* SCP */}
@@ -269,7 +269,7 @@ export default function LandingPage() {
                   <img
                     src="/logos/salescloserprologo.png"
                     alt="SalesCloserPro AI GPT"
-                    className="relative w-16 h-16 rounded-full object-cover shadow-2xl ring-2 ring-emerald-400/30"
+                    className="relative w-12 h-12 rounded-full object-cover shadow-2xl ring-2 ring-emerald-400/30"
                   />
                 </div>
                 {/* separator */}
@@ -278,13 +278,13 @@ export default function LandingPage() {
                 <div className="relative">
                   <div className="absolute inset-0 rounded-full blur-xl opacity-40 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(16,163,127,0.7), transparent 70%)' }} />
                   <div
-                    className="relative w-16 h-16 rounded-full flex items-center justify-center shadow-2xl ring-2 ring-emerald-400/20"
+                    className="relative w-12 h-12 rounded-full flex items-center justify-center shadow-2xl ring-2 ring-emerald-400/20"
                     style={{ background: 'rgba(16,163,127,0.10)', border: '1.5px solid rgba(16,163,127,0.28)' }}
                   >
                     <img
                       src="/logos/chatgpt.svg"
                       alt="OpenAI"
-                      className="w-9 h-9"
+                      className="w-7 h-7"
                       style={{ filter: 'brightness(0) invert(1)' }}
                     />
                   </div>
@@ -292,14 +292,14 @@ export default function LandingPage() {
               </div>
 
               {/* name */}
-              <p className="text-white font-bold text-lg leading-tight text-center">SalesCloserPro.ai × OpenAI</p>
+              <p className="text-white font-bold text-base leading-tight text-center">SalesCloserPro.ai × OpenAI</p>
 
               {/* model badge — exact copy of ChatGPT UI */}
               <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
                 <svg viewBox="0 0 41 41" className="w-3.5 h-3.5 flex-shrink-0" fill="none" style={{ color: '#10a37f' }}>
                   <path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-7.505-3.354 10.079 10.079 0 0 0-9.612 6.977 9.967 9.967 0 0 0-6.664 4.834 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 7.504 3.353 10.078 10.078 0 0 0 9.617-6.981 9.967 9.967 0 0 0 6.663-4.834 10.079 10.079 0 0 0-1.243-11.813zM22.498 37.886a7.474 7.474 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.496zM6.392 31.006a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zM4.297 13.62A7.469 7.469 0 0 1 8.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L7.044 23.86a7.504 7.504 0 0 1-2.747-10.24zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.499v4.993l-4.331 2.5-4.331-2.5V18z" fill="currentColor"/>
                 </svg>
-                <span className="text-[11px] text-slate-300/80 font-medium">Using the creator's recommended model: <span className="text-white font-semibold">GPT-5.5</span></span>
+                <span className="text-[11px] text-slate-300/80 font-medium">Using the creator's recommended model: <span className="text-white font-semibold">GPT-5.6 Sol</span></span>
               </div>
 
               {/* prompt starter cards — matching ChatGPT GPT interface */}
@@ -310,7 +310,7 @@ export default function LandingPage() {
                   'Turn these CRM notes into a sharp recap email',
                   'Create an objection-handling playbook for: "Too expensive"',
                 ].map((prompt) => (
-                  <div key={prompt} className="p-2.5 rounded-xl text-[11px] text-slate-300 leading-snug cursor-pointer transition-colors hover:bg-white/10" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
+                  <div key={prompt} className="p-2 rounded-lg text-[10px] text-slate-300 leading-snug cursor-pointer transition-colors hover:bg-white/10" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
                     {prompt}
                   </div>
                 ))}
@@ -319,26 +319,26 @@ export default function LandingPage() {
             </div>
 
             {/* right */}
-            <div className="flex flex-col justify-center p-8 sm:p-10 gap-4">
+            <div className="flex flex-col justify-center p-6 gap-3">
               <div>
                 <p className="text-emerald-400 text-xs font-semibold uppercase tracking-widest mb-2">Your AI sales assistant</p>
-                <h3 className="text-3xl sm:text-4xl font-extrabold text-white leading-[1.1]">
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-[1.1]">
                   Meet the{' '}
                   <span style={{ backgroundImage: 'linear-gradient(90deg, #34d399, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SalesCloserPro AI</span>
                   <br />GPT.
                 </h3>
               </div>
-              <p className="text-slate-300 leading-relaxed text-[15px]">
+              <p className="text-slate-300 leading-relaxed text-sm">
                 SalesCloserPro.ai helps <strong className="text-white">anyone sell better</strong>. Get instant cold emails, DM scripts, call talk tracks, discovery questions, objection replies, follow-ups, and close plans — tailored to your product and buyer. Privacy-safe placeholders included, plus quick tips on what to say next.
               </p>
-              <div className="grid grid-cols-1 gap-2.5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                 {[
                   { icon: '📊', t: 'Cold emails, DMs & call tracks', d: 'Tailored scripts ready in seconds — just describe your deal' },
                   { icon: '🏆', t: 'Close plans that win', d: 'Stakeholder maps, risk flags & timeline pressure baked in' },
                   { icon: '🛡️', t: 'Privacy-safe by design', d: 'Placeholder variables keep sensitive data out of prompts' },
                   { icon: '💡', t: 'App help, instantly', d: 'Ask anything about SalesCloserPro — no docs needed' },
                 ].map(({ icon, t, d }) => (
-                  <div key={t} className="flex items-start gap-3 p-3 rounded-xl border border-emerald-500/10" style={{ background: 'rgba(16,163,127,0.05)' }}>
+                  <div key={t} className="flex items-start gap-2.5 p-2.5 rounded-lg border border-emerald-500/10" style={{ background: 'rgba(16,163,127,0.05)' }}>
                     <span className="text-base leading-none mt-0.5">{icon}</span>
                     <div>
                       <p className="text-white text-sm font-semibold">{t}</p>
@@ -348,11 +348,11 @@ export default function LandingPage() {
                 ))}
               </div>
               <div className="flex flex-col gap-2 mt-1">
-                <span className="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-bold text-sm text-white w-fit transition-all group-hover:scale-[1.02]"
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm text-white w-fit transition-all group-hover:scale-[1.02]"
                   style={{ background: 'linear-gradient(135deg, #10a37f, #0ea5e9)', boxShadow: '0 0 24px rgba(16,163,127,0.35)' }}>
                   Try the GPT — Free →
                 </span>
-                <span className="text-[11px] text-slate-500 pl-1">Powered by ChatGPT · GPT-5.5 · No Plus subscription needed</span>
+                <span className="text-[11px] text-slate-500 pl-1">Powered by ChatGPT · GPT-5.6 Sol · No Plus subscription needed</span>
               </div>
             </div>
           </div>

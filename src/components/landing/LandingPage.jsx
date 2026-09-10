@@ -16,8 +16,29 @@ import {
   Zap,
   BookOpen,
   ArrowRight,
-  ChevronRight
+  ChevronRight,
+  Mail,
+  Target,
+  ShieldCheck,
+  HelpCircle,
+  Lightbulb,
+  Plus,
+  ArrowUp
 } from 'lucide-react'
+
+/** OpenAI logomark (currentColor) — used in the GPT promo chip + footer */
+const OpenAIMark = ({ className = '' }) => (
+  <svg viewBox="0 0 41 41" className={className} fill="none" aria-hidden="true">
+    <path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-7.505-3.354 10.079 10.079 0 0 0-9.612 6.977 9.967 9.967 0 0 0-6.664 4.834 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 7.504 3.353 10.078 10.078 0 0 0 9.617-6.981 9.967 9.967 0 0 0 6.663-4.834 10.079 10.079 0 0 0-1.243-11.813zM22.498 37.886a7.474 7.474 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.496zM6.392 31.006a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zM4.297 13.62A7.469 7.469 0 0 1 8.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L7.044 23.86a7.504 7.504 0 0 1-2.747-10.24zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.499v4.993l-4.331 2.5-4.331-2.5V18z" fill="currentColor" />
+  </svg>
+)
+
+/** Privacy-safe placeholder chip, e.g. {{first_name}} — shown inside the GPT chat mock */
+const Var = ({ children }) => (
+  <span className="inline-block align-baseline font-mono text-[10.5px] leading-none text-emerald-300 bg-emerald-500/10 border border-emerald-400/20 rounded px-1 py-[3px] mx-px">
+    {'{{'}{children}{'}}'}
+  </span>
+)
 
 export default function LandingPage() {
   return (
@@ -243,116 +264,137 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* ───────── GPT PROMO (compact) ───────── */}
+      {/* ───────── GPT PROMO ───────── */}
       <section className="max-w-6xl mx-auto px-4 sm:px-6 py-8">
         <a
           href="https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai"
           target="_blank"
           rel="noopener noreferrer"
-          className="group block rounded-2xl overflow-hidden relative"
-          style={{ background: 'linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #081020 100%)' }}
+          aria-label="Open the SalesCloserPro AI GPT in ChatGPT (free)"
+          className="group relative block rounded-2xl overflow-hidden border border-white/[0.08] hover:border-emerald-400/30 transition-colors duration-300"
+          style={{ background: 'linear-gradient(180deg, #0b1322 0%, #070d19 100%)', boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.06), 0 40px 80px -40px rgba(0,0,0,0.7)' }}
         >
-          {/* border glow */}
-          <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{ padding: '1px', background: 'linear-gradient(135deg, rgba(16,163,127,0.5), rgba(59,130,246,0.2) 50%, rgba(16,163,127,0.3))', WebkitMask: 'linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)', WebkitMaskComposite: 'xor', maskComposite: 'exclude' }} />
-          {/* orbs */}
-          <div className="absolute -top-20 -right-20 w-72 h-72 rounded-full opacity-15 pointer-events-none" style={{ background: 'radial-gradient(circle, #10a37f, transparent 70%)' }} />
-          <div className="absolute -bottom-16 -left-10 w-56 h-56 rounded-full opacity-10 pointer-events-none" style={{ background: 'radial-gradient(circle, #3b82f6, transparent 70%)' }} />
+          {/* ambient light */}
+          <div className="absolute -top-40 left-1/4 w-[30rem] h-[30rem] rounded-full pointer-events-none opacity-[0.13]" style={{ background: 'radial-gradient(circle, #10a37f, transparent 65%)' }} />
+          <div className="absolute -bottom-44 -right-20 w-[28rem] h-[28rem] rounded-full pointer-events-none opacity-[0.10]" style={{ background: 'radial-gradient(circle, #0ea5e9, transparent 65%)' }} />
+          {/* fine grid texture, fading out */}
+          <div
+            className="absolute inset-0 pointer-events-none opacity-[0.04]"
+            style={{
+              backgroundImage: 'linear-gradient(rgba(255,255,255,0.7) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.7) 1px, transparent 1px)',
+              backgroundSize: '28px 28px',
+              maskImage: 'radial-gradient(ellipse 60% 80% at 30% 40%, #000 20%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(ellipse 60% 80% at 30% 40%, #000 20%, transparent 100%)',
+            }}
+          />
 
-          <div className="relative grid md:grid-cols-2 gap-0 items-center">
-            {/* left — mirrors the ChatGPT GPT preview card */}
-            <div className="flex flex-col items-center justify-center p-6 gap-3 border-b md:border-b-0 md:border-r border-emerald-500/10">
-              {/* collab avatar lockup: SCP × OpenAI */}
-              <div className="flex items-center gap-3">
-                {/* SCP */}
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full blur-xl opacity-50 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(16,163,127,0.9), transparent 70%)' }} />
-                  <img
-                    src="/logos/salescloserprologo.png"
-                    alt="SalesCloserPro AI GPT"
-                    className="relative w-12 h-12 rounded-full object-cover shadow-2xl ring-2 ring-emerald-400/30"
-                  />
+          <div className="relative grid lg:grid-cols-2 gap-8 lg:gap-12 items-center p-6 sm:p-8 lg:px-10 lg:py-12">
+
+            {/* ── chat window mock (left on desktop, below the pitch on phones) ── */}
+            <div className="order-2 lg:order-1">
+              <div
+                className="rounded-xl border border-white/[0.1] transition-transform duration-500 group-hover:-translate-y-1"
+                style={{ background: 'rgba(2,6,23,0.75)', boxShadow: '0 30px 60px -30px rgba(0,0,0,0.9), inset 0 1px 0 rgba(255,255,255,0.05)' }}
+              >
+                {/* window header */}
+                <div className="flex items-center gap-2.5 px-4 py-3 border-b border-white/[0.06]">
+                  <img src="/logos/salescloserprologo.png" alt="" className="w-7 h-7 rounded-full object-cover ring-1 ring-white/10 flex-shrink-0" />
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[13px] font-semibold text-white leading-tight truncate">SalesCloserPro.ai</p>
+                    <p className="text-[10px] text-slate-500 leading-tight">Custom GPT · by LLMadvisor.ai</p>
+                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-2 py-1 rounded-md text-[10px] font-semibold text-slate-300 border border-white/[0.08] bg-white/[0.04] flex-shrink-0">
+                    <OpenAIMark className="w-3 h-3 text-emerald-400" />
+                    GPT-5.6 Sol
+                  </span>
                 </div>
-                {/* separator */}
-                <span className="text-slate-500 text-lg font-light select-none">×</span>
-                {/* OpenAI */}
-                <div className="relative">
-                  <div className="absolute inset-0 rounded-full blur-xl opacity-40 pointer-events-none" style={{ background: 'radial-gradient(circle, rgba(16,163,127,0.7), transparent 70%)' }} />
-                  <div
-                    className="relative w-12 h-12 rounded-full flex items-center justify-center shadow-2xl ring-2 ring-emerald-400/20"
-                    style={{ background: 'rgba(16,163,127,0.10)', border: '1.5px solid rgba(16,163,127,0.28)' }}
-                  >
-                    <img
-                      src="/logos/chatgpt.svg"
-                      alt="OpenAI"
-                      className="w-7 h-7"
-                      style={{ filter: 'brightness(0) invert(1)' }}
-                    />
+
+                {/* thread */}
+                <div className="px-4 pt-4 pb-3 space-y-3">
+                  <div className="ml-auto max-w-[88%] rounded-2xl rounded-br-md bg-white/[0.08] px-3.5 py-2 text-[12.5px] text-slate-200 leading-snug">
+                    My roofing quote went quiet after 5 days. Write a follow-up that doesn't sound desperate.
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <img src="/logos/salescloserprologo.png" alt="" className="w-6 h-6 rounded-full object-cover mt-0.5 flex-shrink-0" />
+                    <div className="flex-1 min-w-0 rounded-2xl rounded-tl-md border border-emerald-400/15 bg-emerald-500/[0.06] px-3.5 py-2.5 text-[12.5px] text-slate-300 leading-relaxed">
+                      <p><span className="text-slate-500">Subject:</span> Quick question on the <Var>project_name</Var> roof</p>
+                      <p className="mt-1.5">
+                        Hi <Var>first_name</Var> — no pressure on the quote. Two quick things: our crews are booking into <Var>month</Var>, and material pricing holds through <Var>valid_until</Var>. Want me to pencil you in?
+                      </p>
+                      <p className="mt-2.5 pt-2.5 border-t border-white/[0.06] text-[11px] text-emerald-300/90 flex items-start gap-1.5">
+                        <Lightbulb className="w-3.5 h-3.5 flex-shrink-0 mt-px" />
+                        <span>Next step: no reply in 3 days? Call — don't send a third email.</span>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* composer */}
+                <div className="px-4 pb-4">
+                  <div className="flex items-center gap-2 rounded-xl border border-white/[0.1] bg-white/[0.04] pl-3 pr-1.5 py-1.5">
+                    <Plus className="w-4 h-4 text-slate-500 flex-shrink-0" />
+                    <span className="flex-1 text-[12px] text-slate-500 truncate">Message SalesCloserPro.ai…</span>
+                    <span className="w-7 h-7 rounded-lg bg-white text-slate-900 flex items-center justify-center flex-shrink-0">
+                      <ArrowUp className="w-4 h-4" />
+                    </span>
+                  </div>
+                  <div className="flex flex-wrap gap-1.5 mt-2.5">
+                    {['Objection: "too expensive"', 'Build a close plan', 'Cold DM script', 'Recap email'].map((chip) => (
+                      <span key={chip} className="px-2.5 py-1 rounded-full text-[11px] text-slate-400 border border-white/[0.08] bg-white/[0.02] whitespace-nowrap">
+                        {chip}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
-
-              {/* name */}
-              <p className="text-white font-bold text-base leading-tight text-center">SalesCloserPro.ai × OpenAI</p>
-
-              {/* model badge — exact copy of ChatGPT UI */}
-              <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
-                <svg viewBox="0 0 41 41" className="w-3.5 h-3.5 flex-shrink-0" fill="none" style={{ color: '#10a37f' }}>
-                  <path d="M37.532 16.87a9.963 9.963 0 0 0-.856-8.184 10.078 10.078 0 0 0-10.855-4.835 9.964 9.964 0 0 0-7.505-3.354 10.079 10.079 0 0 0-9.612 6.977 9.967 9.967 0 0 0-6.664 4.834 10.08 10.08 0 0 0 1.24 11.817 9.965 9.965 0 0 0 .856 8.185 10.079 10.079 0 0 0 10.855 4.835 9.965 9.965 0 0 0 7.504 3.353 10.078 10.078 0 0 0 9.617-6.981 9.967 9.967 0 0 0 6.663-4.834 10.079 10.079 0 0 0-1.243-11.813zM22.498 37.886a7.474 7.474 0 0 1-4.799-1.735c.061-.033.168-.091.237-.134l7.964-4.6a1.294 1.294 0 0 0 .655-1.134V19.054l3.366 1.944a.12.12 0 0 1 .066.092v9.299a7.505 7.505 0 0 1-7.49 7.496zM6.392 31.006a7.471 7.471 0 0 1-.894-5.023c.06.036.162.099.237.141l7.964 4.6a1.297 1.297 0 0 0 1.308 0l9.724-5.614v3.888a.12.12 0 0 1-.048.103l-8.051 4.649a7.504 7.504 0 0 1-10.24-2.744zM4.297 13.62A7.469 7.469 0 0 1 8.2 10.333c0 .068-.004.19-.004.274v9.201a1.294 1.294 0 0 0 .654 1.132l9.723 5.614-3.366 1.944a.12.12 0 0 1-.114.012L7.044 23.86a7.504 7.504 0 0 1-2.747-10.24zm27.658 6.437l-9.724-5.615 3.367-1.943a.121.121 0 0 1 .114-.012l8.048 4.648a7.498 7.498 0 0 1-1.158 13.528v-9.476a1.293 1.293 0 0 0-.647-1.13zm3.35-5.043c-.059-.037-.162-.099-.236-.141l-7.965-4.6a1.298 1.298 0 0 0-1.308 0l-9.723 5.614v-3.888a.12.12 0 0 1 .048-.103l8.05-4.645a7.497 7.497 0 0 1 11.135 7.763zm-21.063 6.929l-3.367-1.944a.12.12 0 0 1-.065-.092v-9.299a7.497 7.497 0 0 1 12.293-5.756 6.94 6.94 0 0 0-.236.134l-7.965 4.6a1.294 1.294 0 0 0-.654 1.132l-.006 11.225zm1.829-3.943l4.33-2.501 4.332 2.499v4.993l-4.331 2.5-4.331-2.5V18z" fill="currentColor"/>
-                </svg>
-                <span className="text-[11px] text-slate-300/80 font-medium">Using the creator's recommended model: <span className="text-white font-semibold">GPT-5.6 Sol</span></span>
-              </div>
-
-              {/* prompt starter cards — matching ChatGPT GPT interface */}
-              <div className="grid grid-cols-2 gap-2 w-full mt-1">
-                {[
-                  'Write a killer elevator pitch + 3 positioning angles',
-                  'Build a deal close plan: stakeholders, risk & timeline',
-                  'Turn these CRM notes into a sharp recap email',
-                  'Create an objection-handling playbook for: "Too expensive"',
-                ].map((prompt) => (
-                  <div key={prompt} className="p-2 rounded-lg text-[10px] text-slate-300 leading-snug cursor-pointer transition-colors hover:bg-white/10" style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)' }}>
-                    {prompt}
-                  </div>
-                ))}
-              </div>
-              <p className="text-slate-500 text-[10px] text-center">Free · Requires a ChatGPT account</p>
             </div>
 
-            {/* right */}
-            <div className="flex flex-col justify-center p-6 gap-3">
+            {/* ── pitch ── */}
+            <div className="order-1 lg:order-2 flex flex-col gap-6">
               <div>
-                <p className="text-emerald-400 text-xs font-semibold uppercase tracking-widest mb-2">Your AI sales assistant</p>
-                <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-[1.1]">
+                <span className="inline-flex items-center gap-2 px-3 py-1 mb-4 text-[10px] font-bold uppercase tracking-widest text-emerald-300 rounded-full" style={{ border: '1px solid rgba(52,211,153,0.25)', background: 'rgba(52,211,153,0.07)', boxShadow: '0 0 16px rgba(52,211,153,0.1)' }}>
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+                  Your AI sales assistant
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-extrabold text-white leading-[1.1] tracking-tight">
                   Meet the{' '}
-                  <span style={{ backgroundImage: 'linear-gradient(90deg, #34d399, #3b82f6)', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>SalesCloserPro AI</span>
-                  <br />GPT.
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 to-cyan-300">SalesCloserPro AI</span>
+                  {' '}GPT.
                 </h3>
               </div>
-              <p className="text-slate-300 leading-relaxed text-sm">
-                SalesCloserPro.ai helps <strong className="text-white">anyone sell better</strong>. Get instant cold emails, DM scripts, call talk tracks, discovery questions, objection replies, follow-ups, and close plans — tailored to your product and buyer. Privacy-safe placeholders included, plus quick tips on what to say next.
+
+              <p className="text-sm sm:text-[15px] text-slate-400 leading-relaxed">
+                Cold emails, DM scripts, call talk tracks, objection replies, follow-ups, and close plans — tailored to your product and buyer, with privacy-safe placeholders built in. It knows the app too, so ask it how anything works.
               </p>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+
+              <div className="grid sm:grid-cols-2 gap-x-5 gap-y-4">
                 {[
-                  { icon: '📊', t: 'Cold emails, DMs & call tracks', d: 'Tailored scripts ready in seconds — just describe your deal' },
-                  { icon: '🏆', t: 'Close plans that win', d: 'Stakeholder maps, risk flags & timeline pressure baked in' },
-                  { icon: '🛡️', t: 'Privacy-safe by design', d: 'Placeholder variables keep sensitive data out of prompts' },
-                  { icon: '💡', t: 'App help, instantly', d: 'Ask anything about SalesCloserPro — no docs needed' },
-                ].map(({ icon, t, d }) => (
-                  <div key={t} className="flex items-start gap-2.5 p-2.5 rounded-lg border border-emerald-500/10" style={{ background: 'rgba(16,163,127,0.05)' }}>
-                    <span className="text-base leading-none mt-0.5">{icon}</span>
+                  { Icon: Mail, tint: 'text-blue-400 bg-blue-500/10', t: 'Emails, DMs & call tracks', d: 'Tailored scripts in seconds — just describe the deal.' },
+                  { Icon: Target, tint: 'text-amber-400 bg-amber-500/10', t: 'Close plans that win', d: 'Stakeholder maps, risk flags, and timeline pressure.' },
+                  { Icon: ShieldCheck, tint: 'text-emerald-400 bg-emerald-500/10', t: 'Privacy-safe by design', d: 'Placeholder variables keep client data out of prompts.' },
+                  { Icon: HelpCircle, tint: 'text-violet-400 bg-violet-500/10', t: 'App help, instantly', d: 'Ask anything about SalesCloserPro — no docs needed.' },
+                ].map(({ Icon, tint, t, d }) => (
+                  <div key={t} className="flex items-start gap-3">
+                    <div className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${tint}`}>
+                      <Icon className="w-4 h-4" />
+                    </div>
                     <div>
-                      <p className="text-white text-sm font-semibold">{t}</p>
-                      <p className="text-slate-400 text-xs">{d}</p>
+                      <p className="text-white text-sm font-semibold leading-tight">{t}</p>
+                      <p className="text-xs text-slate-400 mt-1 leading-relaxed">{d}</p>
                     </div>
                   </div>
                 ))}
               </div>
-              <div className="flex flex-col gap-2 mt-1">
-                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg font-bold text-sm text-white w-fit transition-all group-hover:scale-[1.02]"
-                  style={{ background: 'linear-gradient(135deg, #10a37f, #0ea5e9)', boxShadow: '0 0 24px rgba(16,163,127,0.35)' }}>
-                  Try the GPT — Free →
+
+              <div className="flex flex-wrap items-center gap-x-4 gap-y-3 pt-1">
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-bold text-slate-950 bg-emerald-400 group-hover:bg-emerald-300 transition-colors shadow-lg shadow-emerald-500/20">
+                  Try the GPT — Free
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5" />
                 </span>
-                <span className="text-[11px] text-slate-500 pl-1">Powered by ChatGPT · GPT-5.6 Sol · No Plus subscription needed</span>
+                <span className="inline-flex items-center gap-1.5 text-[11px] text-slate-500">
+                  <OpenAIMark className="w-3 h-3" />
+                  Powered by ChatGPT · GPT-5.6 Sol · No Plus subscription needed
+                </span>
               </div>
             </div>
           </div>

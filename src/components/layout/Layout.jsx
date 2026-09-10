@@ -95,7 +95,7 @@ export default function Layout() {
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-full h-full object-cover" />
             ) : (
-              <img src="./salescloserpro-logo.svg" alt="SalesCloserPro" className="w-full h-full object-cover" />
+              <img src="/icon-192.png" alt="SalesCloserPro" className="w-full h-full object-cover" />
             )}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
               <span className="text-white text-[9px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
@@ -221,7 +221,7 @@ export default function Layout() {
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-7 h-7 rounded-lg object-cover" />
             ) : (
-              <img src="./salescloserpro-logo.svg" alt="SalesCloserPro" className="w-7 h-7 rounded-full" />
+              <img src="/icon-192.png" alt="SalesCloserPro" className="w-7 h-7 rounded-lg object-cover" />
             )}
             <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloserpro.ai</span>
           </div>

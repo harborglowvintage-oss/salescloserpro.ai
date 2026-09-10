@@ -516,10 +516,9 @@ These elements are in the footer or below the visible viewport. Google discounts
 ├── 📂 scripts/
 │   └── 📄 generate-og.mjs       → Regenerates public/og-cover-v2.png (1200×630) with sharp
 ├── 📂 public/
-│   ├── 🖼️ favicon.ico · favicon-32.png · apple-touch-icon.png · icon-192.png · icon-512.png
+│   ├── 🖼️ favicon.ico · favicon-32.png · apple-touch-icon.png · icon-192.png · icon-512.png  (icon-192 is also the default sidebar logo)
 │   ├── 📄 manifest.webmanifest  → Web app manifest (installable, standalone)
 │   ├── 🖼️ og-cover-v2.png       → Social share card
-│   ├── 🖼️ salescloserpro-logo.svg → Default sidebar logo
 │   ├── 🖼️ gptlogo.png           → GPT assistant card logo
 │   ├── 📂 logos/                → Landing page artwork
 │   ├── 📄 _headers              → Cloudflare Pages cache + security headers

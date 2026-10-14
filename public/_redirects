@@ -1,5 +1,8 @@
 # Retired pages
 /whitepaper  /  301
 
+# Legacy security.txt location → RFC 9116 canonical path
+/security.txt  /.well-known/security.txt  301
+
 # SPA fallback — serve index.html for all non-asset routes
 /404.html /index.html 200

@@ -464,7 +464,7 @@ export default function LandingPage() {
 
           {/* Bottom bar */}
           <div className="border-t border-white/[0.06] pt-6 text-center text-xs text-slate-600">
-            © 2026 LLMadvisor ai LLC · Apache-2.0 License
+            © 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0
           </div>
 
         </div>

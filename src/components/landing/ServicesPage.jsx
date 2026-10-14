@@ -263,7 +263,7 @@ export default function ServicesPage() {
       {/* ── Footer ── */}
       <footer className="border-t border-white/[0.06] mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-600">
-          <span>© 2026 SalesCloserPro · Apache-2.0 License</span>
+          <span>© 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0</span>
           <div className="flex items-center gap-4">
             <Link to="/" className="hover:text-slate-400 transition-colors">Home</Link>
             <Link to="/about" className="hover:text-slate-400 transition-colors">About</Link>

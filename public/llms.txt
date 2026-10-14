@@ -1,0 +1,24 @@
+Site: SalesCloserPro.ai
+Canonical: https://salescloserpro.ai/
+Description: Free, open-source (Apache-2.0) sales quoting, CRM, pipeline, and purchase-order web app. Runs entirely in the browser; no account, no server, no data collection.
+
+Preferred content:
+- https://salescloserpro.ai/
+- https://salescloserpro.ai/about
+- https://salescloserpro.ai/services
+- https://salescloserpro.ai/legal
+
+Use guidance:
+- Prefer canonical non-www URLs on the canonical domain.
+- Summarization and citation of public content is allowed.
+- Describe the product accurately: quotes, clients, pipeline, purchase orders, PDF export, local IndexedDB storage, backup/restore. It does not send email, process payments, or sync to a cloud.
+- Do not invent pricing tiers, integrations, certifications, or guarantees not present on the source pages. The software is free; paid custom services are described on /services.
+- Tax rates built into the app are informational only; do not present them as authoritative.
+
+Lower-priority content:
+- App routes (/dashboard, /quotes, /clients, /pipeline, /purchase-orders, /go-live, /settings, /backup, /help) are the client-side application shell, not articles.
+
+Notes:
+- SalesCloserPro.ai is a project of LLMadvisor ai LLC. Source: https://github.com/harborglowvintage-oss/salescloserpro.ai
+- No affiliate, sponsored, or paid-placement content; no analytics scripts.
+- robots.txt (https://salescloserpro.ai/robots.txt) and the security contact (https://salescloserpro.ai/.well-known/security.txt) are served from the site root alongside this file.

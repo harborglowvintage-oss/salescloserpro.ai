@@ -195,7 +195,7 @@ export default function Layout() {
           </div>
 
           <div className="text-[9px] text-gray-300 dark:text-gray-600 text-center">
-            © {new Date().getFullYear()} LLMadvisor ai LLC · Apache 2.0
+            © 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0
           </div>
         </div>
       </aside>
@@ -240,7 +240,7 @@ export default function Layout() {
         
         {/* Footer */}
         <footer className="border-t border-gray-100 dark:border-gray-800 py-3 px-4 text-center text-xs text-gray-500">
-          © 2026 LLMadvisor ai LLC · Licensed under Apache-2.0
+          © 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0
         </footer>
       </div>
     </div>

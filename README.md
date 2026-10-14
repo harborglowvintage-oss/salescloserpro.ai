@@ -4,7 +4,7 @@
 
 <h1 align="center">salescloserpro.ai — Close More. Stress Less. 💪</h1>
 
-<p align="center"><strong>Version 1.1.0 | Updated 2026-09-10</strong></p>
+<p align="center"><strong>Version 10.14.26 | Updated 2026-10-14</strong></p>
 
 <p align="center">
   <strong>Free, open-source sales quoting, CRM, pipeline, purchase orders & invoicing — browser-based.</strong><br/>
@@ -58,6 +58,21 @@
 
 ---
 
+## 🆕 What's new in 10.14.26 (2026-10-14)
+
+- 🤖 **`robots.txt`, `llms.txt`, and `.well-known/security.txt` now live in this repo** (`public/`) and are served by Cloudflare Pages. Previously the first two were served by a shared Cloudflare Worker (`robots-txt-handler`) that is being retired, and `/llms.txt` fell through to the SPA shell and returned HTML. `robots.txt` is allow-all plus the sitemap pointer; AI-crawler rules are intentionally **not** in the file — Cloudflare's managed robots.txt (dashboard AI bot policy) prepends them at the edge.
+- 🔐 **`security.txt`** follows RFC 9116: `mailto:brent@llmadvisor.ai` first, GitHub org second, `Canonical:` line, **`Expires: 2027-03-15` — renew before then.** `/security.txt` now 301s to the `.well-known` path.
+- 🚫 **App shell routes are `noindex`** via `X-Robots-Tag` in `public/_headers` (`/dashboard`, `/quotes`, `/clients`, `/pipeline`, `/purchase-orders`, `/go-live`, `/settings`, `/backup`, `/help`). Google had indexed `/help`; these routes render the client app, not content.
+- ⚖️ **Legal page corrected** — sanctions list updated (Syria's comprehensive OFAC program was terminated July 1, 2025; the list now names Cuba, Iran, North Korea, and the Crimea/DNR/LNR regions), removed the stale "invoices or accounts" wording (the app has neither), Terms no longer say "downloading, installing", and the security contact now points to the email and `security.txt` as well as the GitHub advisory. *Last updated* → October 14, 2026.
+- 🏷️ **Footer standardized on every page**: `© 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0` (the Services page previously omitted the LLC).
+- 🗂️ **Single repo from here on.** This repository is now the only source for the live site. The parallel `salescloserprohomepage.ai` repo (an identical copy that the Cloudflare Pages project happened to build from) is retired and archived; the Pages project is repointed at this repo. See `DEPLOYMENT.md`.
+- 🔢 **Version scheme is now the release date** (`10.14.26`), matching the other LLMadvisor ai LLC sites.
+- 📄 Cloudflare section of this README rewritten to match; sitemap `lastmod` bumped.
+
+> **Cloudflare follow-up (dashboard):** first, in Workers & Pages → `salescloserprohomepage-ai` → Settings → Builds & deployments, change the connected repository to `harborglowvintage-oss/salescloserpro.ai` (branch `main`) and trigger a deploy. Then, delete the `robots-txt-handler` Workers Routes for `salescloserpro.ai` / `www.salescloserpro.ai` (`/robots.txt` and `/.well-known/security.txt`), purge both URLs, and verify. Also trim the Response Header Transform Rule's `Content-Security-Policy` — it still allow-lists eight CJ affiliate image hosts and `google-analytics.com`, none of which the site loads — and drop its duplicate `Referrer-Policy` (already set by `_headers`).
+
+---
+
 ## 🆕 What's new in 1.1.0 (2026-09-10)
 
 - 🛠️ **Data now actually persists.** The IndexedDB adapter was missing Zustand's `createJSONStorage` wrapper, so every write threw `DataCloneError` and nothing survived a reload. Fixed.
@@ -72,6 +87,7 @@
 
 ## 📑 Table of Contents
 
+- [🆕 What's new in 10.14.26](#-whats-new-in-101426-2026-10-14)
 - [🆕 What's new in 1.1.0](#-whats-new-in-110-2026-09-10)
 - [🤖 salescloserpro.ai — GPT Assistant](#-salescloserpro-ai--gpt-assistant)
 - [⚡ Quick Start — Install in 60 Seconds](#-quick-start--install-in-60-seconds)
@@ -369,11 +385,14 @@ Production edge behavior is managed in Cloudflare and should be treated as part 
 - `public/_headers` in this repo is the source-of-truth fallback for Cloudflare Pages and local reference.
 - Keep Cloudflare dashboard header rules and `public/_headers` synchronized whenever security headers are changed.
 
-### Edge routing and worker notes
+### Policy files (`robots.txt`, `llms.txt`, `security.txt`)
 
-- `robots.txt` and `.well-known/security.txt` are served via Cloudflare edge routing/worker logic.
-- Keep exact route expressions, worker script names, and account-level rule details in private operations documentation (not in this public repo).
-- After any edge-rule change, verify both public crawler endpoints and security-contact endpoints are still reachable.
+- Since v10.14.26 these are stored in `public/` and served by Cloudflare Pages: `public/robots.txt`, `public/llms.txt`, `public/.well-known/security.txt`. Vite copies `public/` (dot-directories included) into `dist/`.
+- `robots.txt` is allow-all plus the `Sitemap:` pointer. **Do not add AI-crawler `Disallow` lines here** — Cloudflare's managed robots.txt (dashboard → Security → Bot traffic → AI bot policies) prepends them at the edge, so there is one source of truth.
+- `security.txt` follows RFC 9116. `Expires` is **2027-03-15** — renew before then. `/security.txt` 301s to `/.well-known/security.txt` via `public/_redirects`.
+- Content types and cache rules live in `public/_headers` (`robots.txt` and `llms.txt` 1 day, `security.txt` 1 hour). App shell routes carry `X-Robots-Tag: noindex` there too.
+- History: before October 14, 2026, `robots.txt` and `security.txt` were served by the shared `robots-txt-handler` Cloudflare Worker, which is being retired zone by zone. Until that zone's Worker routes are deleted in the dashboard, the worker still wins on those two paths and the repo copies are only visible on the `*.pages.dev` hostname.
+- After any edge change, verify `/robots.txt`, `/.well-known/security.txt`, `/llms.txt`, and `/sitemap.xml` are reachable and return `text/plain` / `application/xml`, not HTML.
 
 ### Public repo safety guidelines
 
@@ -521,8 +540,12 @@ These elements are in the footer or below the visible viewport. Google discounts
 │   ├── 🖼️ og-cover-v2.png       → Social share card
 │   ├── 🖼️ gptlogo.png           → GPT assistant card logo
 │   ├── 📂 logos/                → Landing page artwork
-│   ├── 📄 _headers              → Cloudflare Pages cache + security headers
-│   ├── 📄 _redirects            → Retired-page redirects + SPA fallback
+│   ├── 📄 _headers              → Cloudflare Pages cache + security headers, policy-file content types, noindex on app routes
+│   ├── 📄 _redirects            → Retired-page redirects, /security.txt → .well-known, SPA fallback
+│   ├── 📄 robots.txt            → Allow all + sitemap pointer (AI-crawler rules come from Cloudflare managed robots.txt, not this file)
+│   ├── 📄 llms.txt              → AI/LLM guidance file (canonical domain, preferred pages, use rules)
+│   ├── 📂 .well-known/
+│   │   └── 📄 security.txt      → RFC 9116 security contact (Expires 2027-03-15 — renew before then)
 │   └── 📄 sitemap.xml
 └── 📂 src/
     ├── 📄 main.jsx              → ⚡ Entry point — legacy localStorage migration, renders <App />

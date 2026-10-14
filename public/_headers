@@ -37,3 +37,37 @@
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /manifest.webmanifest
   Cache-Control: public, max-age=86400
+
+# ── Policy files (served from this repo since Oct 14, 2026; edge worker retired) ──
+/robots.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+/llms.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+# RFC 9116 security contact (Expires 2027-03-15 — renew before then)
+/.well-known/security.txt
+  Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=3600
+
+# ── App shell routes: keep out of search results (the SPA serves index.html here) ──
+/dashboard
+  X-Robots-Tag: noindex
+/quotes
+  X-Robots-Tag: noindex
+/quotes/*
+  X-Robots-Tag: noindex
+/clients
+  X-Robots-Tag: noindex
+/pipeline
+  X-Robots-Tag: noindex
+/purchase-orders
+  X-Robots-Tag: noindex
+/go-live
+  X-Robots-Tag: noindex
+/settings
+  X-Robots-Tag: noindex
+/backup
+  X-Robots-Tag: noindex
+/help
+  X-Robots-Tag: noindex

@@ -22,7 +22,7 @@ import {
   Gavel,
 } from 'lucide-react'
 
-const LAST_UPDATED = 'September 10, 2026'
+const LAST_UPDATED = 'October 14, 2026'
 const APP_VERSION  = __APP_VERSION__
 const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
@@ -149,7 +149,7 @@ export default function LegalPage() {
             {/* ── 1. TERMS OF USE ── */}
             <Section id="terms" icon={FileText} title="Terms of Use" color="text-blue-400" defaultOpen={true}>
               <p>
-                By downloading, installing, or using SalesCloserPro ("the Software"), you agree to these Terms of Use.
+                By using, self-hosting, or distributing SalesCloserPro ("the Software"), you agree to these Terms of Use.
                 If you do not agree, do not use the Software.
               </p>
               <H>Permitted Use</H>
@@ -375,7 +375,7 @@ export default function LegalPage() {
                 SalesCloserPro is a business tool <Hi>intended solely for use by professionals aged 18 and older</Hi>
                 {' '}(or the age of majority in your jurisdiction, whichever is greater). The Software is not directed
                 to, designed for, or marketed to children or minors, and we do not knowingly permit anyone under 18
-                to create quotes, invoices, or accounts.
+                to use the Software.
               </p>
               <H>COPPA (United States)</H>
               <p>
@@ -451,7 +451,7 @@ export default function LegalPage() {
                 You may not use, download, or distribute SalesCloserPro if you are:
               </p>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
-                <li>Located in, or a national of, a comprehensively sanctioned country (currently: Cuba, Iran, North Korea, Syria, Russia-occupied regions of Ukraine, as updated by OFAC)</li>
+                <li>Located in, or a national of, a comprehensively sanctioned country or region (currently Cuba, Iran, North Korea, and the Crimea, so-called DNR and LNR regions of Ukraine, as updated by OFAC; U.S. export controls also still restrict shipments of U.S.-origin items to certain other destinations, such as Syria)</li>
                 <li>Listed on the OFAC SDN list, the BIS Denied Persons List, or any equivalent list</li>
                 <li>Acting on behalf of any entity listed above</li>
               </ul>
@@ -587,7 +587,9 @@ export default function LegalPage() {
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <span className="text-slate-500 w-32 flex-shrink-0">Security</span>
-                  <Ext href="https://github.com/harborglowvintage-oss/salescloserpro.ai/security">GitHub Security Advisory</Ext>
+                  <span>
+                    <Hi>{CONTACT_EMAIL}</Hi> · <Ext href="https://salescloserpro.ai/.well-known/security.txt">security.txt</Ext> · <Ext href="https://github.com/harborglowvintage-oss/salescloserpro.ai/security">GitHub Security Advisory</Ext>
+                  </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
                   <span className="text-slate-500 w-32 flex-shrink-0">Bug reports</span>
@@ -599,7 +601,7 @@ export default function LegalPage() {
                 </div>
               </div>
               <p className="mt-4 text-xs text-slate-500">
-                Response time for legal requests: up to 30 days. For urgent security matters, use the GitHub Security Advisory.
+                Response time for legal requests: up to 30 days. For urgent security matters, email the address above (see our RFC 9116 security.txt) or open a GitHub Security Advisory.
               </p>
             </Section>
 
@@ -608,7 +610,7 @@ export default function LegalPage() {
 
         {/* ── bottom bar ── */}
         <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© 2026 LLMadvisor ai LLC · Apache-2.0</p>
+          <p>© 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0</p>
           <Link to="/" className="hover:text-white transition-colors">← Back to SalesCloserPro</Link>
         </div>
 

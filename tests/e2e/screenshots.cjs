@@ -7,6 +7,7 @@ const { chromium } = require('playwright-core')
 const fs = require('fs')
 const path = require('path')
 const { execSync } = require('child_process')
+const sharp = require('sharp')
 const BASE = process.env.BASE || 'http://localhost:4173'
 const OUT = path.join(__dirname, '.out')
 const SHOTS = path.join(__dirname, '..', '..', 'screenshots')
@@ -18,6 +19,36 @@ const ymd = (n) => day(n).toISOString().slice(0, 10)
 const id = (n) => `00000000-0000-4000-8000-${String(n).padStart(12, '0')}`
 const line = (n, type, description, qty, unit, price, model = '') => ({ id: id(n), type, description, model, qty, unit, price })
 const total = (lines) => Math.round(lines.reduce((s, l) => s + l.qty * l.price, 0) * TX * 100) / 100
+
+// Every README image is the same 1600×1000 canvas, so the gallery grid is perfectly even:
+// captures are scaled to a common height, given rounded corners, and centred side by side.
+const CANVAS = { width: 1600, height: 1000, pad: 56, gap: 44 }
+async function frame(name, captures, { radius = 16 } = {}) {
+  const maxH = CANVAS.height - CANVAS.pad * 2
+  const maxW = (CANVAS.width - CANVAS.pad * 2 - CANVAS.gap * (captures.length - 1)) / captures.length
+  const tiles = []
+  for (const file of captures) {
+    const meta = await sharp(file).metadata()
+    const scale = Math.min(maxW / meta.width, maxH / meta.height)
+    const width = Math.round(meta.width * scale)
+    const height = Math.round(meta.height * scale)
+    const mask = Buffer.from(`<svg width="${width}" height="${height}"><rect width="${width}" height="${height}" rx="${radius}"/></svg>`)
+    tiles.push({ width, height, input: await sharp(file).resize(width, height).composite([{ input: mask, blend: 'dest-in' }]).png().toBuffer() })
+  }
+  const total = tiles.reduce((w, t) => w + t.width, 0) + CANVAS.gap * (tiles.length - 1)
+  let left = Math.round((CANVAS.width - total) / 2)
+  const layers = []
+  for (const t of tiles) {
+    const topY = Math.round((CANVAS.height - t.height) / 2)
+    // soft outline so light pages (PDFs, the client view) and dark screens both sit cleanly on the canvas
+    layers.push({ input: Buffer.from(`<svg width="${t.width + 2}" height="${t.height + 2}"><rect x="0.5" y="0.5" width="${t.width + 1}" height="${t.height + 1}" rx="${radius + 1}" fill="none" stroke="#efe9dc" stroke-opacity="0.22"/></svg>`), left: left - 1, top: topY - 1 })
+    layers.push({ input: t.input, left, top: topY })
+    left += t.width + CANVAS.gap
+  }
+  const background = Buffer.from(`<svg width="${CANVAS.width}" height="${CANVAS.height}"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0c3a42"/><stop offset="1" stop-color="#071b1f"/></linearGradient></defs><rect width="100%" height="100%" rx="24" fill="url(#g)"/></svg>`)
+  await sharp(background).composite(layers).png({ compressionLevel: 9 }).toFile(path.join(SHOTS, `${name}.png`))
+  console.log('✓', name)
+}
 
 function demoState() {
   const contacts = [
@@ -67,62 +98,70 @@ function demoState() {
   fs.writeFileSync(backup, JSON.stringify(demoState()))
 
   const browser = await chromium.launch()
-  const ctx = await browser.newContext({ viewport: { width: 1280, height: 860 }, deviceScaleFactor: 1.5, acceptDownloads: true, permissions: ['clipboard-read', 'clipboard-write'] })
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1.5, acceptDownloads: true, permissions: ['clipboard-read', 'clipboard-write'] })
   const page = await ctx.newPage()
   page.on('dialog', (d) => d.accept())
   const go = async (route) => { await page.goto(`${BASE}${route}`, { waitUntil: 'networkidle' }); await page.waitForTimeout(500) }
-  const shot = async (name, opts = {}) => { await page.screenshot({ path: path.join(SHOTS, `${name}.png`), ...opts }); console.log('✓', name) }
+  const raw = (name) => path.join(OUT, `raw-${name}.png`)
+  const capture = async (name, target = page) => { await target.screenshot({ path: raw(name) }); return raw(name) }
 
+  // The landing page is the README's hero image and is used as captured.
   await go('/')
-  await shot('landing')
+  await page.screenshot({ path: path.join(SHOTS, 'landing.png') })
+  console.log('✓ landing')
 
   await go('/backup')
   await page.locator('input[type=file][accept*="json"]').setInputFiles(backup)
   await page.click('button:has-text("Restore This Backup")')
   await page.waitForTimeout(2500)
 
-  await go('/dashboard'); await shot('dashboard')
-  await go('/contacts'); await shot('contacts')
-  await go('/pipeline'); await shot('pipeline')
-  await go('/purchase-orders'); await shot('purchase-orders')
-  await go('/export'); await shot('export')
+  // ── app screens: one 1280×800 window each ──
+  for (const name of ['dashboard', 'pipeline', 'contacts', 'purchase-orders', 'export']) {
+    await go(`/${name}`)
+    await frame(name, [await capture(name)])
+  }
 
   await go('/quotes')
   await page.click('text=Q-0041')
   await page.waitForTimeout(600)
-  // Both images in this README row are cut at a content boundary, never through a card.
-  // Quote builder: from the top of the page to just below the "add line" buttons.
-  await page.setViewportSize({ width: 1280, height: 2400 })
+  // show the contact picker, the three options and the first line item with its model number
+  await page.locator('h2:has-text("Line Items")').evaluate((el) => el.scrollIntoView({ block: 'center' }))
   await page.waitForTimeout(400)
-  const addButtons = await page.locator('button:has-text("Freight")').boundingBox()
-  const builderHeight = Math.round(addButtons.y + addButtons.height + 28)
-  await shot('quote-builder', { clip: { x: 0, y: 0, width: 1280, height: builderHeight } })
-  await page.setViewportSize({ width: 1280, height: 860 })
+  // the sidebar has scrolled out of view here, so capture the working area only
+  const main = await page.locator('main').boundingBox()
+  await page.screenshot({ path: raw('quote-builder'), clip: { x: main.x, y: 0, width: 1280 - main.x, height: 800 } })
+  await frame('quote-builder', [raw('quote-builder')])
 
-  // The client's view of the same quote, from the real Send dialog link:
-  // from the letterhead to just below the last option card.
+  // ── what the client sees: the real proposal link on a phone, top and accept panel ──
   await page.locator('button:has-text("Send")').first().click()
   const url = await page.locator('[role=dialog] input[aria-label="Proposal link"]').inputValue()
   await page.keyboard.press('Escape')
-  const phone = await browser.newContext({ viewport: { width: 390, height: 2400 }, deviceScaleFactor: 2 })
+  const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 })
   const client = await phone.newPage()
   await client.goto(url, { waitUntil: 'networkidle' })
   await client.waitForTimeout(500)
-  const options = await client.locator('[role=radiogroup]').boundingBox()
-  const clientHeight = Math.round(options.y + options.height + 24)
-  await client.screenshot({ path: path.join(SHOTS, 'client-proposal.png'), clip: { x: 0, y: 0, width: 390, height: clientHeight } })
-  // README column widths that make the two images the same displayed height
-  const share = Math.round((100 * (builderHeight / 1280)) / (builderHeight / 1280 + clientHeight / 390))
-  console.log(`  README row widths → quote-builder ${100 - share}% · client-proposal ${share}%`)
-  console.log('✓ client-proposal')
+  const top = await capture('client-top', client)
+  await client.locator('text=What\'s included in').evaluate((el) => el.scrollIntoView({ block: 'start' }))
+  await client.evaluate(() => window.scrollBy(0, -24))
+  const middle = await capture('client-items', client)
+  await client.fill('#acc-name', 'Dana Whitfield')
+  await client.check('input[type=checkbox]')
+  await client.locator('h2:has-text("Ready to go ahead?")').evaluate((el) => el.scrollIntoView({ block: 'center' }))
+  await client.waitForTimeout(300)
+  const accept = await capture('client-accept', client)
+  await frame('client-proposal', [top, middle, accept], { radius: 34 })
 
-  // Business Summary PDF → first page as an image
+  // ── documents: Business Summary and the proposal PDF, first pages ──
   await go('/export')
-  const [pdf] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Download PDF")')])
-  const pdfPath = path.join(OUT, 'summary.pdf')
-  await pdf.saveAs(pdfPath)
-  execSync(`pdftoppm -r 110 -png -f 1 -l 1 -singlefile "${pdfPath}" "${path.join(SHOTS, 'business-summary')}"`)
-  console.log('✓ business-summary')
+  const [summary] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Download PDF")')])
+  await summary.saveAs(path.join(OUT, 'summary.pdf'))
+  await go('/quotes')
+  await page.click('text=Q-0041')
+  await page.waitForTimeout(600)
+  const [proposal] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Export PDF")')])
+  await proposal.saveAs(path.join(OUT, 'proposal.pdf'))
+  for (const doc of ['summary', 'proposal']) execSync(`pdftoppm -r 110 -png -f 1 -l 1 -singlefile "${path.join(OUT, doc + '.pdf')}" "${path.join(OUT, 'raw-' + doc)}"`)
+  await frame('documents', [raw('proposal'), raw('summary')], { radius: 6 })
 
   await browser.close()
 })()

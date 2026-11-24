@@ -8,15 +8,15 @@ import { formatMoney } from '../../utils/quoteMath'
 
 function KpiCard({ icon: Icon, label, value, color, sub }) {
   return (
-    <div className="card flex items-start gap-4">
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${color}`}>
-        <Icon className="w-6 h-6 text-white" />
+    <div className="card">
+      <div className="flex items-center gap-2.5 text-sm font-medium text-gray-500 dark:text-gray-400">
+        <span className={`w-8 h-8 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
+          <Icon className="w-4 h-4 text-white" />
+        </span>
+        {label}
       </div>
-      <div className="min-w-0">
-        <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 tabular-nums truncate">{value}</div>
-        <div className="text-sm font-medium text-gray-500 dark:text-gray-400">{label}</div>
-        {sub && <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{sub}</div>}
-      </div>
+      <div className="mt-2 text-2xl font-bold text-gray-900 dark:text-gray-100 tabular-nums">{value}</div>
+      {sub && <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{sub}</div>}
     </div>
   )
 }

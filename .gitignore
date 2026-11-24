@@ -27,8 +27,8 @@ npm-debug.log*
 # Vite
 vite.config.js.timestamp-*
 
-# Scratch files
-Untitled-1.ini
+# Test output (fixtures, downloaded PDFs, screenshots of failures)
+tests/e2e/.out/
 
 # Local backup archives (never commit in public repo)
 local-backups/

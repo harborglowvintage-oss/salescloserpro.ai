@@ -1,0 +1,97 @@
+// E2E: model number travels everywhere; Business Summary PDF; Go Live gone
+const { chromium } = require('playwright-core')
+const fs = require('fs'); const { execSync } = require('child_process')
+const BASE = process.env.BASE || 'http://localhost:4173'; const OUT = require('path').join(__dirname, '.out')
+let pass = 0, fail = 0
+const ok = (c, m) => { c ? pass++ : fail++; console.log(`${c ? '✓' : '✗'} ${m}`) }
+const settle = (p) => p.waitForTimeout(400)
+const pdfText = (f) => execSync(`pdftotext -layout "${f}" -`).toString()
+;(async () => {
+  const browser = await chromium.launch()
+  const ctx = await browser.newContext({ viewport: { width: 1280, height: 1000 }, acceptDownloads: true, permissions: ['clipboard-read', 'clipboard-write'] })
+  const page = await ctx.newPage()
+  const errors = []
+  page.on('pageerror', (e) => errors.push(e.message)); page.on('console', (m) => m.type() === 'error' && errors.push(m.text()))
+  const save = async (p, dl) => { const f = `${OUT}/${p}`; await dl.saveAs(f); return f }
+
+  await page.goto(`${BASE}/settings`, { waitUntil: 'networkidle' })
+  await page.fill('input[placeholder="Acme Corp"]', 'Summit Heating & Air')
+  await page.fill('input[placeholder="hello@acmecorp.com"]', 'office@summit.example')
+  await page.click('button:has-text("Save Company Info")')
+
+  // quote 1 — product with model number + labor (no model field on labor)
+  await page.goto(`${BASE}/quotes/new`, { waitUntil: 'networkidle' })
+  await page.fill('input[placeholder="Acme Corp"]', 'Dana Whitfield')
+  await page.fill('input[placeholder="client@email.com"]', 'dana@example.com')
+  await page.fill('input[placeholder^="Describe this product"]', 'Heat pump, 3 ton')
+  await page.fill('input[placeholder="e.g. XR-15"]', '  XR-15  SEER2 ')
+  await page.locator('input[placeholder="0.00"]').first().fill('6200')
+  await page.click('button:has-text("Install / Labor")')
+  await page.fill('input[placeholder^="Describe this install"]', 'Installation')
+  await page.locator('input[placeholder="0.00"]').nth(1).fill('1800')
+  ok(await page.locator('input[placeholder="e.g. XR-15"]').count() === 1, 'model # field shows on product lines only')
+  await page.locator('button:has-text("Send")').first().click()
+  const url = await page.locator('[role=dialog] input[aria-label="Proposal link"]').inputValue()
+  await page.locator('[role=dialog] button:has-text("Copy")').click()
+  await page.keyboard.press('Escape')
+  const [qpdf] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Export PDF")')])
+  const qtext = pdfText(await save('model-quote.pdf', qpdf))
+  ok(/Heat pump, 3 ton/.test(qtext) && /Model: XR-15 SEER2/.test(qtext), 'quote PDF prints "Model: XR-15 SEER2" under the description')
+  await settle(page)
+
+  const cp = await (await browser.newContext({ viewport: { width: 390, height: 844 } })).newPage()
+  await cp.goto(url, { waitUntil: 'networkidle' })
+  ok(/Model XR-15 SEER2/.test(await cp.locator('body').innerText()), 'client proposal page shows the model number')
+
+  // quote 2 (draft, other contact) + a won quote + a manual deal, so the report has substance
+  await page.goto(`${BASE}/quotes/new`, { waitUntil: 'networkidle' })
+  await page.fill('input[placeholder="Acme Corp"]', 'Marcus Oyelaran')
+  await page.fill('input[placeholder="client@email.com"]', 'marcus@example.com')
+  await page.fill('input[placeholder^="Describe this product"]', 'Smart thermostat')
+  await page.locator('input[placeholder="0.00"]').first().fill('450')
+  await page.click('button:has-text("Save Quote")'); await page.waitForURL(/\/quotes\/[0-9a-f-]{36}$/)
+  await page.goto(`${BASE}/quotes/new`, { waitUntil: 'networkidle' })
+  await page.fill('input[placeholder="Acme Corp"]', 'Priya Raman')
+  await page.fill('input[placeholder^="Describe this product"]', 'Furnace replacement')
+  await page.locator('input[placeholder="0.00"]').first().fill('5400')
+  await page.locator('select').first().selectOption('won')
+  await page.click('button:has-text("Save Quote")'); await page.waitForURL(/\/quotes\/[0-9a-f-]{36}$/)
+  await page.click('a:has-text("Pipeline")')
+  await page.locator('button:has-text("Add Deal")').first().click()
+  await page.fill('input[placeholder="Contact name *"]', 'Greenfield Apartments')
+  await page.fill('input[placeholder="Deal value"]', '24000')
+  await page.click('button:has-text("Add"):not(:has-text("Deal"))')
+
+  // PO picker shows the model
+  await page.click('a:has-text("Purchase Orders")')
+  ok(!/Go Live/.test(await page.locator('aside').innerText()), 'Go Live is gone from the sidebar')
+
+  // Export page
+  await page.click('a:has-text("Export")')
+  const [rep] = await Promise.all([page.waitForEvent('download'), page.click('button:has-text("Download PDF")')])
+  const rfile = await save('summary.pdf', rep)
+  const rtext = pdfText(rfile)
+  ok(/^salescloserpro-summary-\d{4}-\d\d-\d\d\.pdf$/.test(rep.suggestedFilename()), 'summary PDF downloaded')
+  ok(/BUSINESS SUMMARY/.test(rtext) && /Summit Heating & Air/.test(rtext), 'report: title + company')
+  ok(/OPEN DEALS/.test(rtext) && /WON/.test(rtext) && /100% win rate/.test(rtext) && /4\b/.test(rtext), 'report: headline tiles incl. win rate')
+  ok(/Deals by stage/.test(rtext) && /Lead\s+1\s+\$24,000\.00/.test(rtext) && /Closed Won\s+1\s+\$5,845\.50/.test(rtext), 'report: deals by stage with counts + values')
+  ok(/Q-0001\s+Dana Whitfield\s+Sent/.test(rtext) && /Q-0003\s+Priya Raman\s+Won/.test(rtext), 'report: quotes with plain-word status')
+  ok(/Greenfield Apartments/.test(rtext) && /marcus@example\.com/.test(rtext), 'report: contacts listed')
+  execSync(`pdftoppm -r 70 -png "${rfile}" "${OUT}/summary-pg"`)
+
+  const [ldl] = await Promise.all([page.waitForEvent('download'), page.locator('li', { hasText: 'Quote line items' }).locator('button:has-text("CSV")').click()])
+  const csv = fs.readFileSync(await ldl.path(), 'utf8')
+  ok(csv.includes('Description,Model Number,Quantity') && csv.includes('"Heat pump, 3 ton",XR-15 SEER2,1,ea,6200.00,8.25%'), 'CSV: Model Number column, trimmed value, readable tax rate')
+  ok(csv.includes(',Product,') && csv.includes(',Labor,'), 'CSV: line types in Title Case')
+  const [qdl] = await Promise.all([page.waitForEvent('download'), page.locator('li', { hasText: /^Quotes/ }).locator('button:has-text("CSV")').click()])
+  const qcsv = fs.readFileSync(await qdl.path(), 'utf8')
+  ok(/Q-0001,Sent,Dana Whitfield,,dana@example\.com,,Texas,/.test(qcsv), 'CSV: status in Title Case, full state name')
+
+  await page.goto(`${BASE}/go-live`, { waitUntil: 'networkidle' })
+  ok(/\/dashboard$/.test(page.url()), '/go-live redirects to the dashboard')
+  await page.goto(`${BASE}/help`, { waitUntil: 'networkidle' })
+  ok(!/Go Live/i.test(await page.locator('main').innerText()), 'Help no longer mentions Go Live')
+
+  ok(errors.length === 0, `no console/page errors ${errors.length ? JSON.stringify(errors) : ''}`)
+  console.log(`\n${pass} passed, ${fail} failed`); await browser.close(); process.exit(fail ? 1 : 0)
+})()

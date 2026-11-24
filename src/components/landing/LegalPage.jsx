@@ -21,13 +21,13 @@ import {
   Package,
   Gavel,
 } from 'lucide-react'
+import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE, CONTACT_EMAIL } from '../brand/Brand'
 
-const LAST_UPDATED = 'October 14, 2026'
+const LAST_UPDATED = 'November 24, 2026'
 const APP_VERSION  = __APP_VERSION__
-const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
 /* ── collapsible section ── */
-function Section({ id, icon: Icon, title, color = 'text-blue-400', children, defaultOpen = false }) {
+function Section({ id, icon: Icon, title, color = 'text-brand-400', children, defaultOpen = false }) {
   const [open, setOpen] = useState(defaultOpen)
   return (
     <div id={id} className="border border-white/[0.07] rounded-2xl overflow-hidden">
@@ -38,12 +38,12 @@ function Section({ id, icon: Icon, title, color = 'text-blue-400', children, def
         <span className={`flex-shrink-0 ${color}`}><Icon className="w-5 h-5" /></span>
         <span className="flex-1 font-semibold text-white text-base">{title}</span>
         {open
-          ? <ChevronDown className="w-4 h-4 text-slate-500 flex-shrink-0" />
-          : <ChevronRight className="w-4 h-4 text-slate-500 flex-shrink-0" />
+          ? <ChevronDown className="w-4 h-4 text-ink-500 flex-shrink-0" />
+          : <ChevronRight className="w-4 h-4 text-ink-500 flex-shrink-0" />
         }
       </button>
       {open && (
-        <div className="px-6 pb-7 pt-1 space-y-4 text-sm text-slate-400 leading-relaxed border-t border-white/[0.05]">
+        <div className="px-6 pb-7 pt-1 space-y-4 text-sm text-ink-400 leading-relaxed border-t border-white/[0.05]">
           {children}
         </div>
       )}
@@ -57,36 +57,36 @@ const H = ({ children }) => (
 )
 
 /* ── inline highlight ── */
-const Hi = ({ children }) => <strong className="text-slate-200">{children}</strong>
+const Hi = ({ children }) => <strong className="text-ink-200">{children}</strong>
 
 /* ── anchor link ── */
 const Ext = ({ href, children }) => (
   <a href={href} target="_blank" rel="noopener noreferrer"
-    className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-0.5 transition-colors">
+    className="text-brand-400 hover:text-brand-300 inline-flex items-center gap-0.5 transition-colors">
     {children} <ExternalLink className="w-3 h-3 opacity-70" />
   </a>
 )
 
 /* ── toc item ── */
 const TocItem = ({ href, children }) => (
-  <a href={href} className="flex items-center gap-2 text-sm text-slate-400 hover:text-white transition-colors py-0.5">
-    <ChevronRight className="w-3 h-3 text-slate-600 flex-shrink-0" />
+  <a href={href} className="flex items-center gap-2 text-sm text-ink-400 hover:text-white transition-colors py-0.5">
+    <ChevronRight className="w-3 h-3 text-ink-600 flex-shrink-0" />
     {children}
   </a>
 )
 
 export default function LegalPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 antialiased">
+    <div className="min-h-screen bg-ink-950 text-ink-200 antialiased">
 
       {/* ── header nav ── */}
-      <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-slate-950/90 backdrop-blur-xl">
+      <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-ink-950/90 backdrop-blur-xl">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
-            <img src="/logos/salescloserprologo.png" alt="" className="h-7 w-auto" />
-            <span className="font-bold text-white text-sm">SalesCloserPro</span>
+            <ProductLogo alt="" className="h-7 w-7" />
+            <Wordmark className="text-white text-sm" />
           </Link>
-          <Link to="/" className="text-sm text-slate-400 hover:text-white transition-colors">← Back to Home</Link>
+          <Link to="/" className="text-sm text-ink-400 hover:text-white transition-colors">← Back to Home</Link>
         </div>
       </header>
 
@@ -95,20 +95,20 @@ export default function LegalPage() {
         {/* ── hero ── */}
         <div className="mb-12">
           <div className="flex items-center gap-3 mb-4">
-            <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20">
-              <Scale className="w-5 h-5 text-blue-400" />
+            <span className="flex items-center justify-center w-10 h-10 rounded-xl bg-brand-500/10 border border-brand-500/20">
+              <Scale className="w-5 h-5 text-brand-400" />
             </span>
             <h1 className="text-3xl sm:text-4xl font-extrabold text-white">Legal &amp; Compliance</h1>
           </div>
-          <p className="text-slate-400 text-base leading-relaxed max-w-2xl">
+          <p className="text-ink-400 text-base leading-relaxed max-w-2xl">
             Policies, disclosures, and compliance information for SalesCloserPro — the free, open-source sales quoting
             and CRM platform. Please read these documents before using the software.
           </p>
           <div className="flex flex-wrap gap-4 mt-5">
-            <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/20">
+            <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-300 border border-brand-500/20">
               Last updated: {LAST_UPDATED}
             </span>
-            <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/[0.05] text-slate-400 border border-white/[0.08]">
+            <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/[0.05] text-ink-400 border border-white/[0.08]">
               App version: {APP_VERSION}
             </span>
             <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-green-500/10 text-green-300 border border-green-500/20">
@@ -122,12 +122,12 @@ export default function LegalPage() {
           {/* ── table of contents ── */}
           <aside className="hidden lg:block">
             <div className="sticky top-20 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-slate-500 mb-4">Contents</p>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-ink-500 mb-4">Contents</p>
               <nav className="space-y-0.5">
                 <TocItem href="#terms">Terms of Use</TocItem>
                 <TocItem href="#privacy">Privacy Policy</TocItem>
                 <TocItem href="#data">Data Storage</TocItem>
-                <TocItem href="#ai">AI &amp; ChatGPT Usage</TocItem>
+                <TocItem href="#ai">AI Usage</TocItem>
                 <TocItem href="#affiliate">Affiliate Disclosure</TocItem>
                 <TocItem href="#gdpr">GDPR (EU)</TocItem>
                 <TocItem href="#ccpa">CCPA (California)</TocItem>
@@ -147,7 +147,7 @@ export default function LegalPage() {
           <div className="space-y-3">
 
             {/* ── 1. TERMS OF USE ── */}
-            <Section id="terms" icon={FileText} title="Terms of Use" color="text-blue-400" defaultOpen={true}>
+            <Section id="terms" icon={FileText} title="Terms of Use" color="text-brand-400" defaultOpen={true}>
               <p>
                 By using, self-hosting, or distributing SalesCloserPro ("the Software"), you agree to these Terms of Use.
                 If you do not agree, do not use the Software.
@@ -203,27 +203,32 @@ export default function LegalPage() {
               <H>Third-Party Services</H>
               <p>
                 The Software makes no requests to servers we operate. Two things do reach third parties: the site
-                is served by Cloudflare, and the page loads the Inter typeface from Google Fonts (which receives your
-                IP address as part of that request). If you follow optional links from the app — the SalesCloserPro
-                GPT on ChatGPT, GitHub, Google Workspace, Zoho, or Namecheap — those services' own privacy policies
-                govern anything you submit to them. We encourage you to review:
+                is served by Cloudflare, and the page loads the Inter and Source Serif 4 typefaces from Google Fonts (which receives your
+                IP address as part of that request). If you follow the optional link to GitHub, GitHub's own privacy policy
+                governs anything you submit there. We encourage you to review:
               </p>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li><Ext href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</Ext></li>
-                <li><Ext href="https://policies.google.com/privacy">Google Privacy Policy</Ext> (Google Fonts, Google Workspace)</li>
-                <li><Ext href="https://openai.com/policies/privacy-policy">OpenAI Privacy Policy</Ext> (ChatGPT GPT)</li>
+                <li><Ext href="https://policies.google.com/privacy">Google Privacy Policy</Ext> (Google Fonts)</li>
                 <li><Ext href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</Ext></li>
-                <li><Ext href="https://www.zoho.com/privacy.html">Zoho Privacy Policy</Ext></li>
-                <li><Ext href="https://www.namecheap.com/legal/general/privacy-policy/">Namecheap Privacy Policy</Ext></li>
               </ul>
             </Section>
 
             {/* ── 3. DATA STORAGE ── */}
-            <Section id="data" icon={Shield} title="Data Storage &amp; Security" color="text-cyan-400">
+            <Section id="data" icon={Shield} title="Data Storage &amp; Security" color="text-brand-400">
               <p>
                 All application data — quotes, clients, pipeline, settings, company logo, and purchase orders — is
                 stored exclusively in your browser's local database (<Hi>IndexedDB</Hi>). No data is transmitted to any server
                 operated by SalesCloserPro or llmadvisor.ai.
+              </p>
+              <H>Proposal Links</H>
+              <p>
+                When you use <Hi>Send</Hi>, the proposal (client name and contact details you entered, line items, prices,
+                notes and validity date) is compressed into the link itself, after the <Hi>#</Hi> sign. Browsers do not
+                transmit that part of a link to any server, so the proposal is not uploaded to or stored by SalesCloserPro,
+                llmadvisor.ai or Cloudflare. Anyone who has the link can read it, as with an emailed PDF — share it only with
+                the intended recipient. When a client accepts, the confirmation is drafted in their own email app and sent
+                only if they choose to send it. Calendar files you export are created on your device.
               </p>
               <H>Data Portability</H>
               <p>
@@ -240,7 +245,7 @@ export default function LegalPage() {
             </Section>
 
             {/* ── 4. AI USAGE ── */}
-            <Section id="ai" icon={Bot} title="AI &amp; ChatGPT Usage Disclosure" color="text-violet-400">
+            <Section id="ai" icon={Bot} title="AI Usage Disclosure" color="text-copper-400">
               <p>
                 SalesCloserPro was <Hi>developed with assistance from AI tools</Hi> including OpenAI ChatGPT,
                 Anthropic Claude, and GitHub Copilot. This section discloses how AI is involved in the product and
@@ -256,11 +261,6 @@ export default function LegalPage() {
               <p>
                 SalesCloserPro does <Hi>not</Hi> send your data (quotes, client names, amounts, etc.) to any AI service.
                 There are no AI APIs called by the application at runtime. Your business data stays on your device.
-              </p>
-              <p>
-                The optional <Hi>SalesCloserPro GPT</Hi> linked from the sidebar and homepage is a separate ChatGPT
-                experience operated by OpenAI. Nothing from the app is sent to it automatically; anything you choose
-                to type there is governed by OpenAI's policies.
               </p>
               <H>OpenAI Usage Policy Compliance</H>
               <p>
@@ -293,8 +293,8 @@ export default function LegalPage() {
               </p>
               <p>
                 The application links to a small number of independent third-party services purely as a
-                convenience to help you operate your business — for example, optional domain registration, email
-                hosting, and the free SalesCloserPro GPT on ChatGPT. These are{' '}
+                convenience — for example, the project's GitHub page — and names other products (such as HubSpot and
+                Salesforce) only to describe its export file formats. These are{' '}
                 <Hi>ordinary, non-affiliate links</Hi>: we receive no commission, referral reward, or other
                 compensation when you follow them, no tracking or attribution identifiers are attached, and you
                 are never required to use any of them.
@@ -308,7 +308,7 @@ export default function LegalPage() {
             </Section>
 
             {/* ── 7. GDPR ── */}
-            <Section id="gdpr" icon={Shield} title="GDPR — European Union / EEA Compliance" color="text-blue-300">
+            <Section id="gdpr" icon={Shield} title="GDPR — European Union / EEA Compliance" color="text-brand-300">
               <p>
                 The General Data Protection Regulation (GDPR) (EU) 2016/679 applies to personal data of EU/EEA data subjects.
                 Because SalesCloserPro does not collect or process personal data on behalf of users, many GDPR obligations
@@ -324,7 +324,7 @@ export default function LegalPage() {
               <H>Your Obligations as a User-Controller</H>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li>Have a legal basis for storing EU client data (legitimate interest or consent)</li>
-                <li>Honor data subject access requests (export a client's data from the Clients section)</li>
+                <li>Honor data subject access requests (a client's details, quotes and deals are listed on their card in the Contacts section)</li>
                 <li>Honor erasure requests by deleting the client's record from the app</li>
                 <li>Implement appropriate technical measures (encrypted drive recommended for EU client data)</li>
                 <li>Do not store special-category data (health, religion, etc.) in the app without explicit consent</li>
@@ -346,7 +346,7 @@ export default function LegalPage() {
             </Section>
 
             {/* ── 8. CCPA ── */}
-            <Section id="ccpa" icon={Shield} title="CCPA — California Consumer Privacy Act" color="text-indigo-400">
+            <Section id="ccpa" icon={Shield} title="CCPA — California Consumer Privacy Act" color="text-brand-500">
               <p>
                 The California Consumer Privacy Act (CCPA / CPRA) grants California residents specific rights regarding
                 their personal information.
@@ -410,7 +410,7 @@ export default function LegalPage() {
             </Section>
 
             {/* ── 9A. ACCESSIBILITY / ADA ── */}
-            <Section id="accessibility" icon={Eye} title="Accessibility (ADA &amp; WCAG)" color="text-cyan-400">
+            <Section id="accessibility" icon={Eye} title="Accessibility (ADA &amp; WCAG)" color="text-brand-400">
               <p>
                 LLMadvisor ai LLC is committed to digital accessibility and to making SalesCloserPro usable by the
                 widest possible audience, including people with disabilities. We work toward conformance with the{' '}
@@ -471,8 +471,8 @@ export default function LegalPage() {
               </p>
               <H>Trademarks &amp; Logos</H>
               <p>
-                Any third-party names or logos that appear in SalesCloserPro (for example GitHub, Cloudflare, Namecheap,
-                Zoho, Google Workspace, or OpenAI's ChatGPT, referenced in setup guidance and links) are trademarks of their
+                Any third-party names or logos that appear in SalesCloserPro (for example GitHub, Cloudflare, HubSpot or
+                Salesforce, referenced in links and export formats) are trademarks of their
                 respective owners and are used solely for identification and referential purposes under nominative
                 fair use. No affiliation with, or endorsement by, these brands is implied.
               </p>
@@ -558,7 +558,7 @@ export default function LegalPage() {
             </Section>
 
             {/* ── 14. CHANGES ── */}
-            <Section id="changes" icon={Eye} title="Policy Changes &amp; Versioning" color="text-slate-400">
+            <Section id="changes" icon={Eye} title="Policy Changes &amp; Versioning" color="text-ink-400">
               <p>
                 We may update these policies as the software evolves or as legal requirements change. Changes are tracked
                 in the repository commit history. The "Last Updated" date at the top of this page reflects the most
@@ -578,29 +578,29 @@ export default function LegalPage() {
             </Section>
 
             {/* ── 15. CONTACT ── */}
-            <Section id="contact" icon={FileText} title="Contact &amp; Legal Requests" color="text-blue-400">
+            <Section id="contact" icon={FileText} title="Contact &amp; Legal Requests" color="text-brand-400">
               <p>For legal inquiries, DMCA notices, GDPR/CCPA requests, or security disclosures:</p>
               <div className="mt-3 rounded-xl bg-white/[0.03] border border-white/[0.07] p-4 space-y-2">
                 <div className="flex items-center gap-3 text-sm">
-                  <span className="text-slate-500 w-32 flex-shrink-0">Legal email</span>
+                  <span className="text-ink-500 w-32 flex-shrink-0">Legal email</span>
                   <Hi>{CONTACT_EMAIL}</Hi>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <span className="text-slate-500 w-32 flex-shrink-0">Security</span>
+                  <span className="text-ink-500 w-32 flex-shrink-0">Security</span>
                   <span>
                     <Hi>{CONTACT_EMAIL}</Hi> · <Ext href="https://salescloserpro.ai/.well-known/security.txt">security.txt</Ext> · <Ext href="https://github.com/harborglowvintage-oss/salescloserpro.ai/security">GitHub Security Advisory</Ext>
                   </span>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <span className="text-slate-500 w-32 flex-shrink-0">Bug reports</span>
+                  <span className="text-ink-500 w-32 flex-shrink-0">Bug reports</span>
                   <Ext href="https://github.com/harborglowvintage-oss/salescloserpro.ai/issues">GitHub Issues</Ext>
                 </div>
                 <div className="flex items-center gap-3 text-sm">
-                  <span className="text-slate-500 w-32 flex-shrink-0">Publisher</span>
+                  <span className="text-ink-500 w-32 flex-shrink-0">Publisher</span>
                   <Ext href="https://llmadvisor.ai">llmadvisor.ai</Ext>
                 </div>
               </div>
-              <p className="mt-4 text-xs text-slate-500">
+              <p className="mt-4 text-xs text-ink-500">
                 Response time for legal requests: up to 30 days. For urgent security matters, email the address above (see our RFC 9116 security.txt) or open a GitHub Security Advisory.
               </p>
             </Section>
@@ -609,8 +609,9 @@ export default function LegalPage() {
         </div>{/* end grid */}
 
         {/* ── bottom bar ── */}
-        <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
-          <p>© 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0</p>
+        <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-500">
+          <p>{COPYRIGHT_LINE}</p>
+          <StudioCredit className="hover:text-ink-300" markClassName="w-6 h-6" />
           <Link to="/" className="hover:text-white transition-colors">← Back to SalesCloserPro</Link>
         </div>
 

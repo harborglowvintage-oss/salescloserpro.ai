@@ -13,15 +13,17 @@ import AboutPage from './components/landing/AboutPage'
 import Dashboard from './components/dashboard/Dashboard'
 import QuoteBuilder from './components/quotes/QuoteBuilder'
 import QuoteList from './components/quotes/QuoteList'
-import Clients from './components/clients/Clients'
+import Contacts from './components/contacts/Contacts'
 import Pipeline from './components/pipeline/Pipeline'
-import GoLiveWizard from './components/wizard/GoLiveWizard'
 import HelpGuide from './components/help/HelpGuide'
 import CompanySettings from './components/settings/CompanySettings'
 import BackupRestore from './components/backup/BackupRestore'
 import PurchaseOrders from './components/po/PurchaseOrders'
 import LegalPage from './components/landing/LegalPage'
 import ServicesPage from './components/landing/ServicesPage'
+import ProposalView from './components/proposal/ProposalView'
+import AcceptanceReceiver from './components/proposal/AcceptanceReceiver'
+import CrmExport from './components/export/CrmExport'
 import useStore from './store'
 
 export default function App() {
@@ -42,6 +44,8 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/legal" element={<LegalPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        {/* Client-facing proposal — rendered from the link's #fragment, no store access */}
+        <Route path="/p" element={<ProposalView />} />
         
         {/* App Routes — instant access, no email/login */}
         <Route path="/" element={<Layout />}>
@@ -49,13 +53,16 @@ export default function App() {
           <Route path="quotes" element={<QuoteList />} />
           <Route path="quotes/new" element={<QuoteBuilder />} />
           <Route path="quotes/:id" element={<QuoteBuilder />} />
-          <Route path="clients" element={<Clients />} />
+          <Route path="contacts" element={<Contacts />} />
+          <Route path="clients" element={<Navigate to="/contacts" replace />} />
           <Route path="pipeline" element={<Pipeline />} />
           <Route path="purchase-orders" element={<PurchaseOrders />} />
-          <Route path="go-live" element={<GoLiveWizard />} />
+          <Route path="go-live" element={<Navigate to="/dashboard" replace />} />
           <Route path="settings" element={<CompanySettings />} />
           <Route path="backup" element={<BackupRestore />} />
+          <Route path="export" element={<CrmExport />} />
           <Route path="help" element={<HelpGuide />} />
+          <Route path="accept" element={<AcceptanceReceiver />} />
         </Route>
       </Routes>
     </BrowserRouter>

@@ -2,6 +2,9 @@ import { useNavigate } from 'react-router-dom'
 import { FileText, Users, DollarSign, TrendingUp, Plus, ArrowRight } from 'lucide-react'
 import useStore from '../../store'
 import { format } from 'date-fns'
+import { StatusBadge } from '../quotes/QuoteBadges'
+import { DueFollowUpsCard } from '../followups/FollowUps'
+import { formatMoney } from '../../utils/quoteMath'
 
 function KpiCard({ icon: Icon, label, value, color, sub }) {
   return (
@@ -9,8 +12,8 @@ function KpiCard({ icon: Icon, label, value, color, sub }) {
       <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${color}`}>
         <Icon className="w-6 h-6 text-white" />
       </div>
-      <div>
-        <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{value}</div>
+      <div className="min-w-0">
+        <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 tabular-nums truncate">{value}</div>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-400">{label}</div>
         {sub && <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{sub}</div>}
       </div>
@@ -36,12 +39,6 @@ export default function Dashboard() {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 5)
 
-  const statusColor = {
-    draft: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300',
-    sent: 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300',
-    won: 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300',
-    lost: 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400',
-  }
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
@@ -55,13 +52,15 @@ export default function Dashboard() {
         </p>
       </div>
 
+      <DueFollowUpsCard quotes={quotes} />
+
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <KpiCard icon={FileText}    label="Open Quotes"   value={openQuotes}   color="bg-blue-500"   sub="drafts + sent" />
-        <KpiCard icon={Users}       label="Total Clients" value={clients.length} color="bg-purple-500" />
+        <KpiCard icon={FileText}    label="Open Quotes"   value={openQuotes}   color="bg-brand-500"   sub="drafts + sent" />
+        <KpiCard icon={Users}       label="Contacts" value={clients.length} color="bg-purple-500" />
         <KpiCard icon={TrendingUp}  label="Deals Won"     value={wonDeals}     color="bg-green-500" />
         <KpiCard icon={DollarSign}  label="Revenue Won"
-          value={`$${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 0 })}`}
+          value={formatMoney(totalRevenue, 0)}
           color="bg-emerald-500" sub="closed won quotes" />
       </div>
 
@@ -98,12 +97,10 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${statusColor[q.status] || statusColor.draft}`}>
-                    {q.status?.toUpperCase()}
-                  </span>
+                  <StatusBadge status={q.status} />
                   <div className="text-right">
                     <div className="font-bold text-gray-900 dark:text-gray-100 text-sm">
-                      ${(q.total || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      {formatMoney(q.total)}
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 text-gray-300 dark:text-gray-600" />
@@ -116,7 +113,7 @@ export default function Dashboard() {
         {quotes.length > 5 && (
           <button
             onClick={() => navigate('/quotes')}
-            className="mt-4 w-full text-center text-sm text-blue-600 hover:text-blue-700 font-medium py-2"
+            className="mt-4 w-full text-center text-sm text-brand-600 hover:text-brand-700 font-medium py-2"
           >
             View all {quotes.length} quotes →
           </button>
@@ -136,15 +133,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Brand footer */}
-      <div className="text-center pt-4 pb-2 space-y-2">
-        <p className="text-xs text-gray-400">
-          Powered by{' '}
-          <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 font-medium">
-            llmadvisor.ai
-          </a>
-        </p>
-      </div>
     </div>
   )
 }

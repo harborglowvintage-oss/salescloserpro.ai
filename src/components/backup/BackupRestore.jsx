@@ -1,13 +1,15 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import {
   HardDrive, Download, Upload, Clock, Shield, CheckCircle,
-  AlertTriangle, Trash2, FolderOpen, RefreshCw, Wifi, Usb,
-  MonitorSmartphone, ToggleLeft, ToggleRight, FileJson,
+  AlertTriangle, FolderOpen, RefreshCw, Wifi, Usb,
+  ToggleLeft, ToggleRight, FileJson,
   History, Info, ChevronDown, ChevronRight, X
 } from 'lucide-react'
 import useStore from '../../store'
 import { exportRawState, importRawState } from '../../db'
 import { format, formatDistanceToNow } from 'date-fns'
+import { downloadFile } from '../../utils/download'
+import { sanitizeState, MAX_BACKUP_BYTES } from '../../utils/fileSafety'
 
 // ── Helpers ─────────────────────────────────────────────
 // Backups read the persisted Zustand JSON straight from IndexedDB (see db.js).
@@ -20,22 +22,6 @@ function getBackupSize(payload) {
   if (bytes < 1024) return `${bytes} B`
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
-}
-
-function downloadFile(payload, filename) {
-  const blob = new Blob([payload], { type: 'application/json' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = filename
-  a.style.display = 'none'
-  document.body.appendChild(a)
-  a.click()
-  // Delay cleanup — Firefox processes the click asynchronously
-  setTimeout(() => {
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-  }, 150)
 }
 
 function makeFilename() {
@@ -196,6 +182,10 @@ export default function BackupRestore() {
   const handleFileSelect = (e) => {
     const file = e.target.files?.[0]
     if (!file) return
+    if (file.size > MAX_BACKUP_BYTES) {
+      setFeedback({ type: 'error', msg: `That file is too large to be a SalesCloserPro backup (over ${MAX_BACKUP_BYTES / 1024 / 1024} MB).` })
+      return
+    }
     setRestoreFile(file)
     const reader = new FileReader()
     reader.onload = (ev) => {
@@ -208,8 +198,7 @@ export default function BackupRestore() {
           clients: state.clients?.length || 0,
           purchaseOrders: state.purchaseOrders?.length || 0,
           company: state.company?.name || 'Unknown',
-          size: getBackupSize(ev.target.result),
-        })
+          size: getBackupSize(ev.target.result) })
       } catch {
         setFeedback({ type: 'error', msg: 'Invalid backup file. Must be a SalesCloserPro JSON export.' })
         setRestoreFile(null)
@@ -227,7 +216,9 @@ export default function BackupRestore() {
       // Accept both the native persist envelope ({ state, version }) and a bare state object
       const parsed = JSON.parse(restorePreview.raw)
       const envelope = parsed && typeof parsed === 'object' && 'state' in parsed ? parsed : { state: parsed, version: 0 }
-      await importRawState(JSON.stringify(envelope))
+      if (!envelope.state || typeof envelope.state !== 'object' || Array.isArray(envelope.state)) throw new Error('not a backup')
+      // a backup is a file from outside: strip any logo/attachment that is not our own data
+      await importRawState(JSON.stringify({ ...envelope, state: sanitizeState(envelope.state) }))
       setFeedback({ type: 'success', msg: 'Data restored successfully! Reloading app…' })
       setRestoreFile(null)
       setRestorePreview(null)
@@ -363,7 +354,7 @@ export default function BackupRestore() {
                     <FolderOpen className="w-3.5 h-3.5" />
                     {backupSettings.locationLabel || dirHandle.name}
                   </span>
-                  <button onClick={chooseFolder} className="text-xs text-blue-500 hover:text-blue-600 font-medium">Change</button>
+                  <button onClick={chooseFolder} className="text-xs text-brand-500 hover:text-brand-600 font-medium">Change</button>
                   <button onClick={clearDirHandle} className="text-xs text-red-400 hover:text-red-500 font-medium">Remove</button>
                 </div>
               ) : (
@@ -409,15 +400,15 @@ export default function BackupRestore() {
 
         {/* Download as File */}
         <button onClick={handleDownloadBackup}
-          className="card p-5 text-left hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md transition-all group">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <Download className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          className="card p-5 text-left hover:border-brand-300 dark:hover:border-brand-600 hover:shadow-md transition-all group">
+          <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <Download className="w-5 h-5 text-brand-600 dark:text-brand-400" />
           </div>
           <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">Download Backup</h3>
           <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-1 leading-relaxed">
             Download a .json file to your Downloads folder — works in all browsers
           </p>
-          <div className="flex items-center gap-1.5 mt-3 text-xs font-semibold text-blue-600 dark:text-blue-400">
+          <div className="flex items-center gap-1.5 mt-3 text-xs font-semibold text-brand-600 dark:text-brand-400">
             <FileJson className="w-3.5 h-3.5" /> Universal · Any browser
           </div>
         </button>
@@ -450,7 +441,7 @@ export default function BackupRestore() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: 'Quotes', value: restorePreview.quotes },
-              { label: 'Clients', value: restorePreview.clients },
+              { label: 'Contacts', value: restorePreview.clients },
               { label: 'Purchase Orders', value: restorePreview.purchaseOrders },
               { label: 'File Size', value: restorePreview.size },
             ].map((item) => (
@@ -484,7 +475,7 @@ export default function BackupRestore() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             {
-              icon: HardDrive, label: 'Local Drive', color: 'text-blue-500', bg: 'bg-blue-50 dark:bg-blue-900/20',
+              icon: HardDrive, label: 'Local Drive', color: 'text-brand-500', bg: 'bg-brand-50 dark:bg-brand-900/20',
               desc: 'Any folder on your computer — Desktop, Documents, or a dedicated backup directory.'
             },
             {
@@ -559,7 +550,7 @@ export default function BackupRestore() {
                         <td className="px-5 py-2.5">
                           <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${
                             rec.method === 'auto' ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400'
-                            : rec.method === 'download' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                            : rec.method === 'download' ? 'bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                           }`}>
                             {rec.method === 'auto' ? <Clock className="w-2.5 h-2.5" /> : rec.method === 'download' ? <Download className="w-2.5 h-2.5" /> : <FolderOpen className="w-2.5 h-2.5" />}

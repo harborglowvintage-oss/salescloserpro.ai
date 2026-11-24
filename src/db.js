@@ -53,7 +53,6 @@ export async function migrateFromLocalStorage(storeName) {
 
   await db.keyval.put({ key: storeName, value: raw })
   localStorage.removeItem(storeName)
-  console.log(`[SalesCloserPro] Migrated "${storeName}" from localStorage → IndexedDB`)
   return true
 }
 

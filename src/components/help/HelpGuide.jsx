@@ -1,10 +1,11 @@
 import { useState } from 'react'
 import {
-  HelpCircle, FileText, Users, GitBranch, Rocket, ShoppingCart,
+  HelpCircle, FileText, Users, GitBranch, ShoppingCart,
   Paperclip, Sun, Upload, Printer, Send, HardDrive,
   ChevronDown, ChevronRight, Search, BookOpen, Zap, Shield,
   BarChart3, Settings, PlusCircle, Eye
 } from 'lucide-react'
+import { StudioCredit } from '../brand/Brand'
 
 const sections = [
   {
@@ -40,12 +41,16 @@ const sections = [
     id: 'quotes',
     icon: FileText,
     title: 'Creating & Managing Quotes',
-    color: 'text-blue-500',
-    bg: 'bg-blue-50 dark:bg-blue-900/20',
+    color: 'text-brand-500',
+    bg: 'bg-brand-50 dark:bg-brand-900/20',
     content: [
       {
         q: 'How do I create a new quote?',
         a: 'Click "New Quote" in the sidebar (or Quotes → New Quote). Enter the client\'s name, email, phone, and state, then add line items using the four big buttons — Product, Service, Install / Labor, or Freight. Fill in a description, quantity, unit, and unit price for each line. The subtotal, tax, and grand total update as you type. Click Save Quote when you are done.'
+      },
+      {
+        q: 'Can I add a model number to a product?',
+        a: 'Yes. Every Product line has an optional "Model #" box. The model number prints under the description on the PDF, shows on the client\'s online proposal, carries into purchase orders so your vendor sees exactly what to ship, and has its own column in the exports.'
       },
       {
         q: 'How does tax work?',
@@ -61,11 +66,52 @@ const sections = [
       },
       {
         q: 'How do I export a quote as a PDF?',
-        a: 'Open the quote and click PDF in the header or Export PDF at the bottom. The quote is saved first, then a branded PDF downloads with your logo and company info, the client details, every line item with tax, the totals, your notes, the standard terms, and any attached images.'
+        a: 'Open the quote and click PDF in the header or Export PDF at the bottom. The quote is saved first, then a branded PDF downloads with your logo and company info, the client details, every line item with tax, the totals, the valid-until date, your notes, the standard terms, any attached images, and a clickable link for the client to review and accept online.'
+      },
+      {
+        q: 'What is Good / Better / Best?',
+        a: 'Click "Offer Good / Better / Best" above the line items to give the client up to three packages in one proposal. Each new option starts as a copy of the one you are editing, so you only change what differs. Rename options by clicking their name, star the one you recommend, and remove one with ×. The PDF and the online proposal show every option fully priced; until the client chooses, the quote total and pipeline value use your recommended option.'
+      },
+      {
+        q: 'What does "Valid until" do?',
+        a: 'It is the date your pricing is held. It prints on the PDF and the online proposal, the client page counts down the final week and blocks acceptance after it passes, and the expiry follow-up reminder is scheduled two days before it. New quotes default to the number of days set in Company Info (30 unless you change it).'
       },
       {
         q: 'How do I edit or delete a quote?',
         a: 'Go to Quotes and click any quote to open it in the builder; make your changes and click Save. To delete, hover over the quote in the list and click the trash icon. You will be asked to confirm.'
+      }
+    ]
+  },
+  {
+    id: 'sending',
+    icon: Send,
+    title: 'Sending, Accepting & Follow-ups',
+    color: 'text-copper-500',
+    bg: 'bg-copper-50 dark:bg-copper-900/20',
+    content: [
+      {
+        q: 'How do I send a proposal the client can accept online?',
+        a: 'Click Send in the quote header. You get a link you can copy, an "Email client" button that opens a ready-to-send draft in your own mail app, and a "Preview as client" button. The client opens the link on any device, picks an option if there are several, types their name and clicks Accept. Sending marks the quote Sent and starts its follow-up schedule.'
+      },
+      {
+        q: 'Where is the proposal stored? Who can see it?',
+        a: 'Nowhere but the link itself. The quote is compressed into the part of the link after the # sign, which browsers never send to any server — so it is not uploaded to SalesCloserPro, Cloudflare, or anyone else. Anyone who has the link can view it, exactly like a PDF attached to an email, so send it only to your client. Your company logo and attachments are not included in the link.'
+      },
+      {
+        q: 'How do I find out the client accepted?',
+        a: 'When the client accepts, their mail app opens a confirmation email to the address in your Company Info. It contains an acceptance link — open it in the browser where you use SalesCloserPro and click "Record acceptance & mark Won". The quote is marked Won, the accepted option becomes the quote total, and "Accepted online" shows in your quote list.'
+      },
+      {
+        q: 'What is the version code on an acceptance?',
+        a: 'A fingerprint of exactly what the client saw — every item, quantity, price and note. When you record an acceptance, SalesCloserPro checks it against the quote as it is now and warns you if you edited the quote after sending it, so you never start work on a version the client did not agree to. It proves which version was accepted; the client\'s own email is the record of who accepted.'
+      },
+      {
+        q: 'How do follow-ups work?',
+        a: 'Once a quote is Sent, it gets three follow-ups: a check-in on day 3, an offer to adjust on day 7, and an expiry reminder two days before the valid-until date. Due ones appear at the top of the Dashboard and on the quote. "Email" opens a drafted follow-up (with the proposal link) and ticks the step off; click the circle to tick or un-tick by hand. Follow-ups stop when the quote is marked Won or Lost.'
+      },
+      {
+        q: 'Can I get reminders in my calendar?',
+        a: 'Yes. On a sent quote, click "Add to calendar" in the Follow-ups panel to download a calendar file (.ics) with each open follow-up and the expiry date, each with a 9 am alert. It opens in Google Calendar, Outlook, and Apple Calendar. Re-importing an updated file replaces the earlier events instead of duplicating them.'
       }
     ]
   },
@@ -85,6 +131,14 @@ const sections = [
         a: 'Up to 5 files per quote, each up to 2 MB. Images are automatically resized to a maximum of 1200 px so they stay small in storage.'
       },
       {
+        q: 'Why was my file not added?',
+        a: 'Every file is checked by what it actually contains, not by its name. A file is refused if it is not really a JPG, PNG, GIF, WebP or PDF; if its name does not match its contents; if it is a damaged or extremely large image; or if it is a PDF that contains scripts, launches programs, carries other files inside it, or is password-protected (which cannot be checked). The message under the upload area says which. Re-saving the PDF with "Print to PDF" usually produces a clean copy.'
+      },
+      {
+        q: 'Are uploaded files safe to keep?',
+        a: 'Images are never stored as uploaded — the picture is redrawn and re-saved, which removes hidden data such as camera location and anything tucked inside the file. PDFs are screened for active content before they are kept. Logos follow the same rules (JPG, PNG, GIF or WebP only). Backups are checked on restore too, so a tampered backup file cannot slip in outside links or scripts. This is a strict screen rather than antivirus software.'
+      },
+      {
         q: 'Do attachments appear in the PDF?',
         a: 'Yes. Image attachments are embedded as thumbnails in the Attachments section of the generated PDF. PDF attachments are listed by file name.'
       },
@@ -95,23 +149,27 @@ const sections = [
     ]
   },
   {
-    id: 'clients',
+    id: 'contacts',
     icon: Users,
-    title: 'Client Management',
-    color: 'text-cyan-500',
-    bg: 'bg-cyan-50 dark:bg-cyan-900/20',
+    title: 'Contacts',
+    color: 'text-brand-500',
+    bg: 'bg-brand-50 dark:bg-brand-900/20',
     content: [
       {
-        q: 'How do I add a client?',
-        a: 'Go to Clients and click "Add Client". Enter their name, company, email, phone, address, state, and any private notes, then click Add Client.'
+        q: 'How do I add a contact?',
+        a: 'Go to Contacts and click "Add Contact". Enter their name, company, email, phone, address, state, and any private notes. You do not have to add people first, though — saving a quote or a deal for someone new adds them to Contacts automatically.'
       },
       {
-        q: 'Can I edit or delete clients?',
-        a: 'Yes. Each client card has Edit and delete (trash) buttons. Editing opens the form with the existing details pre-filled.'
+        q: 'How are contacts linked to quotes and deals?',
+        a: 'Every quote and every deal belongs to a contact. In the Quote Builder and when adding a deal, start typing a name and pick the saved contact — their email, phone and state fill in. If you type someone new, a contact is created when you save; if the email or name matches an existing contact, it links to that one instead of making a duplicate. A quote\'s pipeline deal carries the same contact.'
       },
       {
-        q: 'Are clients linked to quotes?',
-        a: 'Not yet. Clients is a standalone address book with click-to-email and click-to-call. Quotes carry their own client fields, so you can quote someone before adding them to Clients. A client picker for the Quote Builder is on the roadmap.'
+        q: 'What does a contact card show?',
+        a: 'Their details, plus everything linked to them: each quote with its status and total, deals you added by hand with their stage, and two totals — Open (deals still in play) and Won. Click a quote to open it, or "Quote" to start a new quote already filled in for that contact. On the Pipeline, the contact chip on a deal card jumps back to the contact.'
+      },
+      {
+        q: 'What happens when I edit or delete a contact?',
+        a: 'Editing a contact updates their deals and any quotes still in Draft. Quotes that are already Sent, Won or Lost keep the details the client saw. Deleting a contact keeps their quotes and deals — they are just unlinked.'
       }
     ]
   },
@@ -119,8 +177,8 @@ const sections = [
     id: 'pipeline',
     icon: GitBranch,
     title: 'Sales Pipeline',
-    color: 'text-indigo-500',
-    bg: 'bg-indigo-50 dark:bg-indigo-900/20',
+    color: 'text-brand-600',
+    bg: 'bg-brand-100 dark:bg-brand-950/20',
     content: [
       {
         q: 'What is the Pipeline view?',
@@ -148,8 +206,8 @@ const sections = [
     id: 'purchase-orders',
     icon: ShoppingCart,
     title: 'Purchase Orders & Margins',
-    color: 'text-violet-500',
-    bg: 'bg-violet-50 dark:bg-violet-900/20',
+    color: 'text-copper-500',
+    bg: 'bg-copper-50 dark:bg-copper-900/20',
     content: [
       {
         q: 'What are purchase orders for?',
@@ -182,7 +240,7 @@ const sections = [
     content: [
       {
         q: 'What does the Dashboard show?',
-        a: 'Four cards — Open Quotes (drafts + sent), Total Clients, Deals Won, and Revenue Won (the total of quotes marked Won) — plus your five most recent quotes and a count of deals in each pipeline stage. It updates instantly as you work.'
+        a: 'Follow-ups due today or overdue (when you have sent quotes), then four cards — Open Quotes (drafts + sent), Contacts, Deals Won, and Revenue Won (the total of quotes marked Won) — plus your five most recent quotes and a count of deals in each pipeline stage. It updates instantly as you work.'
       }
     ]
   },
@@ -212,19 +270,31 @@ const sections = [
     ]
   },
   {
-    id: 'go-live',
-    icon: Rocket,
-    title: 'Go Live Wizard',
-    color: 'text-emerald-500',
-    bg: 'bg-emerald-50 dark:bg-emerald-900/20',
+    id: 'export',
+    icon: Upload,
+    title: 'Export to HubSpot, Salesforce & Others',
+    color: 'text-brand-500',
+    bg: 'bg-brand-50 dark:bg-brand-900/20',
     content: [
       {
-        q: 'What is the Go Live wizard?',
-        a: 'An optional four-step checklist for hosting your own copy of SalesCloserPro: fork the code on GitHub, deploy it for free on Cloudflare Pages, optionally connect a custom domain, and optionally set up business email. Progress is saved as you tick items off.'
+        q: 'How do I move my data into HubSpot or Salesforce?',
+        a: 'Open Export in the sidebar, choose HubSpot or Salesforce, and download the CSV files. The column names match each CRM\'s own fields, and the page lists the import steps. Import contacts first, then deals (HubSpot) or opportunities (Salesforce) so they attach to the right people.'
       },
       {
-        q: 'Do I need to complete Go Live to use the app?',
-        a: 'No. Go Live is only for people who want their own branded, self-hosted copy. Everything else works right here without it.'
+        q: 'Is there a report I can just read or print?',
+        a: 'Yes — Export → Business Summary (PDF). It is a plain two-minute read: what is open, what you have won and your win rate at the top, then your deals by stage, your quotes, and your contacts with what each one is worth. Use it for your own records or to share with a partner, bookkeeper or lender.'
+      },
+      {
+        q: 'What is the Universal CSV?',
+        a: 'Four plain spreadsheets — contacts, deals, quotes, and quote line items — that open in Excel, Google Sheets or Numbers and import into almost any CRM, accounting or email tool. Quote number, contact email and contact name appear across the files so you can join them.'
+      },
+      {
+        q: 'Does SalesCloserPro connect to my CRM?',
+        a: 'No. The files are created on your device and you upload them yourself with the CRM\'s import tool. There are no API keys or logins, and nothing is sent anywhere. It is a one-way export: changes you later make in the other CRM do not come back.'
+      },
+      {
+        q: 'Why do my deal stages have different names in the export?',
+        a: 'Each CRM has its own stage names. The export translates your pipeline stages to the CRM\'s default ones (for example Proposal Sent becomes "Contract Sent" in HubSpot and "Proposal/Price Quote" in Salesforce). If you renamed the stages in your CRM, remap that column on its import screen.'
       }
     ]
   },
@@ -317,7 +387,7 @@ export default function HelpGuide() {
       <div className="flex flex-col sm:flex-row sm:items-end gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/20">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-500/20">
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -355,7 +425,7 @@ export default function HelpGuide() {
             onClick={() => setActiveSection(null)}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               !activeSection
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-brand-600 text-white shadow-md'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
             }`}
           >
@@ -369,7 +439,7 @@ export default function HelpGuide() {
                 onClick={() => setActiveSection(activeSection === s.id ? null : s.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   activeSection === s.id
-                    ? 'bg-blue-600 text-white shadow-md'
+                    ? 'bg-brand-600 text-white shadow-md'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
               >
@@ -413,10 +483,10 @@ export default function HelpGuide() {
                           className="w-full flex items-start gap-3 px-5 py-3.5 text-left hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
                         >
                           {isOpen
-                            ? <ChevronDown className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                            ? <ChevronDown className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
                             : <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 mt-0.5 flex-shrink-0" />
                           }
-                          <span className={`text-sm font-medium ${isOpen ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                          <span className={`text-sm font-medium ${isOpen ? 'text-brand-600 dark:text-brand-400' : 'text-gray-700 dark:text-gray-300'}`}>
                             {item.q}
                           </span>
                         </button>
@@ -443,13 +513,13 @@ export default function HelpGuide() {
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
-            { icon: PlusCircle, label: 'New Quote', desc: 'Sidebar → New Quote button', color: 'text-blue-500' },
+            { icon: PlusCircle, label: 'New Quote', desc: 'Sidebar → New Quote button', color: 'text-brand-500' },
             { icon: Printer, label: 'Export PDF', desc: 'Open a quote → PDF / Export PDF', color: 'text-green-500' },
-            { icon: Send, label: 'Issue a PO', desc: 'Purchase Orders → New PO → Issue PO & Download PDF', color: 'text-violet-500' },
+            { icon: Send, label: 'Issue a PO', desc: 'Purchase Orders → New PO → Issue PO & Download PDF', color: 'text-copper-500' },
             { icon: Upload, label: 'Upload Logo', desc: 'Click the logo in the sidebar, or Company Info', color: 'text-orange-500' },
             { icon: Sun, label: 'Toggle Theme', desc: 'Sun/Moon icon in the sidebar header', color: 'text-amber-500' },
-            { icon: Users, label: 'Add Client', desc: 'Clients → Add Client', color: 'text-cyan-500' },
-            { icon: Eye, label: 'Move a Deal', desc: 'Pipeline → Move / Back buttons on a card', color: 'text-indigo-500' },
+            { icon: Users, label: 'Add Contact', desc: 'Contacts → Add Contact', color: 'text-brand-500' },
+            { icon: Eye, label: 'Move a Deal', desc: 'Pipeline → Move / Back buttons on a card', color: 'text-brand-600' },
             { icon: Paperclip, label: 'Attach Files', desc: 'Quote → Attachments → drag or click', color: 'text-green-500' },
             { icon: HardDrive, label: 'Back Up Data', desc: 'Backup → Download Backup or Save to Folder', color: 'text-teal-500' },
           ].map((item, i) => {
@@ -470,12 +540,8 @@ export default function HelpGuide() {
       {/* Version + support footer */}
       <div className="card p-5 text-center space-y-2">
         <p className="text-sm font-medium text-gray-700 dark:text-gray-300">SalesCloserPro v{__APP_VERSION__}</p>
-        <p className="text-xs text-gray-400 dark:text-gray-500">
-          Free & Open Source · Powered by{' '}
-          <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 font-medium">
-            llmadvisor.ai
-          </a>
-        </p>
+        <p className="text-xs text-gray-400 dark:text-gray-500">Free &amp; Open Source · Apache-2.0</p>
+        <StudioCredit className="text-xs text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300" markClassName="w-6 h-6" />
       </div>
     </div>
   )

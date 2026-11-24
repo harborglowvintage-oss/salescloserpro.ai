@@ -15,12 +15,12 @@ import {
   Download,
   HardDrive,
   Shield,
-  Github,
   CheckCircle,
   ChevronDown,
   BookOpen
 } from 'lucide-react'
 import { useState } from 'react'
+import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 /* ── collapsible section ── */
 function Section({ icon: Icon, color, title, children, defaultOpen = false }) {
@@ -35,25 +35,25 @@ function Section({ icon: Icon, color, title, children, defaultOpen = false }) {
           <Icon className="w-4 h-4" />
         </div>
         <span className="flex-1 text-white font-semibold">{title}</span>
-        <ChevronDown className={`w-5 h-5 text-slate-500 transition-transform ${open ? 'rotate-180' : ''}`} />
+        <ChevronDown className={`w-5 h-5 text-ink-500 transition-transform ${open ? 'rotate-180' : ''}`} />
       </button>
-      {open && <div className="px-5 pb-6 pt-2 text-sm text-slate-400 leading-relaxed space-y-4 border-t border-white/[0.04]">{children}</div>}
+      {open && <div className="px-5 pb-6 pt-2 text-sm text-ink-400 leading-relaxed space-y-4 border-t border-white/[0.04]">{children}</div>}
     </div>
   )
 }
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-slate-950 text-slate-200 antialiased">
+    <div className="min-h-screen bg-ink-950 text-ink-200 antialiased">
 
       {/* ── nav ── */}
-      <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-slate-950/80 backdrop-blur-lg">
+      <header className="sticky top-0 z-50 border-b border-white/[0.06] bg-ink-950/80 backdrop-blur-lg">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5">
-            <img src="/logos/salescloserprologo.png" alt="SalesCloserPro" className="h-8 w-auto" />
-            <span className="text-lg font-bold text-white tracking-tight">SalesCloserPro</span>
+            <ProductLogo />
+            <Wordmark className="text-lg text-white" />
           </Link>
-          <Link to="/dashboard" className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white text-sm font-semibold rounded-lg transition-colors">
+          <Link to="/dashboard" className="px-4 py-2 bg-ink-100 hover:bg-white text-ink-950 text-sm font-semibold rounded-md transition-colors">
             Launch App
           </Link>
         </div>
@@ -61,15 +61,15 @@ export default function AboutPage() {
 
       {/* ── hero ── */}
       <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-12 pb-4">
-        <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-slate-500 hover:text-white transition-colors mb-8">
+        <Link to="/" className="inline-flex items-center gap-1.5 text-sm text-ink-500 hover:text-white transition-colors mb-8">
           <ArrowLeft className="w-4 h-4" /> Back to home
         </Link>
 
         <div className="flex items-start gap-4 mb-2">
-          <BookOpen className="w-10 h-10 text-blue-400 flex-shrink-0 mt-1" />
+          <BookOpen className="w-10 h-10 text-brand-400 flex-shrink-0 mt-1" />
           <div>
-            <h1 className="text-3xl sm:text-4xl font-extrabold text-white mb-3">About &amp; User Guide</h1>
-            <p className="text-slate-400 leading-relaxed max-w-2xl">
+            <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-ink-50 mb-3">About &amp; User Guide</h1>
+            <p className="text-ink-400 leading-relaxed max-w-2xl">
               Everything you need to get up and running with SalesCloserPro — from your first quote to
               advanced settings. No technical background required.
             </p>
@@ -81,7 +81,7 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-4">
 
         {/* ── what is it ── */}
-        <Section icon={Shield} color="text-blue-400 bg-blue-500/10" title="What is SalesCloserPro?" defaultOpen={true}>
+        <Section icon={Shield} color="text-brand-400 bg-brand-500/10" title="What is SalesCloserPro?" defaultOpen={true}>
           <p>
             SalesCloserPro is a <strong className="text-white">free, open-source</strong> sales tool that lets you:
           </p>
@@ -108,10 +108,10 @@ export default function AboutPage() {
         {/* ── getting started ── */}
         <Section icon={Download} color="text-emerald-400 bg-emerald-500/10" title="Getting started (2 minutes)">
           <ol className="list-decimal ml-5 space-y-1">
-            <li>Visit <Link to="/dashboard" className="text-blue-400 hover:underline">salescloserpro.ai → Launch App</Link></li>
+            <li>Visit <Link to="/dashboard" className="text-brand-400 hover:underline">salescloserpro.ai → Launch App</Link></li>
             <li>You'll land on the Dashboard. That's it — you're ready to go.</li>
           </ol>
-          <p className="text-slate-500">No install or sign-up required. Your data is stored locally using your browser's built-in database (IndexedDB).</p>
+          <p className="text-ink-500">No install or sign-up required. Your data is stored locally using your browser's built-in database (IndexedDB).</p>
         </Section>
 
         {/* ── company settings ── */}
@@ -125,11 +125,11 @@ export default function AboutPage() {
             <li><strong className="text-white">Home state</strong> — Pick the state you normally sell in. Sales-tax rules for all 50 states and DC are built in, and each quote can override the state.</li>
             <li>Click <strong className="text-white">Save</strong> — your settings are stored locally and apply to all future quotes.</li>
           </ol>
-          <p className="text-slate-500">Tip: You can update these at any time. Changes only affect new quotes — existing PDFs won't change.</p>
+          <p className="text-ink-500">Tip: You can update these at any time. Changes only affect new quotes — existing PDFs won't change.</p>
         </Section>
 
         {/* ── creating a quote ── */}
-        <Section icon={FileText} color="text-blue-400 bg-blue-500/10" title="Step 2 — Create your first quote">
+        <Section icon={FileText} color="text-brand-400 bg-brand-500/10" title="Step 2 — Create your first quote">
           <ol className="list-decimal ml-5 space-y-2">
             <li>Click <strong className="text-white">Quotes</strong> in the sidebar.</li>
             <li>Click <strong className="text-white">+ New Quote</strong>.</li>
@@ -145,22 +145,22 @@ export default function AboutPage() {
             <li>Add optional notes and terms, and attach drawings, photos, or PDFs (up to 5 files).</li>
             <li>Click <strong className="text-white">Save Quote</strong> to store it, or <strong className="text-white">Export PDF</strong> to download a ready-to-send file.</li>
           </ol>
-          <p className="text-slate-500">Tip: Set the quote's status (Draft, Sent, Won, Lost) from the dropdown in the header. Every saved quote automatically appears as a deal on your Pipeline.</p>
+          <p className="text-ink-500">Tip: Set the quote's status (Draft, Sent, Won, Lost) from the dropdown in the header. Every saved quote automatically appears as a deal on your Pipeline.</p>
         </Section>
 
         {/* ── clients ── */}
-        <Section icon={Users} color="text-emerald-400 bg-emerald-500/10" title="Step 3 — Manage your clients">
+        <Section icon={Users} color="text-emerald-400 bg-emerald-500/10" title="Step 3 — Manage your contacts">
           <ol className="list-decimal ml-5 space-y-2">
-            <li>Click <strong className="text-white">Clients</strong> in the sidebar.</li>
-            <li>Click <strong className="text-white">+ Add Client</strong>.</li>
+            <li>Click <strong className="text-white">Contacts</strong> in the sidebar.</li>
+            <li>Click <strong className="text-white">+ Add Contact</strong>.</li>
             <li>Fill in their name, company, email, phone, and address.</li>
             <li>Click <strong className="text-white">Save</strong>.</li>
           </ol>
-          <p>Clients is your address book — contact details, address, state, and private notes, with click-to-email and click-to-call. Quotes carry their own client details, so you can quote someone before adding them here.</p>
+          <p>Contacts ties your work together: every quote and deal belongs to a contact, and each contact card lists their quotes, deals and totals. Saving a quote for someone new adds them here automatically, and in the Quote Builder you can start typing a name to pick a saved contact.</p>
         </Section>
 
         {/* ── pipeline ── */}
-        <Section icon={TrendingUp} color="text-violet-400 bg-violet-500/10" title="Step 4 — Track deals in the pipeline">
+        <Section icon={TrendingUp} color="text-copper-400 bg-copper-500/10" title="Step 4 — Track deals in the pipeline">
           <ol className="list-decimal ml-5 space-y-2">
             <li>Click <strong className="text-white">Pipeline</strong> in the sidebar.</li>
             <li>You'll see a kanban board with six columns: <em>Lead</em>, <em>Quoted</em>, <em>Proposal Sent</em>, <em>Negotiating</em>, <em>Closed Won</em>, and <em>Closed Lost</em>.</li>
@@ -169,7 +169,7 @@ export default function AboutPage() {
             <li><strong className="text-white">Quotes sync automatically</strong> — every saved quote shows up as a deal linked to its quote number, and the quote status picks the column.</li>
             <li>The dashboard shows a summary of your pipeline's total value.</li>
           </ol>
-          <p className="text-slate-500">The pipeline is a visual tool — it doesn't send emails or notifications. It's your personal bird's-eye view of where every deal stands.</p>
+          <p className="text-ink-500">The pipeline is a visual tool — it doesn't send emails or notifications. It's your personal bird's-eye view of where every deal stands.</p>
         </Section>
 
         {/* ── purchase orders ── */}
@@ -181,7 +181,7 @@ export default function AboutPage() {
             <li>Enter the vendor, contact, ship-to address, description, quantity, and unit cost.</li>
             <li>Click <strong className="text-white">Save PO</strong>, or <strong className="text-white">Issue PO &amp; Download PDF</strong> to mark it issued and get the vendor-ready PDF.</li>
           </ol>
-          <p className="text-slate-500">The Margin Table and Charts tabs compare what you sold each line for against what you paid. Margin data stays internal — it is never printed on the PO PDF.</p>
+          <p className="text-ink-500">The Margin Table and Charts tabs compare what you sold each line for against what you paid. Margin data stays internal — it is never printed on the PO PDF.</p>
         </Section>
 
         {/* ── PDF export ── */}
@@ -196,21 +196,21 @@ export default function AboutPage() {
         </Section>
 
         {/* ── backup & restore ── */}
-        <Section icon={HardDrive} color="text-cyan-400 bg-cyan-500/10" title="Backup & restore your data">
+        <Section icon={HardDrive} color="text-brand-400 bg-brand-500/10" title="Backup & restore your data">
           <p>Since everything is stored locally, regular backups keep your data safe:</p>
           <ol className="list-decimal ml-5 space-y-2">
             <li>Click <strong className="text-white">Backup</strong> in the sidebar.</li>
             <li>Click <strong className="text-white">Download Backup</strong> — this saves a JSON file with all your data. In Chrome or Edge you can also <strong className="text-white">Save to Folder</strong> and turn on automatic backups.</li>
             <li>To restore: click <strong className="text-white">Restore from Backup</strong>, pick the JSON file, review the preview, and confirm.</li>
           </ol>
-          <p className="text-slate-500">
+          <p className="text-ink-500">
             We recommend backing up weekly, or before clearing browser data. Store the file on a USB drive,
             cloud storage, or email it to yourself.
           </p>
         </Section>
 
         {/* ── FAQ ── */}
-        <Section icon={BookOpen} color="text-slate-300 bg-white/5" title="Frequently asked questions">
+        <Section icon={BookOpen} color="text-ink-300 bg-white/5" title="Frequently asked questions">
           <div className="space-y-4">
             <div>
               <p className="text-white font-medium">Is it really free?</p>
@@ -234,7 +234,7 @@ export default function AboutPage() {
             </div>
             <div>
               <p className="text-white font-medium">I found a bug. How do I report it?</p>
-              <p>Open an issue on <a href="https://github.com/harborglowvintage-oss/salescloserpro.ai/issues" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">GitHub</a> with a description of what happened and steps to reproduce it. Screenshots help!</p>
+              <p>Open an issue on <a href="https://github.com/harborglowvintage-oss/salescloserpro.ai/issues" target="_blank" rel="noopener noreferrer" className="text-brand-400 hover:underline">GitHub</a> with a description of what happened and steps to reproduce it. Screenshots help!</p>
             </div>
           </div>
         </Section>
@@ -242,10 +242,9 @@ export default function AboutPage() {
 
       {/* ── footer ── */}
       <footer className="border-t border-white/[0.06] mt-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 text-center text-xs text-slate-500">
-          © 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Built by{' '}
-          <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">llmadvisor.ai</a>
-          {' '}· Apache-2.0
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-500">
+          <span>{COPYRIGHT_LINE}</span>
+          <StudioCredit className="hover:text-ink-300" markClassName="w-6 h-6" />
         </div>
       </footer>
     </div>

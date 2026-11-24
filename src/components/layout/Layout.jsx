@@ -1,49 +1,27 @@
-import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, FileText, Users, GitBranch,
-  Rocket, Plus, Menu, X, DollarSign, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart,
-  MessageSquare, ExternalLink
+  Plus, Menu, X, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart, Share2
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import useStore from '../../store'
-
-function resizeLogo(file, maxDim = 256) {
-  return new Promise((resolve) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const img = new window.Image()
-      img.onload = () => {
-        let { width, height } = img
-        if (width > maxDim || height > maxDim) {
-          const scale = Math.min(maxDim / width, maxDim / height)
-          width = Math.round(width * scale)
-          height = Math.round(height * scale)
-        }
-        const canvas = document.createElement('canvas')
-        canvas.width = width
-        canvas.height = height
-        canvas.getContext('2d').drawImage(img, 0, 0, width, height)
-        resolve(canvas.toDataURL('image/png', 0.9))
-      }
-      img.src = e.target.result
-    }
-    reader.readAsDataURL(file)
-  })
-}
+import useStore, { useHydrated } from '../../store'
+import { safeLogo } from '../../utils/fileSafety'
+import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 const nav = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/quotes',    icon: FileText,         label: 'Quotes' },
-  { to: '/clients',   icon: Users,            label: 'Clients' },
+  { to: '/contacts',  icon: Users,            label: 'Contacts' },
   { to: '/pipeline',  icon: GitBranch,        label: 'Pipeline' },
   { to: '/purchase-orders', icon: ShoppingCart, label: 'Purchase Orders' },
-  { to: '/go-live',   icon: Rocket,           label: 'Go Live' },
   { to: '/settings',  icon: Building2,        label: 'Company Info' },
   { to: '/backup',    icon: HardDrive,        label: 'Backup' },
+  { to: '/export',    icon: Share2,           label: 'Export' },
   { to: '/help',      icon: HelpCircle,       label: 'Help & Guide' },
 ]
 
 export default function Layout() {
+  const hydrated = useHydrated()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
   const company = useStore((s) => s.company)
@@ -55,11 +33,8 @@ export default function Layout() {
   const handleLogoUpload = useCallback(async (e) => {
     const file = e.target.files?.[0]
     if (!file) return
-    if (!file.type.startsWith('image/')) return
-    if (file.size > 2 * 1024 * 1024) { alert('Logo must be under 2 MB'); return }
-    const dataUrl = await resizeLogo(file)
-    setCompany({ logo: dataUrl })
     e.target.value = ''
+    try { setCompany({ logo: await safeLogo(file) }) } catch (err) { alert(`That logo can't be used: ${err.message}.`) }
   }, [setCompany])
 
   const handleLogoContext = useCallback((e) => {
@@ -85,17 +60,17 @@ export default function Layout() {
         {/* Logo + Theme Toggle */}
         <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-100 dark:border-gray-700">
           {/* Clickable logo area */}
-          <input ref={logoInputRef} type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
+          <input ref={logoInputRef} type="file" accept=".jpg,.jpeg,.png,.gif,.webp" className="hidden" onChange={handleLogoUpload} />
           <button
             onClick={() => logoInputRef.current?.click()}
             onContextMenu={handleLogoContext}
-            className="group relative w-9 h-9 rounded-xl flex-shrink-0 overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+            className="group relative w-9 h-9 rounded-xl flex-shrink-0 overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1"
             title={company.logo ? 'Click to change · Right-click to remove' : 'Upload your logo'}
           >
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-full h-full object-cover" />
             ) : (
-              <img src="/icon-192.png" alt="SalesCloserPro" className="w-full h-full object-cover" />
+              <ProductLogo className="w-full h-full rounded-none" />
             )}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
               <span className="text-white text-[9px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
@@ -104,7 +79,7 @@ export default function Layout() {
             </div>
           </button>
           <button onClick={() => navigate('/')} className="flex-1 min-w-0 text-left hover:opacity-70 transition-opacity">
-            <div className="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight">salescloserpro.ai</div>
+            <Wordmark adaptive className="block text-gray-900 dark:text-gray-100 text-sm leading-tight" />
             <div className="text-xs text-gray-400 dark:text-gray-500 leading-tight truncate">
               {company.name || 'Your Company'}
             </div>
@@ -146,7 +121,7 @@ export default function Layout() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-150
                  ${isActive
-                   ? 'bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300'
+                   ? 'bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300'
                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200'}`
               }
             >
@@ -158,45 +133,11 @@ export default function Layout() {
 
         {/* Footer */}
         <div className="px-3 pb-4 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2.5">
-          {/* GPT AI Assistant — Hero CTA */}
-          <a
-            href="https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 via-gray-50 to-white dark:from-gray-700 dark:via-gray-750 dark:to-gray-800 border border-gray-200 dark:border-gray-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 group"
-          >
-            {/* Logo area — generous padding */}
-            <div className="flex items-center justify-center pt-4 pb-2">
-              <div className="w-12 h-12 rounded-xl bg-white dark:bg-gray-700 flex items-center justify-center ring-2 ring-gray-200 dark:ring-gray-600 shadow-sm group-hover:ring-gray-300 dark:group-hover:ring-gray-500 transition-all duration-200 overflow-hidden">
-                <img src="/gptlogo.png" alt="salescloserpro.ai" className="w-10 h-10 object-cover rounded-lg drop-shadow-sm" />
-              </div>
-            </div>
-            {/* Text area — centered */}
-            <div className="text-center pb-3 px-3">
-              <div className="text-[13px] font-extrabold text-gray-800 dark:text-gray-100 leading-tight tracking-tight">salescloserpro.ai</div>
-              <div className="text-[11px] text-gray-500 dark:text-gray-400 font-semibold mt-0.5 flex items-center justify-center gap-1">
-                GPT Assistant
-                <ExternalLink className="w-3 h-3 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" />
-              </div>
-              <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">ChatGPT · GPT-5.6 Sol</div>
-            </div>
-          </a>
-
-          {/* Sub-links row */}
-          <div className="flex items-center justify-between px-1">
-            <a
-              href="https://llmadvisor.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors"
-            >
-              Powered by llmadvisor.ai
-            </a>
-          </div>
-
-          <div className="text-[9px] text-gray-300 dark:text-gray-600 text-center">
-            © 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0
-          </div>
+          <StudioCredit
+            className="w-full justify-center text-[11px] text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300"
+            markClassName="w-6 h-6"
+          />
+          <div className="text-[9px] text-gray-400 dark:text-gray-500 text-center">{COPYRIGHT_LINE}</div>
         </div>
       </aside>
 
@@ -222,9 +163,9 @@ export default function Layout() {
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-7 h-7 rounded-lg object-cover" />
             ) : (
-              <img src="/icon-192.png" alt="SalesCloserPro" className="w-7 h-7 rounded-lg object-cover" />
+              <ProductLogo className="w-7 h-7" />
             )}
-            <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloserpro.ai</span>
+            <Wordmark adaptive className="text-sm text-gray-900 dark:text-gray-100" />
           </div>
           <button
             onClick={toggleTheme}
@@ -235,12 +176,12 @@ export default function Layout() {
         </header>
 
         <main className="flex-1 p-4 lg:p-8 overflow-y-auto">
-          <Outlet />
+          {hydrated && <Outlet />}
         </main>
         
         {/* Footer */}
         <footer className="border-t border-gray-100 dark:border-gray-800 py-3 px-4 text-center text-xs text-gray-500">
-          © 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0
+          {COPYRIGHT_LINE}
         </footer>
       </div>
     </div>

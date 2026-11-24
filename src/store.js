@@ -5,9 +5,18 @@
  * https://github.com/harborglowvintage-oss/salescloserpro.ai
  */
 
+import { useEffect, useState } from 'react'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { indexedDBStorage } from './db'
+import { deriveQuoteSummary } from './utils/quoteMath'
+import { matchContact } from './utils/contacts'
+import { sanitizeState } from './utils/fileSafety'
+
+const mapDeals = (pipeline, fn) => pipeline.map((stage) => ({ ...stage, deals: stage.deals.map(fn) }))
+
+// Quotes always carry derived `total` (and `lines` for tiered quotes) — see utils/quoteMath.js
+const withSummary = (quote) => ({ ...quote, ...deriveQuoteSummary(quote) })
 
 const useStore = create(
   persist(
@@ -25,6 +34,7 @@ const useStore = create(
         email: '',
         website: '',
         homeState: 'TX',
+        defaultValidDays: 30,
       },
       setCompany: (data) => set((s) => ({ company: { ...s.company, ...data } })),
 
@@ -37,12 +47,37 @@ const useStore = create(
             { ...client, id: crypto.randomUUID(), createdAt: new Date().toISOString() },
           ],
         })),
+      // Editing a contact flows to its deals and to quotes still in draft; quotes already
+      // sent / won / lost keep the details the client saw.
       updateClient: (id, data) =>
-        set((s) => ({
-          clients: s.clients.map((c) => (c.id === id ? { ...c, ...data } : c)),
-        })),
+        set((s) => {
+          const contact = { ...s.clients.find((c) => c.id === id), ...data }
+          const details = { clientName: contact.name, clientEmail: contact.email, clientPhone: contact.phone }
+          return {
+            clients: s.clients.map((c) => (c.id === id ? contact : c)),
+            quotes: s.quotes.map((q) => (q.contactId === id && q.status === 'draft' ? { ...q, ...details } : q)),
+            pipeline: mapDeals(s.pipeline, (d) => (d.contactId === id ? { ...d, name: contact.name, company: contact.company || d.company } : d)),
+          }
+        }),
+      // Deleting a contact unlinks its quotes and deals; they keep their own copy of the name.
       deleteClient: (id) =>
-        set((s) => ({ clients: s.clients.filter((c) => c.id !== id) })),
+        set((s) => ({
+          clients: s.clients.filter((c) => c.id !== id),
+          quotes: s.quotes.map((q) => (q.contactId === id ? { ...q, contactId: null } : q)),
+          pipeline: mapDeals(s.pipeline, (d) => (d.contactId === id ? { ...d, contactId: null } : d)),
+        })),
+      /**
+       * Resolve the contact a quote/deal is for and return its id: the given id if it still
+       * exists, else an existing contact with the same email or name, else a new contact.
+       */
+      ensureContact: ({ contactId, name, email, phone, state }) => {
+        const { clients, addClient } = get()
+        if (!(name || '').trim()) return null
+        const found = clients.find((c) => c.id === contactId) || matchContact(clients, { name, email })
+        if (found) return found.id
+        addClient({ name: name.trim(), company: '', email: email || '', phone: phone || '', address: '', state: state || '', notes: '' })
+        return get().clients.at(-1).id
+      },
 
       // ── Quotes ────────────────────────────────────────
       quotes: [],
@@ -55,19 +90,30 @@ const useStore = create(
             quoteCounter: n,
             quotes: [
               ...s.quotes,
-              {
+              withSummary({
                 ...quote,
                 id: crypto.randomUUID(),
                 quoteNumber: `Q-${String(n).padStart(4, '0')}`,
                 createdAt: new Date().toISOString(),
-                status: 'draft',
-              },
+                status: quote.status || 'draft',
+              }),
             ],
           }
         }),
       updateQuote: (id, data) =>
         set((s) => ({
-          quotes: s.quotes.map((q) => (q.id === id ? { ...q, ...data } : q)),
+          quotes: s.quotes.map((q) => {
+            if (q.id !== id) return q
+            // first time a quote goes out, stamp sentAt — the follow-up schedule counts from it
+            const sentAt = data.status === 'sent' && !q.sentAt ? { sentAt: new Date().toISOString() } : {}
+            return withSummary({ ...q, ...data, ...sentAt })
+          }),
+        })),
+      setFollowUpDone: (id, kind, done) =>
+        set((s) => ({
+          quotes: s.quotes.map((q) =>
+            q.id === id ? { ...q, followUpsDone: { ...q.followUpsDone, [kind]: done ? new Date().toISOString() : undefined } } : q
+          ),
         })),
       deleteQuote: (id) =>
         set((s) => ({ quotes: s.quotes.filter((q) => q.id !== id) })),
@@ -75,7 +121,7 @@ const useStore = create(
       // ── Pipeline Stages ───────────────────────────────
       pipeline: [
         { id: 'lead',      label: 'Lead',           color: 'bg-gray-100',   deals: [] },
-        { id: 'quoted',    label: 'Quoted',          color: 'bg-blue-100',   deals: [] },
+        { id: 'quoted',    label: 'Quoted',          color: 'bg-brand-100',   deals: [] },
         { id: 'sent',      label: 'Proposal Sent',   color: 'bg-yellow-100', deals: [] },
         { id: 'negotiate', label: 'Negotiating',     color: 'bg-orange-100', deals: [] },
         { id: 'won',       label: 'Closed Won',      color: 'bg-green-100',  deals: [] },
@@ -153,6 +199,7 @@ const useStore = create(
               company: quote.clientName,
               value: quote.total || existingDeal.value,
               quoteNumber: quote.quoteNumber,
+              contactId: quote.contactId || null,
             }
 
             if (currentStageId === targetStageId) {
@@ -186,6 +233,7 @@ const useStore = create(
               note: `Linked to ${quote.quoteNumber}`,
               quoteId: quoteId,
               quoteNumber: quote.quoteNumber,
+              contactId: quote.contactId || null,
               createdAt: new Date().toISOString(),
             }
             return {
@@ -247,32 +295,6 @@ const useStore = create(
       deletePO: (id) =>
         set((s) => ({ purchaseOrders: s.purchaseOrders.filter((p) => p.id !== id) })),
 
-      // ── Go Live Progress ──────────────────────────────
-      goLiveChecklist: {
-        github_account: false,
-        github_forked: false,
-        github_cloned: false,
-        cf_account: false,
-        cf_project: false,
-        cf_build: false,
-        cf_deployed: false,
-        domain_decided: false,
-        domain_configured: false,
-        email_decided: false,
-        email_configured: false,
-      },
-      setGoLiveCheck: (key, val) =>
-        set((s) => ({ goLiveChecklist: { ...s.goLiveChecklist, [key]: val } })),
-      resetGoLiveChecklist: () =>
-        set(() => ({
-          goLiveChecklist: {
-            github_account: false, github_forked: false, github_cloned: false,
-            cf_account: false, cf_project: false, cf_build: false, cf_deployed: false,
-            domain_decided: false, domain_configured: false,
-            email_decided: false, email_configured: false,
-          },
-        })),
-
       // ── Backup Settings ───────────────────────────────
       backupSettings: {
         autoBackupEnabled: false,
@@ -298,8 +320,25 @@ const useStore = create(
       // the raw state object (including action functions) to IndexedDB, which throws
       // DataCloneError on every write — nothing was ever persisted before this fix.
       storage: createJSONStorage(() => indexedDBStorage),
+      // Saved data is untrusted input too (a restored backup, edited storage): logos and
+      // attachments that are not our own data: URLs are dropped before anything renders.
+      merge: (persisted, current) => ({ ...current, ...sanitizeState(persisted) }),
     }
   )
 )
+
+/**
+ * True once persisted data has loaded from IndexedDB (async). Screens that read saved
+ * records on first render — deep links like /quotes/:id or /accept — must wait for it,
+ * or they render as if the data did not exist.
+ */
+export function useHydrated() {
+  const [hydrated, setHydrated] = useState(() => useStore.persist.hasHydrated())
+  useEffect(() => {
+    if (useStore.persist.hasHydrated()) setHydrated(true)
+    return useStore.persist.onFinishHydration(() => setHydrated(true))
+  }, [])
+  return hydrated
+}
 
 export default useStore

@@ -23,9 +23,7 @@
 # ── Images / icons in /public root and /logos ────────────────────────
 /logos/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-/og-cover.png
-  Cache-Control: public, max-age=604800, stale-while-revalidate=86400
-/og-cover-v2.png
+/og-cover-v3.png
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /favicon-32.png
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
@@ -59,15 +57,22 @@
   X-Robots-Tag: noindex
 /clients
   X-Robots-Tag: noindex
+/contacts
+  X-Robots-Tag: noindex
 /pipeline
   X-Robots-Tag: noindex
 /purchase-orders
-  X-Robots-Tag: noindex
-/go-live
   X-Robots-Tag: noindex
 /settings
   X-Robots-Tag: noindex
 /backup
   X-Robots-Tag: noindex
+/export
+  X-Robots-Tag: noindex
 /help
+  X-Robots-Tag: noindex
+/accept
+  X-Robots-Tag: noindex
+# client proposal pages carry private quote data in the #fragment — never index
+/p
   X-Robots-Tag: noindex

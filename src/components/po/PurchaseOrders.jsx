@@ -1,31 +1,26 @@
 import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  ShoppingCart, Plus, Trash2, Edit3, Search, Filter, ChevronDown,
-  Package, FileText, Wrench, Truck, DollarSign, TrendingUp,
-  BarChart3, PieChart, ArrowRight, ExternalLink, X, Check, AlertCircle,
-  Printer, Send,
-} from 'lucide-react'
+  ShoppingCart, Plus, Trash2, Edit3, Search, Filter, Package, FileText, Wrench, Truck, DollarSign, TrendingUp,
+  BarChart3, PieChart, ExternalLink, X, Check, Printer, Send } from 'lucide-react'
 import useStore from '../../store'
 import clsx from 'clsx'
-import { format } from 'date-fns'
 import { generatePO_PDF } from '../../utils/pdfExport'
+import { formatMoney, lineLabel } from '../../utils/quoteMath'
 
 /* ── helpers ─────────────────────────────────────────────── */
-const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const pct = (n) => `${n.toFixed(1)}%`
 
 const LINE_TYPE_META = {
-  product: { label: 'Product',  icon: Package,  color: 'text-blue-600',    bg: 'bg-blue-50',    accent: 'bg-blue-500'    },
+  product: { label: 'Product',  icon: Package,  color: 'text-brand-600',    bg: 'bg-brand-50',    accent: 'bg-brand-500'    },
   service: { label: 'Service',  icon: FileText,  color: 'text-purple-600',  bg: 'bg-purple-50',  accent: 'bg-purple-500'  },
   labor:   { label: 'Labor',    icon: Wrench,    color: 'text-emerald-600', bg: 'bg-emerald-50', accent: 'bg-emerald-500' },
-  freight: { label: 'Freight',  icon: Truck,     color: 'text-orange-600',  bg: 'bg-orange-50',  accent: 'bg-orange-500'  },
-}
+  freight: { label: 'Freight',  icon: Truck,     color: 'text-orange-600',  bg: 'bg-orange-50',  accent: 'bg-orange-500'  } }
 
 const PO_STATUSES = [
   { id: 'draft',    label: 'Draft',    dot: 'bg-gray-400',   badge: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'   },
-  { id: 'issued',   label: 'Issued',   dot: 'bg-indigo-500', badge: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300' },
-  { id: 'ordered',  label: 'Ordered',  dot: 'bg-blue-500',   badge: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300'   },
+  { id: 'issued',   label: 'Issued',   dot: 'bg-brand-600', badge: 'bg-brand-200 text-brand-800 dark:bg-brand-950/40 dark:text-brand-400' },
+  { id: 'ordered',  label: 'Ordered',  dot: 'bg-brand-500',   badge: 'bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300'   },
   { id: 'received', label: 'Received', dot: 'bg-amber-500',  badge: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'  },
   { id: 'paid',     label: 'Paid',     dot: 'bg-green-500',  badge: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300'  },
 ]
@@ -42,7 +37,7 @@ function TabBtn({ active, icon: Icon, label, count, onClick }) {
       className={clsx(
         'flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all select-none',
         active
-          ? 'bg-blue-600 text-white shadow-md'
+          ? 'bg-brand-600 text-white shadow-md'
           : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
       )}
     >
@@ -100,7 +95,7 @@ function DonutChart({ data, size = 180 }) {
           )
         })}
         <text x={cx} y={cy - 6} textAnchor="middle" className="fill-gray-900 dark:fill-gray-100 text-xl font-bold" style={{ fontSize: '18px', fontWeight: 700 }}>
-          ${fmt(total)}
+          {formatMoney(total)}
         </text>
         <text x={cx} y={cy + 14} textAnchor="middle" className="fill-gray-400 dark:fill-gray-500" style={{ fontSize: '11px' }}>
           Total Cost
@@ -111,7 +106,7 @@ function DonutChart({ data, size = 180 }) {
           <div key={i} className="flex items-center gap-1.5 text-xs">
             <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: DONUT_COLORS[i % DONUT_COLORS.length] }} />
             <span className="text-gray-700 dark:text-gray-300 font-medium">{d.label}</span>
-            <span className="text-gray-400 font-semibold">${fmt(d.value)}</span>
+            <span className="text-gray-400 font-semibold">{formatMoney(d.value)}</span>
           </div>
         ))}
       </div>
@@ -174,8 +169,7 @@ export default function PurchaseOrders() {
   /* form state */
   const [form, setForm] = useState({
     quoteId: '', lineId: '', vendor: '', vendorContact: '', shipToAddress: '',
-    description: '', qty: 1, unitCost: 0, status: 'draft', notes: '',
-  })
+    description: '', qty: 1, unitCost: 0, status: 'draft', notes: '' })
   const resetForm = () => {
     setForm({ quoteId: '', lineId: '', vendor: '', vendorContact: '', shipToAddress: '', description: '', qty: 1, unitCost: 0, status: 'draft', notes: '' })
     setEditId(null)
@@ -211,8 +205,7 @@ export default function PurchaseOrders() {
         quoteNumber: match?.quote?.quoteNumber || '—',
         clientName: match?.quote?.clientName || '—',
         lineType: match?.line?.type || 'product',
-        lineDescription: match?.line?.description || po.description,
-      }
+        lineDescription: lineLabel(match?.line) || po.description }
     })
   }, [purchaseOrders, quoteLinesMap])
 
@@ -257,8 +250,7 @@ export default function PurchaseOrders() {
     })
     return Object.entries(map).map(([type, value]) => ({
       label: LINE_TYPE_META[type]?.label || type,
-      value,
-    }))
+      value }))
   }, [enrichedPOs])
 
   /* KPIs */
@@ -293,8 +285,7 @@ export default function PurchaseOrders() {
       vendor: po.vendor || '', vendorContact: po.vendorContact || '',
       shipToAddress: po.shipToAddress || '',
       description: po.description || '', qty: po.qty || 1,
-      unitCost: po.unitCost || 0, status: po.status || 'draft', notes: po.notes || '',
-    })
+      unitCost: po.unitCost || 0, status: po.status || 'draft', notes: po.notes || '' })
     setEditId(po.id)
     setShowForm(true)
   }
@@ -332,8 +323,8 @@ export default function PurchaseOrders() {
       <div className="flex items-start justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center">
-              <ShoppingCart className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+            <div className="w-10 h-10 rounded-xl bg-brand-200 dark:bg-brand-950/40 flex items-center justify-center">
+              <ShoppingCart className="w-5 h-5 text-brand-700 dark:text-brand-500" />
             </div>
             Purchase Orders
           </h1>
@@ -351,22 +342,22 @@ export default function PurchaseOrders() {
       </div>
 
       {/* ── KPI Strip ───────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3">
         {[
-          { label: 'Total POs',    value: kpis.count,                      color: 'bg-indigo-500' },
-          { label: 'Total Sold',   value: `$${fmt(kpis.totalSell)}`,      color: 'bg-blue-500'   },
-          { label: 'Total Cost',   value: `$${fmt(kpis.totalCost)}`,      color: 'bg-orange-500' },
-          { label: 'Total Margin', value: `$${fmt(kpis.totalMargin)}`,    color: 'bg-green-500'  },
+          { label: 'Total POs',    value: kpis.count,                      color: 'bg-brand-600' },
+          { label: 'Total Sold',   value: formatMoney(kpis.totalSell, 0),   color: 'bg-brand-500'   },
+          { label: 'Total Cost',   value: formatMoney(kpis.totalCost, 0),   color: 'bg-orange-500' },
+          { label: 'Total Margin', value: formatMoney(kpis.totalMargin, 0), color: 'bg-green-500'  },
           { label: 'Avg Margin',   value: pct(kpis.avgMargin),            color: 'bg-emerald-500'},
         ].map((k) => (
-          <div key={k.label} className="card flex items-center gap-3 py-3 px-4">
-            <div className={clsx('w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0', k.color)}>
-              <DollarSign className="w-5 h-5 text-white" />
+          <div key={k.label} className="card py-3 px-4">
+            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 font-medium">
+              <span className={clsx('w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0', k.color)}>
+                <DollarSign className="w-3.5 h-3.5 text-white" />
+              </span>
+              {k.label}
             </div>
-            <div>
-              <div className="text-lg font-bold text-gray-900 dark:text-gray-100">{k.value}</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">{k.label}</div>
-            </div>
+            <div className="mt-1.5 text-xl font-bold text-gray-900 dark:text-gray-100 tabular-nums">{k.value}</div>
           </div>
         ))}
       </div>
@@ -385,7 +376,7 @@ export default function PurchaseOrders() {
         <div className="space-y-4">
           {/* form */}
           {showForm && (
-            <div className="card border-2 border-blue-200 dark:border-blue-800 space-y-5">
+            <div className="card border-2 border-brand-200 dark:border-brand-800 space-y-5">
               <div className="flex items-center justify-between">
                 <h3 className="font-bold text-gray-900 dark:text-gray-100 text-lg">
                   {editId ? 'Edit Purchase Order' : 'Issue New Purchase Order'}
@@ -409,7 +400,7 @@ export default function PurchaseOrders() {
                         <option value="">— No quote —</option>
                         {quotesWithLines.map((q) => (
                           <option key={q.id} value={q.id}>
-                            {q.quoteNumber} — {q.clientName || 'No client'} (${fmt(q.total || 0)})
+                            {q.quoteNumber} — {q.clientName || 'No client'} ({formatMoney(q.total || 0)})
                           </option>
                         ))}
                       </select>
@@ -428,7 +419,7 @@ export default function PurchaseOrders() {
                         const meta = LINE_TYPE_META[l.type] || LINE_TYPE_META.product
                         return (
                           <option key={l.id} value={l.id}>
-                            [{meta.label}] {l.description || 'Untitled'} — {l.qty} × ${fmt(l.price)}
+                            [{meta.label}] {lineLabel(l) || 'Untitled'} — {l.qty} × {formatMoney(l.price)}
                           </option>
                         )
                       })}
@@ -517,7 +508,7 @@ export default function PurchaseOrders() {
                   <div className="col-span-2 flex items-end">
                     <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl px-5 py-3 w-full">
                       <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Line Total</div>
-                      <div className="text-xl font-extrabold text-gray-900 dark:text-gray-100">${fmt(form.qty * form.unitCost)}</div>
+                      <div className="text-xl font-extrabold text-gray-900 dark:text-gray-100">{formatMoney(form.qty * form.unitCost)}</div>
                     </div>
                   </div>
                 </div>
@@ -563,14 +554,12 @@ export default function PurchaseOrders() {
                               marginPct: sellPrice > 0 ? ((sellPrice - cost) / sellPrice) * 100 : 0,
                               quoteNumber: match?.quote?.quoteNumber || '—',
                               lineType: match?.line?.type || 'product',
-                              lineDescription: match?.line?.description || newest.description,
-                            },
-                            company: useStore.getState().company,
-                          })
+                              lineDescription: lineLabel(match?.line) || newest.description },
+                            company: useStore.getState().company })
                         }
                         resetForm()
                       }}
-                      className="flex items-center gap-2 py-3 px-6 text-sm font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg transition-all"
+                      className="flex items-center gap-2 py-3 px-6 text-sm font-semibold rounded-xl bg-brand-700 hover:bg-brand-800 text-white shadow-md hover:shadow-lg transition-all"
                     >
                       <Send className="w-4 h-4" />
                       Issue PO & Download PDF
@@ -641,7 +630,7 @@ export default function PurchaseOrders() {
           ) : (
             <div className="card overflow-hidden p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full min-w-[56rem] text-sm">
                   <thead>
                     <tr className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                       {['PO #', 'Vendor', 'Description', 'Quote', 'Qty × Cost', 'Total', 'Sell Price', 'Margin', 'Status', ''].map((h) => (
@@ -656,7 +645,7 @@ export default function PurchaseOrders() {
                       return (
                         <tr key={po.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                           <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">{po.poNumber}</td>
-                          <td className="px-4 py-3">
+                          <td className="px-4 py-3 min-w-[11rem]">
                             <div className="font-semibold text-gray-800 dark:text-gray-200">{po.vendor}</div>
                             {po.vendorContact && <div className="text-xs text-gray-400 dark:text-gray-500">{po.vendorContact}</div>}
                           </td>
@@ -670,7 +659,7 @@ export default function PurchaseOrders() {
                             {po.quoteId ? (
                               <button
                                 onClick={() => navigate(`/quotes/${po.quoteId}`)}
-                                className="text-blue-600 dark:text-blue-400 hover:underline font-semibold text-xs inline-flex items-center gap-1"
+                                className="text-brand-600 dark:text-brand-400 hover:underline font-semibold text-xs inline-flex items-center gap-1 whitespace-nowrap"
                               >
                                 {po.quoteNumber} <ExternalLink className="w-3 h-3" />
                               </button>
@@ -679,10 +668,10 @@ export default function PurchaseOrders() {
                             )}
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap text-gray-600 dark:text-gray-400">
-                            {po.qty} × ${fmt(po.unitCost)}
+                            {po.qty} × {formatMoney(po.unitCost)}
                           </td>
-                          <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">${fmt(po.cost)}</td>
-                          <td className="px-4 py-3 text-gray-600 dark:text-gray-400 whitespace-nowrap">${fmt(po.sellPrice)}</td>
+                          <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">{formatMoney(po.cost)}</td>
+                          <td className="px-4 py-3 text-gray-600 dark:text-gray-400 whitespace-nowrap">{formatMoney(po.sellPrice)}</td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             <span className={clsx('font-bold', po.margin >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500')}>
                               {po.margin >= 0 ? '+' : ''}{pct(po.marginPct)}
@@ -692,7 +681,7 @@ export default function PurchaseOrders() {
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-1">
                               {po.status === 'draft' ? (
-                                <button onClick={() => handleIssuePO(po)} className="p-2 text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors" title="Issue PO & Download PDF">
+                                <button onClick={() => handleIssuePO(po)} className="p-2 text-gray-400 hover:text-brand-700 dark:hover:text-brand-500 rounded-lg hover:bg-brand-100 dark:hover:bg-brand-950/30 transition-colors" title="Issue PO & Download PDF">
                                   <Send className="w-4 h-4" />
                                 </button>
                               ) : (
@@ -700,7 +689,7 @@ export default function PurchaseOrders() {
                                   <Printer className="w-4 h-4" />
                                 </button>
                               )}
-                              <button onClick={() => handleEdit(po)} className="p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors" title="Edit">
+                              <button onClick={() => handleEdit(po)} className="p-2 text-gray-400 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-900/30 transition-colors" title="Edit">
                                 <Edit3 className="w-4 h-4" />
                               </button>
                               <button onClick={() => handleDelete(po.id)} className="p-2 text-gray-400 hover:text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors" title="Delete">
@@ -740,7 +729,7 @@ export default function PurchaseOrders() {
                 <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">Sell price from quote line vs. PO cost</p>
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full min-w-[56rem] text-sm">
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-700">
                       {['PO #', 'Quote', 'Type', 'Description', 'Sell Price', 'PO Cost', 'Margin ($)', 'Margin (%)', 'Status'].map((h) => (
@@ -754,17 +743,17 @@ export default function PurchaseOrders() {
                       return (
                         <tr key={po.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                           <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100">{po.poNumber}</td>
-                          <td className="px-4 py-3 text-xs font-semibold text-blue-600 dark:text-blue-400">{po.quoteNumber}</td>
+                          <td className="px-4 py-3 text-xs font-semibold text-brand-600 dark:text-brand-400">{po.quoteNumber}</td>
                           <td className="px-4 py-3">
                             <span className={clsx('inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold', typeMeta.bg, typeMeta.color)}>
                               {typeMeta.label}
                             </span>
                           </td>
                           <td className="px-4 py-3 text-gray-700 dark:text-gray-300 truncate max-w-[200px]">{po.lineDescription || '—'}</td>
-                          <td className="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">${fmt(po.sellPrice)}</td>
-                          <td className="px-4 py-3 font-semibold text-orange-600 dark:text-orange-400">${fmt(po.cost)}</td>
+                          <td className="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">{formatMoney(po.sellPrice)}</td>
+                          <td className="px-4 py-3 font-semibold text-orange-600 dark:text-orange-400">{formatMoney(po.cost)}</td>
                           <td className={clsx('px-4 py-3 font-bold', po.margin >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500')}>
-                            {po.margin >= 0 ? '+' : ''}${fmt(po.margin)}
+                            {po.margin >= 0 ? '+' : ''}{formatMoney(po.margin)}
                           </td>
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
@@ -787,10 +776,10 @@ export default function PurchaseOrders() {
                   <tfoot>
                     <tr className="bg-gray-50 dark:bg-gray-800 border-t-2 border-gray-200 dark:border-gray-600 font-bold">
                       <td colSpan={4} className="px-4 py-3 text-gray-700 dark:text-gray-300 uppercase text-xs tracking-widest">Totals</td>
-                      <td className="px-4 py-3 text-gray-900 dark:text-gray-100">${fmt(kpis.totalSell)}</td>
-                      <td className="px-4 py-3 text-orange-600 dark:text-orange-400">${fmt(kpis.totalCost)}</td>
+                      <td className="px-4 py-3 text-gray-900 dark:text-gray-100">{formatMoney(kpis.totalSell)}</td>
+                      <td className="px-4 py-3 text-orange-600 dark:text-orange-400">{formatMoney(kpis.totalCost)}</td>
                       <td className={clsx('px-4 py-3', kpis.totalMargin >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500')}>
-                        {kpis.totalMargin >= 0 ? '+' : ''}${fmt(kpis.totalMargin)}
+                        {kpis.totalMargin >= 0 ? '+' : ''}{formatMoney(kpis.totalMargin)}
                       </td>
                       <td className="px-4 py-3 text-emerald-600 dark:text-emerald-400">{pct(kpis.avgMargin)} avg</td>
                       <td />
@@ -819,7 +808,7 @@ export default function PurchaseOrders() {
               {/* Cost by Line Type (Donut) */}
               <div className="card">
                 <h3 className="font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-6">
-                  <PieChart className="w-5 h-5 text-blue-600" />
+                  <PieChart className="w-5 h-5 text-brand-600" />
                   Cost by Line Type
                 </h3>
                 <DonutChart data={costByType} />
@@ -853,23 +842,23 @@ export default function PurchaseOrders() {
                           <div className="flex justify-between items-center">
                             <span className="font-semibold text-sm text-gray-800 dark:text-gray-200">{d.label}</span>
                             <span className={clsx('text-xs font-bold', d.margin >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500')}>
-                              Margin: ${fmt(d.margin)} ({pct(d.marginPct)})
+                              Margin: {formatMoney(d.margin)} ({pct(d.marginPct)})
                             </span>
                           </div>
                           <div className="space-y-1">
                             <div className="flex items-center gap-2">
                               <span className="text-[10px] w-10 text-gray-400 font-semibold">Sell</span>
                               <div className="flex-1 h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                                <div className="h-full bg-blue-500 rounded-full transition-all duration-500" style={{ width: `${sellWidth}%` }} />
+                                <div className="h-full bg-brand-500 rounded-full transition-all duration-500" style={{ width: `${sellWidth}%` }} />
                               </div>
-                              <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">${fmt(d.sell)}</span>
+                              <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">{formatMoney(d.sell)}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <span className="text-[10px] w-10 text-gray-400 font-semibold">Cost</span>
                               <div className="flex-1 h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                                 <div className="h-full bg-orange-500 rounded-full transition-all duration-500" style={{ width: `${costWidth}%` }} />
                               </div>
-                              <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">${fmt(d.cost)}</span>
+                              <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">{formatMoney(d.cost)}</span>
                             </div>
                           </div>
                         </div>
@@ -877,7 +866,7 @@ export default function PurchaseOrders() {
                     })}
                     <div className="flex items-center gap-4 pt-3 border-t border-gray-100 dark:border-gray-700">
                       <div className="flex items-center gap-1.5 text-xs">
-                        <span className="w-3 h-3 rounded-full bg-blue-500" />
+                        <span className="w-3 h-3 rounded-full bg-brand-500" />
                         <span className="text-gray-500 dark:text-gray-400 font-medium">Sell Price</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-xs">

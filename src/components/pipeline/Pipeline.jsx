@@ -1,14 +1,17 @@
 import { useState } from 'react'
-import { Plus, X, DollarSign, ChevronRight, ChevronLeft, FileText, ShoppingCart } from 'lucide-react'
+import { Plus, X, ChevronRight, ChevronLeft, FileText, ShoppingCart, User } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import useStore from '../../store'
 import { format } from 'date-fns'
+import ContactCombobox from '../contacts/ContactCombobox'
+import { formatMoney } from '../../utils/quoteMath'
 
 function DealCard({ deal, stageId, stages }) {
   const navigate = useNavigate()
   const moveDeal = useStore((s) => s.moveDeal)
   const deleteDeal = useStore((s) => s.deleteDeal)
   const purchaseOrders = useStore((s) => s.purchaseOrders)
+  const contact = useStore((s) => s.clients.find((c) => c.id === deal.contactId))
   const stageIndex = stages.findIndex((s) => s.id === stageId)
 
   // Count POs linked to this deal's quote
@@ -25,7 +28,7 @@ function DealCard({ deal, stageId, stages }) {
     <div className={`bg-white dark:bg-gray-800 rounded-xl p-3 shadow-md border ${urgency} space-y-2`}>
       <div className="flex items-start justify-between">
         <div
-          className={`font-semibold text-gray-900 dark:text-gray-100 text-sm leading-tight ${deal.quoteId ? 'cursor-pointer hover:text-blue-600 dark:hover:text-blue-400' : ''}`}
+          className={`font-semibold text-gray-900 dark:text-gray-100 text-sm leading-tight ${deal.quoteId ? 'cursor-pointer hover:text-brand-600 dark:hover:text-brand-400' : ''}`}
           onClick={() => deal.quoteId && navigate(`/quotes/${deal.quoteId}`)}
           title={deal.quoteId ? 'Open linked quote' : ''}
         >
@@ -44,25 +47,34 @@ function DealCard({ deal, stageId, stages }) {
       {deal.quoteNumber && (
         <button
           onClick={() => deal.quoteId && navigate(`/quotes/${deal.quoteId}`)}
-          className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 hover:bg-blue-100 dark:hover:bg-blue-900/50 transition-colors"
+          className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-brand-50 dark:bg-brand-900/30 text-brand-600 dark:text-brand-400 hover:bg-brand-100 dark:hover:bg-brand-900/50 transition-colors"
         >
           <FileText className="w-3 h-3" />
           {deal.quoteNumber}
         </button>
       )}
 
+      {/* Linked contact */}
+      {contact && (
+        <button
+          onClick={() => navigate(`/contacts?q=${encodeURIComponent(contact.name)}`)}
+          title="Open contact"
+          className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+        >
+          <User className="w-3 h-3" />
+          {contact.name}
+        </button>
+      )}
+
       {deal.value > 0 && (
-        <div className="flex items-center gap-1 text-green-700 dark:text-green-400 font-semibold text-sm">
-          <DollarSign className="w-3.5 h-3.5" />
-          {deal.value.toLocaleString('en-US', { minimumFractionDigits: 0 })}
-        </div>
+        <div className="text-green-700 dark:text-green-400 font-semibold text-sm tabular-nums">{formatMoney(deal.value)}</div>
       )}
 
       {/* Linked POs indicator */}
       {linkedPOs.length > 0 && (
         <button
           onClick={() => navigate('/purchase-orders')}
-          className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-indigo-50 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 hover:bg-indigo-100 dark:hover:bg-indigo-900/50 transition-colors"
+          className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-brand-100 dark:bg-brand-950/30 text-brand-700 dark:text-brand-500 hover:bg-brand-200 dark:hover:bg-brand-950/50 transition-colors"
         >
           <ShoppingCart className="w-3 h-3" />
           {linkedPOs.length} PO{linkedPOs.length > 1 ? 's' : ''}
@@ -80,7 +92,7 @@ function DealCard({ deal, stageId, stages }) {
         {stageIndex > 0 && (
           <button
             onClick={() => moveDeal(deal.id, stageId, stages[stageIndex - 1].id)}
-            className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-blue-600 font-medium"
+            className="flex items-center gap-0.5 text-xs text-gray-400 hover:text-brand-600 font-medium"
           >
             <ChevronLeft className="w-3 h-3" /> Back
           </button>
@@ -89,7 +101,7 @@ function DealCard({ deal, stageId, stages }) {
         {stageIndex < stages.length - 1 && (
           <button
             onClick={() => moveDeal(deal.id, stageId, stages[stageIndex + 1].id)}
-            className="flex items-center gap-0.5 text-xs text-blue-500 hover:text-blue-700 font-semibold"
+            className="flex items-center gap-0.5 text-xs text-brand-500 hover:text-brand-700 font-semibold"
           >
             Move <ChevronRight className="w-3 h-3" />
           </button>
@@ -101,19 +113,28 @@ function DealCard({ deal, stageId, stages }) {
 
 function AddDealForm({ stageId, onDone }) {
   const addDeal = useStore((s) => s.addDeal)
-  const [form, setForm] = useState({ name: '', company: '', value: '', note: '' })
+  const ensureContact = useStore((s) => s.ensureContact)
+  const [form, setForm] = useState({ name: '', company: '', value: '', note: '', contactId: null })
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }))
 
   const submit = () => {
     if (!form.name.trim()) return
-    addDeal(stageId, { ...form, value: parseFloat(form.value) || 0 })
+    // a deal always belongs to a contact — linked, matched by name, or created now
+    addDeal(stageId, { ...form, value: parseFloat(form.value) || 0, contactId: ensureContact({ contactId: form.contactId, name: form.name }) })
     onDone()
   }
 
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-xl p-3 shadow-sm border-2 border-blue-300 dark:border-blue-600 space-y-2">
-      <input className="input-field text-sm py-2" placeholder="Deal / Client name *"
-        value={form.name} onChange={(e) => set('name', e.target.value)} autoFocus />
+    <div className="bg-white dark:bg-gray-800 rounded-xl p-3 shadow-sm border-2 border-brand-300 dark:border-brand-600 space-y-2">
+      <ContactCombobox
+        className="input-field text-sm py-2"
+        placeholder="Contact name *"
+        value={form.name}
+        linkedId={form.contactId}
+        autoFocus
+        onChange={(v) => setForm((f) => ({ ...f, name: v, contactId: null }))}
+        onPick={(c) => setForm((f) => ({ ...f, name: c.name, company: c.company || f.company, contactId: c.id }))}
+      />
       <input className="input-field text-sm py-2" placeholder="Company (optional)"
         value={form.company} onChange={(e) => set('company', e.target.value)} />
       <div className="relative">
@@ -134,7 +155,7 @@ function AddDealForm({ stageId, onDone }) {
 /* Stage color mapping — dark-mode aware, ignores store's light-only bg class */
 const STAGE_COLORS = {
   lead:      { bg: 'bg-gray-100 dark:bg-gray-800',       text: 'text-gray-700 dark:text-gray-200',     accent: 'bg-gray-400',    badge: 'bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-200',           add: 'text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-100 hover:bg-white/50 dark:hover:bg-gray-700/50' },
-  quoted:    { bg: 'bg-blue-100/80 dark:bg-blue-950/40',  text: 'text-blue-800 dark:text-blue-200',     accent: 'bg-blue-500',    badge: 'bg-blue-200 dark:bg-blue-800/50 text-blue-700 dark:text-blue-200',         add: 'text-blue-500 dark:text-blue-400 hover:text-blue-700 dark:hover:text-blue-200 hover:bg-blue-50 dark:hover:bg-blue-900/30' },
+  quoted:    { bg: 'bg-brand-100/80 dark:bg-brand-950/40',  text: 'text-brand-800 dark:text-brand-200',     accent: 'bg-brand-500',    badge: 'bg-brand-200 dark:bg-brand-800/50 text-brand-700 dark:text-brand-200',         add: 'text-brand-500 dark:text-brand-400 hover:text-brand-700 dark:hover:text-brand-200 hover:bg-brand-50 dark:hover:bg-brand-900/30' },
   sent:      { bg: 'bg-amber-100/70 dark:bg-amber-950/30', text: 'text-amber-800 dark:text-amber-200',  accent: 'bg-amber-500',   badge: 'bg-amber-200 dark:bg-amber-800/50 text-amber-700 dark:text-amber-200',    add: 'text-amber-600 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-200 hover:bg-amber-50 dark:hover:bg-amber-900/30' },
   negotiate: { bg: 'bg-orange-100/70 dark:bg-orange-950/30', text: 'text-orange-800 dark:text-orange-200', accent: 'bg-orange-500', badge: 'bg-orange-200 dark:bg-orange-800/50 text-orange-700 dark:text-orange-200', add: 'text-orange-600 dark:text-orange-400 hover:text-orange-800 dark:hover:text-orange-200 hover:bg-orange-50 dark:hover:bg-orange-900/30' },
   won:       { bg: 'bg-green-100/80 dark:bg-green-950/30', text: 'text-green-800 dark:text-green-200',  accent: 'bg-green-500',   badge: 'bg-green-200 dark:bg-green-800/50 text-green-700 dark:text-green-200',    add: 'text-green-600 dark:text-green-400 hover:text-green-800 dark:hover:text-green-200 hover:bg-green-50 dark:hover:bg-green-900/30' },
@@ -154,7 +175,7 @@ export default function Pipeline() {
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Sales Pipeline</h1>
           <div className="text-sm text-gray-500 dark:text-gray-400 font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1 rounded-full">
-            Pipeline value: ${totalValue.toLocaleString()}
+            Pipeline value: {formatMoney(totalValue, 0)}
           </div>
         </div>
         <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Use the Move and Back buttons on each card to advance deals between stages</p>
@@ -176,7 +197,7 @@ export default function Pipeline() {
                         <div className={`font-bold text-sm ${colors.text}`}>{stage.label}</div>
                         {stageValue > 0 && (
                           <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                            ${stageValue.toLocaleString()}
+                            {formatMoney(stageValue, 0)}
                           </div>
                         )}
                       </div>

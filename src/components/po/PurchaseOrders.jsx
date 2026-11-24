@@ -10,7 +10,7 @@ import useStore from '../../store'
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import { generatePO_PDF } from '../../utils/pdfExport'
-import { formatMoney } from '../../utils/quoteMath'
+import { formatMoney, lineLabel } from '../../utils/quoteMath'
 
 /* ── helpers ─────────────────────────────────────────────── */
 const pct = (n) => `${n.toFixed(1)}%`
@@ -211,7 +211,7 @@ export default function PurchaseOrders() {
         quoteNumber: match?.quote?.quoteNumber || '—',
         clientName: match?.quote?.clientName || '—',
         lineType: match?.line?.type || 'product',
-        lineDescription: match?.line?.description || po.description,
+        lineDescription: lineLabel(match?.line) || po.description,
       }
     })
   }, [purchaseOrders, quoteLinesMap])
@@ -428,7 +428,7 @@ export default function PurchaseOrders() {
                         const meta = LINE_TYPE_META[l.type] || LINE_TYPE_META.product
                         return (
                           <option key={l.id} value={l.id}>
-                            [{meta.label}] {l.description || 'Untitled'} — {l.qty} × {formatMoney(l.price)}
+                            [{meta.label}] {lineLabel(l) || 'Untitled'} — {l.qty} × {formatMoney(l.price)}
                           </option>
                         )
                       })}
@@ -563,7 +563,7 @@ export default function PurchaseOrders() {
                               marginPct: sellPrice > 0 ? ((sellPrice - cost) / sellPrice) * 100 : 0,
                               quoteNumber: match?.quote?.quoteNumber || '—',
                               lineType: match?.line?.type || 'product',
-                              lineDescription: match?.line?.description || newest.description,
+                              lineDescription: lineLabel(match?.line) || newest.description,
                             },
                             company: useStore.getState().company,
                           })

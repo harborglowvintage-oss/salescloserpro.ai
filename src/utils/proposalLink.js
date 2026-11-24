@@ -17,7 +17,7 @@
  * It is not a signature — the client's reply email is the record of WHO accepted.
  */
 
-import { getOptions, hasTiers, chosenOptionId } from './quoteMath'
+import { getOptions, hasTiers, chosenOptionId, modelOf } from './quoteMath'
 
 const SNAPSHOT_VERSION = 1
 
@@ -66,7 +66,7 @@ export function proposalSnapshot(quote, company) {
       st: quote.state,
       nt: quote.notes,
       rec: hasTiers(quote) ? chosenOptionId({ ...quote, acceptance: null }) : undefined,
-      o: getOptions(quote).map((o) => ({ i: o.id, n: o.name, l: o.lines.map((l) => [l.type, l.description, l.qty, l.unit, l.price]) })),
+      o: getOptions(quote).map((o) => ({ i: o.id, n: o.name, l: o.lines.map((l) => [l.type, l.description, l.qty, l.unit, l.price, ...(modelOf(l) ? [modelOf(l)] : [])]) })),
     }),
   }
 }
@@ -76,7 +76,7 @@ export function snapshotToQuote({ q }) {
   const options = q.o.map((o) => ({
     id: o.i,
     name: o.n || '',
-    lines: o.l.map(([type, description, qty, unit, price], k) => ({ id: `${o.i}-${k}`, type, description, qty, unit, price })),
+    lines: o.l.map(([type, description, qty, unit, price, model = ''], k) => ({ id: `${o.i}-${k}`, type, description, model, qty, unit, price })),
   }))
   const tiered = options.length > 1
   return {

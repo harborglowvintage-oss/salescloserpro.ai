@@ -81,6 +81,20 @@ function LineItem({ line, onUpdate, onRemove }) {
 
         {/* Controls row */}
         <div className="flex items-end gap-4 flex-wrap">
+          {/* Model number — products only */}
+          {line.type === 'product' && (
+            <div>
+              <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Model # <span className="font-medium normal-case tracking-normal">(optional)</span></label>
+              <input
+                className="w-40 h-12 px-3 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-semibold text-gray-900 dark:text-gray-100 outline-none focus:border-brand-500 transition-colors placeholder:text-gray-300 dark:placeholder:text-gray-600 placeholder:font-normal"
+                placeholder="e.g. XR-15"
+                maxLength={40}
+                value={line.model || ''}
+                onChange={(e) => onUpdate(line.id, 'model', e.target.value)}
+              />
+            </div>
+          )}
+
           {/* Qty */}
           <div>
             <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Qty</label>

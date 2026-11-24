@@ -294,32 +294,6 @@ const useStore = create(
       deletePO: (id) =>
         set((s) => ({ purchaseOrders: s.purchaseOrders.filter((p) => p.id !== id) })),
 
-      // ── Go Live Progress ──────────────────────────────
-      goLiveChecklist: {
-        github_account: false,
-        github_forked: false,
-        github_cloned: false,
-        cf_account: false,
-        cf_project: false,
-        cf_build: false,
-        cf_deployed: false,
-        domain_decided: false,
-        domain_configured: false,
-        email_decided: false,
-        email_configured: false,
-      },
-      setGoLiveCheck: (key, val) =>
-        set((s) => ({ goLiveChecklist: { ...s.goLiveChecklist, [key]: val } })),
-      resetGoLiveChecklist: () =>
-        set(() => ({
-          goLiveChecklist: {
-            github_account: false, github_forked: false, github_cloned: false,
-            cf_account: false, cf_project: false, cf_build: false, cf_deployed: false,
-            domain_decided: false, domain_configured: false,
-            email_decided: false, email_configured: false,
-          },
-        })),
-
       // ── Backup Settings ───────────────────────────────
       backupSettings: {
         autoBackupEnabled: false,

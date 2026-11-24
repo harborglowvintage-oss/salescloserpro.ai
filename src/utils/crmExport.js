@@ -35,6 +35,7 @@ export function buildRecords({ clients = [], quotes = [], pipeline = [] }) {
     const closed = stage.id === 'won' || stage.id === 'lost'
     return {
       id: d.id,
+      contactId: d.contactId || null,
       name: [d.name, d.quoteNumber].filter(Boolean).join(' — '),
       stageId: stage.id,
       stage: stage.label,
@@ -81,7 +82,11 @@ export function buildRecords({ clients = [], quotes = [], pipeline = [] }) {
 }
 
 // ── formats ─────────────────────────────────────────────────────
+// Cell formats: plain decimals for money (every importer parses 1234.50), ISO dates,
+// Title Case for our lowercase codes, and percentages people can read.
 const money = (n) => (Number(n) || 0).toFixed(2)
+const title = (t) => (t ? String(t).charAt(0).toUpperCase() + String(t).slice(1) : '')
+const percent = (rate) => (rate ? `${+(rate * 100).toFixed(3)}%` : '0%')
 
 // Default stage names in each CRM's stock sales pipeline; users can remap during import.
 const HUBSPOT_STAGE = { lead: 'Appointment Scheduled', quoted: 'Qualified To Buy', sent: 'Contract Sent', negotiate: 'Decision Maker Bought-In', won: 'Closed Won', lost: 'Closed Lost' }
@@ -95,7 +100,7 @@ export const EXPORT_FORMATS = [
     files: [
       { key: 'contacts', label: 'Contacts', from: 'contacts', columns: [
         ['Name', (c) => c.name], ['First Name', (c) => c.first], ['Last Name', (c) => c.last], ['Company', (c) => c.company],
-        ['Email', (c) => c.email], ['Phone', (c) => c.phone], ['Address', (c) => c.address], ['State', (c) => c.state], ['Notes', (c) => c.notes],
+        ['Email', (c) => c.email], ['Phone', (c) => c.phone], ['Address', (c) => c.address], ['State', (c) => c.stateName], ['Notes', (c) => c.notes],
         ['Created', (c) => isoDay(c.createdAt)],
       ] },
       { key: 'deals', label: 'Deals', from: 'deals', columns: [
@@ -104,17 +109,17 @@ export const EXPORT_FORMATS = [
         ['Quote Number', (d) => d.quoteNumber], ['Created', (d) => d.createdDate], ['Notes', (d) => d.note],
       ] },
       { key: 'quotes', label: 'Quotes', from: 'quotes', columns: [
-        ['Quote Number', (q) => q.quoteNumber], ['Status', (q) => q.status], ['Client', (q) => q.clientName], ['Company', (q) => q.company],
-        ['Email', (q) => q.clientEmail], ['Phone', (q) => q.clientPhone], ['State', (q) => q.state],
+        ['Quote Number', (q) => q.quoteNumber], ['Status', (q) => title(q.status)], ['Client', (q) => q.clientName], ['Company', (q) => q.company],
+        ['Email', (q) => q.clientEmail], ['Phone', (q) => q.clientPhone], ['State', (q) => stateName(q.state)],
         ['Subtotal', (q) => money(q.subtotal)], ['Tax', (q) => money(q.tax)], ['Total', (q) => money(q.total)],
         ['Options', (q) => q.optionCount], ['Chosen Option', (q) => q.chosenOption],
         ['Created', (q) => q.createdDate], ['Sent', (q) => q.sentDate], ['Valid Until', (q) => q.validUntil], ['Accepted', (q) => q.acceptedDate], ['Accepted By', (q) => q.acceptedBy],
         ['Notes', (q) => q.notes],
       ] },
       { key: 'quote-lines', label: 'Quote line items', from: 'lines', columns: [
-        ['Quote Number', (l) => l.quoteNumber], ['Client', (l) => l.clientName], ['Option', (l) => l.option], ['Type', (l) => l.type],
-        ['Description', (l) => l.description], ['Quantity', (l) => l.qty], ['Unit', (l) => l.unit], ['Unit Price', (l) => money(l.price)],
-        ['Tax Rate', (l) => (l.taxable ? l.taxRate : 0)], ['Tax', (l) => money(l.taxAmount)], ['Line Total', (l) => money(l.total)],
+        ['Quote Number', (l) => l.quoteNumber], ['Client', (l) => l.clientName], ['Option', (l) => l.option], ['Type', (l) => title(l.type)],
+        ['Description', (l) => l.description], ['Model Number', (l) => l.model], ['Quantity', (l) => l.qty], ['Unit', (l) => l.unit], ['Unit Price', (l) => money(l.price)],
+        ['Tax Rate', (l) => percent(l.taxable ? l.taxRate : 0)], ['Tax', (l) => money(l.taxAmount)], ['Line Total', (l) => money(l.total)],
       ] },
     ],
   },
@@ -175,7 +180,7 @@ export const EXPORT_FORMATS = [
  * exactly as typed so they import cleanly into a CRM.
  */
 export function csvCell(value) {
-  let s = value == null ? '' : String(value)
+  let s = value == null ? '' : String(value).replace(/[^\S\n]+/g, ' ').replace(/ ?\n ?/g, '\n').trim()
   if (/^[=@\t\r]/.test(s) || /^[+\-].*[A-Za-z]/.test(s)) s = `'${s}`
   return /[",\r\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s
 }

@@ -5,17 +5,22 @@
  */
 
 import { useMemo, useState } from 'react'
-import { Download, FileSpreadsheet, Lock, Check } from 'lucide-react'
+import { Download, FileSpreadsheet, FileText, Lock, Check } from 'lucide-react'
 import clsx from 'clsx'
 import useStore from '../../store'
 import { EXPORT_FORMATS, buildRecords, buildExportFile } from '../../utils/crmExport'
 import { downloadFile } from '../../utils/download'
+import { generateReportPDF, summarize } from '../../utils/reportPdf'
+import { formatMoney } from '../../utils/quoteMath'
 
 export default function CrmExport() {
   const clients = useStore((s) => s.clients)
   const quotes = useStore((s) => s.quotes)
   const pipeline = useStore((s) => s.pipeline)
+  const company = useStore((s) => s.company)
   const records = useMemo(() => buildRecords({ clients, quotes, pipeline }), [clients, quotes, pipeline])
+
+  const summary = useMemo(() => summarize(records), [records])
 
   const [formatId, setFormatId] = useState(EXPORT_FORMATS[0].id)
   const [done, setDone] = useState({}) // filename → true, for the tick
@@ -31,8 +36,26 @@ export default function CrmExport() {
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Export</h1>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Take your contacts, deals and quotes to HubSpot, Salesforce, or any tool that reads a spreadsheet.</p>
+        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Download a readable summary, or take your contacts, deals and quotes to HubSpot, Salesforce, or any tool that reads a spreadsheet.</p>
       </div>
+
+      {/* summary report — the easy-to-read option */}
+      <div className="card flex flex-col sm:flex-row sm:items-center gap-4">
+        <div className="w-12 h-12 rounded-xl bg-copper-100 dark:bg-copper-500/15 text-copper-700 dark:text-copper-300 flex items-center justify-center flex-shrink-0">
+          <FileText className="w-6 h-6" />
+        </div>
+        <div className="flex-1 min-w-0">
+          <h2 className="font-bold text-gray-900 dark:text-gray-100">Business Summary (PDF)</h2>
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            A clean, easy-to-read report — {formatMoney(summary.openValue)} open, {formatMoney(summary.wonValue)} won, then your deals, quotes and contacts in plain tables. Good for printing or sharing with a partner or accountant.
+          </p>
+        </div>
+        <button onClick={() => generateReportPDF({ records, company })} className="btn-primary flex items-center justify-center gap-2 text-sm !py-3 whitespace-nowrap">
+          <Download className="w-4 h-4" /> Download PDF
+        </button>
+      </div>
+
+      <h2 className="text-[11px] font-bold uppercase tracking-widest text-gray-400 !mt-8">Spreadsheet files for other software</h2>
 
       {/* format picker */}
       <div className="grid sm:grid-cols-3 gap-3" role="tablist" aria-label="Export format">

@@ -13,7 +13,7 @@ import { CheckCircle2, Download, Mail, Copy, AlertTriangle, Star, Clock } from '
 import clsx from 'clsx'
 import { snapshotToQuote, snapshotToCompany, buildAcceptanceUrl } from '../../utils/proposalLink'
 import useFragmentPacket from './useFragmentPacket'
-import { priceQuote, formatMoney, optionLabel, proposalTerms } from '../../utils/quoteMath'
+import { priceQuote, formatMoney, optionLabel, proposalTerms, modelOf } from '../../utils/quoteMath'
 import { acceptanceEmail, mailtoHref } from '../../utils/emails'
 import { longDate, daysFromToday } from '../../utils/dates'
 import { stateTaxData } from '../../data/taxDatabase'
@@ -155,7 +155,7 @@ function Proposal({ snapshot, quote, company }) {
               <div className="min-w-0">
                 <p className="font-medium">{l.description || '—'}</p>
                 <p className="text-xs text-ink-600 mt-0.5">
-                  <span className="capitalize">{l.type}</span> · {l.qty} {l.unit} × {formatMoney(l.price)}
+                  <span className="capitalize">{l.type}</span>{modelOf(l) && <> · Model {modelOf(l)}</>} · {l.qty} {l.unit} × {formatMoney(l.price)}
                   {l.taxable && ` · ${(l.taxRate * 100).toFixed(2)}% tax`}
                 </p>
               </div>

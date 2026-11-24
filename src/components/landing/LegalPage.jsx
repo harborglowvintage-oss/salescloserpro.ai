@@ -205,16 +205,13 @@ export default function LegalPage() {
               <p>
                 The Software makes no requests to servers we operate. Two things do reach third parties: the site
                 is served by Cloudflare, and the page loads the Inter and Source Serif 4 typefaces from Google Fonts (which receives your
-                IP address as part of that request). If you follow optional links from the app — GitHub, Google
-                Workspace, Zoho, or Namecheap — those services' own privacy policies
-                govern anything you submit to them. We encourage you to review:
+                IP address as part of that request). If you follow the optional link to GitHub, GitHub's own privacy policy
+                governs anything you submit there. We encourage you to review:
               </p>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li><Ext href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</Ext></li>
-                <li><Ext href="https://policies.google.com/privacy">Google Privacy Policy</Ext> (Google Fonts, Google Workspace)</li>
+                <li><Ext href="https://policies.google.com/privacy">Google Privacy Policy</Ext> (Google Fonts)</li>
                 <li><Ext href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</Ext></li>
-                <li><Ext href="https://www.zoho.com/privacy.html">Zoho Privacy Policy</Ext></li>
-                <li><Ext href="https://www.namecheap.com/legal/general/privacy-policy/">Namecheap Privacy Policy</Ext></li>
               </ul>
             </Section>
 
@@ -297,8 +294,8 @@ export default function LegalPage() {
               </p>
               <p>
                 The application links to a small number of independent third-party services purely as a
-                convenience to help you operate your business — for example, optional domain registration and email
-                hosting. These are{' '}
+                convenience — for example, the project's GitHub page — and names other products (such as HubSpot and
+                Salesforce) only to describe its export file formats. These are{' '}
                 <Hi>ordinary, non-affiliate links</Hi>: we receive no commission, referral reward, or other
                 compensation when you follow them, no tracking or attribution identifiers are attached, and you
                 are never required to use any of them.
@@ -475,8 +472,8 @@ export default function LegalPage() {
               </p>
               <H>Trademarks &amp; Logos</H>
               <p>
-                Any third-party names or logos that appear in SalesCloserPro (for example GitHub, Cloudflare, Namecheap,
-                Zoho, or Google Workspace, referenced in setup guidance and links) are trademarks of their
+                Any third-party names or logos that appear in SalesCloserPro (for example GitHub, Cloudflare, HubSpot or
+                Salesforce, referenced in links and export formats) are trademarks of their
                 respective owners and are used solely for identification and referential purposes under nominative
                 fair use. No affiliation with, or endorsement by, these brands is implied.
               </p>

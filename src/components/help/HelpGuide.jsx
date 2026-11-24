@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import {
-  HelpCircle, FileText, Users, GitBranch, Rocket, ShoppingCart,
+  HelpCircle, FileText, Users, GitBranch, ShoppingCart,
   Paperclip, Sun, Upload, Printer, Send, HardDrive,
   ChevronDown, ChevronRight, Search, BookOpen, Zap, Shield,
   BarChart3, Settings, PlusCircle, Eye
@@ -47,6 +47,10 @@ const sections = [
       {
         q: 'How do I create a new quote?',
         a: 'Click "New Quote" in the sidebar (or Quotes → New Quote). Enter the client\'s name, email, phone, and state, then add line items using the four big buttons — Product, Service, Install / Labor, or Freight. Fill in a description, quantity, unit, and unit price for each line. The subtotal, tax, and grand total update as you type. Click Save Quote when you are done.'
+      },
+      {
+        q: 'Can I add a model number to a product?',
+        a: 'Yes. Every Product line has an optional "Model #" box. The model number prints under the description on the PDF, shows on the client\'s online proposal, carries into purchase orders so your vendor sees exactly what to ship, and has its own column in the exports.'
       },
       {
         q: 'How does tax work?',
@@ -258,23 +262,6 @@ const sections = [
     ]
   },
   {
-    id: 'go-live',
-    icon: Rocket,
-    title: 'Go Live Wizard',
-    color: 'text-emerald-500',
-    bg: 'bg-emerald-50 dark:bg-emerald-900/20',
-    content: [
-      {
-        q: 'What is the Go Live wizard?',
-        a: 'An optional four-step checklist for hosting your own copy of SalesCloserPro: fork the code on GitHub, deploy it for free on Cloudflare Pages, optionally connect a custom domain, and optionally set up business email. Progress is saved as you tick items off.'
-      },
-      {
-        q: 'Do I need to complete Go Live to use the app?',
-        a: 'No. Go Live is only for people who want their own branded, self-hosted copy. Everything else works right here without it.'
-      }
-    ]
-  },
-  {
     id: 'export',
     icon: Upload,
     title: 'Export to HubSpot, Salesforce & Others',
@@ -284,6 +271,10 @@ const sections = [
       {
         q: 'How do I move my data into HubSpot or Salesforce?',
         a: 'Open Export in the sidebar, choose HubSpot or Salesforce, and download the CSV files. The column names match each CRM\'s own fields, and the page lists the import steps. Import contacts first, then deals (HubSpot) or opportunities (Salesforce) so they attach to the right people.'
+      },
+      {
+        q: 'Is there a report I can just read or print?',
+        a: 'Yes — Export → Business Summary (PDF). It is a plain two-minute read: what is open, what you have won and your win rate at the top, then your deals by stage, your quotes, and your contacts with what each one is worth. Use it for your own records or to share with a partner, bookkeeper or lender.'
       },
       {
         q: 'What is the Universal CSV?',

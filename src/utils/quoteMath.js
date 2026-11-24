@@ -7,6 +7,7 @@
  * client-facing proposal page all price quotes through here.
  *
  * Data model
+ *   Line item:            { id, type, description, model?, qty, unit, price }  (model = product model number)
  *   Single-option quote:  { lines: [...] }
  *   Tiered quote:         { options: [{ id, name, lines }, …2–3], recommendedOptionId }
  *   Accepted quote:       { acceptance: { optionId, name, at, fingerprint } }
@@ -26,7 +27,17 @@ export function formatMoney(n) {
 }
 
 export function newLine(type = 'product') {
-  return { id: crypto.randomUUID(), type, description: '', qty: 1, unit: 'ea', price: 0 }
+  return { id: crypto.randomUUID(), type, description: '', model: '', qty: 1, unit: 'ea', price: 0 }
+}
+
+/** A line's model number, tidied (single spaces, trimmed); '' when it has none. */
+export const modelOf = (line) => (line?.model || '').replace(/\s+/g, ' ').trim()
+
+/** One-line name for a line item, with its model number when it has one: "Heat pump (Model XR-15)". */
+export function lineLabel(line) {
+  const desc = line?.description?.trim() || ''
+  const model = modelOf(line)
+  return model ? `${desc || 'Item'} (Model ${model})` : desc
 }
 
 /** Price a list of line items for a state → per-line tax + totals. */

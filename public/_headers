@@ -63,8 +63,6 @@
   X-Robots-Tag: noindex
 /purchase-orders
   X-Robots-Tag: noindex
-/go-live
-  X-Robots-Tag: noindex
 /settings
   X-Robots-Tag: noindex
 /backup

@@ -47,11 +47,9 @@
   <tr><td colspan="2"><br></td></tr>
   <tr>
     <td align="center"><strong>🆕 New Quote</strong></td>
-    <td align="center"><strong>🚀 Go Live Wizard</strong></td>
   </tr>
   <tr>
     <td align="center"><img src="screenshots/new-quote.png" alt="New Quote" width="480" /></td>
-    <td align="center"><img src="screenshots/go-live-wizard.png" alt="Go Live Wizard" width="480" /></td>
   </tr>
 </table>
 
@@ -67,6 +65,8 @@
 - 🔔 **Follow-ups** — every quote gets a valid-until date (default set in Company Info); sent quotes get a day-3 / day-7 / two-days-before-expiry schedule, drafted emails, a "due" card on the Dashboard, and `.ics` calendar export.
 - 👥 **Contacts** (was Clients) — every quote and deal now links to a contact: type-ahead picker in the Quote Builder and deal form, contacts auto-created or matched on save, deal cards show their contact, and each contact card lists their quotes, deals and open/won totals. `/clients` redirects to `/contacts`.
 - 📤 **Export** — new sidebar page: download contacts, deals and quotes as CSV laid out for HubSpot, Salesforce, or a universal format, with import steps for each. Formats are declarative column maps in `utils/crmExport.js`, so adding another CRM is one entry.
+- 📊 **Business Summary PDF**, **model numbers** on product lines, tidier CSV cells (Title Case, full state names, readable tax rates).
+- 🚫 **Go Live wizard removed** — it no longer fit the product; `/go-live` redirects to the dashboard. Developer deploy steps remain in this README.
 - 🛠️ **Fixes** — quote and PO PDF tables overflowed the right margin; long PO terms ran off the page; refreshing `/quotes/:id` opened a blank quote (deep links rendered before IndexedDB loaded); "Client Details" heading invisible in dark mode.
 - 🧹 **One implementation of each thing** — pricing (`utils/quoteMath.js`), PDF drawing helpers, money formatting, status badges, file download, brand logo/credit/copyright are each defined once.
 
@@ -115,7 +115,6 @@
   - [🚚 Ship-To Address on POs](#-ship-to-address-on-pos)
   - [📄 PDF Export Engine](#-pdf-export-engine)
   - [💾 Backup & Restore](#-backup--restore)
-  - [🚀 Go Live Wizard](#-go-live-wizard)
 - [🌐 Deploy Your Own (Free)](#-deploy-your-own-free)
 - [☁️ Cloudflare Edge Configuration](#️-cloudflare-edge-configuration)
 - [✦ Custom & Enterprise Services](#-custom--enterprise-services)
@@ -198,11 +197,11 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 | 🔗 | **Accept Online** | Serverless proposal links — the quote travels in the URL #fragment; client picks + accepts; version fingerprint |
 | 🔔 | **Follow-ups** | Valid-until dates, day-3 / day-7 / pre-expiry schedule, drafted emails, .ics calendar export |
 | 📄 | **PDF Export** | Color-neutral branded proposals & POs — per-option sections, valid-until, clickable accept link |
-| 📤 | **CRM Export** | Contacts, deals and quotes as CSV in HubSpot, Salesforce and universal layouts — generated on-device, no API keys |
+| 📤 | **Export** | Business Summary PDF (plain-language report) + contacts, deals and quotes as CSV in HubSpot, Salesforce and universal layouts — generated on-device, no API keys |
+| 🔢 | **Model numbers** | Optional model # on product lines — on the PDF, client proposal, purchase orders and exports |
 | 💾 | **Backup & Restore** | Full JSON backup with auto-schedule, File System Access API, Firefox-safe |
-| 🚀 | **Go Live Wizard** | 4-step guide: GitHub → Cloudflare → Domain → Email |
 | 🏢 | **Company Settings** | Logo upload, company info, branding for all PDF exports |
-| ❓ | **Help Center** | 13-section searchable guide with expandable FAQs |
+| ❓ | **Help Center** | 12-section searchable guide with expandable FAQs |
 | 🌙 | **Dark / Light Mode** | One-click theme toggle (dark by default), persisted locally, balanced for both modes |
 | 🔍 | **SEO Ready** | Open Graph, Twitter Cards, JSON-LD structured data out of the box |
 
@@ -334,14 +333,6 @@ Both the **Quote/Proposal PDF** and the **Purchase Order PDF** share a refined d
 - 📊 **Backup history** — track when, where, and how large each backup was
 - ⚠️ **Restore confirmation** — safety prompt before overwriting data
 - 🦊 **Firefox-safe** — download uses delayed `revokeObjectURL` for cross-browser compatibility
-
-### 🚀 Go Live Wizard
-> 🌐 Deploy your own SalesCloserPro instance in 4 easy steps.
-
-1. 🐙 **GitHub** — Fork the repo and push your customizations
-2. ☁️ **Cloudflare Pages** — Free hosting with automatic deployments
-3. 🌍 **Custom Domain** — Connect your own domain name
-4. 📧 **Business Email** — Set up professional email (Zoho / Google)
 
 ---
 
@@ -562,7 +553,7 @@ These elements are in the footer or below the visible viewport. Google discounts
     │   ├── 📂 dashboard/Dashboard.jsx      → 📊 Follow-ups due, KPI cards, recent quotes, pipeline overview
     │   ├── 📂 export/CrmExport.jsx         → 📤 Export page — HubSpot / Salesforce / universal CSV files
     │   ├── 📂 followups/FollowUps.jsx      → 🔔 Quote follow-up panel + dashboard "due" card, .ics export
-    │   ├── 📂 help/HelpGuide.jsx           → ❓ 13-section searchable help center
+    │   ├── 📂 help/HelpGuide.jsx           → ❓ 12-section searchable help center
     │   ├── 📂 landing/                     → 🌐 LandingPage, AboutPage, ServicesPage, LegalPage
     │   ├── 📂 layout/Layout.jsx            → 🏗️ Sidebar, mobile header, theme toggle
     │   ├── 📂 pipeline/Pipeline.jsx        → 📈 Kanban board — 6 stages, deal cards, Move/Back
@@ -577,7 +568,6 @@ These elements are in the footer or below the visible viewport. Google discounts
     │   ├── 📂 quotes/QuoteList.jsx         → 📋 All quotes — search, status, delete
     │   ├── 📂 quotes/FileUploader.jsx      → 📎 Drag-and-drop attachments (max 5 × 2 MB)
     │   ├── 📂 settings/CompanySettings.jsx → 🏢 Company info, logo, home state, proposal validity days
-    │   └── 📂 wizard/GoLiveWizard.jsx      → 🚀 4-step self-hosting checklist
     ├── 📂 data/taxDatabase.js   → 🧮 All 50 states + DC: rates, freight rules, labor rules
     └── 📂 utils/
         ├── 📄 quoteMath.js      → 🧮 The ONE place quote money is computed — lines, tax, options, chosen option, terms
@@ -587,6 +577,7 @@ These elements are in the footer or below the visible viewport. Google discounts
         ├── 📄 followUps.js      → 🔔 Follow-up schedule + RFC 5545 calendar export
         ├── 📄 contacts.js       → 👥 Contact matching, search, and per-contact activity roll-up
         ├── 📄 crmExport.js      → 📤 Export engine — neutral records + per-CRM column maps + RFC 4180 CSV writer
+        ├── 📄 reportPdf.js      → 📊 Business Summary PDF (headline numbers, deals by stage, quotes, contacts)
         ├── 📄 dates.js          → 📅 Calendar-date helpers (local yyyy-MM-dd)
         └── 📄 download.js       → 💾 Save a generated file (backups, .ics)
 ```
@@ -634,7 +625,6 @@ SalesCloserPro stores **all data locally** in your browser's **IndexedDB** via [
 | 📝 Quotes | `salescloserpro-data` | Quotes, line items, totals, attachments (base64) |
 | 📊 Pipeline deals | `salescloserpro-data` | Kanban stage, value, notes, linked quoteId |
 | 📦 Purchase orders | `salescloserpro-data` | POs, costs, vendor info, ship-to address |
-| 🚀 Go Live checklist | `salescloserpro-data` | Wizard completion status |
 | 💾 Backup settings | `salescloserpro-data` | Auto-backup config, schedule & history |
 | 🌙 Theme preference | `salescloserpro-data` | `"dark"` or `"light"` |
 
@@ -708,7 +698,7 @@ The integrated data sync ensures consistency across modules:
 <details>
 <summary>🌐 Can I use my own domain?</summary>
 
-✅ **Yes!** Deploy to Cloudflare Pages (free) and add your custom domain in the Cloudflare dashboard. The Go Live Wizard walks you through every step.
+✅ **Yes!** Deploy to Cloudflare Pages (free) and add your custom domain in the Cloudflare dashboard. The steps are in “Deploy Your Own” above.
 </details>
 
 <details>

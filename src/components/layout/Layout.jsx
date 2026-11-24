@@ -1,7 +1,7 @@
 import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom'
 import {
   LayoutDashboard, FileText, Users, GitBranch,
-  Rocket, Plus, Menu, X, DollarSign, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart, Share2
+  Plus, Menu, X, DollarSign, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart, Share2
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import useStore, { useHydrated } from '../../store'
@@ -37,7 +37,6 @@ const nav = [
   { to: '/contacts',  icon: Users,            label: 'Contacts' },
   { to: '/pipeline',  icon: GitBranch,        label: 'Pipeline' },
   { to: '/purchase-orders', icon: ShoppingCart, label: 'Purchase Orders' },
-  { to: '/go-live',   icon: Rocket,           label: 'Go Live' },
   { to: '/settings',  icon: Building2,        label: 'Company Info' },
   { to: '/backup',    icon: HardDrive,        label: 'Backup' },
   { to: '/export',    icon: Share2,           label: 'Export' },

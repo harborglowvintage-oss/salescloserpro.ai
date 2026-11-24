@@ -15,7 +15,6 @@ import QuoteBuilder from './components/quotes/QuoteBuilder'
 import QuoteList from './components/quotes/QuoteList'
 import Contacts from './components/contacts/Contacts'
 import Pipeline from './components/pipeline/Pipeline'
-import GoLiveWizard from './components/wizard/GoLiveWizard'
 import HelpGuide from './components/help/HelpGuide'
 import CompanySettings from './components/settings/CompanySettings'
 import BackupRestore from './components/backup/BackupRestore'
@@ -58,7 +57,7 @@ export default function App() {
           <Route path="clients" element={<Navigate to="/contacts" replace />} />
           <Route path="pipeline" element={<Pipeline />} />
           <Route path="purchase-orders" element={<PurchaseOrders />} />
-          <Route path="go-live" element={<GoLiveWizard />} />
+          <Route path="go-live" element={<Navigate to="/dashboard" replace />} />
           <Route path="settings" element={<CompanySettings />} />
           <Route path="backup" element={<BackupRestore />} />
           <Route path="export" element={<CrmExport />} />

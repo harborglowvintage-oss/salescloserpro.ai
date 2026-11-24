@@ -4,18 +4,18 @@
  * Licensed under Apache-2.0
  *
  * Shared drawing helpers (palette, header, line table, totals, footer) are used by both
- * documents. All quote money comes from utils/quoteMath.js.
+ * documents here and by the summary report (reportPdf.js). All quote money comes from utils/quoteMath.js.
  */
 
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
 import { format } from 'date-fns'
 import { stateTaxData } from '../data/taxDatabase'
-import { formatMoney, priceQuote, optionLabel, proposalTerms } from './quoteMath'
+import { formatMoney, priceQuote, optionLabel, proposalTerms, modelOf } from './quoteMath'
 import { longDate } from './dates'
 
 // ── Neutral palette (one accent: LLMadvisor copper, for "recommended") ──
-const PAL = {
+export const PAL = {
   charcoal: [38, 38, 38],
   darkGray: [55, 65, 81],
   midGray:  [107, 114, 128],
@@ -27,7 +27,7 @@ const PAL = {
   copper:   [194, 112, 58],
   green:    [22, 163, 74],
 }
-const M = 16 // page margin (mm)
+export const M = 16 // page margin (mm)
 
 const QUOTE_BADGES = {
   won:  { fill: [220, 252, 231], text: [22, 163, 74] },
@@ -43,8 +43,8 @@ const PO_BADGES = {
 
 const capitalize = (t) => (t || '').charAt(0).toUpperCase() + (t || '').slice(1)
 
-/** Company block (left) + document number block with status badge (right). */
-function drawHeader(doc, company, { title, number, date, status, badges }) {
+/** Company block (left) + document number block (right): title, number, date or subtitle, optional status badge. */
+export function drawHeader(doc, company, { title, number, date, subtitle, status, badges }) {
   const W = doc.internal.pageSize.getWidth()
   const { charcoal, midGray, bgLight } = PAL
 
@@ -80,17 +80,19 @@ function drawHeader(doc, company, { title, number, date, status, badges }) {
   doc.setTextColor(...midGray)
   doc.setFontSize(8)
   doc.setFont('helvetica', 'normal')
-  doc.text(longDate(date), rX, 33, { align: 'right' })
+  doc.text(subtitle || longDate(date), rX, 33, { align: 'right' })
 
-  const label = (status || 'draft').toUpperCase()
-  const c = badges[status] || { fill: [229, 231, 235], text: midGray }
-  doc.setFontSize(7)
-  doc.setFont('helvetica', 'bold')
-  const sw = doc.getTextWidth(label) + 10
-  doc.setFillColor(...c.fill)
-  doc.setTextColor(...c.text)
-  doc.roundedRect(rX - sw, 36.5, sw, 7, 2, 2, 'F')
-  doc.text(label, rX - sw / 2, 41.5, { align: 'center' })
+  if (badges) {
+    const label = (status || 'draft').toUpperCase()
+    const c = badges[status] || { fill: [229, 231, 235], text: midGray }
+    doc.setFontSize(7)
+    doc.setFont('helvetica', 'bold')
+    const sw = doc.getTextWidth(label) + 10
+    doc.setFillColor(...c.fill)
+    doc.setTextColor(...c.text)
+    doc.roundedRect(rX - sw, 36.5, sw, 7, 2, 2, 'F')
+    doc.text(label, rX - sw / 2, 41.5, { align: 'center' })
+  }
 
   doc.setDrawColor(...PAL.ruleGray)
   doc.setLineWidth(0.3)
@@ -98,22 +100,37 @@ function drawHeader(doc, company, { title, number, date, status, badges }) {
 }
 
 /** Small uppercase section label. */
-function label(doc, text, x, y, color = PAL.darkGray, align = 'left') {
+export function label(doc, text, x, y, color = PAL.darkGray, align = 'left') {
   doc.setTextColor(...color)
   doc.setFontSize(7)
   doc.setFont('helvetica', 'bold')
   doc.text(text, x, y, { align })
 }
 
+/** autoTable hook factory: each heading takes its column's alignment (numbers right-aligned). */
+export const alignHead = (columnStyles) => ({ section, cell, column }) => {
+  if (section === 'head') cell.styles.halign = columnStyles[column.index]?.halign || 'left'
+}
+
 /** Proposal line-item table → returns the y below it. */
 function drawLinesTable(doc, lines, startY) {
   const { charcoal, darkGray, midGray, ruleGray, bgAlt, white } = PAL
+  // fixed columns total 122mm; Description takes the rest of the 178mm text width
+  const columnStyles = {
+    0: { cellWidth: 20, fontStyle: 'bold', fontSize: 8 },
+    1: { cellWidth: 'auto' },
+    2: { cellWidth: 13, halign: 'center', fontStyle: 'bold' },
+    3: { cellWidth: 14, halign: 'center', fontSize: 8, textColor: midGray },
+    4: { cellWidth: 27, halign: 'right' },
+    5: { cellWidth: 18, halign: 'right', fontSize: 8, textColor: midGray },
+    6: { cellWidth: 30, halign: 'right', fontStyle: 'bold' },
+  }
   autoTable(doc, {
     startY,
     head: [['Type', 'Description', 'Qty', 'Unit', 'Unit Price', 'Tax', 'Total']],
     body: lines.map((l) => [
       capitalize(l.type || 'product'),
-      l.description || '—',
+      (l.description || '—') + (modelOf(l) ? `\nModel: ${modelOf(l)}` : ''),
       l.qty,
       (l.unit || 'ea').toUpperCase(),
       formatMoney(l.price),
@@ -124,19 +141,11 @@ function drawLinesTable(doc, lines, startY) {
     headStyles: { fillColor: charcoal, textColor: white, fontStyle: 'bold', fontSize: 7.5, cellPadding: { top: 4.5, bottom: 4.5, left: 3, right: 3 } },
     bodyStyles: { fontSize: 9, textColor: darkGray, cellPadding: { top: 5.5, bottom: 5.5, left: 3, right: 3 }, lineColor: ruleGray, lineWidth: 0.2 },
     alternateRowStyles: { fillColor: bgAlt },
-    // fixed columns total 122mm; Description takes the rest of the 178mm text width
-    columnStyles: {
-      0: { cellWidth: 20, fontStyle: 'bold', fontSize: 8 },
-      1: { cellWidth: 'auto' },
-      2: { cellWidth: 13, halign: 'center', fontStyle: 'bold' },
-      3: { cellWidth: 14, halign: 'center', fontSize: 8, textColor: midGray },
-      4: { cellWidth: 27, halign: 'right' },
-      5: { cellWidth: 18, halign: 'right', fontSize: 8, textColor: midGray },
-      6: { cellWidth: 30, halign: 'right', fontStyle: 'bold' },
-    },
+    columnStyles,
     margin: { left: M, right: M },
     tableLineColor: ruleGray,
     tableLineWidth: 0.2,
+    didParseCell: alignHead(columnStyles),
   })
   return doc.lastAutoTable.finalY
 }
@@ -194,7 +203,7 @@ function drawTermsBox(doc, y, title, terms) {
 }
 
 /** Footer on every page. */
-function drawFooters(doc) {
+export function drawFooters(doc) {
   const W = doc.internal.pageSize.getWidth()
   const H = doc.internal.pageSize.getHeight()
   const pages = doc.internal.getNumberOfPages()
@@ -329,7 +338,7 @@ export function generatePDF({ quote, company, proposalUrl, download = true }) {
     doc.setTextColor(...copper)
     doc.setFontSize(9)
     doc.setFont('helvetica', 'bold')
-    doc.textWithLink('Open this proposal in your browser to choose and accept →', M, y + 5.5, { url: proposalUrl })
+    doc.textWithLink('Open this proposal in your browser to review and accept', M, y + 5.5, { url: proposalUrl })
     y += 8
   }
 

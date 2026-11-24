@@ -69,6 +69,8 @@
   X-Robots-Tag: noindex
 /backup
   X-Robots-Tag: noindex
+/export
+  X-Robots-Tag: noindex
 /help
   X-Robots-Tag: noindex
 /accept

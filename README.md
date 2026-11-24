@@ -66,6 +66,7 @@
 - 🔗 **Accept online, no server** — **Send** creates a link that carries the proposal in its `#fragment` (never sent to any server). The client picks an option, types their name and accepts; the confirmation returns as an email from the client's own mail app; the seller opens it to verify a SHA-256 version fingerprint and mark the quote Won.
 - 🔔 **Follow-ups** — every quote gets a valid-until date (default set in Company Info); sent quotes get a day-3 / day-7 / two-days-before-expiry schedule, drafted emails, a "due" card on the Dashboard, and `.ics` calendar export.
 - 👥 **Contacts** (was Clients) — every quote and deal now links to a contact: type-ahead picker in the Quote Builder and deal form, contacts auto-created or matched on save, deal cards show their contact, and each contact card lists their quotes, deals and open/won totals. `/clients` redirects to `/contacts`.
+- 📤 **Export** — new sidebar page: download contacts, deals and quotes as CSV laid out for HubSpot, Salesforce, or a universal format, with import steps for each. Formats are declarative column maps in `utils/crmExport.js`, so adding another CRM is one entry.
 - 🛠️ **Fixes** — quote and PO PDF tables overflowed the right margin; long PO terms ran off the page; refreshing `/quotes/:id` opened a blank quote (deep links rendered before IndexedDB loaded); "Client Details" heading invisible in dark mode.
 - 🧹 **One implementation of each thing** — pricing (`utils/quoteMath.js`), PDF drawing helpers, money formatting, status badges, file download, brand logo/credit/copyright are each defined once.
 
@@ -197,10 +198,11 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 | 🔗 | **Accept Online** | Serverless proposal links — the quote travels in the URL #fragment; client picks + accepts; version fingerprint |
 | 🔔 | **Follow-ups** | Valid-until dates, day-3 / day-7 / pre-expiry schedule, drafted emails, .ics calendar export |
 | 📄 | **PDF Export** | Color-neutral branded proposals & POs — per-option sections, valid-until, clickable accept link |
+| 📤 | **CRM Export** | Contacts, deals and quotes as CSV in HubSpot, Salesforce and universal layouts — generated on-device, no API keys |
 | 💾 | **Backup & Restore** | Full JSON backup with auto-schedule, File System Access API, Firefox-safe |
 | 🚀 | **Go Live Wizard** | 4-step guide: GitHub → Cloudflare → Domain → Email |
 | 🏢 | **Company Settings** | Logo upload, company info, branding for all PDF exports |
-| ❓ | **Help Center** | 12-section searchable guide with expandable FAQs |
+| ❓ | **Help Center** | 13-section searchable guide with expandable FAQs |
 | 🌙 | **Dark / Light Mode** | One-click theme toggle (dark by default), persisted locally, balanced for both modes |
 | 🔍 | **SEO Ready** | Open Graph, Twitter Cards, JSON-LD structured data out of the box |
 
@@ -558,8 +560,9 @@ These elements are in the footer or below the visible viewport. Google discounts
     │   ├── 📂 contacts/Contacts.jsx        → 👥 Contacts — details + each contact's linked quotes, deals, open/won totals
     │   ├── 📂 contacts/ContactCombobox.jsx → 🔎 Name field + contact picker used by the quote builder and deal form
     │   ├── 📂 dashboard/Dashboard.jsx      → 📊 Follow-ups due, KPI cards, recent quotes, pipeline overview
+    │   ├── 📂 export/CrmExport.jsx         → 📤 Export page — HubSpot / Salesforce / universal CSV files
     │   ├── 📂 followups/FollowUps.jsx      → 🔔 Quote follow-up panel + dashboard "due" card, .ics export
-    │   ├── 📂 help/HelpGuide.jsx           → ❓ 12-section searchable help center
+    │   ├── 📂 help/HelpGuide.jsx           → ❓ 13-section searchable help center
     │   ├── 📂 landing/                     → 🌐 LandingPage, AboutPage, ServicesPage, LegalPage
     │   ├── 📂 layout/Layout.jsx            → 🏗️ Sidebar, mobile header, theme toggle
     │   ├── 📂 pipeline/Pipeline.jsx        → 📈 Kanban board — 6 stages, deal cards, Move/Back
@@ -583,6 +586,7 @@ These elements are in the footer or below the visible viewport. Google discounts
         ├── 📄 emails.js         → ✉️ Every drafted email (send, follow-ups, acceptance) + mailto length guard
         ├── 📄 followUps.js      → 🔔 Follow-up schedule + RFC 5545 calendar export
         ├── 📄 contacts.js       → 👥 Contact matching, search, and per-contact activity roll-up
+        ├── 📄 crmExport.js      → 📤 Export engine — neutral records + per-CRM column maps + RFC 4180 CSV writer
         ├── 📄 dates.js          → 📅 Calendar-date helpers (local yyyy-MM-dd)
         └── 📄 download.js       → 💾 Save a generated file (backups, .ics)
 ```

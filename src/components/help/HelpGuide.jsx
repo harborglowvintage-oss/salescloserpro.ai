@@ -275,6 +275,31 @@ const sections = [
     ]
   },
   {
+    id: 'export',
+    icon: Upload,
+    title: 'Export to HubSpot, Salesforce & Others',
+    color: 'text-brand-500',
+    bg: 'bg-brand-50 dark:bg-brand-900/20',
+    content: [
+      {
+        q: 'How do I move my data into HubSpot or Salesforce?',
+        a: 'Open Export in the sidebar, choose HubSpot or Salesforce, and download the CSV files. The column names match each CRM\'s own fields, and the page lists the import steps. Import contacts first, then deals (HubSpot) or opportunities (Salesforce) so they attach to the right people.'
+      },
+      {
+        q: 'What is the Universal CSV?',
+        a: 'Four plain spreadsheets — contacts, deals, quotes, and quote line items — that open in Excel, Google Sheets or Numbers and import into almost any CRM, accounting or email tool. Quote number, contact email and contact name appear across the files so you can join them.'
+      },
+      {
+        q: 'Does SalesCloserPro connect to my CRM?',
+        a: 'No. The files are created on your device and you upload them yourself with the CRM\'s import tool. There are no API keys or logins, and nothing is sent anywhere. It is a one-way export: changes you later make in the other CRM do not come back.'
+      },
+      {
+        q: 'Why do my deal stages have different names in the export?',
+        a: 'Each CRM has its own stage names. The export translates your pipeline stages to the CRM\'s default ones (for example Proposal Sent becomes "Contract Sent" in HubSpot and "Proposal/Price Quote" in Salesforce). If you renamed the stages in your CRM, remap that column on its import screen.'
+      }
+    ]
+  },
+  {
     id: 'backup',
     icon: Shield,
     title: 'Backup & Restore',

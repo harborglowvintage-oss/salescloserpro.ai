@@ -24,6 +24,7 @@ import LegalPage from './components/landing/LegalPage'
 import ServicesPage from './components/landing/ServicesPage'
 import ProposalView from './components/proposal/ProposalView'
 import AcceptanceReceiver from './components/proposal/AcceptanceReceiver'
+import CrmExport from './components/export/CrmExport'
 import useStore from './store'
 
 export default function App() {
@@ -60,6 +61,7 @@ export default function App() {
           <Route path="go-live" element={<GoLiveWizard />} />
           <Route path="settings" element={<CompanySettings />} />
           <Route path="backup" element={<BackupRestore />} />
+          <Route path="export" element={<CrmExport />} />
           <Route path="help" element={<HelpGuide />} />
           <Route path="accept" element={<AcceptanceReceiver />} />
         </Route>

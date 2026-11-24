@@ -2,6 +2,8 @@ import { useNavigate } from 'react-router-dom'
 import { FileText, Users, DollarSign, TrendingUp, Plus, ArrowRight } from 'lucide-react'
 import useStore from '../../store'
 import { format } from 'date-fns'
+import { StatusBadge } from '../quotes/QuoteBadges'
+import { formatMoney } from '../../utils/quoteMath'
 
 function KpiCard({ icon: Icon, label, value, color, sub }) {
   return (
@@ -36,12 +38,6 @@ export default function Dashboard() {
     .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
     .slice(0, 5)
 
-  const statusColor = {
-    draft: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300',
-    sent: 'bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300',
-    won: 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300',
-    lost: 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400',
-  }
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto">
@@ -98,12 +94,10 @@ export default function Dashboard() {
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${statusColor[q.status] || statusColor.draft}`}>
-                    {q.status?.toUpperCase()}
-                  </span>
+                  <StatusBadge status={q.status} />
                   <div className="text-right">
                     <div className="font-bold text-gray-900 dark:text-gray-100 text-sm">
-                      ${(q.total || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                      {formatMoney(q.total)}
                     </div>
                   </div>
                   <ArrowRight className="w-4 h-4 text-gray-300 dark:text-gray-600" />

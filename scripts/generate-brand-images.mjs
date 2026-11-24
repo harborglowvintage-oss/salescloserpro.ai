@@ -66,7 +66,7 @@ const svg = `
     <text x="${PANEL + 74}" y="208" font-size="21" font-weight="700" letter-spacing="2.5" fill="${T.cyan}">FREE · OPEN SOURCE · NO SIGN-UP</text>
     <text x="${PANEL + 72}" y="290" font-size="58" font-weight="700" fill="${T.paper}">salescloserpro.ai</text>
     <text x="${PANEL + 74}" y="352" font-size="31" font-weight="700" letter-spacing="1" fill="${T.copper}">QUOTES · PIPELINE · POs</text>
-    <text x="${PANEL + 74}" y="402" font-size="24" fill="${T.muted}">The free CRM. No gimmicks. Your data stays yours.</text>
+    <text x="${PANEL + 74}" y="402" font-size="24" fill="${T.muted}">The free CRM. Designed for simplicity.</text>
     <text x="${PANEL + 132}" y="532" font-family="DejaVu Sans Mono, monospace" font-size="21" font-weight="700" fill="${T.cream}">an llmadvisor.ai studio project</text>
   </g>
 </svg>`

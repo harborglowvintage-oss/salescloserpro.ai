@@ -8,6 +8,10 @@
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { indexedDBStorage } from './db'
+import { deriveQuoteSummary } from './utils/quoteMath'
+
+// Quotes always carry derived `total` (and `lines` for tiered quotes) — see utils/quoteMath.js
+const withSummary = (quote) => ({ ...quote, ...deriveQuoteSummary(quote) })
 
 const useStore = create(
   persist(
@@ -55,19 +59,19 @@ const useStore = create(
             quoteCounter: n,
             quotes: [
               ...s.quotes,
-              {
+              withSummary({
                 ...quote,
                 id: crypto.randomUUID(),
                 quoteNumber: `Q-${String(n).padStart(4, '0')}`,
                 createdAt: new Date().toISOString(),
-                status: 'draft',
-              },
+                status: quote.status || 'draft',
+              }),
             ],
           }
         }),
       updateQuote: (id, data) =>
         set((s) => ({
-          quotes: s.quotes.map((q) => (q.id === id ? { ...q, ...data } : q)),
+          quotes: s.quotes.map((q) => (q.id === id ? withSummary({ ...q, ...data }) : q)),
         })),
       deleteQuote: (id) =>
         set((s) => ({ quotes: s.quotes.filter((q) => q.id !== id) })),

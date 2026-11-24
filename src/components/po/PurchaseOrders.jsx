@@ -10,9 +10,9 @@ import useStore from '../../store'
 import clsx from 'clsx'
 import { format } from 'date-fns'
 import { generatePO_PDF } from '../../utils/pdfExport'
+import { formatMoney } from '../../utils/quoteMath'
 
 /* ── helpers ─────────────────────────────────────────────── */
-const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 const pct = (n) => `${n.toFixed(1)}%`
 
 const LINE_TYPE_META = {
@@ -100,7 +100,7 @@ function DonutChart({ data, size = 180 }) {
           )
         })}
         <text x={cx} y={cy - 6} textAnchor="middle" className="fill-gray-900 dark:fill-gray-100 text-xl font-bold" style={{ fontSize: '18px', fontWeight: 700 }}>
-          ${fmt(total)}
+          {formatMoney(total)}
         </text>
         <text x={cx} y={cy + 14} textAnchor="middle" className="fill-gray-400 dark:fill-gray-500" style={{ fontSize: '11px' }}>
           Total Cost
@@ -111,7 +111,7 @@ function DonutChart({ data, size = 180 }) {
           <div key={i} className="flex items-center gap-1.5 text-xs">
             <span className="w-3 h-3 rounded-full flex-shrink-0" style={{ backgroundColor: DONUT_COLORS[i % DONUT_COLORS.length] }} />
             <span className="text-gray-700 dark:text-gray-300 font-medium">{d.label}</span>
-            <span className="text-gray-400 font-semibold">${fmt(d.value)}</span>
+            <span className="text-gray-400 font-semibold">{formatMoney(d.value)}</span>
           </div>
         ))}
       </div>
@@ -354,9 +354,9 @@ export default function PurchaseOrders() {
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
         {[
           { label: 'Total POs',    value: kpis.count,                      color: 'bg-brand-600' },
-          { label: 'Total Sold',   value: `$${fmt(kpis.totalSell)}`,      color: 'bg-brand-500'   },
-          { label: 'Total Cost',   value: `$${fmt(kpis.totalCost)}`,      color: 'bg-orange-500' },
-          { label: 'Total Margin', value: `$${fmt(kpis.totalMargin)}`,    color: 'bg-green-500'  },
+          { label: 'Total Sold',   value: `${formatMoney(kpis.totalSell)}`,      color: 'bg-brand-500'   },
+          { label: 'Total Cost',   value: `${formatMoney(kpis.totalCost)}`,      color: 'bg-orange-500' },
+          { label: 'Total Margin', value: `${formatMoney(kpis.totalMargin)}`,    color: 'bg-green-500'  },
           { label: 'Avg Margin',   value: pct(kpis.avgMargin),            color: 'bg-emerald-500'},
         ].map((k) => (
           <div key={k.label} className="card flex items-center gap-3 py-3 px-4">
@@ -409,7 +409,7 @@ export default function PurchaseOrders() {
                         <option value="">— No quote —</option>
                         {quotesWithLines.map((q) => (
                           <option key={q.id} value={q.id}>
-                            {q.quoteNumber} — {q.clientName || 'No client'} (${fmt(q.total || 0)})
+                            {q.quoteNumber} — {q.clientName || 'No client'} ({formatMoney(q.total || 0)})
                           </option>
                         ))}
                       </select>
@@ -428,7 +428,7 @@ export default function PurchaseOrders() {
                         const meta = LINE_TYPE_META[l.type] || LINE_TYPE_META.product
                         return (
                           <option key={l.id} value={l.id}>
-                            [{meta.label}] {l.description || 'Untitled'} — {l.qty} × ${fmt(l.price)}
+                            [{meta.label}] {l.description || 'Untitled'} — {l.qty} × {formatMoney(l.price)}
                           </option>
                         )
                       })}
@@ -517,7 +517,7 @@ export default function PurchaseOrders() {
                   <div className="col-span-2 flex items-end">
                     <div className="bg-gray-50 dark:bg-gray-700/50 rounded-xl px-5 py-3 w-full">
                       <div className="text-[10px] font-bold text-gray-400 dark:text-gray-500 uppercase tracking-widest">Line Total</div>
-                      <div className="text-xl font-extrabold text-gray-900 dark:text-gray-100">${fmt(form.qty * form.unitCost)}</div>
+                      <div className="text-xl font-extrabold text-gray-900 dark:text-gray-100">{formatMoney(form.qty * form.unitCost)}</div>
                     </div>
                   </div>
                 </div>
@@ -679,10 +679,10 @@ export default function PurchaseOrders() {
                             )}
                           </td>
                           <td className="px-4 py-3 whitespace-nowrap text-gray-600 dark:text-gray-400">
-                            {po.qty} × ${fmt(po.unitCost)}
+                            {po.qty} × {formatMoney(po.unitCost)}
                           </td>
-                          <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">${fmt(po.cost)}</td>
-                          <td className="px-4 py-3 text-gray-600 dark:text-gray-400 whitespace-nowrap">${fmt(po.sellPrice)}</td>
+                          <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">{formatMoney(po.cost)}</td>
+                          <td className="px-4 py-3 text-gray-600 dark:text-gray-400 whitespace-nowrap">{formatMoney(po.sellPrice)}</td>
                           <td className="px-4 py-3 whitespace-nowrap">
                             <span className={clsx('font-bold', po.margin >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500')}>
                               {po.margin >= 0 ? '+' : ''}{pct(po.marginPct)}
@@ -761,10 +761,10 @@ export default function PurchaseOrders() {
                             </span>
                           </td>
                           <td className="px-4 py-3 text-gray-700 dark:text-gray-300 truncate max-w-[200px]">{po.lineDescription || '—'}</td>
-                          <td className="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">${fmt(po.sellPrice)}</td>
-                          <td className="px-4 py-3 font-semibold text-orange-600 dark:text-orange-400">${fmt(po.cost)}</td>
+                          <td className="px-4 py-3 font-semibold text-gray-800 dark:text-gray-200">{formatMoney(po.sellPrice)}</td>
+                          <td className="px-4 py-3 font-semibold text-orange-600 dark:text-orange-400">{formatMoney(po.cost)}</td>
                           <td className={clsx('px-4 py-3 font-bold', po.margin >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500')}>
-                            {po.margin >= 0 ? '+' : ''}${fmt(po.margin)}
+                            {po.margin >= 0 ? '+' : ''}{formatMoney(po.margin)}
                           </td>
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-2">
@@ -787,10 +787,10 @@ export default function PurchaseOrders() {
                   <tfoot>
                     <tr className="bg-gray-50 dark:bg-gray-800 border-t-2 border-gray-200 dark:border-gray-600 font-bold">
                       <td colSpan={4} className="px-4 py-3 text-gray-700 dark:text-gray-300 uppercase text-xs tracking-widest">Totals</td>
-                      <td className="px-4 py-3 text-gray-900 dark:text-gray-100">${fmt(kpis.totalSell)}</td>
-                      <td className="px-4 py-3 text-orange-600 dark:text-orange-400">${fmt(kpis.totalCost)}</td>
+                      <td className="px-4 py-3 text-gray-900 dark:text-gray-100">{formatMoney(kpis.totalSell)}</td>
+                      <td className="px-4 py-3 text-orange-600 dark:text-orange-400">{formatMoney(kpis.totalCost)}</td>
                       <td className={clsx('px-4 py-3', kpis.totalMargin >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500')}>
-                        {kpis.totalMargin >= 0 ? '+' : ''}${fmt(kpis.totalMargin)}
+                        {kpis.totalMargin >= 0 ? '+' : ''}{formatMoney(kpis.totalMargin)}
                       </td>
                       <td className="px-4 py-3 text-emerald-600 dark:text-emerald-400">{pct(kpis.avgMargin)} avg</td>
                       <td />
@@ -853,7 +853,7 @@ export default function PurchaseOrders() {
                           <div className="flex justify-between items-center">
                             <span className="font-semibold text-sm text-gray-800 dark:text-gray-200">{d.label}</span>
                             <span className={clsx('text-xs font-bold', d.margin >= 0 ? 'text-green-600 dark:text-green-400' : 'text-red-500')}>
-                              Margin: ${fmt(d.margin)} ({pct(d.marginPct)})
+                              Margin: {formatMoney(d.margin)} ({pct(d.marginPct)})
                             </span>
                           </div>
                           <div className="space-y-1">
@@ -862,14 +862,14 @@ export default function PurchaseOrders() {
                               <div className="flex-1 h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                                 <div className="h-full bg-brand-500 rounded-full transition-all duration-500" style={{ width: `${sellWidth}%` }} />
                               </div>
-                              <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">${fmt(d.sell)}</span>
+                              <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">{formatMoney(d.sell)}</span>
                             </div>
                             <div className="flex items-center gap-2">
                               <span className="text-[10px] w-10 text-gray-400 font-semibold">Cost</span>
                               <div className="flex-1 h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                                 <div className="h-full bg-orange-500 rounded-full transition-all duration-500" style={{ width: `${costWidth}%` }} />
                               </div>
-                              <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">${fmt(d.cost)}</span>
+                              <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">{formatMoney(d.cost)}</span>
                             </div>
                           </div>
                         </div>

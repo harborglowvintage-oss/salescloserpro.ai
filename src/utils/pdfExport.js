@@ -1,234 +1,351 @@
+/**
+ * SalesCloserPro - PDF export (proposals + purchase orders)
+ * Copyright (c) 2026 LLMadvisor ai LLC
+ * Licensed under Apache-2.0
+ *
+ * Shared drawing helpers (palette, header, line table, totals, footer) are used by both
+ * documents. All quote money comes from utils/quoteMath.js.
+ */
+
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
-import { format } from 'date-fns'
+import { format, parseISO } from 'date-fns'
 import { stateTaxData } from '../data/taxDatabase'
+import { formatMoney, priceQuote, optionLabel } from './quoteMath'
 
-/**
- * Generates a polished, color-neutral PDF quote / proposal.
- */
-export function generatePDF({ quote, company, lines, subtotal, tax, grandTotal }) {
-  const doc = new jsPDF()
-  const W = doc.internal.pageSize.getWidth()   // 210
-  const H = doc.internal.pageSize.getHeight()  // 297
-  const M = 16  // margin
+// ── Neutral palette (one accent: LLMadvisor copper, for "recommended") ──
+const PAL = {
+  charcoal: [38, 38, 38],
+  darkGray: [55, 65, 81],
+  midGray:  [107, 114, 128],
+  softGray: [156, 163, 175],
+  ruleGray: [209, 213, 219],
+  bgLight:  [248, 249, 250],
+  bgAlt:    [252, 252, 253],
+  white:    [255, 255, 255],
+  copper:   [194, 112, 58],
+  green:    [22, 163, 74],
+}
+const M = 16 // page margin (mm)
 
-  // ── Neutral palette ────────────────────────────────────────
-  const charcoal = [38, 38, 38]
-  const darkGray = [55, 65, 81]
-  const midGray  = [107, 114, 128]
-  const softGray = [156, 163, 175]
-  const ruleGray = [209, 213, 219]
-  const bgLight  = [248, 249, 250]
-  const bgAlt    = [252, 252, 253]
-  const white    = [255, 255, 255]
+const QUOTE_BADGES = {
+  won:  { fill: [220, 252, 231], text: [22, 163, 74] },
+  lost: { fill: [254, 226, 226], text: [220, 38, 38] },
+  sent: { fill: [226, 232, 240], text: [51, 65, 85] },
+}
+const PO_BADGES = {
+  issued:   { fill: [226, 232, 240], text: [51, 65, 85] },
+  ordered:  { fill: [219, 234, 254], text: [37, 99, 235] },
+  received: { fill: [254, 243, 199], text: [146, 115, 26] },
+  paid:     { fill: [220, 252, 231], text: [22, 163, 74] },
+}
 
-  const fmt = (n) =>
-    '$' + (n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+/** 'yyyy-MM-dd' or ISO timestamp → "March 4, 2026" */
+export const longDate = (d) => format(typeof d === 'string' && d.length === 10 ? parseISO(d) : d ? new Date(d) : new Date(), 'MMMM d, yyyy')
 
-  // ── HEADER — thin top rule ─────────────────────────────────
+const capitalize = (t) => (t || '').charAt(0).toUpperCase() + (t || '').slice(1)
+
+/** Company block (left) + document number block with status badge (right). */
+function drawHeader(doc, company, { title, number, date, status, badges }) {
+  const W = doc.internal.pageSize.getWidth()
+  const { charcoal, midGray, bgLight } = PAL
+
   doc.setFillColor(...charcoal)
   doc.rect(0, 0, W, 3, 'F')
 
-  // Company logo
-  let textStartX = M
+  let x = M
   if (company.logo) {
-    try {
-      doc.addImage(company.logo, M, 9, 18, 18)
-      textStartX = M + 22
-    } catch (_) { /* skip */ }
+    try { doc.addImage(company.logo, M, 9, 19, 19); x = M + 23 } catch (_) { /* unembeddable logo */ }
   }
-
-  // Company name
   doc.setTextColor(...charcoal)
   doc.setFontSize(22)
   doc.setFont('helvetica', 'bold')
-  doc.text(company.name || 'SalesCloserPro', textStartX, 20)
+  doc.text(company.name || 'SalesCloserPro', x, 21)
 
-  // Company details
   doc.setFontSize(8.5)
   doc.setFont('helvetica', 'normal')
   doc.setTextColor(...midGray)
-  let infoY = 25
-  if (company.address) { doc.text(company.address, textStartX, infoY); infoY += 4 }
-  if (company.phone)   { doc.text(company.phone,   textStartX, infoY); infoY += 4 }
-  if (company.email)   { doc.text(company.email,   textStartX, infoY); infoY += 4 }
-  if (company.website) { doc.text(company.website,  textStartX, infoY) }
+  let infoY = 26
+  for (const v of [company.address, company.phone, company.email, company.website]) {
+    if (v) { doc.text(v, x, infoY); infoY += 4 }
+  }
 
-  // ── Quote number block (right) ─────────────────────────────
   const rX = W - M
   doc.setFillColor(...bgLight)
-  doc.roundedRect(W - 72, 8, 58, 30, 3, 3, 'F')
-
+  doc.roundedRect(W - 72, 8, 58, 31, 3, 3, 'F')
   doc.setTextColor(...charcoal)
   doc.setFontSize(9)
   doc.setFont('helvetica', 'bold')
-  doc.text('PROPOSAL', rX, 17, { align: 'right' })
-
+  doc.text(title, rX, 17, { align: 'right' })
   doc.setFontSize(15)
-  doc.text(quote.quoteNumber || 'Q-0000', rX, 26, { align: 'right' })
-
+  doc.text(number, rX, 26, { align: 'right' })
   doc.setTextColor(...midGray)
   doc.setFontSize(8)
   doc.setFont('helvetica', 'normal')
-  doc.text(format(quote.createdAt ? new Date(quote.createdAt) : new Date(), 'MMMM d, yyyy'), rX, 33, { align: 'right' })
+  doc.text(longDate(date), rX, 33, { align: 'right' })
 
-  // Status badge
-  const statusText = (quote.status || 'DRAFT').toUpperCase()
+  const label = (status || 'draft').toUpperCase()
+  const c = badges[status] || { fill: [229, 231, 235], text: midGray }
   doc.setFontSize(7)
   doc.setFont('helvetica', 'bold')
-  const sw = doc.getTextWidth(statusText) + 10
-  if (quote.status === 'won')       { doc.setFillColor(220, 252, 231); doc.setTextColor(22, 163, 74) }
-  else if (quote.status === 'lost') { doc.setFillColor(254, 226, 226); doc.setTextColor(220, 38, 38) }
-  else if (quote.status === 'sent') { doc.setFillColor(226, 232, 240); doc.setTextColor(51, 65, 85) }
-  else                              { doc.setFillColor(229, 231, 235); doc.setTextColor(...midGray) }
-  doc.roundedRect(rX - sw, 36, sw, 7, 2, 2, 'F')
-  doc.text(statusText, rX - sw / 2, 41, { align: 'center' })
+  const sw = doc.getTextWidth(label) + 10
+  doc.setFillColor(...c.fill)
+  doc.setTextColor(...c.text)
+  doc.roundedRect(rX - sw, 36.5, sw, 7, 2, 2, 'F')
+  doc.text(label, rX - sw / 2, 41.5, { align: 'center' })
 
-  // ── DIVIDER ────────────────────────────────────────────────
-  doc.setDrawColor(...ruleGray)
+  doc.setDrawColor(...PAL.ruleGray)
   doc.setLineWidth(0.3)
-  doc.line(M, 48, W - M, 48)
+  doc.line(M, 49, W - M, 49)
+}
 
-  // ── BILL TO ────────────────────────────────────────────────
-  doc.setTextColor(...darkGray)
+/** Small uppercase section label. */
+function label(doc, text, x, y, color = PAL.darkGray, align = 'left') {
+  doc.setTextColor(...color)
   doc.setFontSize(7)
   doc.setFont('helvetica', 'bold')
-  doc.text('BILL TO', M, 55)
+  doc.text(text, x, y, { align })
+}
 
-  doc.setTextColor(...charcoal)
-  doc.setFontSize(13)
-  doc.setFont('helvetica', 'bold')
-  doc.text(quote.clientName || '—', M, 61)
-
-  doc.setFontSize(9)
-  doc.setFont('helvetica', 'normal')
-  doc.setTextColor(...midGray)
-  let billY = 66
-  if (quote.clientEmail) { doc.text(quote.clientEmail, M, billY); billY += 4.5 }
-  if (quote.clientPhone) { doc.text(quote.clientPhone, M, billY); billY += 4.5 }
-  if (quote.state) {
-    doc.text(stateTaxData[quote.state]?.name || quote.state, M, billY)
-  }
-
-  // ── LINE ITEMS TABLE ───────────────────────────────────────
-  const tableBody = lines.map((l) => [
-    (l.type || 'product').charAt(0).toUpperCase() + (l.type || 'product').slice(1),
-    l.description || '—',
-    l.qty,
-    (l.unit || 'ea').toUpperCase(),
-    fmt(l.price || 0),
-    l.taxable ? `${(l.taxRate * 100).toFixed(2)}%` : 'Exempt',
-    fmt(l.total || 0),
-  ])
-
+/** Proposal line-item table → returns the y below it. */
+function drawLinesTable(doc, lines, startY) {
+  const { charcoal, darkGray, midGray, ruleGray, bgAlt, white } = PAL
   autoTable(doc, {
-    startY: 82,
+    startY,
     head: [['Type', 'Description', 'Qty', 'Unit', 'Unit Price', 'Tax', 'Total']],
-    body: tableBody,
+    body: lines.map((l) => [
+      capitalize(l.type || 'product'),
+      l.description || '—',
+      l.qty,
+      (l.unit || 'ea').toUpperCase(),
+      formatMoney(l.price),
+      l.taxable ? `${(l.taxRate * 100).toFixed(2)}%` : 'Exempt',
+      formatMoney(l.total),
+    ]),
     theme: 'plain',
-    headStyles: {
-      fillColor: [...charcoal],
-      textColor: [...white],
-      fontStyle: 'bold',
-      fontSize: 7.5,
-      cellPadding: { top: 4.5, bottom: 4.5, left: 5, right: 5 },
-    },
-    bodyStyles: {
-      fontSize: 9,
-      textColor: darkGray,
-      cellPadding: { top: 5.5, bottom: 5.5, left: 5, right: 5 },
-      lineColor: [...ruleGray],
-      lineWidth: 0.2,
-    },
-    alternateRowStyles: { fillColor: [...bgAlt] },
+    headStyles: { fillColor: charcoal, textColor: white, fontStyle: 'bold', fontSize: 7.5, cellPadding: { top: 4.5, bottom: 4.5, left: 3, right: 3 } },
+    bodyStyles: { fontSize: 9, textColor: darkGray, cellPadding: { top: 5.5, bottom: 5.5, left: 3, right: 3 }, lineColor: ruleGray, lineWidth: 0.2 },
+    alternateRowStyles: { fillColor: bgAlt },
+    // fixed columns total 122mm; Description takes the rest of the 178mm text width
     columnStyles: {
-      0: { cellWidth: 22, fontStyle: 'bold', fontSize: 8 },
-      1: { cellWidth: 60 },
-      2: { cellWidth: 14, halign: 'center', fontStyle: 'bold' },
+      0: { cellWidth: 20, fontStyle: 'bold', fontSize: 8 },
+      1: { cellWidth: 'auto' },
+      2: { cellWidth: 13, halign: 'center', fontStyle: 'bold' },
       3: { cellWidth: 14, halign: 'center', fontSize: 8, textColor: midGray },
-      4: { cellWidth: 26, halign: 'right' },
-      5: { cellWidth: 20, halign: 'right', fontSize: 8, textColor: midGray },
-      6: { cellWidth: 26, halign: 'right', fontStyle: 'bold' },
+      4: { cellWidth: 27, halign: 'right' },
+      5: { cellWidth: 18, halign: 'right', fontSize: 8, textColor: midGray },
+      6: { cellWidth: 30, halign: 'right', fontStyle: 'bold' },
     },
     margin: { left: M, right: M },
-    tableLineColor: [...ruleGray],
+    tableLineColor: ruleGray,
     tableLineWidth: 0.2,
   })
+  return doc.lastAutoTable.finalY
+}
 
-  let y = doc.lastAutoTable.finalY + 12
-
-  // ── TOTALS ─────────────────────────────────────────────────
+/** Right-aligned totals: detail rows, dashed rule, dark total band → returns the y below it. */
+function drawTotals(doc, y, rows, totalLabel, totalValue) {
+  const W = doc.internal.pageSize.getWidth()
+  const { midGray, darkGray, softGray, charcoal, white } = PAL
   const totalsX = 130
   const valX = W - M
-
-  // Subtotal
-  doc.setFontSize(9)
-  doc.setFont('helvetica', 'normal')
-  doc.setTextColor(...midGray)
-  doc.text('Subtotal', totalsX, y)
-  doc.setTextColor(...darkGray)
-  doc.setFont('helvetica', 'bold')
-  doc.text(fmt(subtotal), valX, y, { align: 'right' })
-
-  // Tax
-  y += 7
-  doc.setFont('helvetica', 'normal')
-  doc.setTextColor(...midGray)
-  doc.text(`Tax (${quote.state || ''})`, totalsX, y)
-  doc.setTextColor(...darkGray)
-  doc.setFont('helvetica', 'bold')
-  doc.text(fmt(tax), valX, y, { align: 'right' })
-
-  // Dashed divider
+  if (y + 10 + rows.length * 7 + 18 > 280) { doc.addPage(); y = 20 }
+  y += 10
+  rows.forEach(([name, value], i) => {
+    if (i) y += 7
+    doc.setFontSize(9)
+    doc.setFont('helvetica', 'normal')
+    doc.setTextColor(...midGray)
+    doc.text(name, totalsX, y)
+    doc.setTextColor(...darkGray)
+    doc.setFont('helvetica', 'bold')
+    doc.text(formatMoney(value), valX, y, { align: 'right' })
+  })
   y += 5
   doc.setDrawColor(...softGray)
   doc.setLineDashPattern([2, 2])
   doc.line(totalsX, y, valX, y)
   doc.setLineDashPattern([])
-
-  // Grand Total band
   y += 4
   doc.setFillColor(...charcoal)
-  doc.roundedRect(totalsX - 4, y, valX - totalsX + 8, 14, 3, 3, 'F')
+  doc.roundedRect(totalsX - 4, y, valX - totalsX + 4, 14, 3, 3, 'F')
   doc.setTextColor(...white)
-  doc.setFontSize(10)
+  doc.setFontSize(totalLabel.length > 16 ? 8.5 : 10)
   doc.setFont('helvetica', 'bold')
-  doc.text('GRAND TOTAL', totalsX + 2, y + 9)
+  doc.text(totalLabel, totalsX + 1, y + 9)
   doc.setFontSize(14)
-  doc.text(fmt(grandTotal), valX + 2, y + 9.5, { align: 'right' })
+  doc.text(formatMoney(totalValue), valX - 3, y + 9.5, { align: 'right' })
+  return y + 14
+}
 
-  // ── TERMS & PAYMENT ────────────────────────────────────────
-  y += 22
-  if (y > 245) { doc.addPage(); y = 20 }
-
-  doc.setFillColor(...bgLight)
-  doc.roundedRect(M, y, W - M * 2, 24, 2, 2, 'F')
-  doc.setTextColor(...darkGray)
-  doc.setFontSize(7)
-  doc.setFont('helvetica', 'bold')
-  doc.text('TERMS & PAYMENT', M + 5, y + 6)
-
-  doc.setTextColor(...midGray)
+/** Shaded box with a label and numbered lines → returns the y below it. */
+function drawTermsBox(doc, y, title, terms) {
+  const W = doc.internal.pageSize.getWidth()
+  doc.setFontSize(7.5)
+  const rows = terms.flatMap((t, i) => doc.splitTextToSize(`${i + 1}. ${t}`, W - M * 2 - 10))
+  const h = 10 + rows.length * 4.2
+  if (y + h > 280) { doc.addPage(); y = 20 }
+  doc.setFillColor(...PAL.bgLight)
+  doc.roundedRect(M, y, W - M * 2, h, 2, 2, 'F')
+  label(doc, title, M + 5, y + 6)
+  doc.setTextColor(...PAL.midGray)
   doc.setFontSize(7.5)
   doc.setFont('helvetica', 'normal')
-  const proposalTerms = [
-    '1. A deposit of 50% of the total is due upon acceptance of this proposal.',
-    '2. Remaining balance is due net 30 days from date of invoice.',
-    '3. This proposal is valid for 30 days from the date shown above.',
-  ]
-  proposalTerms.forEach((t, i) => {
-    doc.text(t, M + 5, y + 11.5 + i * 4.2)
-  })
+  rows.forEach((r, i) => doc.text(r, M + 5, y + 11.5 + i * 4.2))
+  return y + h
+}
 
-  y += 30
-
-  // ── NOTES ──────────────────────────────────────────────────
-  if (quote.notes) {
-    if (y > 255) { doc.addPage(); y = 20 }
-    doc.setTextColor(...darkGray)
+/** Footer on every page. */
+function drawFooters(doc) {
+  const W = doc.internal.pageSize.getWidth()
+  const H = doc.internal.pageSize.getHeight()
+  const pages = doc.internal.getNumberOfPages()
+  for (let p = 1; p <= pages; p++) {
+    doc.setPage(p)
+    const fY = H - 10
+    doc.setDrawColor(...PAL.ruleGray)
+    doc.setLineWidth(0.2)
+    doc.line(M, fY - 4, W - M, fY - 4)
+    doc.setTextColor(...PAL.softGray)
     doc.setFontSize(7)
+    doc.setFont('helvetica', 'normal')
+    doc.text('Made with SalesCloserPro  ·  an llmadvisor.ai studio project  ·  Free & Open Source', W / 2, fY, { align: 'center' })
+    doc.text(`Page ${p} of ${pages}`, W - M, fY, { align: 'right' })
+  }
+}
+
+// ══════════════════════════════════════════════════════════════
+// PROPOSAL
+// ══════════════════════════════════════════════════════════════
+
+/**
+ * Builds the proposal PDF. Single-option quotes render one table; Good/Better/Best quotes
+ * render one priced section per option plus a "choose one" summary.
+ *
+ * @param {Object} quote        stored quote (raw lines; priced here)
+ * @param {Object} company      company settings
+ * @param {string} [proposalUrl] online review + accept link (clickable in the PDF)
+ * @param {boolean} [download=true]  false → return the jsPDF doc instead of saving
+ */
+export function generatePDF({ quote, company, proposalUrl, download = true }) {
+  const doc = new jsPDF()
+  const W = doc.internal.pageSize.getWidth()
+  const { charcoal, darkGray, midGray, ruleGray, copper, green } = PAL
+  const { options, chosen, tiered } = priceQuote(quote)
+  const recommendedId = quote.recommendedOptionId || options[0].id
+  const acceptedId = quote.acceptance?.optionId
+
+  drawHeader(doc, company, { title: 'PROPOSAL', number: quote.quoteNumber || 'Q-DRAFT', date: quote.createdAt, status: quote.status, badges: QUOTE_BADGES })
+
+  // ── Prepared for / validity ──
+  label(doc, 'PREPARED FOR', M, 56)
+  doc.setTextColor(...charcoal)
+  doc.setFontSize(13)
+  doc.setFont('helvetica', 'bold')
+  doc.text(quote.clientName || '—', M, 62)
+  doc.setFontSize(9)
+  doc.setFont('helvetica', 'normal')
+  doc.setTextColor(...midGray)
+  let billY = 67
+  for (const v of [quote.clientEmail, quote.clientPhone, stateTaxData[quote.state]?.name || quote.state]) {
+    if (v) { doc.text(v, M, billY); billY += 4.5 }
+  }
+  if (quote.validUntil) {
+    label(doc, 'VALID UNTIL', W - M, 56, PAL.darkGray, 'right')
+    doc.setTextColor(...charcoal)
+    doc.setFontSize(11)
     doc.setFont('helvetica', 'bold')
-    doc.text('NOTES', M, y)
+    doc.text(longDate(quote.validUntil), W - M, 62, { align: 'right' })
+  }
+
+  let y = 84
+  if (!tiered) {
+    y = drawLinesTable(doc, chosen.lines, y)
+    y = drawTotals(doc, y, [['Subtotal', chosen.subtotal], [`Tax (${quote.state || ''})`, chosen.tax]], 'GRAND TOTAL', chosen.total)
+  } else {
+    doc.setTextColor(...darkGray)
+    doc.setFontSize(9)
+    doc.text(`This proposal offers ${options.length} options. Choose the one that fits — each is fully priced below.`, M, y - 2)
+    y += 4
+    options.forEach((o, i) => {
+      const name = optionLabel(o, i)
+      if (y > 230) { doc.addPage(); y = 20 }
+      doc.setTextColor(...charcoal)
+      doc.setFontSize(12)
+      doc.setFont('helvetica', 'bold')
+      doc.text(`Option ${String.fromCharCode(65 + i)} — ${name}`, M, y + 4)
+      const tag = o.id === acceptedId ? ['ACCEPTED', green] : !acceptedId && o.id === recommendedId ? ['RECOMMENDED', copper] : null
+      if (tag) {
+        const tx = M + doc.getTextWidth(`Option ${String.fromCharCode(65 + i)} — ${name}`) + 4
+        doc.setFontSize(7)
+        const tw = doc.getTextWidth(tag[0]) + 6
+        doc.setFillColor(...tag[1])
+        doc.roundedRect(tx, y, tw, 5.5, 1.5, 1.5, 'F')
+        doc.setTextColor(...PAL.white)
+        doc.text(tag[0], tx + 3, y + 3.9)
+      }
+      y = drawLinesTable(doc, o.lines, y + 8)
+      y = drawTotals(doc, y, [['Subtotal', o.subtotal], [`Tax (${quote.state || ''})`, o.tax]], `${name.toUpperCase()} TOTAL`, o.total) + 10
+    })
+
+    // choose-one summary (tick box per option — works on paper too)
+    const h = 12 + options.length * 7
+    if (y + h > 280) { doc.addPage(); y = 20 }
+    doc.setDrawColor(...PAL.ruleGray)
+    doc.setLineWidth(0.3)
+    doc.roundedRect(M, y, W - M * 2, h, 2, 2, 'S')
+    label(doc, acceptedId ? 'SELECTED OPTION' : 'YOUR CHOICE — TICK ONE', M + 5, y + 6.5)
+    options.forEach((o, i) => {
+      const ry = y + 13 + i * 7
+      doc.setDrawColor(...midGray)
+      doc.rect(M + 5, ry - 3.3, 4, 4)
+      if (o.id === acceptedId) { doc.setFillColor(...green); doc.rect(M + 5.8, ry - 2.5, 2.4, 2.4, 'F') }
+      doc.setTextColor(...darkGray)
+      doc.setFontSize(9.5)
+      doc.setFont('helvetica', 'bold')
+      doc.text(`Option ${String.fromCharCode(65 + i)} — ${optionLabel(o, i)}`, M + 12, ry)
+      doc.text(formatMoney(o.total), W - M - 5, ry, { align: 'right' })
+    })
+    y += h
+  }
+
+  // ── Terms ──
+  y = drawTermsBox(doc, y + 8, 'TERMS & PAYMENT', [
+    'A deposit of 50% of the total is due upon acceptance of this proposal.',
+    'Remaining balance is due net 30 days from date of invoice.',
+    quote.validUntil
+      ? `This proposal is valid until ${longDate(quote.validUntil)}.`
+      : 'This proposal is valid for 30 days from the date shown above.',
+  ])
+
+  // ── Acceptance record, or the online accept link ──
+  if (quote.acceptance) {
+    const a = quote.acceptance
+    y += 8
+    if (y > 262) { doc.addPage(); y = 20 }
+    label(doc, 'ACCEPTANCE', M, y, green)
+    doc.setTextColor(...darkGray)
+    doc.setFontSize(8.5)
+    doc.setFont('helvetica', 'normal')
+    const opt = tiered ? ` · ${optionLabel(options.find((o) => o.id === a.optionId), options.findIndex((o) => o.id === a.optionId))}` : ''
+    doc.text(`Accepted by ${a.name} on ${format(new Date(a.at), "MMMM d, yyyy 'at' h:mm a")}${opt} · version ${a.fingerprint}`, M, y + 5)
+    y += 8
+  } else if (proposalUrl) {
+    y += 8
+    if (y > 266) { doc.addPage(); y = 20 }
+    label(doc, 'REVIEW & ACCEPT ONLINE', M, y)
+    doc.setTextColor(...copper)
+    doc.setFontSize(9)
+    doc.setFont('helvetica', 'bold')
+    doc.textWithLink('Open this proposal in your browser to choose and accept →', M, y + 5.5, { url: proposalUrl })
+    y += 8
+  }
+
+  // ── Notes ──
+  if (quote.notes) {
+    y += 8
+    if (y > 255) { doc.addPage(); y = 20 }
+    label(doc, 'NOTES', M, y)
     doc.setTextColor(...darkGray)
     doc.setFontSize(8.5)
     doc.setFont('helvetica', 'normal')
@@ -288,25 +405,14 @@ export function generatePDF({ quote, company, lines, subtotal, tax, grandTotal }
     }
   }
 
-  // ── FOOTER ─────────────────────────────────────────────────
-  const totalPages = doc.internal.getNumberOfPages()
-  for (let p = 1; p <= totalPages; p++) {
-    doc.setPage(p)
-    const fY = H - 10
-    doc.setDrawColor(...ruleGray)
-    doc.setLineWidth(0.2)
-    doc.line(M, fY - 4, W - M, fY - 4)
-    doc.setTextColor(...softGray)
-    doc.setFontSize(7)
-    doc.setFont('helvetica', 'normal')
-    doc.text('Generated by SalesCloserPro  ·  Powered by llmadvisor.ai  ·  Free & Open Source', W / 2, fY, { align: 'center' })
-    doc.text(`Page ${p} of ${totalPages}`, W - M, fY, { align: 'right' })
-  }
-
-  // ── SAVE ───────────────────────────────────────────────────
+  drawFooters(doc)
+  if (!download) return doc
   doc.save(`${(quote.quoteNumber || 'quote').replace(/\s/g, '_')}.pdf`)
 }
 
+// ══════════════════════════════════════════════════════════════
+// PURCHASE ORDER
+// ══════════════════════════════════════════════════════════════
 
 /**
  * Generates a polished, color-neutral Purchase Order PDF for vendors.
@@ -320,87 +426,11 @@ export function generatePO_PDF({ po, company }) {
   const doc = new jsPDF()
   const W = doc.internal.pageSize.getWidth()   // 210
   const H = doc.internal.pageSize.getHeight()  // 297
-  const M = 16  // margin
 
-  // ── Neutral palette ────────────────────────────────────────
-  const charcoal = [38, 38, 38]
-  const darkGray = [55, 65, 81]
-  const midGray  = [107, 114, 128]
-  const softGray = [156, 163, 175]
-  const ruleGray = [209, 213, 219]
-  const bgLight  = [248, 249, 250]
-  const white    = [255, 255, 255]
+  const { charcoal, darkGray, midGray, softGray, ruleGray, bgLight, white } = PAL
+  const poCreated = po.createdAt ? longDate(po.createdAt) : '—'
 
-  const dollarFmt = (n) =>
-    '$' + (n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-
-  const poDate    = po.issuedAt  ? format(new Date(po.issuedAt),  'MMMM d, yyyy') : format(new Date(), 'MMMM d, yyyy')
-  const poCreated = po.createdAt ? format(new Date(po.createdAt), 'MMMM d, yyyy') : '—'
-
-  // ── HEADER — thin top rule ─────────────────────────────────
-  doc.setFillColor(...charcoal)
-  doc.rect(0, 0, W, 3, 'F')
-
-  // Company logo
-  let textStartX = M
-  if (company.logo) {
-    try {
-      doc.addImage(company.logo, M, 9, 20, 20)
-      textStartX = M + 24
-    } catch (_) { /* skip */ }
-  }
-
-  // Company name
-  doc.setTextColor(...charcoal)
-  doc.setFontSize(22)
-  doc.setFont('helvetica', 'bold')
-  doc.text(company.name || 'SalesCloserPro', textStartX, 22)
-
-  // Company details
-  doc.setFontSize(8.5)
-  doc.setFont('helvetica', 'normal')
-  doc.setTextColor(...midGray)
-  let infoY = 27
-  if (company.address) { doc.text(company.address, textStartX, infoY); infoY += 4 }
-  if (company.phone)   { doc.text(company.phone,   textStartX, infoY); infoY += 4 }
-  if (company.email)   { doc.text(company.email,    textStartX, infoY); infoY += 4 }
-  if (company.website) { doc.text(company.website,  textStartX, infoY) }
-
-  // ── PO Number block (right side) ──────────────────────────
-  const rX = W - M
-  doc.setFillColor(...bgLight)
-  doc.roundedRect(W - 72, 8, 58, 32, 3, 3, 'F')
-
-  doc.setTextColor(...charcoal)
-  doc.setFontSize(9)
-  doc.setFont('helvetica', 'bold')
-  doc.text('PURCHASE ORDER', rX, 17, { align: 'right' })
-
-  doc.setFontSize(16)
-  doc.text(po.poNumber || 'PO-0000', rX, 26, { align: 'right' })
-
-  doc.setTextColor(...midGray)
-  doc.setFontSize(8)
-  doc.setFont('helvetica', 'normal')
-  doc.text(poDate, rX, 33, { align: 'right' })
-
-  // Status badge
-  const statusText = (po.status || 'DRAFT').toUpperCase()
-  doc.setFontSize(7)
-  doc.setFont('helvetica', 'bold')
-  const sw = doc.getTextWidth(statusText) + 10
-  if (po.status === 'issued')        { doc.setFillColor(226, 232, 240); doc.setTextColor(51, 65, 85) }
-  else if (po.status === 'ordered')  { doc.setFillColor(219, 234, 254); doc.setTextColor(37, 99, 235) }
-  else if (po.status === 'received') { doc.setFillColor(254, 243, 199); doc.setTextColor(146, 115, 26) }
-  else if (po.status === 'paid')     { doc.setFillColor(220, 252, 231); doc.setTextColor(22, 163, 74) }
-  else                               { doc.setFillColor(229, 231, 235); doc.setTextColor(...midGray) }
-  doc.roundedRect(rX - sw, 37, sw, 7, 2, 2, 'F')
-  doc.text(statusText, rX - sw / 2, 42, { align: 'center' })
-
-  // ── DIVIDER ────────────────────────────────────────────────
-  doc.setDrawColor(...ruleGray)
-  doc.setLineWidth(0.3)
-  doc.line(M, 50, W - M, 50)
+  drawHeader(doc, company, { title: 'PURCHASE ORDER', number: po.poNumber || 'PO-0000', date: po.issuedAt, status: po.status, badges: PO_BADGES })
 
   // ── VENDOR (TO) ────────────────────────────────────────────
   let leftY = 58
@@ -494,8 +524,8 @@ export function generatePO_PDF({ po, company }) {
         po.lineDescription || po.description || '—',
         (po.lineType || 'product').charAt(0).toUpperCase() + (po.lineType || 'product').slice(1),
         String(po.qty || 0),
-        dollarFmt(po.unitCost || 0),
-        dollarFmt(lineTotal),
+        formatMoney(po.unitCost || 0),
+        formatMoney(lineTotal),
       ]
     ],
     theme: 'plain',
@@ -515,7 +545,7 @@ export function generatePO_PDF({ po, company }) {
     },
     columnStyles: {
       0: { cellWidth: 12, halign: 'center', fontStyle: 'bold' },
-      1: { cellWidth: 72 },
+      1: { cellWidth: 'auto' }, // fixed columns total 110mm of 178mm
       2: { cellWidth: 24, fontStyle: 'bold', fontSize: 8 },
       3: { cellWidth: 18, halign: 'center', fontStyle: 'bold' },
       4: { cellWidth: 28, halign: 'right' },
@@ -524,40 +554,7 @@ export function generatePO_PDF({ po, company }) {
     margin: { left: M, right: M },
   })
 
-  let y = doc.lastAutoTable.finalY + 12
-
-  // ── TOTALS ─────────────────────────────────────────────────
-  const totalsX = 130
-  const valX = W - M
-
-  // Subtotal
-  doc.setFontSize(9)
-  doc.setFont('helvetica', 'normal')
-  doc.setTextColor(...midGray)
-  doc.text('Subtotal', totalsX, y)
-  doc.setTextColor(...darkGray)
-  doc.setFont('helvetica', 'bold')
-  doc.text(dollarFmt(lineTotal), valX, y, { align: 'right' })
-
-  // Dashed divider
-  y += 6
-  doc.setDrawColor(...softGray)
-  doc.setLineDashPattern([2, 2])
-  doc.line(totalsX, y, valX, y)
-  doc.setLineDashPattern([])
-
-  // Total band
-  y += 4
-  doc.setFillColor(...charcoal)
-  doc.roundedRect(totalsX - 4, y, valX - totalsX + 8, 14, 3, 3, 'F')
-  doc.setTextColor(...white)
-  doc.setFontSize(10)
-  doc.setFont('helvetica', 'bold')
-  doc.text('PO TOTAL', totalsX + 2, y + 9)
-  doc.setFontSize(14)
-  doc.text(dollarFmt(lineTotal), valX + 2, y + 9.5, { align: 'right' })
-
-  y += 22
+  let y = drawTotals(doc, doc.lastAutoTable.finalY, [['Subtotal', lineTotal]], 'PO TOTAL', lineTotal) + 8
 
   // ── NOTES ──────────────────────────────────────────────────
   if (po.notes) {
@@ -575,33 +572,16 @@ export function generatePO_PDF({ po, company }) {
     y += 6 + noteLines.length * 4.5
   }
 
-  // ── TERMS & CONDITIONS ─────────────────────────────────────
-  y += 8
-  if (y > 245) { doc.addPage(); y = 20 }
-
-  doc.setFillColor(...bgLight)
-  doc.roundedRect(M, y, W - M * 2, 32, 2, 2, 'F')
-  doc.setTextColor(...darkGray)
-  doc.setFontSize(7)
-  doc.setFont('helvetica', 'bold')
-  doc.text('TERMS & CONDITIONS', M + 5, y + 6)
-
-  doc.setTextColor(...midGray)
-  doc.setFontSize(7.5)
-  doc.setFont('helvetica', 'normal')
-  const terms = [
-    '1. Please reference the PO number on all correspondence, invoices, and shipping documents.',
-    '2. Goods must be delivered to the Ship To address listed above unless otherwise specified.',
-    '3. Vendor shall notify buyer immediately of any delays or changes to the order.',
-    '4. Payment terms: 50% deposit due upon PO issuance; remaining balance due net 30 days from receipt of goods and valid invoice.',
-    '5. This Purchase Order is subject to the terms agreed upon between buyer and vendor.',
-  ]
-  terms.forEach((t, i) => {
-    doc.text(t, M + 5, y + 11.5 + i * 4.2)
-  })
+  y = drawTermsBox(doc, y + 8, 'TERMS & CONDITIONS', [
+    'Please reference the PO number on all correspondence, invoices, and shipping documents.',
+    'Goods must be delivered to the Ship To address listed above unless otherwise specified.',
+    'Vendor shall notify buyer immediately of any delays or changes to the order.',
+    'Payment terms: 50% deposit due upon PO issuance; remaining balance due net 30 days from receipt of goods and valid invoice.',
+    'This Purchase Order is subject to the terms agreed upon between buyer and vendor.',
+  ])
 
   // ── SIGNATURE LINES ────────────────────────────────────────
-  y += 42
+  y += 4
   if (y > 255) { doc.addPage(); y = 20 }
 
   const sigW = (W - M * 2 - 20) / 2
@@ -627,20 +607,7 @@ export function generatePO_PDF({ po, company }) {
   doc.setFont('helvetica', 'bold')
   doc.text('Date', M + sigW + 20, y + 18)
 
-  // ── FOOTER (all pages) ────────────────────────────────────
-  const totalPages = doc.internal.getNumberOfPages()
-  for (let p = 1; p <= totalPages; p++) {
-    doc.setPage(p)
-    const fY = H - 10
-    doc.setDrawColor(...ruleGray)
-    doc.setLineWidth(0.2)
-    doc.line(M, fY - 4, W - M, fY - 4)
-    doc.setTextColor(...softGray)
-    doc.setFontSize(7)
-    doc.setFont('helvetica', 'normal')
-    doc.text('Generated by SalesCloserPro  ·  Powered by llmadvisor.ai  ·  Free & Open Source', W / 2, fY, { align: 'center' })
-    doc.text(`Page ${p} of ${totalPages}`, W - M, fY, { align: 'right' })
-  }
+  drawFooters(doc)
 
   // ── SAVE ───────────────────────────────────────────────────
   doc.save(`${(po.poNumber || 'PO').replace(/\s/g, '_')}.pdf`)

@@ -6,9 +6,11 @@ import {
   DollarSign, Info, User, Building2, Phone, Mail, MapPin
 } from 'lucide-react'
 import useStore from '../../store'
-import { calculateTax, stateTaxData, stateList } from '../../data/taxDatabase'
+import { stateTaxData, stateList } from '../../data/taxDatabase'
 import { generatePDF } from '../../utils/pdfExport'
+import { computeLines, formatMoney, newLine, optionLabel, OPTION_NAMES, MAX_OPTIONS } from '../../utils/quoteMath'
 import FileUploader from './FileUploader'
+import OptionTabs from './OptionTabs'
 import clsx from 'clsx'
 
 const LINE_TYPES = [
@@ -38,21 +40,11 @@ const STATUS_STYLES = {
   lost:  { bg: 'bg-red-100',   text: 'text-red-600',   dot: 'bg-red-500'   },
 }
 
-function newLine() {
-  return { id: crypto.randomUUID(), type: 'product', description: '', qty: 1, unit: 'ea', price: 0 }
-}
-
-function fmt(n) {
-  return n.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-}
-
 // ── Line Item Card ────────────────────────────────────────
-function LineItem({ line, stateCode, onUpdate, onRemove }) {
+function LineItem({ line, onUpdate, onRemove }) {
   const typeInfo = LINE_TYPES.find((t) => t.id === line.type) || LINE_TYPES[0]
   const Icon = typeInfo.icon
-  const subtotal = line.qty * line.price
-  const { taxAmount, taxRate, taxable } = calculateTax(stateCode, line.type, subtotal)
-  const lineTotal = subtotal + taxAmount
+  const { taxAmount, taxRate, taxable, total: lineTotal } = line // priced by computeLines()
 
   return (
     <div className={clsx('group relative bg-white dark:bg-gray-800 rounded-2xl border-2 transition-all duration-200 hover:shadow-md overflow-hidden', typeInfo.border)}>
@@ -138,7 +130,7 @@ function LineItem({ line, stateCode, onUpdate, onRemove }) {
           <div className="text-right flex-shrink-0 min-w-[120px]">
             <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Total</label>
             <div className="h-12 flex flex-col items-end justify-center">
-              <span className="text-xl font-extrabold text-gray-900 dark:text-gray-100">${fmt(lineTotal)}</span>
+              <span className="text-xl font-extrabold text-gray-900 dark:text-gray-100">{formatMoney(lineTotal)}</span>
               <span className={clsx('text-[10px] font-bold', taxable ? 'text-amber-600' : 'text-gray-400')}>
                 {taxable ? `incl. ${(taxRate * 100).toFixed(2)}% tax ($${taxAmount.toFixed(2)})` : 'TAX EXEMPT'}
               </span>
@@ -171,25 +163,54 @@ export default function QuoteBuilder() {
   const [status, setStatus]           = useState(existing?.status || 'draft')
   const [notes, setNotes]             = useState(existing?.notes || '')
   const [attachments, setAttachments] = useState(existing?.attachments || [])
-  const [lines, setLines]             = useState(existing?.lines || [newLine()])
   const [saved, setSaved]             = useState(false)
 
-  const computed = lines.map((line) => {
-    const subtotal = line.qty * line.price
-    const { taxAmount, taxRate, taxable } = calculateTax(state, line.type, subtotal)
-    return { ...line, subtotal, taxAmount, taxRate, taxable, total: subtotal + taxAmount }
+  // Options: always an array; one entry = a normal quote, 2–3 = Good / Better / Best
+  const [options, setOptions] = useState(() =>
+    existing?.options?.length > 1
+      ? existing.options
+      : [{ id: crypto.randomUUID(), name: '', lines: existing?.lines?.length ? existing.lines : [newLine()] }]
+  )
+  const [activeId, setActiveId]           = useState(() => existing?.recommendedOptionId || options[0].id)
+  const [recommendedId, setRecommendedId] = useState(existing?.recommendedOptionId || null)
+  const tiered = options.length > 1
+  const active = options.find((o) => o.id === activeId) || options[0]
+  const activeIndex = options.indexOf(active)
+
+  const priced = options.map((o) => ({ ...o, ...computeLines(o.lines, state) }))
+  const { lines: computed, subtotal: subtotalAll, tax: taxAll, total: grandTotal } = priced[activeIndex]
+
+  // line edits always target the active option
+  const setActiveLines = (fn) => setOptions((p) => p.map((o) => (o.id === active.id ? { ...o, lines: fn(o.lines) } : o)))
+  const setLine    = (lid, k, v) => setActiveLines((ls) => ls.map((l) => (l.id === lid ? { ...l, [k]: v } : l)))
+  const addLine    = (type) => setActiveLines((ls) => [...ls, newLine(type)])
+  const removeLine = (lid) => setActiveLines((ls) => { const n = ls.filter((l) => l.id !== lid); return n.length ? n : [newLine()] })
+
+  // ── Good / Better / Best ──
+  const addOption = () => {
+    if (options.length >= MAX_OPTIONS) return
+    // start the new tier as a copy of the active one — tiers usually share most lines
+    const copy = { id: crypto.randomUUID(), name: OPTION_NAMES[options.length], lines: active.lines.map((l) => ({ ...l, id: crypto.randomUUID() })) }
+    setOptions((p) => [...p.map((o, i) => ({ ...o, name: o.name || OPTION_NAMES[i] })), copy])
+    setActiveId(copy.id)
+  }
+  const removeOption = (oid) => {
+    const rest = options.filter((o) => o.id !== oid)
+    setOptions(rest.length === 1 ? [{ ...rest[0], name: '' }] : rest)
+    if (activeId === oid) setActiveId(rest[0].id)
+    if (recommendedId === oid) setRecommendedId(null)
+  }
+  const renameOption = (oid, name) => setOptions((p) => p.map((o) => (o.id === oid ? { ...o, name } : o)))
+
+  const buildPayload = () => ({
+    clientName, clientEmail, clientPhone, state, status, notes, attachments,
+    ...(tiered
+      ? { options, recommendedOptionId: recommendedId && options.some((o) => o.id === recommendedId) ? recommendedId : options[0].id }
+      : { options: null, recommendedOptionId: null, lines: options[0].lines }),
   })
 
-  const subtotalAll = computed.reduce((s, l) => s + l.subtotal, 0)
-  const taxAll      = computed.reduce((s, l) => s + l.taxAmount, 0)
-  const grandTotal  = subtotalAll + taxAll
-
-  const setLine    = (lid, k, v) => setLines((p) => p.map((l) => (l.id === lid ? { ...l, [k]: v } : l)))
-  const addLine    = (type) => setLines((p) => [...p, { ...newLine(), type }])
-  const removeLine = (lid) => setLines((p) => { const n = p.filter((l) => l.id !== lid); return n.length ? n : [newLine()] })
-
   const handleSave = () => {
-    const payload = { clientName, clientEmail, clientPhone, state, status, notes, attachments, lines, total: grandTotal }
+    const payload = buildPayload()
     if (existing) {
       updateQuote(id, payload)
       syncQuoteToPipeline(id)
@@ -208,10 +229,8 @@ export default function QuoteBuilder() {
 
   const handlePrint = () => {
     handleSave()
-    const quote = existing
-      ? { ...existing, clientName, clientEmail, clientPhone, state, status, notes, attachments, lines, total: grandTotal }
-      : { quoteNumber: 'Q-DRAFT', clientName, clientEmail, clientPhone, state, status, notes, attachments, lines, total: grandTotal }
-    generatePDF({ quote, company, lines: computed, subtotal: subtotalAll, tax: taxAll, grandTotal })
+    const quote = useStore.getState().quotes.find((q) => q.id === (existing?.id || useStore.getState().quotes.at(-1)?.id))
+    generatePDF({ quote, company })
   }
 
   const stateInfo = stateTaxData[state]
@@ -233,7 +252,9 @@ export default function QuoteBuilder() {
                 {existing ? existing.quoteNumber : 'New Quote'}
               </h1>
               <p className="text-brand-200 text-xs font-medium mt-0.5">
-                {lines.length} line item{lines.length !== 1 ? 's' : ''} · ${fmt(grandTotal)} total
+                {tiered
+                  ? `${options.length} options · ${priced.map((o) => formatMoney(o.total)).join(' / ')}`
+                  : `${computed.length} line item${computed.length !== 1 ? 's' : ''} · ${formatMoney(grandTotal)} total`}
               </p>
             </div>
           </div>
@@ -317,10 +338,22 @@ export default function QuoteBuilder() {
 
       {/* ── ADD LINE ITEM BUTTONS ───────────────────── */}
       <div>
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex items-center gap-3 mb-4 flex-wrap">
           <h2 className="font-bold text-gray-900 dark:text-gray-100 text-lg">Line Items</h2>
-          <span className="bg-brand-100 text-brand-700 text-xs font-bold px-2.5 py-1 rounded-full">{lines.length}</span>
+          <span className="bg-brand-100 text-brand-700 text-xs font-bold px-2.5 py-1 rounded-full">{computed.length}</span>
+          {tiered && <span className="text-xs font-semibold text-gray-500 dark:text-gray-400">in {optionLabel(active, activeIndex)}</span>}
         </div>
+
+        <OptionTabs
+          options={priced}
+          activeId={active.id}
+          recommendedId={recommendedId || options[0].id}
+          onSelect={setActiveId}
+          onAdd={addOption}
+          onRemove={removeOption}
+          onRename={renameOption}
+          onRecommend={setRecommendedId}
+        />
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
           {LINE_TYPES.map(({ id: tid, label, icon: Icon, color, bg }) => (
@@ -341,7 +374,7 @@ export default function QuoteBuilder() {
         {/* ── LINE ITEMS LIST ───────────────────────── */}
         <div className="space-y-4">
           {computed.map((line) => (
-            <LineItem key={line.id} line={line} stateCode={state} onUpdate={setLine} onRemove={removeLine} />
+            <LineItem key={line.id} line={line} onUpdate={setLine} onRemove={removeLine} />
           ))}
         </div>
       </div>
@@ -352,20 +385,20 @@ export default function QuoteBuilder() {
           <div className="max-w-sm ml-auto space-y-3">
             <div className="flex justify-between items-center">
               <span className="text-gray-500 dark:text-gray-400 font-medium text-sm">Subtotal</span>
-              <span className="text-gray-900 dark:text-gray-100 font-bold text-lg">${fmt(subtotalAll)}</span>
+              <span className="text-gray-900 dark:text-gray-100 font-bold text-lg">{formatMoney(subtotalAll)}</span>
             </div>
             <div className="flex justify-between items-center">
               <span className="text-gray-500 dark:text-gray-400 font-medium text-sm">
                 Tax <span className="text-gray-400 text-xs ml-1">({stateInfo?.name || state})</span>
               </span>
-              <span className="text-amber-600 font-bold text-lg">${fmt(taxAll)}</span>
+              <span className="text-amber-600 font-bold text-lg">{formatMoney(taxAll)}</span>
             </div>
             <div className="border-t-2 border-dashed border-gray-200" />
           </div>
         </div>
         <div className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 px-6 py-6 flex items-center justify-between">
-          <span className="text-white/90 font-bold text-lg">Grand Total</span>
-          <span className="text-white font-extrabold text-4xl tracking-tight">${fmt(grandTotal)}</span>
+          <span className="text-white/90 font-bold text-lg">{tiered ? `${optionLabel(active, activeIndex)} Total` : 'Grand Total'}</span>
+          <span className="text-white font-extrabold text-4xl tracking-tight">{formatMoney(grandTotal)}</span>
         </div>
       </div>
 

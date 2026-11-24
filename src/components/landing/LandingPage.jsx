@@ -72,15 +72,15 @@ export default function LandingPage() {
             </span>
 
             <h1 className="font-serif text-4xl sm:text-5xl md:text-6xl font-semibold text-ink-50 leading-[1.08] tracking-tight mb-6">
-              The Free CRM. No gimmicks.{' '}
+              The Free CRM.{' '}
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-copper-300 to-copper-500">
-                Send a professional quote or PO in minutes.
+                Designed for simplicity.
               </span>
             </h1>
 
             <p className="text-lg sm:text-xl text-ink-400 leading-relaxed max-w-2xl mx-auto lg:mx-0 mb-10">
-              Create professional proposals, track every deal in your pipeline, manage clients,
-              and export polished PDFs — all from your browser. Zero cost, zero sign-up.
+              Send a professional quote or PO in minutes, track every deal in your pipeline, and
+              export polished PDFs — all from your browser. Zero cost, zero sign-up.
             </p>
 
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-3">

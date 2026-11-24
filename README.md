@@ -438,9 +438,9 @@ This section documents the exact signals Google has indexed and is actively rewa
 
 | Signal | Current Value | Location | Risk if Changed |
 |--------|--------------|----------|-----------------|
-| **`<title>`** | `SalesCloserPro.ai \| The Free CRM. No gimmicks. Send a professional quote and/or PO in minutes` | `index.html` | Direct ranking impact — this exact phrasing is indexed |
+| **`<title>`** | `SalesCloserPro.ai \| The Free CRM. Designed for simplicity.` | `index.html` | Direct ranking impact — this exact phrasing is indexed |
 | **`meta description`** | `Build professional quotes, track deals, issue POs, and export polished PDFs — 100% free and open source. No login required. Built for freelancers, contractors, and small businesses.` | `index.html` | Changes the snippet shown in search results |
-| **`H1` text** | `The Free CRM. No gimmicks. Send a professional quote or PO in minutes.` | `LandingPage.jsx` | H1 must semantically match the title tag intent |
+| **`H1` text** | `The Free CRM. Designed for simplicity.` | `LandingPage.jsx` | H1 must semantically match the title tag intent |
 | **`link rel="canonical"`** | `https://salescloserpro.ai/` | `index.html` | Changing domain/path tells Google to re-index a "new" page |
 | **`og:image`** | `https://salescloserpro.ai/og-cover-v3.png` | `index.html` | This image is actively cached by Google, social platforms, and chat previews |
 | **JSON-LD `SoftwareApplication`** | Type: `SoftwareApplication`, Category: `BusinessApplication / CRM Software`, Price: `0` | `index.html` | Structured data drives rich result eligibility — don't rename fields |

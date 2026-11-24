@@ -3,13 +3,8 @@ import { Plus, FileText, Search, Trash2 } from 'lucide-react'
 import { useState } from 'react'
 import useStore from '../../store'
 import { format } from 'date-fns'
-
-const statusColor = {
-  draft: 'bg-gray-100 text-gray-600',
-  sent:  'bg-brand-100 text-brand-700',
-  won:   'bg-green-100 text-green-700',
-  lost:  'bg-red-100 text-red-600',
-}
+import { StatusBadge, QuoteMetaBadges } from './QuoteBadges'
+import { formatMoney } from '../../utils/quoteMath'
 
 export default function QuoteList() {
   const navigate = useNavigate()
@@ -78,18 +73,17 @@ export default function QuoteList() {
                   <div className="text-sm text-gray-500 dark:text-gray-400">
                     {q.clientName || 'No client'} · {q.state || '—'}
                   </div>
+                  <div className="flex gap-3 mt-0.5"><QuoteMetaBadges quote={q} /></div>
                   <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">
                     {format(new Date(q.createdAt), 'MMM d, yyyy')}
                   </div>
                 </div>
               </div>
               <div className="flex items-center gap-4">
-                <span className={`text-xs font-bold px-3 py-1 rounded-full ${statusColor[q.status] || 'bg-gray-100 text-gray-600'}`}>
-                  {(q.status || 'draft').toUpperCase()}
-                </span>
+                <StatusBadge status={q.status} />
                 <div className="text-right">
                   <div className="font-bold text-gray-900 dark:text-gray-100 text-lg">
-                    ${(q.total || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+                    {formatMoney(q.total)}
                   </div>
                 </div>
                 <button

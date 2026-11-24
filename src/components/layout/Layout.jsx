@@ -5,7 +5,7 @@ import {
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import useStore, { useHydrated } from '../../store'
-import { ProductLogo, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
+import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 function resizeLogo(file, maxDim = 256) {
   return new Promise((resolve) => {
@@ -105,7 +105,7 @@ export default function Layout() {
             </div>
           </button>
           <button onClick={() => navigate('/')} className="flex-1 min-w-0 text-left hover:opacity-70 transition-opacity">
-            <div className="font-bold text-gray-900 dark:text-gray-100 text-sm leading-tight">salescloserpro.ai</div>
+            <Wordmark adaptive className="block text-gray-900 dark:text-gray-100 text-sm leading-tight" />
             <div className="text-xs text-gray-400 dark:text-gray-500 leading-tight truncate">
               {company.name || 'Your Company'}
             </div>
@@ -161,7 +161,7 @@ export default function Layout() {
         <div className="px-3 pb-4 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2.5">
           <StudioCredit
             className="w-full justify-center text-[11px] text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300"
-            markClassName="w-4 h-4"
+            markClassName="w-6 h-6"
           />
           <div className="text-[9px] text-gray-400 dark:text-gray-500 text-center">{COPYRIGHT_LINE}</div>
         </div>
@@ -191,7 +191,7 @@ export default function Layout() {
             ) : (
               <ProductLogo className="w-7 h-7" />
             )}
-            <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloserpro.ai</span>
+            <Wordmark adaptive className="text-sm text-gray-900 dark:text-gray-100" />
           </div>
           <button
             onClick={toggleTheme}

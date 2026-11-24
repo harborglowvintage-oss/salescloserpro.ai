@@ -513,7 +513,7 @@ export default function HelpGuide() {
       <div className="card p-5 text-center space-y-2">
         <p className="text-sm font-medium text-gray-700 dark:text-gray-300">SalesCloserPro v{__APP_VERSION__}</p>
         <p className="text-xs text-gray-400 dark:text-gray-500">Free &amp; Open Source · Apache-2.0</p>
-        <StudioCredit className="text-xs text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300" markClassName="w-4 h-4" />
+        <StudioCredit className="text-xs text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300" markClassName="w-6 h-6" />
       </div>
     </div>
   )

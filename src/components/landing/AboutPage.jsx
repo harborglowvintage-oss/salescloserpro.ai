@@ -21,7 +21,7 @@ import {
   BookOpen
 } from 'lucide-react'
 import { useState } from 'react'
-import { ProductLogo, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
+import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 /* ── collapsible section ── */
 function Section({ icon: Icon, color, title, children, defaultOpen = false }) {
@@ -52,9 +52,9 @@ export default function AboutPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2.5">
             <ProductLogo />
-            <span className="text-lg font-bold text-white tracking-tight">SalesCloserPro</span>
+            <Wordmark className="text-lg text-white" />
           </Link>
-          <Link to="/dashboard" className="px-4 py-2 bg-copper-600 hover:bg-copper-500 text-white text-sm font-semibold rounded-lg transition-colors">
+          <Link to="/dashboard" className="px-4 py-2 bg-ink-100 hover:bg-white text-ink-950 text-sm font-semibold rounded-md transition-colors">
             Launch App
           </Link>
         </div>
@@ -245,7 +245,7 @@ export default function AboutPage() {
       <footer className="border-t border-white/[0.06] mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-500">
           <span>{COPYRIGHT_LINE}</span>
-          <StudioCredit className="hover:text-ink-300" markClassName="w-4 h-4" />
+          <StudioCredit className="hover:text-ink-300" markClassName="w-6 h-6" />
         </div>
       </footer>
     </div>

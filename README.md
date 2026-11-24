@@ -59,7 +59,7 @@
 
 ## 🆕 What's new in 11.24.26 (2026-11-24)
 
-- 🎨 **On-brand with LLMadvisor.ai.** One set of brand tokens in `tailwind.config.js` (teal `brand`, `copper` accent, warm `ink` neutrals, Source Serif 4 headings) drives the whole UI. The handshake art is now the framed landing hero (32 KB WebP, was a 608 KB PNG); a new LLMadvisor split-layout social card (`og-cover-v3.png`); "An llmadvisor.ai studio project" credit with the atom mark on every page. Source art lives in `/brand`; `npm run generate-images` rebuilds every derived image.
+- 🎨 **On-brand with LLMadvisor.ai.** One set of brand tokens in `tailwind.config.js` (teal `brand`, `copper` accent, warm `ink` neutrals, Source Serif 4 headings) drives the whole UI. The handshake art is now the framed landing hero (32 KB WebP, was a 608 KB PNG); a new LLMadvisor split-layout social card (`og-cover-v3.png`); "An LLMadvisor studio project" credit with the LLMadvisor glasses mark on every page; the header wordmark's `.ai` glows in the mark's teal; buttons follow the LLMadvisor site (bone on ink); the landing page gains "How it works" and a client-proposal showcase. Source art lives in `/brand`; `npm run generate-images` rebuilds every derived image.
 - ✍️ **New headline:** "The Free CRM. Designed for simplicity." — `<title>`, OG/Twitter titles and the H1 updated together.
 - 🤖 **Custom GPT promo removed** (landing block, sidebar card, legal references, README).
 - 🥇 **Good / Better / Best** — up to three priced options per proposal with a recommended pick; PDF prints each option and a tick-one summary.
@@ -529,7 +529,7 @@ These elements are in the footer or below the visible viewport. Google discounts
 ├── 📄 package.json              → Dependencies, scripts, author info, version
 ├── 📄 vite.config.js            → Vite config — React plugin, vendor chunks, __APP_VERSION__
 ├── 📄 tailwind.config.js        → Tailwind config + LLMadvisor brand tokens (brand / copper / ink, Source Serif 4)
-├── 📂 brand/                    → Source art: salescloserpro-art.png (handshake), llmadvisor-mark.png (atom)
+├── 📂 brand/                    → Source art: salescloserpro-art.png (handshake), llmadvisor-mark.svg + -still.svg (the LLMadvisor glasses mark, from llmadvisor.ai Static/)
 ├── 📄 postcss.config.js         → PostCSS pipeline (Tailwind + Autoprefixer)
 ├── 📂 scripts/
 │   └── 📄 generate-brand-images.mjs → Regenerates og-cover-v3.png, hero webp and LLMadvisor mark from /brand (npm run generate-images)
@@ -537,7 +537,7 @@ These elements are in the footer or below the visible viewport. Google discounts
 │   ├── 🖼️ favicon.ico · favicon-32.png · apple-touch-icon.png · icon-192.png · icon-512.png  (icon-192 is also the default sidebar logo)
 │   ├── 📄 manifest.webmanifest  → Web app manifest (installable, standalone)
 │   ├── 🖼️ og-cover-v3.png       → Social share card
-│   ├── 📂 logos/                → Generated: salescloserpro-hero.webp, llmadvisor-mark.png (CSS mask); intake.png (Services)
+│   ├── 📂 logos/                → Generated: salescloserpro-hero.webp, llmadvisor-mark.svg / -still.svg; intake.png (Services)
 │   ├── 📄 _headers              → Cloudflare Pages cache + security headers, policy-file content types, noindex on app routes
 │   ├── 📄 _redirects            → Retired-page redirects, /security.txt → .well-known, SPA fallback
 │   ├── 📄 robots.txt            → Allow all + sitemap pointer (AI-crawler rules come from Cloudflare managed robots.txt, not this file)

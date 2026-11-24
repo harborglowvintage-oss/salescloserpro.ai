@@ -48,7 +48,7 @@ export default function ProposalView() {
           Prepared with <a href="/" className="font-semibold text-brand-700 hover:underline">SalesCloserPro</a> — free quoting &amp; CRM.
           This proposal lives only in its link; nothing was uploaded.
         </p>
-        <StudioCredit className="text-ink-600 hover:text-ink-950" markClassName="w-4 h-4" />
+        <StudioCredit className="text-ink-600 hover:text-ink-950" markClassName="w-6 h-6" />
       </footer>
     </div>
   )

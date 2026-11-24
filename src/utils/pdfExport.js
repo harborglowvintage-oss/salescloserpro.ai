@@ -207,7 +207,7 @@ function drawFooters(doc) {
     doc.setTextColor(...PAL.softGray)
     doc.setFontSize(7)
     doc.setFont('helvetica', 'normal')
-    doc.text('Made with SalesCloserPro  ·  an llmadvisor.ai studio project  ·  Free & Open Source', W / 2, fY, { align: 'center' })
+    doc.text('Made with SalesCloserPro  ·  an LLMadvisor studio project · llmadvisor.ai  ·  Free & Open Source', W / 2, fY, { align: 'center' })
     doc.text(`Page ${p} of ${pages}`, W - M, fY, { align: 'right' })
   }
 }

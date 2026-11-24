@@ -265,7 +265,7 @@ export default function ServicesPage() {
       <footer className="border-t border-white/[0.06] mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-600">
           <span>{COPYRIGHT_LINE}</span>
-          <StudioCredit className="hover:text-ink-400" markClassName="w-4 h-4" />
+          <StudioCredit className="hover:text-ink-400" markClassName="w-6 h-6" />
           <div className="flex items-center gap-4">
             <Link to="/" className="hover:text-ink-400 transition-colors">Home</Link>
             <Link to="/about" className="hover:text-ink-400 transition-colors">About</Link>

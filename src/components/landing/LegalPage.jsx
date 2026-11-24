@@ -21,7 +21,7 @@ import {
   Package,
   Gavel,
 } from 'lucide-react'
-import { ProductLogo, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
+import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 const LAST_UPDATED = 'November 24, 2026'
 const APP_VERSION  = __APP_VERSION__
@@ -85,7 +85,7 @@ export default function LegalPage() {
         <div className="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
           <Link to="/" className="flex items-center gap-2">
             <ProductLogo alt="" className="h-7 w-7" />
-            <span className="font-bold text-white text-sm">SalesCloserPro</span>
+            <Wordmark className="text-white text-sm" />
           </Link>
           <Link to="/" className="text-sm text-ink-400 hover:text-white transition-colors">← Back to Home</Link>
         </div>
@@ -615,7 +615,7 @@ export default function LegalPage() {
         {/* ── bottom bar ── */}
         <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-500">
           <p>{COPYRIGHT_LINE}</p>
-          <StudioCredit className="hover:text-ink-300" markClassName="w-4 h-4" />
+          <StudioCredit className="hover:text-ink-300" markClassName="w-6 h-6" />
           <Link to="/" className="hover:text-white transition-colors">← Back to SalesCloserPro</Link>
         </div>
 

@@ -18,6 +18,7 @@ const pdfText = (f) => execSync(`pdftotext -layout "${f}" -`).toString()
   await page.fill('input[placeholder="Acme Corp"]', 'Summit Heating & Air')
   await page.fill('input[placeholder="hello@acmecorp.com"]', 'office@summit.example')
   await page.click('button:has-text("Save Company Info")')
+  await page.waitForTimeout(400) // let the async IndexedDB write land before a full reload
 
   // quote 1 — product with model number + labor (no model field on labor)
   await page.goto(`${BASE}/quotes/new`, { waitUntil: 'networkidle' })

@@ -23,6 +23,7 @@ const day = (iso, n) => new Date(new Date(iso).getTime() + n * 864e5)
   await page.fill('input[placeholder="hello@acmecorp.com"]', 'jobs@summitroofing.example')
   await page.fill('#valid-days', '14')
   await page.click('button:has-text("Save Company Info")')
+  await page.waitForTimeout(400) // let the async IndexedDB write land before a full reload
 
   await page.goto(`${BASE}/quotes/new`, { waitUntil: 'networkidle' })
   ok(await page.inputValue('#valid-until') === '2026-12-08', 'new quote: valid-until = today + 14 days (from settings)')

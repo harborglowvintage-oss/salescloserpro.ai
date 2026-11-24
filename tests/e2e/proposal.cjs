@@ -20,6 +20,7 @@ const ok = (c, m) => { c ? pass++ : fail++; console.log(`${c ? '✓' : '✗'} ${
   await page.fill('input[placeholder="(512) 555-0100"]', '(512) 555-0142')
   await page.fill('input[placeholder="hello@acmecorp.com"]', 'jobs@summitroofing.example')
   await page.click('button:has-text("Save Company Info")')
+  await page.waitForTimeout(400) // let the async IndexedDB write land before a full reload
 
   // tiered quote
   await page.goto(`${BASE}/quotes/new`, { waitUntil: 'networkidle' })

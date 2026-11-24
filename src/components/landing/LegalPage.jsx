@@ -22,7 +22,7 @@ import {
   Gavel,
 } from 'lucide-react'
 
-const LAST_UPDATED = 'October 14, 2026'
+const LAST_UPDATED = 'November 24, 2026'
 const APP_VERSION  = __APP_VERSION__
 const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
@@ -127,7 +127,7 @@ export default function LegalPage() {
                 <TocItem href="#terms">Terms of Use</TocItem>
                 <TocItem href="#privacy">Privacy Policy</TocItem>
                 <TocItem href="#data">Data Storage</TocItem>
-                <TocItem href="#ai">AI &amp; ChatGPT Usage</TocItem>
+                <TocItem href="#ai">AI Usage</TocItem>
                 <TocItem href="#affiliate">Affiliate Disclosure</TocItem>
                 <TocItem href="#gdpr">GDPR (EU)</TocItem>
                 <TocItem href="#ccpa">CCPA (California)</TocItem>
@@ -204,14 +204,13 @@ export default function LegalPage() {
               <p>
                 The Software makes no requests to servers we operate. Two things do reach third parties: the site
                 is served by Cloudflare, and the page loads the Inter typeface from Google Fonts (which receives your
-                IP address as part of that request). If you follow optional links from the app — the SalesCloserPro
-                GPT on ChatGPT, GitHub, Google Workspace, Zoho, or Namecheap — those services' own privacy policies
+                IP address as part of that request). If you follow optional links from the app — GitHub, Google
+                Workspace, Zoho, or Namecheap — those services' own privacy policies
                 govern anything you submit to them. We encourage you to review:
               </p>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li><Ext href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</Ext></li>
                 <li><Ext href="https://policies.google.com/privacy">Google Privacy Policy</Ext> (Google Fonts, Google Workspace)</li>
-                <li><Ext href="https://openai.com/policies/privacy-policy">OpenAI Privacy Policy</Ext> (ChatGPT GPT)</li>
                 <li><Ext href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</Ext></li>
                 <li><Ext href="https://www.zoho.com/privacy.html">Zoho Privacy Policy</Ext></li>
                 <li><Ext href="https://www.namecheap.com/legal/general/privacy-policy/">Namecheap Privacy Policy</Ext></li>
@@ -240,7 +239,7 @@ export default function LegalPage() {
             </Section>
 
             {/* ── 4. AI USAGE ── */}
-            <Section id="ai" icon={Bot} title="AI &amp; ChatGPT Usage Disclosure" color="text-violet-400">
+            <Section id="ai" icon={Bot} title="AI Usage Disclosure" color="text-violet-400">
               <p>
                 SalesCloserPro was <Hi>developed with assistance from AI tools</Hi> including OpenAI ChatGPT,
                 Anthropic Claude, and GitHub Copilot. This section discloses how AI is involved in the product and
@@ -256,11 +255,6 @@ export default function LegalPage() {
               <p>
                 SalesCloserPro does <Hi>not</Hi> send your data (quotes, client names, amounts, etc.) to any AI service.
                 There are no AI APIs called by the application at runtime. Your business data stays on your device.
-              </p>
-              <p>
-                The optional <Hi>SalesCloserPro GPT</Hi> linked from the sidebar and homepage is a separate ChatGPT
-                experience operated by OpenAI. Nothing from the app is sent to it automatically; anything you choose
-                to type there is governed by OpenAI's policies.
               </p>
               <H>OpenAI Usage Policy Compliance</H>
               <p>
@@ -293,8 +287,8 @@ export default function LegalPage() {
               </p>
               <p>
                 The application links to a small number of independent third-party services purely as a
-                convenience to help you operate your business — for example, optional domain registration, email
-                hosting, and the free SalesCloserPro GPT on ChatGPT. These are{' '}
+                convenience to help you operate your business — for example, optional domain registration and email
+                hosting. These are{' '}
                 <Hi>ordinary, non-affiliate links</Hi>: we receive no commission, referral reward, or other
                 compensation when you follow them, no tracking or attribution identifiers are attached, and you
                 are never required to use any of them.
@@ -472,7 +466,7 @@ export default function LegalPage() {
               <H>Trademarks &amp; Logos</H>
               <p>
                 Any third-party names or logos that appear in SalesCloserPro (for example GitHub, Cloudflare, Namecheap,
-                Zoho, Google Workspace, or OpenAI's ChatGPT, referenced in setup guidance and links) are trademarks of their
+                Zoho, or Google Workspace, referenced in setup guidance and links) are trademarks of their
                 respective owners and are used solely for identification and referential purposes under nominative
                 fair use. No affiliation with, or endorsement by, these brands is implied.
               </p>

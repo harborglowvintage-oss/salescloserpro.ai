@@ -1,8 +1,7 @@
 import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom'
 import {
   LayoutDashboard, FileText, Users, GitBranch,
-  Rocket, Plus, Menu, X, DollarSign, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart,
-  MessageSquare, ExternalLink
+  Rocket, Plus, Menu, X, DollarSign, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import useStore from '../../store'
@@ -158,30 +157,6 @@ export default function Layout() {
 
         {/* Footer */}
         <div className="px-3 pb-4 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2.5">
-          {/* GPT AI Assistant — Hero CTA */}
-          <a
-            href="https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block rounded-2xl overflow-hidden bg-gradient-to-br from-gray-100 via-gray-50 to-white dark:from-gray-700 dark:via-gray-750 dark:to-gray-800 border border-gray-200 dark:border-gray-600 shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all duration-200 group"
-          >
-            {/* Logo area — generous padding */}
-            <div className="flex items-center justify-center pt-4 pb-2">
-              <div className="w-12 h-12 rounded-xl bg-white dark:bg-gray-700 flex items-center justify-center ring-2 ring-gray-200 dark:ring-gray-600 shadow-sm group-hover:ring-gray-300 dark:group-hover:ring-gray-500 transition-all duration-200 overflow-hidden">
-                <img src="/gptlogo.png" alt="salescloserpro.ai" className="w-10 h-10 object-cover rounded-lg drop-shadow-sm" />
-              </div>
-            </div>
-            {/* Text area — centered */}
-            <div className="text-center pb-3 px-3">
-              <div className="text-[13px] font-extrabold text-gray-800 dark:text-gray-100 leading-tight tracking-tight">salescloserpro.ai</div>
-              <div className="text-[11px] text-gray-500 dark:text-gray-400 font-semibold mt-0.5 flex items-center justify-center gap-1">
-                GPT Assistant
-                <ExternalLink className="w-3 h-3 text-gray-400 dark:text-gray-500 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors" />
-              </div>
-              <div className="text-[10px] text-gray-400 dark:text-gray-500 mt-0.5">ChatGPT · GPT-5.6 Sol</div>
-            </div>
-          </a>
-
           {/* Sub-links row */}
           <div className="flex items-center justify-between px-1">
             <a

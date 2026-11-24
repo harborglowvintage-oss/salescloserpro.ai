@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/gptlogo.png" alt="SalesCloserPro Logo" width="120" />
+  <img src="public/logos/salescloserprologo.png" alt="SalesCloserPro Logo" width="120" />
 </p>
 
 <h1 align="center">salescloserpro.ai — Close More. Stress Less. 💪</h1>
@@ -15,7 +15,6 @@
   <a href="https://github.com/harborglowvintage-oss/salescloserpro.ai/blob/main/LICENSE"><img src="https://img.shields.io/badge/License-Apache%202.0-blue.svg" alt="License" /></a>
   <a href="https://github.com/harborglowvintage-oss/salescloserpro.ai"><img src="https://img.shields.io/github/stars/harborglowvintage-oss/salescloserpro.ai?style=social" alt="GitHub Stars" /></a>
   <a href="https://salescloserpro.ai"><img src="https://img.shields.io/badge/Web-salescloserpro.ai-green" alt="Website" /></a>
-  <a href="https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai"><img src="https://img.shields.io/badge/GPT-salescloserpro.ai-blueviolet" alt="ChatGPT" /></a>
 </p>
 
 ### 📸 Screenshots
@@ -89,7 +88,6 @@
 
 - [🆕 What's new in 10.14.26](#-whats-new-in-101426-2026-10-14)
 - [🆕 What's new in 1.1.0](#-whats-new-in-110-2026-09-10)
-- [🤖 salescloserpro.ai — GPT Assistant](#-salescloserpro-ai--gpt-assistant)
 - [⚡ Quick Start — Install in 60 Seconds](#-quick-start--install-in-60-seconds)
 - [🗄️ Local Zip Backup (Public Repo Safe)](#️-local-zip-backup-public-repo-safe)
 - [✨ Features at a Glance](#-features-at-a-glance)
@@ -117,21 +115,6 @@
 - [❓ FAQ](#-faq)
 - [⚖️ Copyright & Disclaimer](#️-copyright--disclaimer)
 - [📄 License](#-license)
-
----
-
-## 🤖 salescloserpro.ai — GPT Assistant
-
-> 💬 Get instant help building quotes, closing deals, and using every feature — powered by OpenAI.
-
-🎯 **[→ Launch salescloserpro.ai on ChatGPT](https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai)**
-
-The AI assistant can help you with:
-- 📝 Building and editing quotes step by step
-- 💡 Sales strategy & pricing advice
-- 🔍 Finding features and navigating the app
-- 📊 Understanding your pipeline, analytics, and margins
-- 🚀 Deploying, configuring, and packaging your own instance
 
 ---
 
@@ -538,7 +521,6 @@ These elements are in the footer or below the visible viewport. Google discounts
 │   ├── 🖼️ favicon.ico · favicon-32.png · apple-touch-icon.png · icon-192.png · icon-512.png  (icon-192 is also the default sidebar logo)
 │   ├── 📄 manifest.webmanifest  → Web app manifest (installable, standalone)
 │   ├── 🖼️ og-cover-v2.png       → Social share card
-│   ├── 🖼️ gptlogo.png           → GPT assistant card logo
 │   ├── 📂 logos/                → Landing page artwork
 │   ├── 📄 _headers              → Cloudflare Pages cache + security headers, policy-file content types, noindex on app routes
 │   ├── 📄 _redirects            → Retired-page redirects, /security.txt → .well-known, SPA fallback
@@ -559,7 +541,7 @@ These elements are in the footer or below the visible viewport. Google discounts
     │   ├── 📂 dashboard/Dashboard.jsx      → 📊 KPI cards, recent quotes, pipeline overview
     │   ├── 📂 help/HelpGuide.jsx           → ❓ 11-section searchable help center
     │   ├── 📂 landing/                     → 🌐 LandingPage, AboutPage, ServicesPage, LegalPage
-    │   ├── 📂 layout/Layout.jsx            → 🏗️ Sidebar, mobile header, theme toggle, GPT card
+    │   ├── 📂 layout/Layout.jsx            → 🏗️ Sidebar, mobile header, theme toggle
     │   ├── 📂 pipeline/Pipeline.jsx        → 📈 Kanban board — 6 stages, deal cards, Move/Back
     │   ├── 📂 po/PurchaseOrders.jsx        → 📦 POs — form, list, margin table, charts, PDF
     │   ├── 📂 quotes/QuoteBuilder.jsx      → 📝 Quote form — line items, tax, notes, attachments, PDF
@@ -676,7 +658,7 @@ The integrated data sync ensures consistency across modules:
 <details>
 <summary>🔒 Is my data secure?</summary>
 
-✅ **Yes!** All data stays in your browser's IndexedDB. Nothing is sent to any server. The only outbound requests are the site itself (Cloudflare) and the Inter font from Google Fonts; optional links (GitHub, the ChatGPT GPT) open in a new tab.
+✅ **Yes!** All data stays in your browser's IndexedDB. Nothing is sent to any server. The only outbound requests are the site itself (Cloudflare) and the Inter font from Google Fonts; optional links (GitHub) open in a new tab.
 </details>
 
 <details>
@@ -812,7 +794,6 @@ See [NOTICE](NOTICE) for full attribution requirements.
 </p>
 
 <p align="center">
-  <a href="https://chatgpt.com/g/g-69930ae1d2748191a9c47556b8ceae82-salescloserpro-ai">🤖 salescloserpro.ai GPT</a> ·
   <a href="https://salescloserpro.ai">🌐 salescloserpro.ai</a> ·
   <a href="https://llmadvisor.ai">⚡ llmadvisor.ai</a>
 </p>

@@ -2,6 +2,7 @@
  * Generates every derived brand image from the sources in /brand:
  *   public/og-cover-v3.png              1200×630 social / Google card (LLMadvisor split layout)
  *   public/logos/salescloserpro-hero.webp  landing hero art (the handshake), 720px
+ *   public/logos/services-console.webp  Services page artwork
  *   public/logos/llmadvisor-mark.svg / -still.svg   the LLMadvisor mark (animated blink / static),
  *                                       copied unchanged from the LLMadvisor site's Static/mark*.svg
  *
@@ -28,6 +29,9 @@ await sharp(src('salescloserpro-art.png'))
   .resize(720, 720)
   .webp({ quality: 84 })
   .toFile(out('logos/salescloserpro-hero.webp'))
+
+/* ── Services page artwork (re-encoding also drops the source file's metadata) ── */
+await sharp(src('services-console.png')).resize({ width: 1200, withoutEnlargement: true }).webp({ quality: 82 }).toFile(out('logos/services-console.webp'))
 
 /* ── LLMadvisor mark (white + teal; made for dark backgrounds) ── */
 for (const f of ['llmadvisor-mark.svg', 'llmadvisor-mark-still.svg']) copyFileSync(src(f), out(`logos/${f}`))
@@ -75,4 +79,4 @@ await sharp(Buffer.from(svg))
   .png({ compressionLevel: 9 })
   .toFile(out('og-cover-v3.png'))
 
-console.log('✅  Generated og-cover-v3.png, logos/salescloserpro-hero.webp, logos/llmadvisor-mark(-still).svg')
+console.log('Generated og-cover-v3.png and logos/{salescloserpro-hero.webp, services-console.webp, llmadvisor-mark(-still).svg}')

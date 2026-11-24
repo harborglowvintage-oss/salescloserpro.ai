@@ -1,8 +1,8 @@
 import { useState, useRef, useEffect, useCallback } from 'react'
 import {
   HardDrive, Download, Upload, Clock, Shield, CheckCircle,
-  AlertTriangle, Trash2, FolderOpen, RefreshCw, Wifi, Usb,
-  MonitorSmartphone, ToggleLeft, ToggleRight, FileJson,
+  AlertTriangle, FolderOpen, RefreshCw, Wifi, Usb,
+  ToggleLeft, ToggleRight, FileJson,
   History, Info, ChevronDown, ChevronRight, X
 } from 'lucide-react'
 import useStore from '../../store'
@@ -198,8 +198,7 @@ export default function BackupRestore() {
           clients: state.clients?.length || 0,
           purchaseOrders: state.purchaseOrders?.length || 0,
           company: state.company?.name || 'Unknown',
-          size: getBackupSize(ev.target.result),
-        })
+          size: getBackupSize(ev.target.result) })
       } catch {
         setFeedback({ type: 'error', msg: 'Invalid backup file. Must be a SalesCloserPro JSON export.' })
         setRestoreFile(null)

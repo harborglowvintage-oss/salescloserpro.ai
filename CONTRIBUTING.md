@@ -6,7 +6,7 @@ Thank you for your interest in contributing to SalesCloserPro! We welcome contri
 
 1. **Fork the repository** and create a feature branch
 2. **Make your changes** with clear, descriptive commits
-3. **Test thoroughly** — ensure the app builds and runs on your platform
+3. **Test** — `npm test` and `npm run build` must pass; run `npm run test:e2e` for anything that touches a user flow
 4. **Submit a pull request** with a clear description of your changes
 
 ## 📜 License Agreement
@@ -39,10 +39,10 @@ Licensed under Apache-2.0
 
 ## 💡 Code Style
 
-- Use modern JavaScript/React patterns
-- Follow existing code formatting
-- Keep components focused and reusable
-- Add comments for complex logic
+- One implementation of each thing: money goes through `src/utils/quoteMath.js`, emails through `emails.js`, uploads through `fileSafety.js`, brand elements through `components/brand/Brand.jsx`
+- Colours and typefaces come from the tokens in `tailwind.config.js` — no hard-coded hex values in components
+- Follow the existing formatting; keep components focused; comment the *why*, not the *what*
+- Never commit real customer data, credentials, or personal information — tests and screenshots use made-up data
 
 ## 🐛 Reporting Issues
 

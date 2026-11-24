@@ -3,7 +3,7 @@ import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import {
   Package, Wrench, Truck, Plus, Trash2, ChevronDown,
   Save, Printer, ArrowLeft, CheckCircle, FileText, Send,
-  DollarSign, Info, User, Building2, Phone, Mail, MapPin, CalendarClock
+  Info, User, Building2, Phone, Mail, MapPin, CalendarClock
 } from 'lucide-react'
 import useStore from '../../store'
 import { stateTaxData, stateList } from '../../data/taxDatabase'
@@ -43,8 +43,7 @@ const STATUS_STYLES = {
   draft: { bg: 'bg-gray-100',  text: 'text-gray-700',  dot: 'bg-gray-400'  },
   sent:  { bg: 'bg-brand-100',  text: 'text-brand-700',  dot: 'bg-brand-500'  },
   won:   { bg: 'bg-green-100', text: 'text-green-700', dot: 'bg-green-500' },
-  lost:  { bg: 'bg-red-100',   text: 'text-red-600',   dot: 'bg-red-500'   },
-}
+  lost:  { bg: 'bg-red-100',   text: 'text-red-600',   dot: 'bg-red-500'   } }
 
 // ── Line Item Card ────────────────────────────────────────
 function LineItem({ line, onUpdate, onRemove }) {
@@ -246,8 +245,7 @@ export default function QuoteBuilder() {
     clientName, clientEmail, clientPhone, state, status, notes, attachments, validUntil,
     ...(tiered
       ? { options, recommendedOptionId: recommendedId && options.some((o) => o.id === recommendedId) ? recommendedId : options[0].id }
-      : { options: null, recommendedOptionId: null, lines: options[0].lines }),
-  })
+      : { options: null, recommendedOptionId: null, lines: options[0].lines }) })
 
   /** Save (create or update) and return the stored quote. */
   const persist = () => {
@@ -436,7 +434,7 @@ export default function QuoteBuilder() {
                 <Icon className={clsx('w-6 h-6', color)} />
               </div>
               <div className="text-left min-w-0">
-                <div className="font-bold text-gray-800 dark:text-gray-200 text-sm truncate">{label}</div>
+                <div className="font-bold text-gray-800 dark:text-gray-200 text-sm leading-tight">{label}</div>
                 <div className="text-xs text-gray-400 dark:text-gray-500 font-medium">+ Add</div>
               </div>
               <Plus className="w-5 h-5 text-gray-300 group-hover:text-brand-500 ml-auto flex-shrink-0 transition-colors" />

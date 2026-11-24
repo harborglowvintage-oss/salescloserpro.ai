@@ -12,6 +12,9 @@ import clsx from 'clsx'
 
 export const COPYRIGHT_LINE = '© 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0'
 export const STUDIO_URL = 'https://llmadvisor.ai'
+export const REPO_URL = 'https://github.com/harborglowvintage-oss/salescloserpro.ai'
+// The one public contact address (also in public/.well-known/security.txt and package.json)
+export const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
 /** The handshake product logo (small sizes — the 192px icon, not the hero art). */
 export function ProductLogo({ className = 'h-8 w-8', alt = 'SalesCloserPro' }) {

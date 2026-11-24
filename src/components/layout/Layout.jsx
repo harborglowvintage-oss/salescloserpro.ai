@@ -1,7 +1,7 @@
-import { NavLink, Outlet, useNavigate, Link } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import {
   LayoutDashboard, FileText, Users, GitBranch,
-  Plus, Menu, X, DollarSign, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart, Share2
+  Plus, Menu, X, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart, Share2
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import useStore, { useHydrated } from '../../store'

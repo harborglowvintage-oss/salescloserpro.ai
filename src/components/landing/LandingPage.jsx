@@ -9,9 +9,7 @@ import {
   FileText, Layers, Link2, BellRing, TrendingUp, ShoppingCart, Github,
   CheckCircle2, Check, Zap, ArrowRight, Star, Lock, Hammer, Briefcase,
 } from 'lucide-react'
-import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
-
-const REPO_URL = 'https://github.com/harborglowvintage-oss/salescloserpro.ai'
+import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE, REPO_URL } from '../brand/Brand'
 
 // LLMadvisor button language: bone on ink is primary, outlined bone is secondary
 const BTN = 'inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors'

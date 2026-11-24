@@ -175,31 +175,14 @@ export default function Contacts() {
       ) : (
         <div className="grid sm:grid-cols-2 gap-4">
           {filtered.map((c) => (
-            <div key={c.id} className="card hover:border-brand-200 dark:hover:border-brand-700 hover:shadow-md transition-all">
-              <div className="flex items-start justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 bg-brand-100 rounded-2xl flex items-center justify-center font-bold text-brand-700 text-lg flex-shrink-0">
-                    {(c.name || '?')[0].toUpperCase()}
-                  </div>
-                  <div>
-                    <div className="font-bold text-gray-900 dark:text-gray-100">{c.name}</div>
-                    {c.company && <div className="text-sm text-gray-500 dark:text-gray-400">{c.company}</div>}
-                  </div>
+            <div key={c.id} className="card flex flex-col hover:border-brand-200 dark:hover:border-brand-700 hover:shadow-md transition-all">
+              <div className="flex items-center gap-3">
+                <div className="w-11 h-11 bg-brand-100 rounded-2xl flex items-center justify-center font-bold text-brand-700 text-lg flex-shrink-0">
+                  {(c.name || '?')[0].toUpperCase()}
                 </div>
-                <div className="flex gap-1 items-center">
-                  <button onClick={() => navigate(`/quotes/new?contact=${c.id}`)} title="New quote for this contact"
-                    className="inline-flex items-center gap-1 text-sm text-copper-700 dark:text-copper-300 hover:underline font-semibold px-2 py-1">
-                    <FilePlus2 className="w-4 h-4" /> Quote
-                  </button>
-                  <button onClick={() => setModal(c)}
-                    className="text-sm text-brand-500 hover:text-brand-700 font-semibold px-2 py-1">
-                    Edit
-                  </button>
-                  <button onClick={() => { if (window.confirm('Delete this contact? Their quotes and deals are kept.')) deleteClient(c.id) }}
-                    title="Delete contact" aria-label={`Delete ${c.name}`}
-                    className="text-gray-300 hover:text-red-500 p-1">
-                    <Trash2 className="w-4 h-4" />
-                  </button>
+                <div className="min-w-0">
+                  <div className="font-bold text-gray-900 dark:text-gray-100 truncate">{c.name}</div>
+                  {c.company && <div className="text-sm text-gray-500 dark:text-gray-400 truncate">{c.company}</div>}
                 </div>
               </div>
               <div className="mt-3 space-y-1.5">
@@ -228,6 +211,22 @@ export default function Contacts() {
                 </div>
               )}
               <ContactActivity contact={c} />
+              {/* actions */}
+              <div className="mt-auto pt-4 flex gap-1 items-center justify-end">
+                <button onClick={() => navigate(`/quotes/new?contact=${c.id}`)} title="New quote for this contact"
+                  className="inline-flex items-center gap-1 text-sm text-copper-700 dark:text-copper-300 hover:underline font-semibold px-2 py-1">
+                  <FilePlus2 className="w-4 h-4" /> Quote
+                </button>
+                <button onClick={() => setModal(c)}
+                  className="text-sm text-brand-500 hover:text-brand-700 font-semibold px-2 py-1">
+                  Edit
+                </button>
+                <button onClick={() => { if (window.confirm('Delete this contact? Their quotes and deals are kept.')) deleteClient(c.id) }}
+                  title="Delete contact" aria-label={`Delete ${c.name}`}
+                  className="text-gray-300 hover:text-red-500 p-1">
+                  <Trash2 className="w-4 h-4" />
+                </button>
+              </div>
             </div>
           ))}
         </div>

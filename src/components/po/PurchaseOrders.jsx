@@ -1,14 +1,10 @@
 import { useState, useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
 import {
-  ShoppingCart, Plus, Trash2, Edit3, Search, Filter, ChevronDown,
-  Package, FileText, Wrench, Truck, DollarSign, TrendingUp,
-  BarChart3, PieChart, ArrowRight, ExternalLink, X, Check, AlertCircle,
-  Printer, Send,
-} from 'lucide-react'
+  ShoppingCart, Plus, Trash2, Edit3, Search, Filter, Package, FileText, Wrench, Truck, DollarSign, TrendingUp,
+  BarChart3, PieChart, ExternalLink, X, Check, Printer, Send } from 'lucide-react'
 import useStore from '../../store'
 import clsx from 'clsx'
-import { format } from 'date-fns'
 import { generatePO_PDF } from '../../utils/pdfExport'
 import { formatMoney, lineLabel } from '../../utils/quoteMath'
 
@@ -19,8 +15,7 @@ const LINE_TYPE_META = {
   product: { label: 'Product',  icon: Package,  color: 'text-brand-600',    bg: 'bg-brand-50',    accent: 'bg-brand-500'    },
   service: { label: 'Service',  icon: FileText,  color: 'text-purple-600',  bg: 'bg-purple-50',  accent: 'bg-purple-500'  },
   labor:   { label: 'Labor',    icon: Wrench,    color: 'text-emerald-600', bg: 'bg-emerald-50', accent: 'bg-emerald-500' },
-  freight: { label: 'Freight',  icon: Truck,     color: 'text-orange-600',  bg: 'bg-orange-50',  accent: 'bg-orange-500'  },
-}
+  freight: { label: 'Freight',  icon: Truck,     color: 'text-orange-600',  bg: 'bg-orange-50',  accent: 'bg-orange-500'  } }
 
 const PO_STATUSES = [
   { id: 'draft',    label: 'Draft',    dot: 'bg-gray-400',   badge: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'   },
@@ -174,8 +169,7 @@ export default function PurchaseOrders() {
   /* form state */
   const [form, setForm] = useState({
     quoteId: '', lineId: '', vendor: '', vendorContact: '', shipToAddress: '',
-    description: '', qty: 1, unitCost: 0, status: 'draft', notes: '',
-  })
+    description: '', qty: 1, unitCost: 0, status: 'draft', notes: '' })
   const resetForm = () => {
     setForm({ quoteId: '', lineId: '', vendor: '', vendorContact: '', shipToAddress: '', description: '', qty: 1, unitCost: 0, status: 'draft', notes: '' })
     setEditId(null)
@@ -211,8 +205,7 @@ export default function PurchaseOrders() {
         quoteNumber: match?.quote?.quoteNumber || '—',
         clientName: match?.quote?.clientName || '—',
         lineType: match?.line?.type || 'product',
-        lineDescription: lineLabel(match?.line) || po.description,
-      }
+        lineDescription: lineLabel(match?.line) || po.description }
     })
   }, [purchaseOrders, quoteLinesMap])
 
@@ -257,8 +250,7 @@ export default function PurchaseOrders() {
     })
     return Object.entries(map).map(([type, value]) => ({
       label: LINE_TYPE_META[type]?.label || type,
-      value,
-    }))
+      value }))
   }, [enrichedPOs])
 
   /* KPIs */
@@ -293,8 +285,7 @@ export default function PurchaseOrders() {
       vendor: po.vendor || '', vendorContact: po.vendorContact || '',
       shipToAddress: po.shipToAddress || '',
       description: po.description || '', qty: po.qty || 1,
-      unitCost: po.unitCost || 0, status: po.status || 'draft', notes: po.notes || '',
-    })
+      unitCost: po.unitCost || 0, status: po.status || 'draft', notes: po.notes || '' })
     setEditId(po.id)
     setShowForm(true)
   }
@@ -351,22 +342,22 @@ export default function PurchaseOrders() {
       </div>
 
       {/* ── KPI Strip ───────────────────────────────────── */}
-      <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
+      <div className="grid grid-cols-2 sm:grid-cols-3 xl:grid-cols-5 gap-3">
         {[
           { label: 'Total POs',    value: kpis.count,                      color: 'bg-brand-600' },
-          { label: 'Total Sold',   value: `${formatMoney(kpis.totalSell)}`,      color: 'bg-brand-500'   },
-          { label: 'Total Cost',   value: `${formatMoney(kpis.totalCost)}`,      color: 'bg-orange-500' },
-          { label: 'Total Margin', value: `${formatMoney(kpis.totalMargin)}`,    color: 'bg-green-500'  },
+          { label: 'Total Sold',   value: formatMoney(kpis.totalSell, 0),   color: 'bg-brand-500'   },
+          { label: 'Total Cost',   value: formatMoney(kpis.totalCost, 0),   color: 'bg-orange-500' },
+          { label: 'Total Margin', value: formatMoney(kpis.totalMargin, 0), color: 'bg-green-500'  },
           { label: 'Avg Margin',   value: pct(kpis.avgMargin),            color: 'bg-emerald-500'},
         ].map((k) => (
-          <div key={k.label} className="card flex items-center gap-3 py-3 px-4">
-            <div className={clsx('w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0', k.color)}>
-              <DollarSign className="w-5 h-5 text-white" />
+          <div key={k.label} className="card py-3 px-4">
+            <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400 font-medium">
+              <span className={clsx('w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0', k.color)}>
+                <DollarSign className="w-3.5 h-3.5 text-white" />
+              </span>
+              {k.label}
             </div>
-            <div>
-              <div className="text-lg font-bold text-gray-900 dark:text-gray-100">{k.value}</div>
-              <div className="text-xs text-gray-500 dark:text-gray-400 font-medium">{k.label}</div>
-            </div>
+            <div className="mt-1.5 text-xl font-bold text-gray-900 dark:text-gray-100 tabular-nums">{k.value}</div>
           </div>
         ))}
       </div>
@@ -563,10 +554,8 @@ export default function PurchaseOrders() {
                               marginPct: sellPrice > 0 ? ((sellPrice - cost) / sellPrice) * 100 : 0,
                               quoteNumber: match?.quote?.quoteNumber || '—',
                               lineType: match?.line?.type || 'product',
-                              lineDescription: lineLabel(match?.line) || newest.description,
-                            },
-                            company: useStore.getState().company,
-                          })
+                              lineDescription: lineLabel(match?.line) || newest.description },
+                            company: useStore.getState().company })
                         }
                         resetForm()
                       }}
@@ -641,7 +630,7 @@ export default function PurchaseOrders() {
           ) : (
             <div className="card overflow-hidden p-0">
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full min-w-[56rem] text-sm">
                   <thead>
                     <tr className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
                       {['PO #', 'Vendor', 'Description', 'Quote', 'Qty × Cost', 'Total', 'Sell Price', 'Margin', 'Status', ''].map((h) => (
@@ -656,7 +645,7 @@ export default function PurchaseOrders() {
                       return (
                         <tr key={po.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                           <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100 whitespace-nowrap">{po.poNumber}</td>
-                          <td className="px-4 py-3">
+                          <td className="px-4 py-3 min-w-[11rem]">
                             <div className="font-semibold text-gray-800 dark:text-gray-200">{po.vendor}</div>
                             {po.vendorContact && <div className="text-xs text-gray-400 dark:text-gray-500">{po.vendorContact}</div>}
                           </td>
@@ -670,7 +659,7 @@ export default function PurchaseOrders() {
                             {po.quoteId ? (
                               <button
                                 onClick={() => navigate(`/quotes/${po.quoteId}`)}
-                                className="text-brand-600 dark:text-brand-400 hover:underline font-semibold text-xs inline-flex items-center gap-1"
+                                className="text-brand-600 dark:text-brand-400 hover:underline font-semibold text-xs inline-flex items-center gap-1 whitespace-nowrap"
                               >
                                 {po.quoteNumber} <ExternalLink className="w-3 h-3" />
                               </button>
@@ -740,7 +729,7 @@ export default function PurchaseOrders() {
                 <p className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">Sell price from quote line vs. PO cost</p>
               </div>
               <div className="overflow-x-auto">
-                <table className="w-full text-sm">
+                <table className="w-full min-w-[56rem] text-sm">
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-700">
                       {['PO #', 'Quote', 'Type', 'Description', 'Sell Price', 'PO Cost', 'Margin ($)', 'Margin (%)', 'Status'].map((h) => (

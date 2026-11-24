@@ -1,61 +1,81 @@
-# salescloserpro.ai — Deployment notes
+# Deployment
 
-> **This repository is the single source for the live site** (since 10.14.26 / October 14, 2026).
+The live site at [salescloserpro.ai](https://salescloserpro.ai) is this repository, built by
+**Cloudflare Pages** on every push to `main` (`npm run build` → `dist/`). There is no server
+component.
 
-The public site at [salescloserpro.ai](https://salescloserpro.ai) is a React 18 + Vite app deployed to **Cloudflare Pages**, which runs `npm run build` on every push to `main` and serves `dist/`.
-
-## Active vs. retired
-
-| Repository | Status | Notes |
-|---|---|---|
-| `harborglowvintage-oss/salescloserpro.ai` (this repo) | **ACTIVE** | Connected to the Cloudflare Pages project that owns the `salescloserpro.ai` custom domain. |
-| `harborglowvintage-oss/salescloserprohomepage.ai` | **RETIRED** 2026-10-14 | Was an identical copy intended for a second site (`salescloserprohomepage.ai`) that was never set up; the Pages project had been building from it. Archived read-only on GitHub. Do not push there. |
-
-Cloudflare Pages project: `salescloserprohomepage-ai` (name kept; only the connected repository changed). Preview hostname: `salescloserprohomepage-ai.pages.dev`. The worker `robots-txt-handler` is not attached to `*.pages.dev`, so that hostname shows true origin output.
-
-## Routes (React Router, BrowserRouter)
-
-| Route | File |
+| | |
 |---|---|
-| `/` | `src/components/landing/LandingPage.jsx` |
-| `/about` | `src/components/landing/AboutPage.jsx` |
-| `/services` | `src/components/landing/ServicesPage.jsx` |
-| `/legal` | `src/components/landing/LegalPage.jsx` |
-| `/dashboard`, `/quotes`, `/clients`, … | App routes rendered inside `src/components/layout/Layout.jsx` (`noindex` via `public/_headers`) |
+| Repository | `harborglowvintage-oss/salescloserpro.ai` — the single source for the live site |
+| Pages project | `salescloserprohomepage-ai` (the name predates the repository consolidation) |
+| Preview host | `salescloserprohomepage-ai.pages.dev` — shows the build without zone-level edge rules |
+| Build | Framework preset **Vite**, command `npm run build`, output `dist` |
 
-Deep links work because Cloudflare Pages serves `index.html` for unknown paths. `public/_redirects` 301s retired pages (`/whitepaper`) and `/security.txt` → `/.well-known/security.txt`.
+## Host your own copy
 
-## Policy files
+1. Fork the repository and give your fork its own name and logo ([CONTRIBUTING.md](CONTRIBUTING.md)).
+2. In Cloudflare Pages: *Create project → Connect to Git*, pick the fork, preset **Vite**.
+3. Optional: add a custom domain under *Custom domains*.
+4. In `index.html`, point `canonical`, `og:url`, `og:image` and `twitter:image` at your domain,
+   and update `public/sitemap.xml`, `public/llms.txt` and `public/.well-known/security.txt`.
 
-`public/robots.txt`, `public/llms.txt`, and `public/.well-known/security.txt` are served by Pages. Vite copies `public/` (dot-directories included) into `dist/`. AI-crawler rules are **not** kept in `robots.txt`; Cloudflare's managed robots.txt prepends them. `security.txt` `Expires` is **2027-03-15** — renew before then. Details in the README's Cloudflare section.
+Any static host works; it only needs to serve `index.html` for unknown paths.
 
-## Local development
+## Routes
 
-```bash
-npm install
-npm run dev      # http://localhost:5173
-npm run build    # outputs dist/
-npm run preview
-```
+| Route | Indexed | Purpose |
+|---|---|---|
+| `/`, `/about`, `/services`, `/legal` | yes | Public pages |
+| `/dashboard`, `/quotes`, `/contacts`, `/pipeline`, `/purchase-orders`, `/settings`, `/backup`, `/export`, `/help`, `/accept` | no | The app |
+| `/p` | no | A client's view of a proposal; the content is in the URL fragment |
+| `/clients`, `/go-live` | — | Client-side redirects to `/contacts` and `/dashboard` |
 
-## Regenerate the social card
+`noindex` is applied with `X-Robots-Tag` in `public/_headers`. `public/_redirects` handles the
+retired `/whitepaper` page and `/security.txt`.
 
-`public/og-cover-v2.png` (1200×630) is committed. After logo or copy changes:
+## Edge configuration
 
-```bash
-npm run generate-og
-```
+- **Headers.** `public/_headers` sets caching, `nosniff`, frame and referrer policies. The
+  **Content-Security-Policy is set by a Cloudflare Response Header Transform Rule**, not by this
+  repository. It must allow: scripts and styles from the site itself, including inline `style` attributes; stylesheets from
+  `fonts.googleapis.com` and fonts from `fonts.gstatic.com`; images from `'self'` and `data:`
+  (logos and attachments are stored as data URLs); and `blob:` for downloads. After changing the
+  rule, load the site and check the browser console for CSP errors.
+- **Policy files.** `public/robots.txt` (allow-all plus the sitemap), `public/llms.txt` and
+  `public/.well-known/security.txt` are served from this repository. Do not add AI-crawler rules
+  to `robots.txt`; Cloudflare's managed robots.txt prepends them.
+- **`security.txt` expires 2027-03-15.** Renew it before then.
+- Keep account IDs, zone IDs, API tokens and full rule expressions out of this repository.
 
-Source: `scripts/generate-og.mjs`.
+## Search and social signals
 
-## SEO
+These values are what search engines and link previews have indexed. Changing any of them
+triggers re-evaluation, so change them together and deliberately.
 
-All meta tags, Open Graph, Twitter Card, and JSON-LD structured data live in `index.html`. Canonical URL: `https://salescloserpro.ai/`.
+| Signal | Value | Where |
+|---|---|---|
+| `<title>` | `SalesCloserPro.ai \| The Free CRM. Designed for simplicity.` | `index.html` |
+| H1 | `The Free CRM. Designed for simplicity.` | `src/components/landing/LandingPage.jsx` |
+| Meta description | "Build professional quotes, track deals, issue POs…" | `index.html` |
+| Canonical | `https://salescloserpro.ai/` | `index.html` |
+| Social card | `/og-cover-v3.png` | `index.html`, generated from `brand/` |
+| Structured data | `SoftwareApplication`, `WebSite`, `Organization` | `index.html` |
 
-## Versioning
+The title, H1 and social card changed in 11.24.26. After deploying, re-scrape the home page in
+the Facebook Sharing Debugger and LinkedIn Post Inspector, and request re-indexing in Google
+Search Console. When the social card changes again, give it a new file name so caches refresh.
 
-The version is the release date, `MM.DD.YY` (e.g. `10.14.26`), set once in `package.json`. Vite exposes it as `__APP_VERSION__` for the Help footer and Legal page; `index.html` JSON-LD `softwareVersion` is updated by hand to match.
+## Images
 
-## License
+Source artwork lives in `brand/`. `npm run generate-images` rebuilds the social card and
+everything in `public/logos/`. `npm run screenshots` rebuilds `screenshots/` from demo data.
+Do not edit generated images by hand.
 
-Apache 2.0 — © 2026 LLMadvisor ai LLC · [llmadvisor.ai](https://llmadvisor.ai)
+## Releasing
+
+1. Set the version (the release date, `MM.DD.YY`) in `package.json` and in the
+   `softwareVersion` field of `index.html`. The app reads it for the Help and Legal pages.
+2. Add the release to `CHANGELOG.md`; update `lastmod` in `public/sitemap.xml` for pages that changed.
+3. `npm test`, `npm run test:e2e`, `npm run build`.
+4. Merge to `main` and push. Cloudflare Pages deploys automatically.
+5. Open the site, check the console for errors, and spot-check a quote, a proposal link and a PDF.

@@ -12,8 +12,8 @@ function KpiCard({ icon: Icon, label, value, color, sub }) {
       <div className={`w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 ${color}`}>
         <Icon className="w-6 h-6 text-white" />
       </div>
-      <div>
-        <div className="text-2xl font-bold text-gray-900 dark:text-gray-100">{value}</div>
+      <div className="min-w-0">
+        <div className="text-2xl font-bold text-gray-900 dark:text-gray-100 tabular-nums truncate">{value}</div>
         <div className="text-sm font-medium text-gray-500 dark:text-gray-400">{label}</div>
         {sub && <div className="text-xs text-gray-400 dark:text-gray-500 mt-0.5">{sub}</div>}
       </div>
@@ -60,7 +60,7 @@ export default function Dashboard() {
         <KpiCard icon={Users}       label="Contacts" value={clients.length} color="bg-purple-500" />
         <KpiCard icon={TrendingUp}  label="Deals Won"     value={wonDeals}     color="bg-green-500" />
         <KpiCard icon={DollarSign}  label="Revenue Won"
-          value={`$${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 0 })}`}
+          value={formatMoney(totalRevenue, 0)}
           color="bg-emerald-500" sub="closed won quotes" />
       </div>
 

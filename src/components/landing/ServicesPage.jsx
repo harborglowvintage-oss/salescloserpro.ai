@@ -7,7 +7,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Settings2, Layers, LifeBuoy, Handshake, MessageSquare, ClipboardList, Rocket } from 'lucide-react'
 import { useEffect, useRef } from 'react'
-import { StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
+import { StudioCredit, COPYRIGHT_LINE, CONTACT_EMAIL } from '../brand/Brand'
 
 /* ── Intersection Observer hook for scroll-in animations ── */
 function useReveal() {
@@ -175,7 +175,7 @@ export default function ServicesPage() {
                   </div>
                   {/* Screenshot */}
                   <img
-                    src="/logos/intake.png"
+                    src="/logos/services-console.webp"
                     alt="SalesCloserPro quote intake interface"
                     className="w-full h-auto block"
                   />
@@ -249,13 +249,13 @@ export default function ServicesPage() {
               Ready to discuss your requirements? Reach out directly.
             </p>
             <a
-              href="mailto:brent@llmadvisor.ai?subject=SalesCloserPro%3A%20Custom%20Build%20Inquiry"
+              href={`mailto:${CONTACT_EMAIL}?subject=SalesCloserPro%3A%20Custom%20Build%20Inquiry`}
               className="inline-flex items-center gap-2 px-10 py-4 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl transition-colors shadow-xl shadow-brand-600/30 text-base tracking-wide"
             >
               Request a Build Conversation
             </a>
             <p className="text-sm text-ink-500 mt-5">Engagements typically start at $2,500.</p>
-            <p className="text-xs text-ink-600 mt-2">brent@llmadvisor.ai · typically replies within 1 business day</p>
+            <p className="text-xs text-ink-600 mt-2">{CONTACT_EMAIL} · typically replies within 1 business day</p>
           </div>
         </Reveal>
 

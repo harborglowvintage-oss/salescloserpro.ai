@@ -22,8 +22,9 @@ import { longDate } from './dates'
 export const MAX_OPTIONS = 3
 export const OPTION_NAMES = ['Good', 'Better', 'Best']
 
-export function formatMoney(n) {
-  return '$' + (n || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+/** "$1,234.50" — or "$1,235" with digits = 0, for headline numbers where cents are noise. */
+export function formatMoney(n, digits = 2) {
+  return '$' + (Number(n) || 0).toLocaleString('en-US', { minimumFractionDigits: digits, maximumFractionDigits: digits })
 }
 
 export function newLine(type = 'product') {

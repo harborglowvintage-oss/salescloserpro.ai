@@ -15,7 +15,6 @@ import {
   Download,
   HardDrive,
   Shield,
-  Github,
   CheckCircle,
   ChevronDown,
   BookOpen

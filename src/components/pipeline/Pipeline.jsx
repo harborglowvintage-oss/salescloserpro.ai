@@ -1,9 +1,10 @@
 import { useState } from 'react'
-import { Plus, X, DollarSign, ChevronRight, ChevronLeft, FileText, ShoppingCart, User } from 'lucide-react'
+import { Plus, X, ChevronRight, ChevronLeft, FileText, ShoppingCart, User } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import useStore from '../../store'
 import { format } from 'date-fns'
 import ContactCombobox from '../contacts/ContactCombobox'
+import { formatMoney } from '../../utils/quoteMath'
 
 function DealCard({ deal, stageId, stages }) {
   const navigate = useNavigate()
@@ -66,10 +67,7 @@ function DealCard({ deal, stageId, stages }) {
       )}
 
       {deal.value > 0 && (
-        <div className="flex items-center gap-1 text-green-700 dark:text-green-400 font-semibold text-sm">
-          <DollarSign className="w-3.5 h-3.5" />
-          {deal.value.toLocaleString('en-US', { minimumFractionDigits: 0 })}
-        </div>
+        <div className="text-green-700 dark:text-green-400 font-semibold text-sm tabular-nums">{formatMoney(deal.value)}</div>
       )}
 
       {/* Linked POs indicator */}
@@ -177,7 +175,7 @@ export default function Pipeline() {
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Sales Pipeline</h1>
           <div className="text-sm text-gray-500 dark:text-gray-400 font-medium bg-green-50 dark:bg-green-900/30 text-green-700 dark:text-green-400 px-3 py-1 rounded-full">
-            Pipeline value: ${totalValue.toLocaleString()}
+            Pipeline value: {formatMoney(totalValue, 0)}
           </div>
         </div>
         <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">Use the Move and Back buttons on each card to advance deals between stages</p>
@@ -199,7 +197,7 @@ export default function Pipeline() {
                         <div className={`font-bold text-sm ${colors.text}`}>{stage.label}</div>
                         {stageValue > 0 && (
                           <div className="text-xs text-gray-500 dark:text-gray-400 mt-0.5">
-                            ${stageValue.toLocaleString()}
+                            {formatMoney(stageValue, 0)}
                           </div>
                         )}
                       </div>

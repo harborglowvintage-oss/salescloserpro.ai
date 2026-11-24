@@ -21,11 +21,10 @@ import {
   Package,
   Gavel,
 } from 'lucide-react'
-import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
+import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE, CONTACT_EMAIL } from '../brand/Brand'
 
 const LAST_UPDATED = 'November 24, 2026'
 const APP_VERSION  = __APP_VERSION__
-const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
 /* ── collapsible section ── */
 function Section({ id, icon: Icon, title, color = 'text-brand-400', children, defaultOpen = false }) {

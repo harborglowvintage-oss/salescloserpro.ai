@@ -1,10 +1,10 @@
 {
   "name": "salescloserpro",
   "version": "11.24.26",
-  "description": "Universal sales quoting, CRM, and pipeline tool — free, open source",
+  "description": "Free, open-source sales quoting, contacts, pipeline and purchase orders — runs entirely in the browser",
   "type": "module",
   "author": {
-    "name": "llmadvisor.ai",
+    "name": "LLMadvisor ai LLC",
     "email": "brent@llmadvisor.ai",
     "url": "https://llmadvisor.ai"
   },
@@ -12,6 +12,9 @@
   "homepage": "https://github.com/harborglowvintage-oss/salescloserpro.ai",
   "scripts": {
     "generate-images": "node scripts/generate-brand-images.mjs",
+    "test": "node tests/run-unit.mjs",
+    "test:e2e": "node tests/run-e2e.mjs",
+    "screenshots": "node tests/run-e2e.mjs screenshots",
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"

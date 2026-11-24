@@ -4,7 +4,7 @@ Versions are release dates, `MM.DD.YY`.
 
 ## 11.24.26 — November 24, 2026
 
-The largest update since launch: SalesCloserPro now closes the loop from quote to signed yes.
+The largest update since launch: salescloserpro.ai now closes the loop from quote to signed yes.
 
 ### Added
 
@@ -34,6 +34,8 @@ The largest update since launch: SalesCloserPro now closes the loop from quote t
 - **Brand.** The LLMadvisor ai LLC identity throughout: one set of colour and type tokens in
   `tailwind.config.js`, the LLMadvisor mark and "An LLMadvisor ai LLC project" credit, a new
   social card, and a redesigned landing page. Headline: "The Free CRM. Designed for simplicity."
+- **One name.** The product is written `salescloserpro.ai` everywhere — pages, PDFs, emails,
+  the browser tab, the installable app name and these docs.
 - **PDFs** share one set of drawing helpers; tables fit the page margins and headings align
   with their columns.
 - **One implementation of each thing**: pricing, money formatting, status badges, email drafts,

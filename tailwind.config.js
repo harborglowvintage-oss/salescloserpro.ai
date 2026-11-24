@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 /*
- * LLMadvisor.ai brand tokens — the single source of truth for SalesCloserPro colour.
+ * LLMadvisor.ai brand tokens — the single source of truth for salescloserpro.ai colour.
  * Anchors come from the live llmadvisor.ai stylesheet (Static/exec.css) and its mark:
  *   ink #071b1f · teal #0c3a42 · teal-2 #124a53 · bone #efe9dc · paper #f7f4ed
  *   on-dark #e9e4d8 · on-dark-muted #a9bcbd · copper #8f552b (on light) / #d8b38a (on dark)

@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - PDF export (proposals + purchase orders)
+ * salescloserpro.ai - PDF export (proposals + purchase orders)
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *
@@ -58,7 +58,7 @@ export function drawHeader(doc, company, { title, number, date, subtitle, status
   doc.setTextColor(...charcoal)
   doc.setFontSize(22)
   doc.setFont('helvetica', 'bold')
-  doc.text(company.name || 'SalesCloserPro', x, 21)
+  doc.text(company.name || 'Your Company', x, 21)
 
   doc.setFontSize(8.5)
   doc.setFont('helvetica', 'normal')
@@ -216,7 +216,7 @@ export function drawFooters(doc) {
     doc.setTextColor(...PAL.softGray)
     doc.setFontSize(7)
     doc.setFont('helvetica', 'normal')
-    doc.text('Made with SalesCloserPro  ·  an LLMadvisor ai LLC project · llmadvisor.ai  ·  Free & Open Source', W / 2, fY, { align: 'center' })
+    doc.text('Made with salescloserpro.ai  ·  an LLMadvisor ai LLC project · llmadvisor.ai  ·  Free & Open Source', W / 2, fY, { align: 'center' })
     doc.text(`Page ${p} of ${pages}`, W - M, fY, { align: 'right' })
   }
 }
@@ -467,7 +467,7 @@ export function generatePO_PDF({ po, company }) {
     doc.setTextColor(...charcoal)
     doc.setFontSize(11)
     doc.setFont('helvetica', 'bold')
-    doc.text(company.name || 'SalesCloserPro', W / 2 + 10, rightY)
+    doc.text(company.name || 'Your Company', W / 2 + 10, rightY)
     rightY += 5
     doc.setFontSize(9)
     doc.setFont('helvetica', 'normal')
@@ -480,7 +480,7 @@ export function generatePO_PDF({ po, company }) {
     doc.setTextColor(...charcoal)
     doc.setFontSize(11)
     doc.setFont('helvetica', 'bold')
-    doc.text(company.name || 'SalesCloserPro', W / 2 + 10, rightY)
+    doc.text(company.name || 'Your Company', W / 2 + 10, rightY)
     doc.setFontSize(9)
     doc.setFont('helvetica', 'normal')
     doc.setTextColor(...midGray)

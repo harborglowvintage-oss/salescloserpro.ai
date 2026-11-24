@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - client-facing proposal page (/p#…)
+ * salescloserpro.ai - client-facing proposal page (/p#…)
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *
@@ -18,7 +18,7 @@ import { acceptanceEmail, mailtoHref } from '../../utils/emails'
 import { longDate, daysFromToday } from '../../utils/dates'
 import { stateTaxData } from '../../data/taxDatabase'
 import { generatePDF } from '../../utils/pdfExport'
-import { StudioCredit } from '../brand/Brand'
+import { LLMadvisorCredit } from '../brand/Brand'
 
 const isSnapshot = (p) => p?.v === 1 && Array.isArray(p.q?.o) && p.q.o.length > 0
 
@@ -35,7 +35,7 @@ export default function ProposalView() {
   const proposal = useProposal()
 
   useEffect(() => {
-    if (proposal.status === 'ready') document.title = `Proposal ${proposal.quote.quoteNumber} · ${proposal.company.name || 'SalesCloserPro'}`
+    if (proposal.status === 'ready') document.title = `Proposal ${proposal.quote.quoteNumber} · ${proposal.company.name || 'salescloserpro.ai'}`
   }, [proposal])
 
   return (
@@ -45,10 +45,10 @@ export default function ProposalView() {
       {proposal.status === 'ready' && <Proposal key={window.location.hash} {...proposal} />}
       <footer className="mt-auto border-t border-ink-100 py-6 px-4 text-center text-xs text-ink-600 space-y-2">
         <p>
-          Prepared with <a href="/" className="font-semibold text-brand-700 hover:underline">SalesCloserPro</a> — free quoting &amp; CRM.
+          Prepared with <a href="/" className="font-semibold text-brand-700 hover:underline">salescloserpro.ai</a> — free quoting &amp; CRM.
           This proposal lives only in its link; nothing was uploaded.
         </p>
-        <StudioCredit className="text-ink-600 hover:text-ink-950" markClassName="w-6 h-6" />
+        <LLMadvisorCredit className="text-ink-600 hover:text-ink-950" markClassName="w-6 h-6" />
       </footer>
     </div>
   )

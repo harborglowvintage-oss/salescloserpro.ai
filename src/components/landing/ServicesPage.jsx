@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - Custom & Enterprise Services
+ * salescloserpro.ai - Custom & Enterprise Services
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */
@@ -7,7 +7,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowLeft, Settings2, Layers, LifeBuoy, Handshake, MessageSquare, ClipboardList, Rocket } from 'lucide-react'
 import { useEffect, useRef } from 'react'
-import { StudioCredit, COPYRIGHT_LINE, CONTACT_EMAIL } from '../brand/Brand'
+import { LLMadvisorCredit, COPYRIGHT_LINE, CONTACT_EMAIL } from '../brand/Brand'
 
 /* ── Intersection Observer hook for scroll-in animations ── */
 function useReveal() {
@@ -62,7 +62,7 @@ const offerings = [
     numColor: 'text-copper-500/30',
     title: 'White-Label & Enterprise Architecture',
     body:
-      'Need SalesCloserPro branded entirely for your franchise or sales floor? We strip the default branding and rebuild the interface around your corporate identity — so it feels completely in-house.',
+      'Need salescloserpro.ai branded entirely for your franchise or sales floor? We strip the default branding and rebuild the interface around your corporate identity — so it feels completely in-house.',
   },
   {
     icon: LifeBuoy,
@@ -176,7 +176,7 @@ export default function ServicesPage() {
                   {/* Screenshot */}
                   <img
                     src="/logos/services-console.webp"
-                    alt="SalesCloserPro quote intake interface"
+                    alt="salescloserpro.ai quote intake interface"
                     className="w-full h-auto block"
                   />
                 </div>
@@ -249,7 +249,7 @@ export default function ServicesPage() {
               Ready to discuss your requirements? Reach out directly.
             </p>
             <a
-              href={`mailto:${CONTACT_EMAIL}?subject=SalesCloserPro%3A%20Custom%20Build%20Inquiry`}
+              href={`mailto:${CONTACT_EMAIL}?subject=salescloserpro.ai%3A%20Custom%20Build%20Inquiry`}
               className="inline-flex items-center gap-2 px-10 py-4 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl transition-colors shadow-xl shadow-brand-600/30 text-base tracking-wide"
             >
               Request a Build Conversation
@@ -265,7 +265,7 @@ export default function ServicesPage() {
       <footer className="border-t border-white/[0.06] mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-600">
           <span>{COPYRIGHT_LINE}</span>
-          <StudioCredit className="hover:text-ink-400" markClassName="w-6 h-6" />
+          <LLMadvisorCredit className="hover:text-ink-400" markClassName="w-6 h-6" />
           <div className="flex items-center gap-4">
             <Link to="/" className="hover:text-ink-400 transition-colors">Home</Link>
             <Link to="/about" className="hover:text-ink-400 transition-colors">About</Link>

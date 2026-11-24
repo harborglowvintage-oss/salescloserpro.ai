@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - Good / Better / Best option tabs for the quote builder
+ * salescloserpro.ai - Good / Better / Best option tabs for the quote builder
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */

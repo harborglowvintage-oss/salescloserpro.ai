@@ -223,7 +223,7 @@ vulnerability, follow [SECURITY.md](SECURITY.md) rather than opening a public is
 
 Apache-2.0 — see [LICENSE](LICENSE) and [NOTICE](NOTICE).
 
-Copyright © 2026 LLMadvisor ai LLC. "SalesCloserPro" and "LLMadvisor" are trademarks of
+Copyright © 2026 LLMadvisor ai LLC. "salescloserpro.ai" and "LLMadvisor" are trademarks of
 LLMadvisor ai LLC; the license covers the code, not the names or logos.
 
 <p align="center"><sub>An <a href="https://llmadvisor.ai">LLMadvisor ai LLC</a> project</sub></p>

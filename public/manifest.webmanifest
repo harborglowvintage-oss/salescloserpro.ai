@@ -1,6 +1,6 @@
 {
-  "name": "SalesCloserPro",
-  "short_name": "SalesCloserPro",
+  "name": "salescloserpro.ai",
+  "short_name": "salescloserpro.ai",
   "description": "Free, open-source sales quoting, CRM and pipeline tool that runs entirely in your browser.",
   "start_url": "/",
   "scope": "/",

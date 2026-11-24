@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - About & User Guide
+ * salescloserpro.ai - About & User Guide
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */
@@ -20,7 +20,7 @@ import {
   BookOpen
 } from 'lucide-react'
 import { useState } from 'react'
-import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
+import { ProductLogo, Wordmark, LLMadvisorCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 /* ── collapsible section ── */
 function Section({ icon: Icon, color, title, children, defaultOpen = false }) {
@@ -70,7 +70,7 @@ export default function AboutPage() {
           <div>
             <h1 className="font-serif text-3xl sm:text-4xl font-semibold text-ink-50 mb-3">About &amp; User Guide</h1>
             <p className="text-ink-400 leading-relaxed max-w-2xl">
-              Everything you need to get up and running with SalesCloserPro — from your first quote to
+              Everything you need to get up and running with salescloserpro.ai — from your first quote to
               advanced settings. No technical background required.
             </p>
           </div>
@@ -81,9 +81,9 @@ export default function AboutPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 space-y-4">
 
         {/* ── what is it ── */}
-        <Section icon={Shield} color="text-brand-400 bg-brand-500/10" title="What is SalesCloserPro?" defaultOpen={true}>
+        <Section icon={Shield} color="text-brand-400 bg-brand-500/10" title="What is salescloserpro.ai?" defaultOpen={true}>
           <p>
-            SalesCloserPro is a <strong className="text-white">free, open-source</strong> sales tool that lets you:
+            salescloserpro.ai is a <strong className="text-white">free, open-source</strong> sales tool that lets you:
           </p>
           <ul className="space-y-2 ml-1">
             {[
@@ -116,7 +116,7 @@ export default function AboutPage() {
 
         {/* ── company settings ── */}
         <Section icon={Settings} color="text-amber-400 bg-amber-500/10" title="Step 1 — Set up your company details">
-          <p>Before you create your first quote, personalize SalesCloserPro:</p>
+          <p>Before you create your first quote, personalize salescloserpro.ai:</p>
           <ol className="list-decimal ml-5 space-y-2">
             <li>Click <strong className="text-white">Company Info</strong> in the left sidebar.</li>
             <li><strong className="text-white">Company name</strong> — Enter your business name. This appears at the top of every quote and PO.</li>
@@ -218,7 +218,7 @@ export default function AboutPage() {
             </div>
             <div>
               <p className="text-white font-medium">Where is my data stored?</p>
-              <p>In your browser's local database (IndexedDB). Nothing is sent to any server. If you clear your browser data, your SalesCloserPro data will be erased — so keep backups.</p>
+              <p>In your browser's local database (IndexedDB). Nothing is sent to any server. If you clear your browser data, your salescloserpro.ai data will be erased — so keep backups.</p>
             </div>
             <div>
               <p className="text-white font-medium">Can I use this on my phone?</p>
@@ -244,7 +244,7 @@ export default function AboutPage() {
       <footer className="border-t border-white/[0.06] mt-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-ink-500">
           <span>{COPYRIGHT_LINE}</span>
-          <StudioCredit className="hover:text-ink-300" markClassName="w-6 h-6" />
+          <LLMadvisorCredit className="hover:text-ink-300" markClassName="w-6 h-6" />
         </div>
       </footer>
     </div>

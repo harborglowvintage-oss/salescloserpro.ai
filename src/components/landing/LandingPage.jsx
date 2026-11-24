@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - Landing Page
+ * salescloserpro.ai - Landing Page
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */
@@ -9,7 +9,7 @@ import {
   FileText, Layers, Link2, BellRing, TrendingUp, ShoppingCart, Github,
   CheckCircle2, Check, Zap, ArrowRight, Star, Lock, Hammer, Briefcase,
 } from 'lucide-react'
-import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE, REPO_URL } from '../brand/Brand'
+import { ProductLogo, Wordmark, LLMadvisorCredit, COPYRIGHT_LINE, REPO_URL } from '../brand/Brand'
 
 // LLMadvisor button language: bone on ink is primary, outlined bone is secondary
 const BTN = 'inline-flex items-center justify-center gap-2 rounded-md font-semibold transition-colors'
@@ -104,7 +104,7 @@ export default function LandingPage() {
             <Link to="/about" className="hover:text-ink-100 transition-colors">About</Link>
             <Link to="/help" className="hover:text-ink-100 transition-colors">Docs</Link>
             <Link to="/services" className="text-copper-300 hover:text-copper-200 transition-colors">Custom builds</Link>
-            <a href={REPO_URL} target="_blank" rel="noopener noreferrer" aria-label="SalesCloserPro on GitHub" className="hover:text-ink-100 transition-colors">
+            <a href={REPO_URL} target="_blank" rel="noopener noreferrer" aria-label="salescloserpro.ai on GitHub" className="hover:text-ink-100 transition-colors">
               <Github className="w-5 h-5" />
             </a>
           </nav>
@@ -144,7 +144,7 @@ export default function LandingPage() {
               ))}
             </ul>
 
-            <StudioCredit className="mt-9 text-sm text-ink-400 hover:text-ink-100" />
+            <LLMadvisorCredit className="mt-9 text-sm text-ink-400 hover:text-ink-100" />
           </div>
 
           {/* hero art — the handshake, framed like the LLMadvisor card */}
@@ -152,7 +152,7 @@ export default function LandingPage() {
             <div className="motion-safe:animate-float rounded-[2rem] p-3 border border-ink-100/15 bg-brand-900/70 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.8)]">
               <img
                 src="/logos/salescloserpro-hero.webp"
-                alt="Two professionals shaking hands — the SalesCloserPro handshake"
+                alt="Two professionals shaking hands — the salescloserpro.ai handshake"
                 width="720" height="720"
                 fetchpriority="high"
                 className="w-full h-auto rounded-[1.4rem]"
@@ -306,7 +306,7 @@ export default function LandingPage() {
               </div>
               <p className="text-sm text-ink-500 leading-relaxed">Free, open-source sales quoting and CRM for professionals who value privacy.</p>
             </div>
-            <StudioCredit className="text-sm text-ink-400 hover:text-ink-100" />
+            <LLMadvisorCredit className="text-sm text-ink-400 hover:text-ink-100" />
           </div>
 
           <div className="grid grid-cols-2 gap-8 mb-10">

@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - name field that doubles as a contact picker
+ * salescloserpro.ai - name field that doubles as a contact picker
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *

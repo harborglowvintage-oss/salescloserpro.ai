@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - date helpers
+ * salescloserpro.ai - date helpers
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *

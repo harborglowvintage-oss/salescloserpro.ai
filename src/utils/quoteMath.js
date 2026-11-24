@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - quote pricing + Good/Better/Best options
+ * salescloserpro.ai - quote pricing + Good/Better/Best options
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *

@@ -1,9 +1,9 @@
 /**
- * SalesCloserPro - email drafts (opened in the user's own mail app via mailto:)
+ * salescloserpro.ai - email drafts (opened in the user's own mail app via mailto:)
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *
- * Nothing is sent by SalesCloserPro — every message opens as a draft in the user's
+ * Nothing is sent by salescloserpro.ai — every message opens as a draft in the user's
  * mail client, so it goes from their own address and stays in their Sent folder.
  */
 
@@ -105,7 +105,7 @@ export function acceptanceEmail({ company, quote, record, url, optionName, total
     `Date: ${new Date(record.at).toLocaleString('en-US', { dateStyle: 'long', timeStyle: 'short' })}`,
     `Version: ${record.fp}`,
     '',
-    'Acceptance record (open in SalesCloserPro to log it):',
+    'Acceptance record (open in salescloserpro.ai to log it):',
     url,
   ].join('\n')
   return { to: company.email || '', subject: `Accepted: proposal ${quote.quoteNumber}`, body, url }

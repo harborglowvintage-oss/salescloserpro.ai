@@ -1,6 +1,6 @@
-# Contributing to SalesCloserPro
+# Contributing to salescloserpro.ai
 
-Thank you for your interest in contributing to SalesCloserPro! We welcome contributions from the community.
+Thank you for your interest in contributing to salescloserpro.ai! We welcome contributions from the community.
 
 ## 🤝 How to Contribute
 
@@ -15,7 +15,7 @@ By contributing to this project, you agree that your contributions will be licen
 
 ## 🏛️ Trademark & Branding Policy
 
-**SalesCloserPro** is a project of **LLMadvisor ai LLC**. The "SalesCloserPro" name and logo are the property of LLMadvisor ai LLC.
+**salescloserpro.ai** is a project of **LLMadvisor ai LLC**. The "salescloserpro.ai" name and logo are the property of LLMadvisor ai LLC.
 
 ### For Contributors:
 - You may contribute code to this project
@@ -24,15 +24,15 @@ By contributing to this project, you agree that your contributions will be licen
 
 ### For Forks:
 If you fork this project, you **must**:
-- ✅ Maintain attribution to the original SalesCloserPro project
+- ✅ Maintain attribution to the original salescloserpro.ai project
 - ✅ Keep the Apache 2.0 license intact
 - ✅ Include a link to the original repository
-- ❌ **Remove the SalesCloserPro name and logo branding** and rebrand your fork under a different name
-- ❌ Do not use "SalesCloserPro" or "LLMadvisor ai" in a way that implies endorsement of your derivative work
+- ❌ **Remove the salescloserpro.ai name and logo branding** and rebrand your fork under a different name
+- ❌ Do not use "salescloserpro.ai" or "LLMadvisor ai" in a way that implies endorsement of your derivative work
 
 **Example attribution for forks:**
 ```
-Based on SalesCloserPro by LLMadvisor ai LLC
+Based on salescloserpro.ai by LLMadvisor ai LLC
 Original: https://github.com/harborglowvintage-oss/salescloserpro.ai
 Licensed under Apache-2.0
 ```

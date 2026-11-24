@@ -45,7 +45,7 @@ ok(/JavaScript/.test(await P(pdf('/OpenAction << /S /JavaScript /JS (app.alert(1
 ok(/JavaScript/.test(await P(pdf('/OpenAction << /S /J#61va#53cript /JS (x) >>'))), 'JavaScript hidden behind #hex name escapes refused')
 ok(/launch/.test(await P(pdf('/OpenAction << /S /Launch /F (cmd.exe) >>'))), 'PDF that launches a program refused')
 ok(/embedded/.test(await P(pdf('/Names << /EmbeddedFiles << /Names [(a.exe) 9 0 R] >> >>'))), 'PDF with an embedded file refused')
-ok(/send data/.test(await P(pdf('/AA << /O << /S /SubmitForm /F (http://evil.test) >> >>'))), 'PDF that submits data refused')
+ok(/send data/.test(await P(pdf('/AA << /O << /S /SubmitForm /F (http://untrusted.example) >> >>'))), 'PDF that submits data refused')
 ok(/scripted forms/.test(await P(pdf('/AcroForm << /XFA 7 0 R >>'))), 'XFA form refused')
 ok(/password/.test(await P(enc('%PDF-1.7\ntrailer\n<< /Root 1 0 R /Encrypt 9 0 R >>\n%%EOF\n'))), 'encrypted PDF refused (cannot be inspected)')
 ok(/launch/.test(await P(objStm('9 0 << /S /Launch /F (cmd.exe) >>'))), 'action hidden in a COMPRESSED object stream found and refused')
@@ -66,11 +66,11 @@ ok(cleanFileName('x'.repeat(300) + '.pdf').length === 80 && cleanFileName('x'.re
 
 // ── stored data ──
 const good = 'data:image/png;base64,iVBORw0KGgo='
-ok(isSafeImageUrl(good) && !isSafeImageUrl('https://evil.test/pixel.png') && !isSafeImageUrl('javascript:alert(1)') && !isSafeImageUrl('data:image/svg+xml;base64,PHN2Zz4=') && !isSafeImageUrl('data:text/html;base64,PGI+') && !isSafeImageUrl('data:image/png;base64,AAA" onerror="x'), 'only our own base64 png/jpeg/gif/webp data: URLs count as images')
-const dirty = { company: { name: 'Co', logo: 'https://evil.test/track.gif?u=1' }, clients: [], quotes: [
+ok(isSafeImageUrl(good) && !isSafeImageUrl('https://untrusted.example/pixel.png') && !isSafeImageUrl('javascript:alert(1)') && !isSafeImageUrl('data:image/svg+xml;base64,PHN2Zz4=') && !isSafeImageUrl('data:text/html;base64,PGI+') && !isSafeImageUrl('data:image/png;base64,AAA" onerror="x'), 'only our own base64 png/jpeg/gif/webp data: URLs count as images')
+const dirty = { company: { name: 'Co', logo: 'https://untrusted.example/track.gif?u=1' }, clients: [], quotes: [
   { id: 'q1', attachments: [
     { id: 'a', name: 'ok.png', type: 'image/png', dataUrl: good },
-    { id: 'b', name: 'x.png', type: 'image/png', dataUrl: 'https://evil.test/beacon.png' },
+    { id: 'b', name: 'x.png', type: 'image/png', dataUrl: 'https://untrusted.example/remote.png' },
     { id: 'c', name: 'x.pdf', type: 'application/pdf', dataUrl: 'javascript:alert(document.domain)' },
     { id: 'd', name: 'x.svg', type: 'image/png', dataUrl: 'data:image/svg+xml;base64,PHN2Zz4=' },
     { id: 'e', name: 'doc‮fdp.exe', type: 'image/png', dataUrl: 'data:application/pdf;base64,JVBERi0=' },
@@ -79,8 +79,8 @@ const dirty = { company: { name: 'Co', logo: 'https://evil.test/track.gif?u=1' }
   { id: 'q2', attachments: [] }, { id: 'q3' },
 ] }
 const clean = sanitizeState(dirty)
-ok(clean.company.logo === '' && clean.company.name === 'Co', 'poisoned backup: remote logo (tracking pixel) removed')
-ok(clean.quotes[0].attachments.map((a) => a.id).join() === 'a,e', 'poisoned backup: http, javascript:, SVG and junk attachments removed; valid ones kept')
+ok(clean.company.logo === '' && clean.company.name === 'Co', 'tampered backup: remote logo (tracking pixel) removed')
+ok(clean.quotes[0].attachments.map((a) => a.id).join() === 'a,e', 'tampered backup: http, javascript:, SVG and junk attachments removed; valid ones kept')
 ok(clean.quotes[0].attachments[1].type === 'application/pdf' && clean.quotes[0].attachments[1].name === 'docfdp.exe', 'kept attachment: type corrected from its real data, name de-spoofed')
 const tidy = { company: { logo: good }, quotes: [{ id: 'q', attachments: [{ id: 'a', name: 'ok.png', type: 'image/png', dataUrl: good }] }] }
 ok(sanitizeState(tidy) === tidy && sanitizeState(null) === null && sanitizeState({}) && sanitizeState({ quotes: 'nope' }), 'clean state returned untouched; odd shapes do not throw')

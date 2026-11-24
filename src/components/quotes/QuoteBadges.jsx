@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - small quote badges shared by the quote list and dashboard
+ * salescloserpro.ai - small quote badges shared by the quote list and dashboard
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */

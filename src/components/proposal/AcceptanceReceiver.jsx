@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - record a client's online acceptance (/accept#…)
+ * salescloserpro.ai - record a client's online acceptance (/accept#…)
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *
@@ -44,7 +44,7 @@ export default function AcceptanceReceiver() {
   if (!quote) {
     return (
       <Shell icon={Inbox} tone="amber" title={`Quote ${record.no} isn't in this browser`}>
-        SalesCloserPro stores your data on this device only. Open this link in the browser where you created {record.no}
+        salescloserpro.ai stores your data on this device only. Open this link in the browser where you created {record.no}
         {' '}(or restore your backup here first), and it will be recorded.
       </Shell>
     )

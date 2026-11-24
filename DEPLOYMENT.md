@@ -54,7 +54,7 @@ triggers re-evaluation, so change them together and deliberately.
 
 | Signal | Value | Where |
 |---|---|---|
-| `<title>` | `SalesCloserPro.ai \| The Free CRM. Designed for simplicity.` | `index.html` |
+| `<title>` | `salescloserpro.ai \| The Free CRM. Designed for simplicity.` | `index.html` |
 | H1 | `The Free CRM. Designed for simplicity.` | `src/components/landing/LandingPage.jsx` |
 | Meta description | "Build professional quotes, track deals, issue POs…" | `index.html` |
 | Canonical | `https://salescloserpro.ai/` | `index.html` |

@@ -13,7 +13,7 @@ The machine-readable contact is at
 
 ## What is in scope
 
-SalesCloserPro is a client-side app: there is no server, account system or database of user
+salescloserpro.ai is a client-side app: there is no server, account system or database of user
 data to breach. The parts worth scrutiny are:
 
 - **Uploads and restored backups** — everything passes through `src/utils/fileSafety.js`.

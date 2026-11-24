@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - decode the packet carried in the URL #fragment
+ * salescloserpro.ai - decode the packet carried in the URL #fragment
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *

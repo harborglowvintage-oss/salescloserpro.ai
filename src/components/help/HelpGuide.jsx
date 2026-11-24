@@ -5,7 +5,7 @@ import {
   ChevronDown, ChevronRight, Search, BookOpen, Zap, Shield,
   BarChart3, Settings, PlusCircle, Eye
 } from 'lucide-react'
-import { StudioCredit } from '../brand/Brand'
+import { LLMadvisorCredit } from '../brand/Brand'
 
 const sections = [
   {
@@ -16,8 +16,8 @@ const sections = [
     bg: 'bg-amber-50 dark:bg-amber-900/20',
     content: [
       {
-        q: 'What is SalesCloserPro?',
-        a: 'SalesCloserPro is a free, open-source sales quoting tool. It runs entirely in your browser — no server, no sign-up, no subscription. Build professional quotes, keep a client list, track deals on a pipeline board, issue purchase orders to vendors, and export polished PDFs in seconds.'
+        q: 'What is salescloserpro.ai?',
+        a: 'salescloserpro.ai is a free, open-source sales quoting tool. It runs entirely in your browser — no server, no sign-up, no subscription. Build professional quotes, keep a client list, track deals on a pipeline board, issue purchase orders to vendors, and export polished PDFs in seconds.'
       },
       {
         q: 'Do I need an account?',
@@ -95,15 +95,15 @@ const sections = [
       },
       {
         q: 'Where is the proposal stored? Who can see it?',
-        a: 'Nowhere but the link itself. The quote is compressed into the part of the link after the # sign, which browsers never send to any server — so it is not uploaded to SalesCloserPro, Cloudflare, or anyone else. Anyone who has the link can view it, exactly like a PDF attached to an email, so send it only to your client. Your company logo and attachments are not included in the link.'
+        a: 'Nowhere but the link itself. The quote is compressed into the part of the link after the # sign, which browsers never send to any server — so it is not uploaded to salescloserpro.ai, Cloudflare, or anyone else. Anyone who has the link can view it, exactly like a PDF attached to an email, so send it only to your client. Your company logo and attachments are not included in the link.'
       },
       {
         q: 'How do I find out the client accepted?',
-        a: 'When the client accepts, their mail app opens a confirmation email to the address in your Company Info. It contains an acceptance link — open it in the browser where you use SalesCloserPro and click "Record acceptance & mark Won". The quote is marked Won, the accepted option becomes the quote total, and "Accepted online" shows in your quote list.'
+        a: 'When the client accepts, their mail app opens a confirmation email to the address in your Company Info. It contains an acceptance link — open it in the browser where you use salescloserpro.ai and click "Record acceptance & mark Won". The quote is marked Won, the accepted option becomes the quote total, and "Accepted online" shows in your quote list.'
       },
       {
         q: 'What is the version code on an acceptance?',
-        a: 'A fingerprint of exactly what the client saw — every item, quantity, price and note. When you record an acceptance, SalesCloserPro checks it against the quote as it is now and warns you if you edited the quote after sending it, so you never start work on a version the client did not agree to. It proves which version was accepted; the client\'s own email is the record of who accepted.'
+        a: 'A fingerprint of exactly what the client saw — every item, quantity, price and note. When you record an acceptance, salescloserpro.ai checks it against the quote as it is now and warns you if you edited the quote after sending it, so you never start work on a version the client did not agree to. It proves which version was accepted; the client\'s own email is the record of who accepted.'
       },
       {
         q: 'How do follow-ups work?',
@@ -289,7 +289,7 @@ const sections = [
         a: 'Four plain spreadsheets — contacts, deals, quotes, and quote line items — that open in Excel, Google Sheets or Numbers and import into almost any CRM, accounting or email tool. Quote number, contact email and contact name appear across the files so you can join them.'
       },
       {
-        q: 'Does SalesCloserPro connect to my CRM?',
+        q: 'Does salescloserpro.ai connect to my CRM?',
         a: 'No. The files are created on your device and you upload them yourself with the CRM\'s import tool. There are no API keys or logins, and nothing is sent anywhere. It is a one-way export: changes you later make in the other CRM do not come back.'
       },
       {
@@ -392,7 +392,7 @@ export default function HelpGuide() {
             </div>
             <div>
               <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">Help & User Guide</h1>
-              <p className="text-sm text-gray-500 dark:text-gray-400">Everything you need to know about SalesCloserPro</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400">Everything you need to know about salescloserpro.ai</p>
             </div>
           </div>
         </div>
@@ -539,9 +539,9 @@ export default function HelpGuide() {
 
       {/* Version + support footer */}
       <div className="card p-5 text-center space-y-2">
-        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">SalesCloserPro v{__APP_VERSION__}</p>
+        <p className="text-sm font-medium text-gray-700 dark:text-gray-300">salescloserpro.ai v{__APP_VERSION__}</p>
         <p className="text-xs text-gray-400 dark:text-gray-500">Free &amp; Open Source · Apache-2.0</p>
-        <StudioCredit className="text-xs text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300" markClassName="w-6 h-6" />
+        <LLMadvisorCredit className="text-xs text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300" markClassName="w-6 h-6" />
       </div>
     </div>
   )

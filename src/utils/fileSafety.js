@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - upload safety: the single gate every user-supplied file passes through
+ * salescloserpro.ai - upload safety: the single gate every user-supplied file passes through
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *

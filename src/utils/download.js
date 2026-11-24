@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - save a generated file to the user's device
+ * salescloserpro.ai - save a generated file to the user's device
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */

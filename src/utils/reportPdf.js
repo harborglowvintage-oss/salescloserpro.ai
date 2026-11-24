@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - Business Summary report (PDF)
+ * salescloserpro.ai - Business Summary report (PDF)
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *

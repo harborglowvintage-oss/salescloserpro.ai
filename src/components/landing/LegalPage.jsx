@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - Legal & Compliance Page
+ * salescloserpro.ai - Legal & Compliance Page
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */
@@ -21,7 +21,7 @@ import {
   Package,
   Gavel,
 } from 'lucide-react'
-import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE, CONTACT_EMAIL } from '../brand/Brand'
+import { ProductLogo, Wordmark, LLMadvisorCredit, COPYRIGHT_LINE, CONTACT_EMAIL } from '../brand/Brand'
 
 const LAST_UPDATED = 'November 24, 2026'
 const APP_VERSION  = __APP_VERSION__
@@ -101,7 +101,7 @@ export default function LegalPage() {
             <h1 className="text-3xl sm:text-4xl font-extrabold text-white">Legal &amp; Compliance</h1>
           </div>
           <p className="text-ink-400 text-base leading-relaxed max-w-2xl">
-            Policies, disclosures, and compliance information for SalesCloserPro — the free, open-source sales quoting
+            Policies, disclosures, and compliance information for salescloserpro.ai — the free, open-source sales quoting
             and CRM platform. Please read these documents before using the software.
           </p>
           <div className="flex flex-wrap gap-4 mt-5">
@@ -149,12 +149,12 @@ export default function LegalPage() {
             {/* ── 1. TERMS OF USE ── */}
             <Section id="terms" icon={FileText} title="Terms of Use" color="text-brand-400" defaultOpen={true}>
               <p>
-                By using, self-hosting, or distributing SalesCloserPro ("the Software"), you agree to these Terms of Use.
+                By using, self-hosting, or distributing salescloserpro.ai ("the Software"), you agree to these Terms of Use.
                 If you do not agree, do not use the Software.
               </p>
               <H>Permitted Use</H>
               <p>
-                SalesCloserPro is <Hi>free software licensed under Apache-2.0</Hi>. You may use it for personal,
+                salescloserpro.ai is <Hi>free software licensed under Apache-2.0</Hi>. You may use it for personal,
                 commercial, and internal business purposes. You may modify, distribute, and sublicense the software
                 in accordance with the Apache-2.0 License terms.
               </p>
@@ -168,7 +168,7 @@ export default function LegalPage() {
               </ul>
               <H>No Warranties</H>
               <p>
-                SalesCloserPro is provided <Hi>"AS IS"</Hi> without warranty of any kind. Use at your own risk. The authors
+                salescloserpro.ai is provided <Hi>"AS IS"</Hi> without warranty of any kind. Use at your own risk. The authors
                 make no guarantees of uptime, data integrity, accuracy of tax calculations, or fitness for any particular purpose.
                 Always verify financial figures independently.
               </p>
@@ -183,7 +183,7 @@ export default function LegalPage() {
             {/* ── 2. PRIVACY POLICY ── */}
             <Section id="privacy" icon={Lock} title="Privacy Policy" color="text-green-400">
               <p>
-                SalesCloserPro is built around a <Hi>privacy-first architecture</Hi>. It does not collect, transmit,
+                salescloserpro.ai is built around a <Hi>privacy-first architecture</Hi>. It does not collect, transmit,
                 or sell personal data to any third party. No account is required to use the software.
               </p>
               <H>What We Do NOT Collect</H>
@@ -219,13 +219,13 @@ export default function LegalPage() {
               <p>
                 All application data — quotes, clients, pipeline, settings, company logo, and purchase orders — is
                 stored exclusively in your browser's local database (<Hi>IndexedDB</Hi>). No data is transmitted to any server
-                operated by SalesCloserPro or llmadvisor.ai.
+                operated by salescloserpro.ai or llmadvisor.ai.
               </p>
               <H>Proposal Links</H>
               <p>
                 When you use <Hi>Send</Hi>, the proposal (client name and contact details you entered, line items, prices,
                 notes and validity date) is compressed into the link itself, after the <Hi>#</Hi> sign. Browsers do not
-                transmit that part of a link to any server, so the proposal is not uploaded to or stored by SalesCloserPro,
+                transmit that part of a link to any server, so the proposal is not uploaded to or stored by salescloserpro.ai,
                 llmadvisor.ai or Cloudflare. Anyone who has the link can read it, as with an emailed PDF — share it only with
                 the intended recipient. When a client accepts, the confirmation is drafted in their own email app and sent
                 only if they choose to send it. Calendar files you export are created on your device.
@@ -247,7 +247,7 @@ export default function LegalPage() {
             {/* ── 4. AI USAGE ── */}
             <Section id="ai" icon={Bot} title="AI Usage Disclosure" color="text-copper-400">
               <p>
-                SalesCloserPro was <Hi>developed with assistance from AI tools</Hi> including OpenAI ChatGPT,
+                salescloserpro.ai was <Hi>developed with assistance from AI tools</Hi> including OpenAI ChatGPT,
                 Anthropic Claude, and GitHub Copilot. This section discloses how AI is involved in the product and
                 what users should know.
               </p>
@@ -259,7 +259,7 @@ export default function LegalPage() {
               </p>
               <H>No AI Processing of Your Data</H>
               <p>
-                SalesCloserPro does <Hi>not</Hi> send your data (quotes, client names, amounts, etc.) to any AI service.
+                salescloserpro.ai does <Hi>not</Hi> send your data (quotes, client names, amounts, etc.) to any AI service.
                 There are no AI APIs called by the application at runtime. Your business data stays on your device.
               </p>
               <H>OpenAI Usage Policy Compliance</H>
@@ -286,7 +286,7 @@ export default function LegalPage() {
             {/* ── 6. AFFILIATE ── */}
             <Section id="affiliate" icon={Globe} title="Affiliate &amp; Referral Disclosure" color="text-amber-400">
               <p>
-                <Hi>SalesCloserPro does not currently contain any affiliate, referral, sponsored, or
+                <Hi>salescloserpro.ai does not currently contain any affiliate, referral, sponsored, or
                 paid-placement links.</Hi> All third-party advertising, affiliate partner grids, sponsor
                 placements, referral cards, and tracking pixels that previously appeared on this site have been
                 removed in their entirety.
@@ -311,9 +311,9 @@ export default function LegalPage() {
             <Section id="gdpr" icon={Shield} title="GDPR — European Union / EEA Compliance" color="text-brand-300">
               <p>
                 The General Data Protection Regulation (GDPR) (EU) 2016/679 applies to personal data of EU/EEA data subjects.
-                Because SalesCloserPro does not collect or process personal data on behalf of users, many GDPR obligations
+                Because salescloserpro.ai does not collect or process personal data on behalf of users, many GDPR obligations
                 are not directly triggered. However, <Hi>you as a user</Hi> may be subject to GDPR as a data controller
-                if you use SalesCloserPro to store personal data about your clients.
+                if you use salescloserpro.ai to store personal data about your clients.
               </p>
               <H>Our Role (Data Processor / Controller)</H>
               <p>
@@ -353,7 +353,7 @@ export default function LegalPage() {
               </p>
               <H>Sale of Personal Information</H>
               <p>
-                <Hi>We do not sell personal information.</Hi> SalesCloserPro does not collect or sell any personal
+                <Hi>We do not sell personal information.</Hi> salescloserpro.ai does not collect or sell any personal
                 information belonging to users or their clients. No third-party advertising networks receive data
                 from this application.
               </p>
@@ -372,7 +372,7 @@ export default function LegalPage() {
             <Section id="coppa" icon={AlertTriangle} title="Children's &amp; Minors' Privacy (COPPA, CPRA, GDPR-K)" color="text-orange-400">
               <H>Age Restriction — 18+</H>
               <p>
-                SalesCloserPro is a business tool <Hi>intended solely for use by professionals aged 18 and older</Hi>
+                salescloserpro.ai is a business tool <Hi>intended solely for use by professionals aged 18 and older</Hi>
                 {' '}(or the age of majority in your jurisdiction, whichever is greater). The Software is not directed
                 to, designed for, or marketed to children or minors, and we do not knowingly permit anyone under 18
                 to use the Software.
@@ -396,7 +396,7 @@ export default function LegalPage() {
               <p>
                 Under Article 8 of the EU and UK GDPR, the digital age of consent ranges from 13 to 16 depending on
                 the Member State. As a strictly 18+ product that performs no server-side collection of personal
-                data, SalesCloserPro falls outside the scope of children's-data processing, and we design in keeping
+                data, salescloserpro.ai falls outside the scope of children's-data processing, and we design in keeping
                 with the spirit of the UK Age Appropriate Design Code (Children's Code).
               </p>
               <H>Parental Requests &amp; Removal</H>
@@ -412,7 +412,7 @@ export default function LegalPage() {
             {/* ── 9A. ACCESSIBILITY / ADA ── */}
             <Section id="accessibility" icon={Eye} title="Accessibility (ADA &amp; WCAG)" color="text-brand-400">
               <p>
-                LLMadvisor ai LLC is committed to digital accessibility and to making SalesCloserPro usable by the
+                LLMadvisor ai LLC is committed to digital accessibility and to making salescloserpro.ai usable by the
                 widest possible audience, including people with disabilities. We work toward conformance with the{' '}
                 <Hi>Web Content Accessibility Guidelines (WCAG) 2.1 Level AA</Hi> and aim to meet the expectations of
                 the <Hi>Americans with Disabilities Act (ADA)</Hi> and <Hi>Section 508</Hi> of the U.S.
@@ -428,7 +428,7 @@ export default function LegalPage() {
               <H>Ongoing Effort &amp; Feedback</H>
               <p>
                 Accessibility is an ongoing effort and some areas may not yet fully conform. If you encounter any
-                barrier to using SalesCloserPro, or need information provided in an alternative accessible format,
+                barrier to using salescloserpro.ai, or need information provided in an alternative accessible format,
                 contact <Hi>{CONTACT_EMAIL}</Hi>. We will make reasonable efforts to remedy the issue and provide
                 the information or functionality you need. We welcome your feedback and treat accessibility reports
                 as a priority.
@@ -438,7 +438,7 @@ export default function LegalPage() {
             {/* ── 10. EXPORT / SANCTIONS ── */}
             <Section id="export" icon={Globe} title="Export Controls &amp; Sanctions" color="text-red-400">
               <p>
-                SalesCloserPro is subject to U.S. export control laws, including the Export Administration Regulations
+                salescloserpro.ai is subject to U.S. export control laws, including the Export Administration Regulations
                 (EAR) administered by the Bureau of Industry and Security (BIS), and OFAC sanctions programs.
               </p>
               <H>Export Classification</H>
@@ -448,7 +448,7 @@ export default function LegalPage() {
               </p>
               <H>Sanctions Compliance</H>
               <p>
-                You may not use, download, or distribute SalesCloserPro if you are:
+                You may not use, download, or distribute salescloserpro.ai if you are:
               </p>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li>Located in, or a national of, a comprehensively sanctioned country or region (currently Cuba, Iran, North Korea, and the Crimea, so-called DNR and LNR regions of Ukraine, as updated by OFAC; U.S. export controls also still restrict shipments of U.S.-origin items to certain other destinations, such as Syria)</li>
@@ -466,12 +466,12 @@ export default function LegalPage() {
             <Section id="dmca" icon={Gavel} title="DMCA &amp; Intellectual Property" color="text-rose-400">
               <H>Copyright</H>
               <p>
-                SalesCloserPro source code is copyright © 2026 LLMadvisor ai LLC and is released under
+                salescloserpro.ai source code is copyright © 2026 LLMadvisor ai LLC and is released under
                 the <Hi>Apache License 2.0</Hi>. Third-party dependencies retain their respective licenses (see NOTICE file).
               </p>
               <H>Trademarks &amp; Logos</H>
               <p>
-                Any third-party names or logos that appear in SalesCloserPro (for example GitHub, Cloudflare, HubSpot or
+                Any third-party names or logos that appear in salescloserpro.ai (for example GitHub, Cloudflare, HubSpot or
                 Salesforce, referenced in links and export formats) are trademarks of their
                 respective owners and are used solely for identification and referential purposes under nominative
                 fair use. No affiliation with, or endorsement by, these brands is implied.
@@ -491,7 +491,7 @@ export default function LegalPage() {
             {/* ── 12. OPEN SOURCE ── */}
             <Section id="opensource" icon={Package} title="Open-Source License (Apache-2.0)" color="text-emerald-400">
               <p>
-                SalesCloserPro is free, open-source software. Source code is available at{' '}
+                salescloserpro.ai is free, open-source software. Source code is available at{' '}
                 <Ext href="https://github.com/harborglowvintage-oss/salescloserpro.ai">
                   github.com/harborglowvintage-oss/salescloserpro.ai
                 </Ext>.
@@ -532,7 +532,7 @@ export default function LegalPage() {
             <Section id="disclaimer" icon={AlertTriangle} title="Disclaimer &amp; Limitation of Liability" color="text-yellow-400">
               <H>Financial &amp; Tax Disclaimer</H>
               <p>
-                SalesCloserPro is a <Hi>sales and quoting tool</Hi>, not a tax, accounting, or legal system.
+                salescloserpro.ai is a <Hi>sales and quoting tool</Hi>, not a tax, accounting, or legal system.
                 Tax rates in the included tax database are provided for convenience and may be outdated, incomplete,
                 or incorrect. Always verify applicable tax rates with a licensed accountant or tax authority before
                 issuing binding invoices or remitting taxes.
@@ -544,7 +544,7 @@ export default function LegalPage() {
               </p>
               <H>Limitation of Liability</H>
               <p>
-                To the maximum extent permitted by applicable law, the authors and contributors of SalesCloserPro shall
+                To the maximum extent permitted by applicable law, the authors and contributors of salescloserpro.ai shall
                 not be liable for any indirect, incidental, special, exemplary, or consequential damages including but
                 not limited to: loss of profits, loss of data, loss of goodwill, service interruption, or any other
                 commercial damages arising from your use of the Software, even if advised of the possibility of such damages.
@@ -611,8 +611,8 @@ export default function LegalPage() {
         {/* ── bottom bar ── */}
         <div className="mt-14 pt-8 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-ink-500">
           <p>{COPYRIGHT_LINE}</p>
-          <StudioCredit className="hover:text-ink-300" markClassName="w-6 h-6" />
-          <Link to="/" className="hover:text-white transition-colors">← Back to SalesCloserPro</Link>
+          <LLMadvisorCredit className="hover:text-ink-300" markClassName="w-6 h-6" />
+          <Link to="/" className="hover:text-white transition-colors">← Back to salescloserpro.ai</Link>
         </div>
 
       </main>

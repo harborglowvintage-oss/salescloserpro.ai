@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - serverless proposal links + acceptance records
+ * salescloserpro.ai - serverless proposal links + acceptance records
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *

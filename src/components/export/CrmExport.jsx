@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - Export: contacts, deals and quotes as CSV for HubSpot, Salesforce or anything else
+ * salescloserpro.ai - Export: contacts, deals and quotes as CSV for HubSpot, Salesforce or anything else
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */
@@ -115,7 +115,7 @@ export default function CrmExport() {
 
         <p className="flex items-start gap-2 text-xs text-gray-500 dark:text-gray-400">
           <Lock className="w-3.5 h-3.5 flex-shrink-0 mt-0.5" />
-          Files are created on this device — SalesCloserPro does not connect to {format.id === 'universal' ? 'any service' : format.name} or send your data anywhere. You upload them yourself.
+          Files are created on this device — salescloserpro.ai does not connect to {format.id === 'universal' ? 'any service' : format.name} or send your data anywhere. You upload them yourself.
         </p>
       </div>
     </div>

@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - export contacts, deals and quotes to other CRMs (CSV)
+ * salescloserpro.ai - export contacts, deals and quotes to other CRMs (CSV)
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *
@@ -141,7 +141,7 @@ export const EXPORT_FORMATS = [
       ] },
       { key: 'deals', label: 'Deals (with contact)', from: 'deals', columns: [
         ['Deal Name', (d) => d.name], ['Pipeline', () => 'Sales Pipeline'], ['Deal Stage', (d) => HUBSPOT_STAGE[d.stageId] || d.stage],
-        ['Amount', (d) => money(d.amount)], ['Close Date', (d) => d.closeDate], ['Deal Description', (d) => [d.quoteNumber && `SalesCloserPro ${d.quoteNumber}`, d.note].filter(Boolean).join(' — ')],
+        ['Amount', (d) => money(d.amount)], ['Close Date', (d) => d.closeDate], ['Deal Description', (d) => [d.quoteNumber && `salescloserpro.ai ${d.quoteNumber}`, d.note].filter(Boolean).join(' — ')],
         ['Email', (d) => d.contactEmail], ['First Name', (d) => d.first], ['Last Name', (d) => d.last],
       ] },
     ],
@@ -166,7 +166,7 @@ export const EXPORT_FORMATS = [
       { key: 'opportunities', label: 'Opportunities', from: 'deals', columns: [
         ['Name', (d) => d.name], ['Account Name', (d) => d.company || d.contactName], ['StageName', (d) => SALESFORCE_STAGE[d.stageId] || d.stage],
         ['Amount', (d) => money(d.amount)], ['CloseDate', (d) => d.closeDate],
-        ['Description', (d) => [d.quoteNumber && `SalesCloserPro ${d.quoteNumber}`, d.contactEmail, d.note].filter(Boolean).join(' — ')],
+        ['Description', (d) => [d.quoteNumber && `salescloserpro.ai ${d.quoteNumber}`, d.contactEmail, d.note].filter(Boolean).join(' — ')],
       ] },
     ],
   },

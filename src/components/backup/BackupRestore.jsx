@@ -183,7 +183,7 @@ export default function BackupRestore() {
     const file = e.target.files?.[0]
     if (!file) return
     if (file.size > MAX_BACKUP_BYTES) {
-      setFeedback({ type: 'error', msg: `That file is too large to be a SalesCloserPro backup (over ${MAX_BACKUP_BYTES / 1024 / 1024} MB).` })
+      setFeedback({ type: 'error', msg: `That file is too large to be a salescloserpro.ai backup (over ${MAX_BACKUP_BYTES / 1024 / 1024} MB).` })
       return
     }
     setRestoreFile(file)
@@ -200,7 +200,7 @@ export default function BackupRestore() {
           company: state.company?.name || 'Unknown',
           size: getBackupSize(ev.target.result) })
       } catch {
-        setFeedback({ type: 'error', msg: 'Invalid backup file. Must be a SalesCloserPro JSON export.' })
+        setFeedback({ type: 'error', msg: 'Invalid backup file. Must be a salescloserpro.ai JSON export.' })
         setRestoreFile(null)
         setRestorePreview(null)
       }

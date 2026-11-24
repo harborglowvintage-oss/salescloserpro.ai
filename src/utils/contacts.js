@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - contacts ⇄ quotes ⇄ deals
+ * salescloserpro.ai - contacts ⇄ quotes ⇄ deals
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *

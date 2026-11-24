@@ -6,7 +6,7 @@ import {
 import { useState, useEffect, useRef, useCallback } from 'react'
 import useStore, { useHydrated } from '../../store'
 import { safeLogo } from '../../utils/fileSafety'
-import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
+import { ProductLogo, Wordmark, LLMadvisorCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 const nav = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -133,7 +133,7 @@ export default function Layout() {
 
         {/* Footer */}
         <div className="px-3 pb-4 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2.5">
-          <StudioCredit
+          <LLMadvisorCredit
             className="w-full justify-center text-[11px] text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300"
             markClassName="w-6 h-6"
           />

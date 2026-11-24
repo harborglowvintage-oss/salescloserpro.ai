@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - Contacts: people you quote and sell to, with their quotes and deals
+ * salescloserpro.ai - Contacts: people you quote and sell to, with their quotes and deals
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */

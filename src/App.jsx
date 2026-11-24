@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - Application Root
+ * salescloserpro.ai - Application Root
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  * https://github.com/harborglowvintage-oss/salescloserpro.ai

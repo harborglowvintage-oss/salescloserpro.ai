@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - follow-up UI (quote panel + dashboard "due" card)
+ * salescloserpro.ai - follow-up UI (quote panel + dashboard "due" card)
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */

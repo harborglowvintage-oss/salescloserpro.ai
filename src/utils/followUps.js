@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - follow-up schedule + calendar export
+ * salescloserpro.ai - follow-up schedule + calendar export
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *
@@ -93,11 +93,11 @@ export function followUpCalendar(quote, proposalUrl) {
     quote.clientPhone && `Phone: ${quote.clientPhone}`,
     quote.validUntil && `Valid until ${longDate(quote.validUntil)}`,
     proposalUrl && `Proposal: ${proposalUrl}`,
-    'Open SalesCloserPro to send the drafted follow-up email.',
+    'Open salescloserpro.ai to send the drafted follow-up email.',
   ].filter(Boolean).join('\n')
 
   const lines = [
-    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//LLMadvisor ai LLC//SalesCloserPro//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+    'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//LLMadvisor ai LLC//salescloserpro.ai//EN', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
     ...events.flatMap((e) => [
       'BEGIN:VEVENT',
       `UID:${quote.id}-${e.uid}@salescloserpro.ai`,

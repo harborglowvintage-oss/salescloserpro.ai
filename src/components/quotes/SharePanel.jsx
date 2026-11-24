@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - "Send proposal" dialog: online link, email draft, client preview
+ * salescloserpro.ai - "Send proposal" dialog: online link, email draft, client preview
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  */

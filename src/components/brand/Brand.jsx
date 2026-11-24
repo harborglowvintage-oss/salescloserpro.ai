@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro - shared brand primitives (LLMadvisor studio identity)
+ * salescloserpro.ai - shared brand primitives (LLMadvisor studio identity)
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *
@@ -10,14 +10,14 @@
 
 import clsx from 'clsx'
 
-export const COPYRIGHT_LINE = '© 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0'
-export const STUDIO_URL = 'https://llmadvisor.ai'
+export const COPYRIGHT_LINE = '© 2026 salescloserpro.ai · LLMadvisor ai LLC · Apache-2.0'
+export const LLMADVISOR_URL = 'https://llmadvisor.ai'
 export const REPO_URL = 'https://github.com/harborglowvintage-oss/salescloserpro.ai'
 // The one public contact address (also in public/.well-known/security.txt and package.json)
 export const CONTACT_EMAIL = 'brent@llmadvisor.ai'
 
 /** The handshake product logo (small sizes — the 192px icon, not the hero art). */
-export function ProductLogo({ className = 'h-8 w-8', alt = 'SalesCloserPro' }) {
+export function ProductLogo({ className = 'h-8 w-8', alt = 'salescloserpro.ai' }) {
   return <img src="/icon-192.png" alt={alt} className={clsx('rounded-lg object-cover', className)} />
 }
 
@@ -42,7 +42,7 @@ export function Wordmark({ className = '', adaptive = false }) {
  * on an ink disc — that keeps it correct on light and dark surfaces alike. It blinks every
  * ten seconds, as on llmadvisor.ai; reduced-motion users get the still version.
  */
-export function StudioMark({ className = 'w-6 h-6' }) {
+export function LLMadvisorMark({ className = 'w-6 h-6' }) {
   return (
     <span aria-hidden="true" className={clsx('inline-flex items-center justify-center rounded-full bg-ink-950 ring-1 ring-ink-100/15 flex-shrink-0', className)}>
       <picture className="contents">
@@ -54,15 +54,15 @@ export function StudioMark({ className = 'w-6 h-6' }) {
 }
 
 /** "An LLMadvisor ai LLC project" lockup — the endorsement used in footers and the app shell. */
-export function StudioCredit({ className = '', markClassName = 'w-7 h-7' }) {
+export function LLMadvisorCredit({ className = '', markClassName = 'w-7 h-7' }) {
   return (
     <a
-      href={STUDIO_URL}
+      href={LLMADVISOR_URL}
       target="_blank"
       rel="noopener noreferrer"
       className={clsx('group inline-flex items-center gap-2.5 transition-colors', className)}
     >
-      <StudioMark className={markClassName} />
+      <LLMadvisorMark className={markClassName} />
       <span>
         An <span className="font-serif font-semibold text-[1.08em] tracking-tight group-hover:underline underline-offset-2">LLMadvisor ai LLC</span> project
       </span>

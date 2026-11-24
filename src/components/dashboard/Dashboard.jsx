@@ -45,7 +45,7 @@ export default function Dashboard() {
       {/* Welcome */}
       <div>
         <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-          {company.name ? `Welcome back, ${company.name}` : 'Welcome to SalesCloserPro'}
+          {company.name ? `Welcome back, ${company.name}` : 'Welcome to salescloserpro.ai'}
         </h1>
         <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">
           {format(new Date(), 'EEEE, MMMM d, yyyy')} — Here's your snapshot

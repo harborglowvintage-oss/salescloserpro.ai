@@ -1,5 +1,5 @@
 /**
- * SalesCloserPro — State Tax & Freight Database
+ * salescloserpro.ai — State Tax & Freight Database
  * Sources: State revenue department publications (2025)
  * DISCLAIMER: Verify rates with your accountant for final invoices.
  *

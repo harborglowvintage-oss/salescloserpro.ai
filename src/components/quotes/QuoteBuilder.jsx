@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import {
   Package, Wrench, Truck, Plus, Trash2, ChevronDown,
   Save, Printer, ArrowLeft, CheckCircle, FileText, Send,
@@ -16,6 +16,7 @@ import { buildProposalUrl } from '../../utils/proposalLink'
 import { addDays, isoDay } from '../../utils/dates'
 import { DEFAULT_VALID_DAYS } from '../../utils/followUps'
 import { QuoteFollowUps } from '../followups/FollowUps'
+import ContactCombobox from '../contacts/ContactCombobox'
 import clsx from 'clsx'
 
 const LINE_TYPES = [
@@ -161,10 +162,16 @@ export default function QuoteBuilder() {
 
   const existing = id ? quotes.find((q) => q.id === id) : null
 
-  const [clientName, setClientName]   = useState(existing?.clientName || '')
-  const [clientEmail, setClientEmail] = useState(existing?.clientEmail || '')
-  const [clientPhone, setClientPhone] = useState(existing?.clientPhone || '')
-  const [state, setState]             = useState(existing?.state || company.homeState || 'TX')
+  // "New quote" from a contact card arrives as /quotes/new?contact=<id>
+  const [params] = useSearchParams()
+  const ensureContact = useStore((s) => s.ensureContact)
+  const preset = useStore((s) => (existing ? null : s.clients.find((c) => c.id === params.get('contact')))) || null
+
+  const [contactId, setContactId]     = useState(existing?.contactId || preset?.id || null)
+  const [clientName, setClientName]   = useState(existing?.clientName || preset?.name || '')
+  const [clientEmail, setClientEmail] = useState(existing?.clientEmail || preset?.email || '')
+  const [clientPhone, setClientPhone] = useState(existing?.clientPhone || preset?.phone || '')
+  const [state, setState]             = useState(existing?.state || preset?.state || company.homeState || 'TX')
   const [status, setStatus]           = useState(existing?.status || 'draft')
   const [notes, setNotes]             = useState(existing?.notes || '')
   const [attachments, setAttachments] = useState(existing?.attachments || [])
@@ -211,7 +218,17 @@ export default function QuoteBuilder() {
   }
   const renameOption = (oid, name) => setOptions((p) => p.map((o) => (o.id === oid ? { ...o, name } : o)))
 
+  const pickContact = (c) => {
+    setContactId(c.id)
+    setClientName(c.name)
+    setClientEmail(c.email || '')
+    setClientPhone(c.phone || '')
+    if (c.state) setState(c.state)
+  }
+
   const buildPayload = () => ({
+    // every saved quote belongs to a contact: the linked one, a match by email/name, or a new one
+    contactId: ensureContact({ contactId, name: clientName, email: clientEmail, phone: clientPhone, state }),
     clientName, clientEmail, clientPhone, state, status, notes, attachments, validUntil,
     ...(tiered
       ? { options, recommendedOptionId: recommendedId && options.some((o) => o.id === recommendedId) ? recommendedId : options[0].id }
@@ -230,6 +247,7 @@ export default function QuoteBuilder() {
       navigate(`/quotes/${qid}`, { replace: true }) // same component instance; prevents duplicate creates
     }
     syncQuoteToPipeline(qid)
+    setContactId(payload.contactId)
     setSaved(true)
     setTimeout(() => setSaved(false), 2500)
     return useStore.getState().quotes.find((q) => q.id === qid)
@@ -317,7 +335,7 @@ export default function QuoteBuilder() {
           </div>
           <div>
             <h2 className="font-bold text-gray-900 dark:text-gray-100 text-lg leading-tight">Client Details</h2>
-            <p className="text-xs text-gray-400">Who is this quote for?</p>
+            <p className="text-xs text-gray-400">Who is this quote for? Start typing to pick a saved contact.</p>
           </div>
         </div>
 
@@ -326,8 +344,14 @@ export default function QuoteBuilder() {
             <label className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">
               <Building2 className="w-3.5 h-3.5" /> Client / Company Name
             </label>
-            <input className="input-field text-lg font-semibold" placeholder="Acme Corp"
-              value={clientName} onChange={(e) => setClientName(e.target.value)} />
+            <ContactCombobox
+              className="input-field text-lg font-semibold"
+              placeholder="Acme Corp"
+              value={clientName}
+              linkedId={contactId}
+              onChange={(v) => { setClientName(v); setContactId(null) }} // retyped → re-matched on save
+              onPick={pickContact}
+            />
           </div>
           <div>
             <label className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">

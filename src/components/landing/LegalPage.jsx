@@ -328,7 +328,7 @@ export default function LegalPage() {
               <H>Your Obligations as a User-Controller</H>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li>Have a legal basis for storing EU client data (legitimate interest or consent)</li>
-                <li>Honor data subject access requests (export a client's data from the Clients section)</li>
+                <li>Honor data subject access requests (a client's details, quotes and deals are listed on their card in the Contacts section)</li>
                 <li>Honor erasure requests by deleting the client's record from the app</li>
                 <li>Implement appropriate technical measures (encrypted drive recommended for EU client data)</li>
                 <li>Do not store special-category data (health, religion, etc.) in the app without explicit consent</li>

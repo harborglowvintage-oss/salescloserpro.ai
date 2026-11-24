@@ -137,23 +137,27 @@ const sections = [
     ]
   },
   {
-    id: 'clients',
+    id: 'contacts',
     icon: Users,
-    title: 'Client Management',
+    title: 'Contacts',
     color: 'text-brand-500',
     bg: 'bg-brand-50 dark:bg-brand-900/20',
     content: [
       {
-        q: 'How do I add a client?',
-        a: 'Go to Clients and click "Add Client". Enter their name, company, email, phone, address, state, and any private notes, then click Add Client.'
+        q: 'How do I add a contact?',
+        a: 'Go to Contacts and click "Add Contact". Enter their name, company, email, phone, address, state, and any private notes. You do not have to add people first, though — saving a quote or a deal for someone new adds them to Contacts automatically.'
       },
       {
-        q: 'Can I edit or delete clients?',
-        a: 'Yes. Each client card has Edit and delete (trash) buttons. Editing opens the form with the existing details pre-filled.'
+        q: 'How are contacts linked to quotes and deals?',
+        a: 'Every quote and every deal belongs to a contact. In the Quote Builder and when adding a deal, start typing a name and pick the saved contact — their email, phone and state fill in. If you type someone new, a contact is created when you save; if the email or name matches an existing contact, it links to that one instead of making a duplicate. A quote\'s pipeline deal carries the same contact.'
       },
       {
-        q: 'Are clients linked to quotes?',
-        a: 'Not yet. Clients is a standalone address book with click-to-email and click-to-call. Quotes carry their own client fields, so you can quote someone before adding them to Clients. A client picker for the Quote Builder is on the roadmap.'
+        q: 'What does a contact card show?',
+        a: 'Their details, plus everything linked to them: each quote with its status and total, deals you added by hand with their stage, and two totals — Open (deals still in play) and Won. Click a quote to open it, or "Quote" to start a new quote already filled in for that contact. On the Pipeline, the contact chip on a deal card jumps back to the contact.'
+      },
+      {
+        q: 'What happens when I edit or delete a contact?',
+        a: 'Editing a contact updates their deals and any quotes still in Draft. Quotes that are already Sent, Won or Lost keep the details the client saw. Deleting a contact keeps their quotes and deals — they are just unlinked.'
       }
     ]
   },
@@ -224,7 +228,7 @@ const sections = [
     content: [
       {
         q: 'What does the Dashboard show?',
-        a: 'Follow-ups due today or overdue (when you have sent quotes), then four cards — Open Quotes (drafts + sent), Total Clients, Deals Won, and Revenue Won (the total of quotes marked Won) — plus your five most recent quotes and a count of deals in each pipeline stage. It updates instantly as you work.'
+        a: 'Follow-ups due today or overdue (when you have sent quotes), then four cards — Open Quotes (drafts + sent), Contacts, Deals Won, and Revenue Won (the total of quotes marked Won) — plus your five most recent quotes and a count of deals in each pipeline stage. It updates instantly as you work.'
       }
     ]
   },
@@ -490,7 +494,7 @@ export default function HelpGuide() {
             { icon: Send, label: 'Issue a PO', desc: 'Purchase Orders → New PO → Issue PO & Download PDF', color: 'text-copper-500' },
             { icon: Upload, label: 'Upload Logo', desc: 'Click the logo in the sidebar, or Company Info', color: 'text-orange-500' },
             { icon: Sun, label: 'Toggle Theme', desc: 'Sun/Moon icon in the sidebar header', color: 'text-amber-500' },
-            { icon: Users, label: 'Add Client', desc: 'Clients → Add Client', color: 'text-brand-500' },
+            { icon: Users, label: 'Add Contact', desc: 'Contacts → Add Contact', color: 'text-brand-500' },
             { icon: Eye, label: 'Move a Deal', desc: 'Pipeline → Move / Back buttons on a card', color: 'text-brand-600' },
             { icon: Paperclip, label: 'Attach Files', desc: 'Quote → Attachments → drag or click', color: 'text-green-500' },
             { icon: HardDrive, label: 'Back Up Data', desc: 'Backup → Download Backup or Save to Folder', color: 'text-teal-500' },

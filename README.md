@@ -59,12 +59,13 @@
 
 ## 🆕 What's new in 11.24.26 (2026-11-24)
 
-- 🎨 **On-brand with LLMadvisor.ai.** One set of brand tokens in `tailwind.config.js` (teal `brand`, `copper` accent, warm `ink` neutrals, Source Serif 4 headings) drives the whole UI. The handshake art is now the framed landing hero (32 KB WebP, was a 608 KB PNG); a new LLMadvisor split-layout social card (`og-cover-v3.png`); "An LLMadvisor studio project" credit with the LLMadvisor glasses mark on every page; the header wordmark's `.ai` glows in the mark's teal; buttons follow the LLMadvisor site (bone on ink); the landing page gains "How it works" and a client-proposal showcase. Source art lives in `/brand`; `npm run generate-images` rebuilds every derived image.
+- 🎨 **On-brand with LLMadvisor.ai.** One set of brand tokens in `tailwind.config.js` (teal `brand`, `copper` accent, warm `ink` neutrals, Source Serif 4 headings) drives the whole UI. The handshake art is now the framed landing hero (32 KB WebP, was a 608 KB PNG); a new LLMadvisor split-layout social card (`og-cover-v3.png`); "An LLMadvisor ai LLC project" credit with the LLMadvisor glasses mark on every page; the header wordmark's `.ai` glows in the mark's teal; buttons follow the LLMadvisor site (bone on ink); the landing page gains "How it works" and a client-proposal showcase. Source art lives in `/brand`; `npm run generate-images` rebuilds every derived image.
 - ✍️ **New headline:** "The Free CRM. Designed for simplicity." — `<title>`, OG/Twitter titles and the H1 updated together.
 - 🤖 **Custom GPT promo removed** (landing block, sidebar card, legal references, README).
 - 🥇 **Good / Better / Best** — up to three priced options per proposal with a recommended pick; PDF prints each option and a tick-one summary.
 - 🔗 **Accept online, no server** — **Send** creates a link that carries the proposal in its `#fragment` (never sent to any server). The client picks an option, types their name and accepts; the confirmation returns as an email from the client's own mail app; the seller opens it to verify a SHA-256 version fingerprint and mark the quote Won.
 - 🔔 **Follow-ups** — every quote gets a valid-until date (default set in Company Info); sent quotes get a day-3 / day-7 / two-days-before-expiry schedule, drafted emails, a "due" card on the Dashboard, and `.ics` calendar export.
+- 👥 **Contacts** (was Clients) — every quote and deal now links to a contact: type-ahead picker in the Quote Builder and deal form, contacts auto-created or matched on save, deal cards show their contact, and each contact card lists their quotes, deals and open/won totals. `/clients` redirects to `/contacts`.
 - 🛠️ **Fixes** — quote and PO PDF tables overflowed the right margin; long PO terms ran off the page; refreshing `/quotes/:id` opened a blank quote (deep links rendered before IndexedDB loaded); "Client Details" heading invisible in dark mode.
 - 🧹 **One implementation of each thing** — pricing (`utils/quoteMath.js`), PDF drawing helpers, money formatting, status badges, file download, brand logo/credit/copyright are each defined once.
 
@@ -188,7 +189,7 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 | 📝 | **Quote Builder** | Big-button UI — add Products, Services, Labor, Freight with one click |
 | 📎 | **File Attachments** | Drag-and-drop uploader — images and PDFs attached to any quote |
 | 🧮 | **Auto Tax Engine** | All 50 US states + DC — freight, labor & sales tax rules calculated automatically |
-| 👥 | **Client Manager** | Store clients, contacts, addresses, and notes — click-to-email and click-to-call |
+| 👥 | **Contacts** | Every quote and deal links to a contact — picker in the builder, auto-created on save, per-contact quotes, deals and totals |
 | 📊 | **Sales Pipeline** | Kanban board — Lead → Quoted → Sent → Negotiating → Won / Lost |
 | 🔗 | **Data Integration** | Quotes auto-sync to pipeline; POs link to quotes for margin analysis |
 | 📦 | **Purchase Orders** | Full PO system with ship-to address, margin tracking, analytics, charts |
@@ -554,7 +555,8 @@ These elements are in the footer or below the visible viewport. Google discounts
     ├── 📂 components/
     │   ├── 📂 backup/BackupRestore.jsx     → 💾 Download, save-to-folder, auto-schedule, restore
     │   ├── 📂 brand/Brand.jsx              → 🎨 ProductLogo, StudioMark, StudioCredit, COPYRIGHT_LINE (LLMadvisor identity)
-    │   ├── 📂 clients/Clients.jsx          → 👥 Client address book — add, edit, search, notes
+    │   ├── 📂 contacts/Contacts.jsx        → 👥 Contacts — details + each contact's linked quotes, deals, open/won totals
+    │   ├── 📂 contacts/ContactCombobox.jsx → 🔎 Name field + contact picker used by the quote builder and deal form
     │   ├── 📂 dashboard/Dashboard.jsx      → 📊 Follow-ups due, KPI cards, recent quotes, pipeline overview
     │   ├── 📂 followups/FollowUps.jsx      → 🔔 Quote follow-up panel + dashboard "due" card, .ics export
     │   ├── 📂 help/HelpGuide.jsx           → ❓ 12-section searchable help center
@@ -580,6 +582,7 @@ These elements are in the footer or below the visible viewport. Google discounts
         ├── 📄 proposalLink.js   → 🔗 #fragment packets (deflate + base64url), snapshots, SHA-256 version fingerprint
         ├── 📄 emails.js         → ✉️ Every drafted email (send, follow-ups, acceptance) + mailto length guard
         ├── 📄 followUps.js      → 🔔 Follow-up schedule + RFC 5545 calendar export
+        ├── 📄 contacts.js       → 👥 Contact matching, search, and per-contact activity roll-up
         ├── 📄 dates.js          → 📅 Calendar-date helpers (local yyyy-MM-dd)
         └── 📄 download.js       → 💾 Save a generated file (backups, .ics)
 ```
@@ -623,7 +626,7 @@ SalesCloserPro stores **all data locally** in your browser's **IndexedDB** via [
 | Data | Storage Key | Details |
 |---|---|---|
 | 🏢 Company settings | `salescloserpro-data` | Name, address, logo, branding |
-| 👥 Clients | `salescloserpro-data` | All CRM contacts and addresses |
+| 👥 Contacts | `salescloserpro-data` | All CRM contacts and addresses (stored under the `clients` key) |
 | 📝 Quotes | `salescloserpro-data` | Quotes, line items, totals, attachments (base64) |
 | 📊 Pipeline deals | `salescloserpro-data` | Kanban stage, value, notes, linked quoteId |
 | 📦 Purchase orders | `salescloserpro-data` | POs, costs, vendor info, ship-to address |

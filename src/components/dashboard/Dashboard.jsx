@@ -57,7 +57,7 @@ export default function Dashboard() {
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         <KpiCard icon={FileText}    label="Open Quotes"   value={openQuotes}   color="bg-brand-500"   sub="drafts + sent" />
-        <KpiCard icon={Users}       label="Total Clients" value={clients.length} color="bg-purple-500" />
+        <KpiCard icon={Users}       label="Contacts" value={clients.length} color="bg-purple-500" />
         <KpiCard icon={TrendingUp}  label="Deals Won"     value={wonDeals}     color="bg-green-500" />
         <KpiCard icon={DollarSign}  label="Revenue Won"
           value={`$${totalRevenue.toLocaleString('en-US', { minimumFractionDigits: 0 })}`}

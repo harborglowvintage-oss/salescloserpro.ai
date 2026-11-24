@@ -63,7 +63,7 @@ const svg = `
     <text x="${PANEL + 72}" y="290" font-size="58" font-weight="700" fill="${T.paper}">salescloserpro.ai</text>
     <text x="${PANEL + 74}" y="352" font-size="31" font-weight="700" letter-spacing="1" fill="${T.copper}">QUOTES · PIPELINE · POs</text>
     <text x="${PANEL + 74}" y="402" font-size="24" fill="${T.muted}">The free CRM. Designed for simplicity.</text>
-    <text x="${PANEL + 132}" y="532" font-size="22" fill="${T.muted}">An <tspan font-family="DejaVu Serif, serif" font-weight="700" fill="${T.cream}">LLMadvisor</tspan> studio project</text>
+    <text x="${PANEL + 132}" y="532" font-size="22" fill="${T.muted}">An <tspan font-family="DejaVu Serif, serif" font-weight="700" fill="${T.cream}">LLMadvisor ai LLC</tspan> project</text>
   </g>
 </svg>`
 

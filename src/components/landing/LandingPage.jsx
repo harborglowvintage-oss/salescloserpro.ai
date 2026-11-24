@@ -30,7 +30,7 @@ const FEATURES = [
   { icon: Layers,       tint: 'text-copper-300 bg-copper-500/10',   title: 'Good / Better / Best',   desc: 'Offer up to three packages in one proposal and let the client pick. Tiers lift average deal size.' },
   { icon: Link2,        tint: 'text-emerald-300 bg-emerald-500/10', title: 'Accept online',          desc: 'Send a link; the client reviews and accepts from any phone. The proposal travels inside the link — nothing is uploaded.' },
   { icon: BellRing,     tint: 'text-amber-300 bg-amber-500/10',     title: 'Follow-ups that happen', desc: 'Valid-until dates, a follow-up schedule, ready-to-send emails, and reminders for your own calendar.' },
-  { icon: TrendingUp,   tint: 'text-brand-300 bg-brand-500/10',     title: 'Clients & Pipeline',     desc: 'Every saved quote becomes a deal on the board — from lead to won, with client details in one place.' },
+  { icon: TrendingUp,   tint: 'text-brand-300 bg-brand-500/10',     title: 'Contacts & Pipeline',    desc: 'Every quote links to a contact and becomes a deal on the board — see each person\'s quotes, deals and totals in one place.' },
   { icon: ShoppingCart, tint: 'text-copper-300 bg-copper-500/10',   title: 'Purchase Orders',        desc: 'Issue vendor POs with ship-to details and track margin against each quote line.' },
 ]
 

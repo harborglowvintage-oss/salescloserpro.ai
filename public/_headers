@@ -57,6 +57,8 @@
   X-Robots-Tag: noindex
 /clients
   X-Robots-Tag: noindex
+/contacts
+  X-Robots-Tag: noindex
 /pipeline
   X-Robots-Tag: noindex
 /purchase-orders

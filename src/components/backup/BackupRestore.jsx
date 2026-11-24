@@ -435,7 +435,7 @@ export default function BackupRestore() {
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {[
               { label: 'Quotes', value: restorePreview.quotes },
-              { label: 'Clients', value: restorePreview.clients },
+              { label: 'Contacts', value: restorePreview.clients },
               { label: 'Purchase Orders', value: restorePreview.purchaseOrders },
               { label: 'File Size', value: restorePreview.size },
             ].map((item) => (

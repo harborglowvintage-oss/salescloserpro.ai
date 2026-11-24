@@ -1,14 +1,16 @@
 import { useState } from 'react'
-import { Plus, X, DollarSign, ChevronRight, ChevronLeft, FileText, ShoppingCart } from 'lucide-react'
+import { Plus, X, DollarSign, ChevronRight, ChevronLeft, FileText, ShoppingCart, User } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import useStore from '../../store'
 import { format } from 'date-fns'
+import ContactCombobox from '../contacts/ContactCombobox'
 
 function DealCard({ deal, stageId, stages }) {
   const navigate = useNavigate()
   const moveDeal = useStore((s) => s.moveDeal)
   const deleteDeal = useStore((s) => s.deleteDeal)
   const purchaseOrders = useStore((s) => s.purchaseOrders)
+  const contact = useStore((s) => s.clients.find((c) => c.id === deal.contactId))
   const stageIndex = stages.findIndex((s) => s.id === stageId)
 
   // Count POs linked to this deal's quote
@@ -48,6 +50,18 @@ function DealCard({ deal, stageId, stages }) {
         >
           <FileText className="w-3 h-3" />
           {deal.quoteNumber}
+        </button>
+      )}
+
+      {/* Linked contact */}
+      {contact && (
+        <button
+          onClick={() => navigate(`/contacts?q=${encodeURIComponent(contact.name)}`)}
+          title="Open contact"
+          className="inline-flex items-center gap-1 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
+        >
+          <User className="w-3 h-3" />
+          {contact.name}
         </button>
       )}
 
@@ -101,19 +115,28 @@ function DealCard({ deal, stageId, stages }) {
 
 function AddDealForm({ stageId, onDone }) {
   const addDeal = useStore((s) => s.addDeal)
-  const [form, setForm] = useState({ name: '', company: '', value: '', note: '' })
+  const ensureContact = useStore((s) => s.ensureContact)
+  const [form, setForm] = useState({ name: '', company: '', value: '', note: '', contactId: null })
   const set = (k, v) => setForm((f) => ({ ...f, [k]: v }))
 
   const submit = () => {
     if (!form.name.trim()) return
-    addDeal(stageId, { ...form, value: parseFloat(form.value) || 0 })
+    // a deal always belongs to a contact — linked, matched by name, or created now
+    addDeal(stageId, { ...form, value: parseFloat(form.value) || 0, contactId: ensureContact({ contactId: form.contactId, name: form.name }) })
     onDone()
   }
 
   return (
     <div className="bg-white dark:bg-gray-800 rounded-xl p-3 shadow-sm border-2 border-brand-300 dark:border-brand-600 space-y-2">
-      <input className="input-field text-sm py-2" placeholder="Deal / Client name *"
-        value={form.name} onChange={(e) => set('name', e.target.value)} autoFocus />
+      <ContactCombobox
+        className="input-field text-sm py-2"
+        placeholder="Contact name *"
+        value={form.name}
+        linkedId={form.contactId}
+        autoFocus
+        onChange={(v) => setForm((f) => ({ ...f, name: v, contactId: null }))}
+        onPick={(c) => setForm((f) => ({ ...f, name: c.name, company: c.company || f.company, contactId: c.id }))}
+      />
       <input className="input-field text-sm py-2" placeholder="Company (optional)"
         value={form.company} onChange={(e) => set('company', e.target.value)} />
       <div className="relative">

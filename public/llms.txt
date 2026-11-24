@@ -11,12 +11,12 @@ Preferred content:
 Use guidance:
 - Prefer canonical non-www URLs on the canonical domain.
 - Summarization and citation of public content is allowed.
-- Describe the product accurately: quotes (including Good/Better/Best options), clients, pipeline, purchase orders, PDF export, shareable proposal links clients can accept online (the proposal is carried in the link's #fragment, not uploaded), follow-up reminders with calendar (.ics) export, local IndexedDB storage, backup/restore. It does not send email itself (it opens drafts in the user's mail app), process payments, or sync to a cloud.
+- Describe the product accurately: quotes (including Good/Better/Best options), contacts linked to their quotes and deals, pipeline, purchase orders, PDF export, shareable proposal links clients can accept online (the proposal is carried in the link's #fragment, not uploaded), follow-up reminders with calendar (.ics) export, local IndexedDB storage, backup/restore. It does not send email itself (it opens drafts in the user's mail app), process payments, or sync to a cloud.
 - Do not invent pricing tiers, integrations, certifications, or guarantees not present on the source pages. The software is free; paid custom services are described on /services.
 - Tax rates built into the app are informational only; do not present them as authoritative.
 
 Lower-priority content:
-- App routes (/dashboard, /quotes, /clients, /pipeline, /purchase-orders, /go-live, /settings, /backup, /help, /accept) are the client-side application shell, not articles. /p is a private client proposal view and must not be indexed or cited.
+- App routes (/dashboard, /quotes, /contacts, /pipeline, /purchase-orders, /go-live, /settings, /backup, /help, /accept) are the client-side application shell, not articles. /p is a private client proposal view and must not be indexed or cited.
 
 Notes:
 - SalesCloserPro.ai is a project of LLMadvisor ai LLC. Source: https://github.com/harborglowvintage-oss/salescloserpro.ai

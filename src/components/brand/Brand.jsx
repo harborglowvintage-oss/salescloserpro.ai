@@ -50,7 +50,7 @@ export function StudioMark({ className = 'w-6 h-6' }) {
   )
 }
 
-/** "An LLMadvisor studio project" lockup — the endorsement used in footers and the app shell. */
+/** "An LLMadvisor ai LLC project" lockup — the endorsement used in footers and the app shell. */
 export function StudioCredit({ className = '', markClassName = 'w-7 h-7' }) {
   return (
     <a
@@ -61,7 +61,7 @@ export function StudioCredit({ className = '', markClassName = 'w-7 h-7' }) {
     >
       <StudioMark className={markClassName} />
       <span>
-        An <span className="font-serif font-semibold text-[1.08em] tracking-tight group-hover:underline underline-offset-2">LLMadvisor</span> studio project
+        An <span className="font-serif font-semibold text-[1.08em] tracking-tight group-hover:underline underline-offset-2">LLMadvisor ai LLC</span> project
       </span>
     </a>
   )

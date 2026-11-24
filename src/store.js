@@ -10,6 +10,9 @@ import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { indexedDBStorage } from './db'
 import { deriveQuoteSummary } from './utils/quoteMath'
+import { matchContact } from './utils/contacts'
+
+const mapDeals = (pipeline, fn) => pipeline.map((stage) => ({ ...stage, deals: stage.deals.map(fn) }))
 
 // Quotes always carry derived `total` (and `lines` for tiered quotes) — see utils/quoteMath.js
 const withSummary = (quote) => ({ ...quote, ...deriveQuoteSummary(quote) })
@@ -43,12 +46,37 @@ const useStore = create(
             { ...client, id: crypto.randomUUID(), createdAt: new Date().toISOString() },
           ],
         })),
+      // Editing a contact flows to its deals and to quotes still in draft; quotes already
+      // sent / won / lost keep the details the client saw.
       updateClient: (id, data) =>
-        set((s) => ({
-          clients: s.clients.map((c) => (c.id === id ? { ...c, ...data } : c)),
-        })),
+        set((s) => {
+          const contact = { ...s.clients.find((c) => c.id === id), ...data }
+          const details = { clientName: contact.name, clientEmail: contact.email, clientPhone: contact.phone }
+          return {
+            clients: s.clients.map((c) => (c.id === id ? contact : c)),
+            quotes: s.quotes.map((q) => (q.contactId === id && q.status === 'draft' ? { ...q, ...details } : q)),
+            pipeline: mapDeals(s.pipeline, (d) => (d.contactId === id ? { ...d, name: contact.name, company: contact.company || d.company } : d)),
+          }
+        }),
+      // Deleting a contact unlinks its quotes and deals; they keep their own copy of the name.
       deleteClient: (id) =>
-        set((s) => ({ clients: s.clients.filter((c) => c.id !== id) })),
+        set((s) => ({
+          clients: s.clients.filter((c) => c.id !== id),
+          quotes: s.quotes.map((q) => (q.contactId === id ? { ...q, contactId: null } : q)),
+          pipeline: mapDeals(s.pipeline, (d) => (d.contactId === id ? { ...d, contactId: null } : d)),
+        })),
+      /**
+       * Resolve the contact a quote/deal is for and return its id: the given id if it still
+       * exists, else an existing contact with the same email or name, else a new contact.
+       */
+      ensureContact: ({ contactId, name, email, phone, state }) => {
+        const { clients, addClient } = get()
+        if (!(name || '').trim()) return null
+        const found = clients.find((c) => c.id === contactId) || matchContact(clients, { name, email })
+        if (found) return found.id
+        addClient({ name: name.trim(), company: '', email: email || '', phone: phone || '', address: '', state: state || '', notes: '' })
+        return get().clients.at(-1).id
+      },
 
       // ── Quotes ────────────────────────────────────────
       quotes: [],
@@ -170,6 +198,7 @@ const useStore = create(
               company: quote.clientName,
               value: quote.total || existingDeal.value,
               quoteNumber: quote.quoteNumber,
+              contactId: quote.contactId || null,
             }
 
             if (currentStageId === targetStageId) {
@@ -203,6 +232,7 @@ const useStore = create(
               note: `Linked to ${quote.quoteNumber}`,
               quoteId: quoteId,
               quoteNumber: quote.quoteNumber,
+              contactId: quote.contactId || null,
               createdAt: new Date().toISOString(),
             }
             return {

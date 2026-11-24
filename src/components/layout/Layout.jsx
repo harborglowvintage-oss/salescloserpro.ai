@@ -34,7 +34,7 @@ function resizeLogo(file, maxDim = 256) {
 const nav = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
   { to: '/quotes',    icon: FileText,         label: 'Quotes' },
-  { to: '/clients',   icon: Users,            label: 'Clients' },
+  { to: '/contacts',  icon: Users,            label: 'Contacts' },
   { to: '/pipeline',  icon: GitBranch,        label: 'Pipeline' },
   { to: '/purchase-orders', icon: ShoppingCart, label: 'Purchase Orders' },
   { to: '/go-live',   icon: Rocket,           label: 'Go Live' },

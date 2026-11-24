@@ -150,14 +150,14 @@ export default function AboutPage() {
         </Section>
 
         {/* ── clients ── */}
-        <Section icon={Users} color="text-emerald-400 bg-emerald-500/10" title="Step 3 — Manage your clients">
+        <Section icon={Users} color="text-emerald-400 bg-emerald-500/10" title="Step 3 — Manage your contacts">
           <ol className="list-decimal ml-5 space-y-2">
-            <li>Click <strong className="text-white">Clients</strong> in the sidebar.</li>
-            <li>Click <strong className="text-white">+ Add Client</strong>.</li>
+            <li>Click <strong className="text-white">Contacts</strong> in the sidebar.</li>
+            <li>Click <strong className="text-white">+ Add Contact</strong>.</li>
             <li>Fill in their name, company, email, phone, and address.</li>
             <li>Click <strong className="text-white">Save</strong>.</li>
           </ol>
-          <p>Clients is your address book — contact details, address, state, and private notes, with click-to-email and click-to-call. Quotes carry their own client details, so you can quote someone before adding them here.</p>
+          <p>Contacts ties your work together: every quote and deal belongs to a contact, and each contact card lists their quotes, deals and totals. Saving a quote for someone new adds them here automatically, and in the Quote Builder you can start typing a name to pick a saved contact.</p>
         </Section>
 
         {/* ── pipeline ── */}

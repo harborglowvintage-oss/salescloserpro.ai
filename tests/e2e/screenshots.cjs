@@ -90,21 +90,30 @@ function demoState() {
   await go('/quotes')
   await page.click('text=Q-0041')
   await page.waitForTimeout(600)
-  await page.setViewportSize({ width: 1280, height: 1500 }) // tall enough for follow-ups, client details and the option tabs
+  // Both images in this README row are cut at a content boundary, never through a card.
+  // Quote builder: from the top of the page to just below the "add line" buttons.
+  await page.setViewportSize({ width: 1280, height: 2400 })
   await page.waitForTimeout(400)
-  await shot('quote-builder')
+  const addButtons = await page.locator('button:has-text("Freight")').boundingBox()
+  const builderHeight = Math.round(addButtons.y + addButtons.height + 28)
+  await shot('quote-builder', { clip: { x: 0, y: 0, width: 1280, height: builderHeight } })
   await page.setViewportSize({ width: 1280, height: 860 })
 
-  // the client's view of the same quote, from the real Send dialog link
+  // The client's view of the same quote, from the real Send dialog link:
+  // from the letterhead to just below the last option card.
   await page.locator('button:has-text("Send")').first().click()
   const url = await page.locator('[role=dialog] input[aria-label="Proposal link"]').inputValue()
   await page.keyboard.press('Escape')
-  // Sized so that, at 32% README width beside the 68% quote-builder image, both end at the same height
-  const phone = await browser.newContext({ viewport: { width: 390, height: 971 }, deviceScaleFactor: 2 })
+  const phone = await browser.newContext({ viewport: { width: 390, height: 2400 }, deviceScaleFactor: 2 })
   const client = await phone.newPage()
   await client.goto(url, { waitUntil: 'networkidle' })
   await client.waitForTimeout(500)
-  await client.screenshot({ path: path.join(SHOTS, 'client-proposal.png') })
+  const options = await client.locator('[role=radiogroup]').boundingBox()
+  const clientHeight = Math.round(options.y + options.height + 24)
+  await client.screenshot({ path: path.join(SHOTS, 'client-proposal.png'), clip: { x: 0, y: 0, width: 390, height: clientHeight } })
+  // README column widths that make the two images the same displayed height
+  const share = Math.round((100 * (builderHeight / 1280)) / (builderHeight / 1280 + clientHeight / 390))
+  console.log(`  README row widths → quote-builder ${100 - share}% · client-proposal ${share}%`)
   console.log('✓ client-proposal')
 
   // Business Summary PDF → first page as an image

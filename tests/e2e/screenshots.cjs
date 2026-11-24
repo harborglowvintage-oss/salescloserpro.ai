@@ -99,11 +99,12 @@ function demoState() {
   await page.locator('button:has-text("Send")').first().click()
   const url = await page.locator('[role=dialog] input[aria-label="Proposal link"]').inputValue()
   await page.keyboard.press('Escape')
-  const phone = await browser.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2 })
+  // Sized so that, at 32% README width beside the 68% quote-builder image, both end at the same height
+  const phone = await browser.newContext({ viewport: { width: 390, height: 971 }, deviceScaleFactor: 2 })
   const client = await phone.newPage()
   await client.goto(url, { waitUntil: 'networkidle' })
   await client.waitForTimeout(500)
-  await client.screenshot({ path: path.join(SHOTS, 'client-proposal.png'), fullPage: true })
+  await client.screenshot({ path: path.join(SHOTS, 'client-proposal.png') })
   console.log('✓ client-proposal')
 
   // Business Summary PDF → first page as an image

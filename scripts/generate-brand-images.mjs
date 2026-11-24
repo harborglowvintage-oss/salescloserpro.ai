@@ -6,11 +6,13 @@
  *   public/logos/llmadvisor-mark.svg / -still.svg   the LLMadvisor mark (animated blink / static),
  *                                       copied unchanged from the LLMadvisor site's Static/mark*.svg
  *
+ *   docs/readme/*.svg                   brand-coloured section banners for the README
+ *
  * Run: npm run generate-images
  */
 
 import sharp from 'sharp'
-import { copyFileSync } from 'fs'
+import { copyFileSync, mkdirSync, writeFileSync } from 'fs'
 import { resolve, dirname } from 'path'
 import { fileURLToPath } from 'url'
 
@@ -78,5 +80,29 @@ await sharp(Buffer.from(svg))
   ])
   .png({ compressionLevel: 9 })
   .toFile(out('og-cover-v3.png'))
+
+/* ── README section banners (docs/readme/*.svg) — brand-coloured headings for GitHub ── */
+const BANNERS = [
+  ['what-it-is',   'What it is',                         ['#0c3a42', '#124a53'], T.paper],
+  ['whats-new',    "What's new in 11.24.26",             ['#8f552b', '#c2703a'], '#ffffff'],
+  ['screenshots',  'Screenshots',                        ['#0b6370', '#3fbbb0'], '#ffffff'],
+  ['features',     'Features',                           ['#007a8a', '#1c9fb0'], '#ffffff'],
+  ['accept',       'How “accept online” works',          ['#071b1f', '#0c3a42'], T.paper],
+  ['your-data',    'Your data',                          ['#0b6370', '#3fbbb0'], '#ffffff'],
+  ['quick-start',  'Quick start',                        ['#8f552b', '#c2703a'], '#ffffff'],
+  ['layout',       'Project layout',                     ['#0c3a42', '#124a53'], T.paper],
+  ['good-to-know', 'Good to know',                       ['#c2703a', '#d8b38a'], T.ink],
+  ['more',         'Custom work, contributing, license', ['#071b1f', '#124a53'], T.paper],
+]
+mkdirSync(resolve(root, 'docs/readme'), { recursive: true })
+for (const [file, title, [from, to], text] of BANNERS) {
+  writeFileSync(resolve(root, `docs/readme/${file}.svg`), `<svg xmlns="http://www.w3.org/2000/svg" width="860" height="60" viewBox="0 0 860 60" role="img" aria-label="${title}">
+  <defs><linearGradient id="g" x1="0" x2="1"><stop offset="0" stop-color="${from}"/><stop offset="1" stop-color="${to}"/></linearGradient></defs>
+  <rect width="860" height="60" rx="10" fill="url(#g)"/>
+  <rect x="18" y="18" width="5" height="24" rx="2.5" fill="${text}" opacity="0.85"/>
+  <text x="36" y="39" font-family="Georgia, 'Times New Roman', serif" font-size="25" font-weight="700" fill="${text}">${title}</text>
+</svg>
+`)
+}
 
 console.log('Generated og-cover-v3.png and logos/{salescloserpro-hero.webp, services-console.webp, llmadvisor-mark(-still).svg}')

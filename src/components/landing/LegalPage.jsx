@@ -225,6 +225,15 @@ export default function LegalPage() {
                 stored exclusively in your browser's local database (<Hi>IndexedDB</Hi>). No data is transmitted to any server
                 operated by SalesCloserPro or llmadvisor.ai.
               </p>
+              <H>Proposal Links</H>
+              <p>
+                When you use <Hi>Send</Hi>, the proposal (client name and contact details you entered, line items, prices,
+                notes and validity date) is compressed into the link itself, after the <Hi>#</Hi> sign. Browsers do not
+                transmit that part of a link to any server, so the proposal is not uploaded to or stored by SalesCloserPro,
+                llmadvisor.ai or Cloudflare. Anyone who has the link can read it, as with an emailed PDF — share it only with
+                the intended recipient. When a client accepts, the confirmation is drafted in their own email app and sent
+                only if they choose to send it. Calendar files you export are created on your device.
+              </p>
               <H>Data Portability</H>
               <p>
                 The built-in Backup &amp; Restore feature lets you export a complete JSON snapshot of all your data

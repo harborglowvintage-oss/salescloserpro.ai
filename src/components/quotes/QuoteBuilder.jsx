@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import {
   Package, Wrench, Truck, Plus, Trash2, ChevronDown,
   Save, Printer, ArrowLeft, CheckCircle, FileText, Send,
-  DollarSign, Info, User, Building2, Phone, Mail, MapPin
+  DollarSign, Info, User, Building2, Phone, Mail, MapPin, CalendarClock
 } from 'lucide-react'
 import useStore from '../../store'
 import { stateTaxData, stateList } from '../../data/taxDatabase'
@@ -13,6 +13,9 @@ import FileUploader from './FileUploader'
 import OptionTabs from './OptionTabs'
 import SharePanel from './SharePanel'
 import { buildProposalUrl } from '../../utils/proposalLink'
+import { addDays, isoDay } from '../../utils/dates'
+import { DEFAULT_VALID_DAYS } from '../../utils/followUps'
+import { QuoteFollowUps } from '../followups/FollowUps'
 import clsx from 'clsx'
 
 const LINE_TYPES = [
@@ -165,6 +168,9 @@ export default function QuoteBuilder() {
   const [status, setStatus]           = useState(existing?.status || 'draft')
   const [notes, setNotes]             = useState(existing?.notes || '')
   const [attachments, setAttachments] = useState(existing?.attachments || [])
+  const [validUntil, setValidUntil]   = useState(
+    existing?.validUntil || addDays(isoDay(existing?.createdAt), company.defaultValidDays || DEFAULT_VALID_DAYS)
+  )
   const [saved, setSaved]             = useState(false)
   const [share, setShare]             = useState(null) // Send dialog: { quote, url }
 
@@ -206,7 +212,7 @@ export default function QuoteBuilder() {
   const renameOption = (oid, name) => setOptions((p) => p.map((o) => (o.id === oid ? { ...o, name } : o)))
 
   const buildPayload = () => ({
-    clientName, clientEmail, clientPhone, state, status, notes, attachments,
+    clientName, clientEmail, clientPhone, state, status, notes, attachments, validUntil,
     ...(tiered
       ? { options, recommendedOptionId: recommendedId && options.some((o) => o.id === recommendedId) ? recommendedId : options[0].id }
       : { options: null, recommendedOptionId: null, lines: options[0].lines }),
@@ -300,14 +306,17 @@ export default function QuoteBuilder() {
         </div>
       </div>
 
+      {/* ── FOLLOW-UPS (once sent) ──────────────────── */}
+      {existing && <QuoteFollowUps quote={existing} />}
+
       {/* ── CLIENT DETAILS ──────────────────────────── */}
       <div className="card space-y-5">
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center">
+          <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/40 flex items-center justify-center">
             <User className="w-5 h-5 text-brand-600" />
           </div>
           <div>
-            <h2 className="font-bold text-gray-900 text-lg leading-tight">Client Details</h2>
+            <h2 className="font-bold text-gray-900 dark:text-gray-100 text-lg leading-tight">Client Details</h2>
             <p className="text-xs text-gray-400">Who is this quote for?</p>
           </div>
         </div>
@@ -342,6 +351,13 @@ export default function QuoteBuilder() {
               onChange={(e) => setState(e.target.value)}>
               {stateList.map(({ code, name }) => <option key={code} value={code}>{name} ({code})</option>)}
             </select>
+          </div>
+          <div>
+            <label htmlFor="valid-until" className="flex items-center gap-1.5 text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-2">
+              <CalendarClock className="w-3.5 h-3.5" /> Valid until
+            </label>
+            <input id="valid-until" type="date" className="input-field" value={validUntil} min={isoDay(existing?.createdAt)}
+              onChange={(e) => setValidUntil(e.target.value)} />
           </div>
         </div>
 

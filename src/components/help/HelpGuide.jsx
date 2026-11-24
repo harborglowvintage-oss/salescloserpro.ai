@@ -62,11 +62,52 @@ const sections = [
       },
       {
         q: 'How do I export a quote as a PDF?',
-        a: 'Open the quote and click PDF in the header or Export PDF at the bottom. The quote is saved first, then a branded PDF downloads with your logo and company info, the client details, every line item with tax, the totals, your notes, the standard terms, and any attached images.'
+        a: 'Open the quote and click PDF in the header or Export PDF at the bottom. The quote is saved first, then a branded PDF downloads with your logo and company info, the client details, every line item with tax, the totals, the valid-until date, your notes, the standard terms, any attached images, and a clickable link for the client to review and accept online.'
+      },
+      {
+        q: 'What is Good / Better / Best?',
+        a: 'Click "Offer Good / Better / Best" above the line items to give the client up to three packages in one proposal. Each new option starts as a copy of the one you are editing, so you only change what differs. Rename options by clicking their name, star the one you recommend, and remove one with ×. The PDF and the online proposal show every option fully priced; until the client chooses, the quote total and pipeline value use your recommended option.'
+      },
+      {
+        q: 'What does "Valid until" do?',
+        a: 'It is the date your pricing is held. It prints on the PDF and the online proposal, the client page counts down the final week and blocks acceptance after it passes, and the expiry follow-up reminder is scheduled two days before it. New quotes default to the number of days set in Company Info (30 unless you change it).'
       },
       {
         q: 'How do I edit or delete a quote?',
         a: 'Go to Quotes and click any quote to open it in the builder; make your changes and click Save. To delete, hover over the quote in the list and click the trash icon. You will be asked to confirm.'
+      }
+    ]
+  },
+  {
+    id: 'sending',
+    icon: Send,
+    title: 'Sending, Accepting & Follow-ups',
+    color: 'text-copper-500',
+    bg: 'bg-copper-50 dark:bg-copper-900/20',
+    content: [
+      {
+        q: 'How do I send a proposal the client can accept online?',
+        a: 'Click Send in the quote header. You get a link you can copy, an "Email client" button that opens a ready-to-send draft in your own mail app, and a "Preview as client" button. The client opens the link on any device, picks an option if there are several, types their name and clicks Accept. Sending marks the quote Sent and starts its follow-up schedule.'
+      },
+      {
+        q: 'Where is the proposal stored? Who can see it?',
+        a: 'Nowhere but the link itself. The quote is compressed into the part of the link after the # sign, which browsers never send to any server — so it is not uploaded to SalesCloserPro, Cloudflare, or anyone else. Anyone who has the link can view it, exactly like a PDF attached to an email, so send it only to your client. Your company logo and attachments are not included in the link.'
+      },
+      {
+        q: 'How do I find out the client accepted?',
+        a: 'When the client accepts, their mail app opens a confirmation email to the address in your Company Info. It contains an acceptance link — open it in the browser where you use SalesCloserPro and click "Record acceptance & mark Won". The quote is marked Won, the accepted option becomes the quote total, and "Accepted online" shows in your quote list.'
+      },
+      {
+        q: 'What is the version code on an acceptance?',
+        a: 'A fingerprint of exactly what the client saw — every item, quantity, price and note. When you record an acceptance, SalesCloserPro checks it against the quote as it is now and warns you if you edited the quote after sending it, so you never start work on a version the client did not agree to. It proves which version was accepted; the client\'s own email is the record of who accepted.'
+      },
+      {
+        q: 'How do follow-ups work?',
+        a: 'Once a quote is Sent, it gets three follow-ups: a check-in on day 3, an offer to adjust on day 7, and an expiry reminder two days before the valid-until date. Due ones appear at the top of the Dashboard and on the quote. "Email" opens a drafted follow-up (with the proposal link) and ticks the step off; click the circle to tick or un-tick by hand. Follow-ups stop when the quote is marked Won or Lost.'
+      },
+      {
+        q: 'Can I get reminders in my calendar?',
+        a: 'Yes. On a sent quote, click "Add to calendar" in the Follow-ups panel to download a calendar file (.ics) with each open follow-up and the expiry date, each with a 9 am alert. It opens in Google Calendar, Outlook, and Apple Calendar. Re-importing an updated file replaces the earlier events instead of duplicating them.'
       }
     ]
   },
@@ -183,7 +224,7 @@ const sections = [
     content: [
       {
         q: 'What does the Dashboard show?',
-        a: 'Four cards — Open Quotes (drafts + sent), Total Clients, Deals Won, and Revenue Won (the total of quotes marked Won) — plus your five most recent quotes and a count of deals in each pipeline stage. It updates instantly as you work.'
+        a: 'Follow-ups due today or overdue (when you have sent quotes), then four cards — Open Quotes (drafts + sent), Total Clients, Deals Won, and Revenue Won (the total of quotes marked Won) — plus your five most recent quotes and a count of deals in each pipeline stage. It updates instantly as you work.'
       }
     ]
   },

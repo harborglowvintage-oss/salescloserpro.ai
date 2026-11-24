@@ -4,8 +4,9 @@
  * Licensed under Apache-2.0
  */
 
-import { Layers, CheckCircle2 } from 'lucide-react'
+import { Layers, CheckCircle2, Clock } from 'lucide-react'
 import { hasTiers } from '../../utils/quoteMath'
+import { isExpired } from '../../utils/followUps'
 
 const STATUS_CLASSES = {
   draft: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300',
@@ -22,13 +23,18 @@ export function StatusBadge({ status = 'draft' }) {
   )
 }
 
-/** "3 options" for Good/Better/Best quotes, "Accepted online" once the client accepted. */
+/** "3 options" for Good/Better/Best quotes, "Expired" past valid-until, "Accepted online" once accepted. */
 export function QuoteMetaBadges({ quote }) {
   return (
     <>
       {hasTiers(quote) && (
         <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-copper-700 dark:text-copper-300">
           <Layers className="w-3 h-3" /> {quote.options.length} options
+        </span>
+      )}
+      {isExpired(quote) && (
+        <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-amber-700 dark:text-amber-400">
+          <Clock className="w-3 h-3" /> Expired
         </span>
       )}
       {quote.acceptance && (

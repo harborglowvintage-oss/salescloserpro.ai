@@ -30,6 +30,7 @@ const useStore = create(
         email: '',
         website: '',
         homeState: 'TX',
+        defaultValidDays: 30,
       },
       setCompany: (data) => set((s) => ({ company: { ...s.company, ...data } })),
 
@@ -78,6 +79,12 @@ const useStore = create(
             const sentAt = data.status === 'sent' && !q.sentAt ? { sentAt: new Date().toISOString() } : {}
             return withSummary({ ...q, ...data, ...sentAt })
           }),
+        })),
+      setFollowUpDone: (id, kind, done) =>
+        set((s) => ({
+          quotes: s.quotes.map((q) =>
+            q.id === id ? { ...q, followUpsDone: { ...q.followUpsDone, [kind]: done ? new Date().toISOString() : undefined } } : q
+          ),
         })),
       deleteQuote: (id) =>
         set((s) => ({ quotes: s.quotes.filter((q) => q.id !== id) })),

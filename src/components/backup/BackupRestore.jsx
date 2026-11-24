@@ -8,6 +8,7 @@ import {
 import useStore from '../../store'
 import { exportRawState, importRawState } from '../../db'
 import { format, formatDistanceToNow } from 'date-fns'
+import { downloadFile } from '../../utils/download'
 
 // ── Helpers ─────────────────────────────────────────────
 // Backups read the persisted Zustand JSON straight from IndexedDB (see db.js).
@@ -20,22 +21,6 @@ function getBackupSize(payload) {
   if (bytes < 1024) return `${bytes} B`
   if (bytes < 1024 * 1024) return `${(bytes / 1024).toFixed(1)} KB`
   return `${(bytes / (1024 * 1024)).toFixed(2)} MB`
-}
-
-function downloadFile(payload, filename) {
-  const blob = new Blob([payload], { type: 'application/json' })
-  const url = URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.href = url
-  a.download = filename
-  a.style.display = 'none'
-  document.body.appendChild(a)
-  a.click()
-  // Delay cleanup — Firefox processes the click asynchronously
-  setTimeout(() => {
-    document.body.removeChild(a)
-    URL.revokeObjectURL(url)
-  }, 150)
 }
 
 function makeFilename() {

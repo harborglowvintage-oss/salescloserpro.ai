@@ -3,6 +3,7 @@ import { FileText, Users, DollarSign, TrendingUp, Plus, ArrowRight } from 'lucid
 import useStore from '../../store'
 import { format } from 'date-fns'
 import { StatusBadge } from '../quotes/QuoteBadges'
+import { DueFollowUpsCard } from '../followups/FollowUps'
 import { formatMoney } from '../../utils/quoteMath'
 
 function KpiCard({ icon: Icon, label, value, color, sub }) {
@@ -50,6 +51,8 @@ export default function Dashboard() {
           {format(new Date(), 'EEEE, MMMM d, yyyy')} — Here's your snapshot
         </p>
       </div>
+
+      <DueFollowUpsCard quotes={quotes} />
 
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">

@@ -57,6 +57,17 @@
 
 ---
 
+## 🆕 What's new in 11.24.26 (2026-11-24)
+
+- 🎨 **On-brand with LLMadvisor.ai.** One set of brand tokens in `tailwind.config.js` (teal `brand`, `copper` accent, warm `ink` neutrals, Source Serif 4 headings) drives the whole UI. The handshake art is now the framed landing hero (32 KB WebP, was a 608 KB PNG); a new LLMadvisor split-layout social card (`og-cover-v3.png`); "An llmadvisor.ai studio project" credit with the atom mark on every page. Source art lives in `/brand`; `npm run generate-images` rebuilds every derived image.
+- ✍️ **New headline:** "The Free CRM. Designed for simplicity." — `<title>`, OG/Twitter titles and the H1 updated together.
+- 🤖 **Custom GPT promo removed** (landing block, sidebar card, legal references, README).
+- 🥇 **Good / Better / Best** — up to three priced options per proposal with a recommended pick; PDF prints each option and a tick-one summary.
+- 🔗 **Accept online, no server** — **Send** creates a link that carries the proposal in its `#fragment` (never sent to any server). The client picks an option, types their name and accepts; the confirmation returns as an email from the client's own mail app; the seller opens it to verify a SHA-256 version fingerprint and mark the quote Won.
+- 🔔 **Follow-ups** — every quote gets a valid-until date (default set in Company Info); sent quotes get a day-3 / day-7 / two-days-before-expiry schedule, drafted emails, a "due" card on the Dashboard, and `.ics` calendar export.
+- 🛠️ **Fixes** — quote and PO PDF tables overflowed the right margin; long PO terms ran off the page; refreshing `/quotes/:id` opened a blank quote (deep links rendered before IndexedDB loaded); "Client Details" heading invisible in dark mode.
+- 🧹 **One implementation of each thing** — pricing (`utils/quoteMath.js`), PDF drawing helpers, money formatting, status badges, file download, brand logo/credit/copyright are each defined once.
+
 ## 🆕 What's new in 10.14.26 (2026-10-14)
 
 - 🤖 **`robots.txt`, `llms.txt`, and `.well-known/security.txt` now live in this repo** (`public/`) and are served by Cloudflare Pages. Previously the first two were served by a shared Cloudflare Worker (`robots-txt-handler`) that is being retired, and `/llms.txt` fell through to the SPA shell and returned HTML. `robots.txt` is allow-all plus the sitemap pointer; AI-crawler rules are intentionally **not** in the file — Cloudflare's managed robots.txt (dashboard AI bot policy) prepends them at the edge.
@@ -86,6 +97,7 @@
 
 ## 📑 Table of Contents
 
+- [🆕 What's new in 11.24.26](#-whats-new-in-112426-2026-11-24)
 - [🆕 What's new in 10.14.26](#-whats-new-in-101426-2026-10-14)
 - [🆕 What's new in 1.1.0](#-whats-new-in-110-2026-09-10)
 - [⚡ Quick Start — Install in 60 Seconds](#-quick-start--install-in-60-seconds)
@@ -180,11 +192,14 @@ zip -rq "local-backups/salescloserpro.ai-main-$(date +%Y%m%d-%H%M%S).zip" . \
 | 📊 | **Sales Pipeline** | Kanban board — Lead → Quoted → Sent → Negotiating → Won / Lost |
 | 🔗 | **Data Integration** | Quotes auto-sync to pipeline; POs link to quotes for margin analysis |
 | 📦 | **Purchase Orders** | Full PO system with ship-to address, margin tracking, analytics, charts |
-| 📄 | **PDF Export** | Color-neutral branded proposals & POs — charcoal palette, 50% deposit terms |
+| 🥇 | **Good / Better / Best** | Up to three priced options per proposal, with a recommended pick |
+| 🔗 | **Accept Online** | Serverless proposal links — the quote travels in the URL #fragment; client picks + accepts; version fingerprint |
+| 🔔 | **Follow-ups** | Valid-until dates, day-3 / day-7 / pre-expiry schedule, drafted emails, .ics calendar export |
+| 📄 | **PDF Export** | Color-neutral branded proposals & POs — per-option sections, valid-until, clickable accept link |
 | 💾 | **Backup & Restore** | Full JSON backup with auto-schedule, File System Access API, Firefox-safe |
 | 🚀 | **Go Live Wizard** | 4-step guide: GitHub → Cloudflare → Domain → Email |
 | 🏢 | **Company Settings** | Logo upload, company info, branding for all PDF exports |
-| ❓ | **Help Center** | 11-section searchable guide with expandable FAQs |
+| ❓ | **Help Center** | 12-section searchable guide with expandable FAQs |
 | 🌙 | **Dark / Light Mode** | One-click theme toggle (dark by default), persisted locally, balanced for both modes |
 | 🔍 | **SEO Ready** | Open Graph, Twitter Cards, JSON-LD structured data out of the box |
 
@@ -538,20 +553,35 @@ These elements are in the footer or below the visible viewport. Google discounts
     ├── 📄 index.css             → 🎨 Tailwind base + custom utilities
     ├── 📂 components/
     │   ├── 📂 backup/BackupRestore.jsx     → 💾 Download, save-to-folder, auto-schedule, restore
+    │   ├── 📂 brand/Brand.jsx              → 🎨 ProductLogo, StudioMark, StudioCredit, COPYRIGHT_LINE (LLMadvisor identity)
     │   ├── 📂 clients/Clients.jsx          → 👥 Client address book — add, edit, search, notes
-    │   ├── 📂 dashboard/Dashboard.jsx      → 📊 KPI cards, recent quotes, pipeline overview
-    │   ├── 📂 help/HelpGuide.jsx           → ❓ 11-section searchable help center
+    │   ├── 📂 dashboard/Dashboard.jsx      → 📊 Follow-ups due, KPI cards, recent quotes, pipeline overview
+    │   ├── 📂 followups/FollowUps.jsx      → 🔔 Quote follow-up panel + dashboard "due" card, .ics export
+    │   ├── 📂 help/HelpGuide.jsx           → ❓ 12-section searchable help center
     │   ├── 📂 landing/                     → 🌐 LandingPage, AboutPage, ServicesPage, LegalPage
     │   ├── 📂 layout/Layout.jsx            → 🏗️ Sidebar, mobile header, theme toggle
     │   ├── 📂 pipeline/Pipeline.jsx        → 📈 Kanban board — 6 stages, deal cards, Move/Back
     │   ├── 📂 po/PurchaseOrders.jsx        → 📦 POs — form, list, margin table, charts, PDF
-    │   ├── 📂 quotes/QuoteBuilder.jsx      → 📝 Quote form — line items, tax, notes, attachments, PDF
+    │   ├── 📂 proposal/ProposalView.jsx    → 🔗 /p — client proposal page (option picker, accept), rendered from the #fragment
+    │   ├── 📂 proposal/AcceptanceReceiver.jsx → ✅ /accept — verify version fingerprint, record acceptance, mark Won
+    │   ├── 📂 proposal/useFragmentPacket.js → 🧩 Decode the #fragment packet (re-decodes on hashchange)
+    │   ├── 📂 quotes/QuoteBuilder.jsx      → 📝 Quote form — line items, options, valid-until, tax, notes, attachments, PDF, Send
+    │   ├── 📂 quotes/OptionTabs.jsx        → 🥇 Good / Better / Best tabs (rename, recommend, add/remove)
+    │   ├── 📂 quotes/SharePanel.jsx        → 📤 Send dialog — copy link, email draft, client preview
+    │   ├── 📂 quotes/QuoteBadges.jsx       → 🏷️ StatusBadge + options / expired / accepted badges
     │   ├── 📂 quotes/QuoteList.jsx         → 📋 All quotes — search, status, delete
     │   ├── 📂 quotes/FileUploader.jsx      → 📎 Drag-and-drop attachments (max 5 × 2 MB)
-    │   ├── 📂 settings/CompanySettings.jsx → 🏢 Company info, logo, home state
+    │   ├── 📂 settings/CompanySettings.jsx → 🏢 Company info, logo, home state, proposal validity days
     │   └── 📂 wizard/GoLiveWizard.jsx      → 🚀 4-step self-hosting checklist
     ├── 📂 data/taxDatabase.js   → 🧮 All 50 states + DC: rates, freight rules, labor rules
-    └── 📂 utils/pdfExport.js    → 📄 PDF engine — generatePDF() + generatePO_PDF()
+    └── 📂 utils/
+        ├── 📄 quoteMath.js      → 🧮 The ONE place quote money is computed — lines, tax, options, chosen option, terms
+        ├── 📄 pdfExport.js      → 📄 PDF engine — shared header/table/totals/footer; generatePDF() + generatePO_PDF()
+        ├── 📄 proposalLink.js   → 🔗 #fragment packets (deflate + base64url), snapshots, SHA-256 version fingerprint
+        ├── 📄 emails.js         → ✉️ Every drafted email (send, follow-ups, acceptance) + mailto length guard
+        ├── 📄 followUps.js      → 🔔 Follow-up schedule + RFC 5545 calendar export
+        ├── 📄 dates.js          → 📅 Calendar-date helpers (local yyyy-MM-dd)
+        └── 📄 download.js       → 💾 Save a generated file (backups, .ics)
 ```
 
 ---

@@ -4,6 +4,7 @@ import {
   Upload, Trash2, Camera, Shield, FileText
 } from 'lucide-react'
 import useStore from '../../store'
+import { DEFAULT_VALID_DAYS } from '../../utils/followUps'
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
@@ -47,6 +48,7 @@ export default function CompanySettings() {
     email: company.email || '',
     website: company.website || '',
     homeState: company.homeState || 'TX',
+    defaultValidDays: company.defaultValidDays || DEFAULT_VALID_DAYS,
   })
 
   const [saved, setSaved] = useState(false)
@@ -54,7 +56,7 @@ export default function CompanySettings() {
   const set = (field, value) => setForm((prev) => ({ ...prev, [field]: value }))
 
   const handleSave = () => {
-    setCompany(form)
+    setCompany({ ...form, defaultValidDays: Math.min(365, Math.max(1, parseInt(form.defaultValidDays, 10) || DEFAULT_VALID_DAYS)) })
     setSaved(true)
     setTimeout(() => setSaved(false), 3000)
   }
@@ -269,6 +271,23 @@ export default function CompanySettings() {
                 ))}
               </select>
             </div>
+          </div>
+
+          {/* Proposal validity */}
+          <div>
+            <label htmlFor="valid-days" className="block text-xs font-medium text-gray-500 dark:text-gray-400 mb-1">
+              Proposals are valid for (days)
+            </label>
+            <input
+              id="valid-days"
+              type="number"
+              min="1"
+              max="365"
+              value={form.defaultValidDays}
+              onChange={(e) => set('defaultValidDays', e.target.value)}
+              className="input-field w-32"
+            />
+            <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">Sets each new quote's “valid until” date — the follow-up schedule's expiry reminder counts back from it.</p>
           </div>
 
           {/* Info note */}

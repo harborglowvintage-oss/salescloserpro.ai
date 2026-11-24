@@ -73,9 +73,11 @@ Do not edit generated images by hand.
 
 ## Releasing
 
-1. Set the version (the release date, `MM.DD.YY`) in `package.json` and in the
-   `softwareVersion` field of `index.html`. The app reads it for the Help and Legal pages.
+1. Set the version (the release date, `MM.DD.YY`) in three places: `package.json`, the two root
+   `version` fields at the top of `package-lock.json`, and `softwareVersion` in `index.html`.
+   Update the release badge in `README.md`. The app reads the version for the Help and Legal pages.
 2. Add the release to `CHANGELOG.md`; update `lastmod` in `public/sitemap.xml` for pages that changed.
 3. `npm test`, `npm run test:e2e`, `npm run build`.
-4. Merge to `main` and push. Cloudflare Pages deploys automatically.
+4. Merge to `main`, tag the release commit `vMM.DD.YY`, and push with `--follow-tags`.
+   Cloudflare Pages deploys automatically.
 5. Open the site, check the console for errors, and spot-check a quote, a proposal link and a PDF.

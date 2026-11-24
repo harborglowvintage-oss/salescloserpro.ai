@@ -4,7 +4,7 @@ import {
   Rocket, Plus, Menu, X, DollarSign, Sun, Moon, HelpCircle, Building2, HardDrive, ShoppingCart
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import useStore from '../../store'
+import useStore, { useHydrated } from '../../store'
 import { ProductLogo, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 function resizeLogo(file, maxDim = 256) {
@@ -44,6 +44,7 @@ const nav = [
 ]
 
 export default function Layout() {
+  const hydrated = useHydrated()
   const [sidebarOpen, setSidebarOpen] = useState(false)
   const navigate = useNavigate()
   const company = useStore((s) => s.company)
@@ -201,7 +202,7 @@ export default function Layout() {
         </header>
 
         <main className="flex-1 p-4 lg:p-8 overflow-y-auto">
-          <Outlet />
+          {hydrated && <Outlet />}
         </main>
         
         {/* Footer */}

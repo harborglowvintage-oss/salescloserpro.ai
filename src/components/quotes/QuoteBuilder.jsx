@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import {
   Package, Wrench, Truck, Plus, Trash2, ChevronDown,
-  Save, Printer, ArrowLeft, CheckCircle, FileText,
+  Save, Printer, ArrowLeft, CheckCircle, FileText, Send,
   DollarSign, Info, User, Building2, Phone, Mail, MapPin
 } from 'lucide-react'
 import useStore from '../../store'
@@ -11,6 +11,8 @@ import { generatePDF } from '../../utils/pdfExport'
 import { computeLines, formatMoney, newLine, optionLabel, OPTION_NAMES, MAX_OPTIONS } from '../../utils/quoteMath'
 import FileUploader from './FileUploader'
 import OptionTabs from './OptionTabs'
+import SharePanel from './SharePanel'
+import { buildProposalUrl } from '../../utils/proposalLink'
 import clsx from 'clsx'
 
 const LINE_TYPES = [
@@ -164,6 +166,7 @@ export default function QuoteBuilder() {
   const [notes, setNotes]             = useState(existing?.notes || '')
   const [attachments, setAttachments] = useState(existing?.attachments || [])
   const [saved, setSaved]             = useState(false)
+  const [share, setShare]             = useState(null) // Send dialog: { quote, url }
 
   // Options: always an array; one entry = a normal quote, 2–3 = Good / Better / Best
   const [options, setOptions] = useState(() =>
@@ -209,28 +212,40 @@ export default function QuoteBuilder() {
       : { options: null, recommendedOptionId: null, lines: options[0].lines }),
   })
 
-  const handleSave = () => {
+  /** Save (create or update) and return the stored quote. */
+  const persist = () => {
     const payload = buildPayload()
+    let qid = existing?.id
     if (existing) {
-      updateQuote(id, payload)
-      syncQuoteToPipeline(id)
+      updateQuote(qid, payload)
     } else {
       addQuote(payload)
-      // Navigate to the newly created quote to prevent duplicate saves
-      const newQuote = useStore.getState().quotes.at(-1)
-      if (newQuote?.id) {
-        syncQuoteToPipeline(newQuote.id)
-        navigate(`/quotes/${newQuote.id}`, { replace: true })
-      }
+      qid = useStore.getState().quotes.at(-1).id
+      navigate(`/quotes/${qid}`, { replace: true }) // same component instance; prevents duplicate creates
     }
+    syncQuoteToPipeline(qid)
     setSaved(true)
     setTimeout(() => setSaved(false), 2500)
+    return useStore.getState().quotes.find((q) => q.id === qid)
   }
 
-  const handlePrint = () => {
-    handleSave()
-    const quote = useStore.getState().quotes.find((q) => q.id === (existing?.id || useStore.getState().quotes.at(-1)?.id))
-    generatePDF({ quote, company })
+  const handleSave = () => { persist() }
+
+  const handlePrint = async () => {
+    const quote = persist()
+    generatePDF({ quote, company, proposalUrl: await buildProposalUrl(quote, company) })
+  }
+
+  // ── Send: online proposal link ──
+  const handleShare = async () => {
+    const quote = persist()
+    setShare({ quote, url: await buildProposalUrl(quote, company) })
+  }
+  const markSent = () => {
+    if (status !== 'draft' || !share) return
+    setStatus('sent')
+    updateQuote(share.quote.id, { status: 'sent' }) // store stamps sentAt → follow-up schedule starts
+    syncQuoteToPipeline(share.quote.id)
   }
 
   const stateInfo = stateTaxData[state]
@@ -276,6 +291,10 @@ export default function QuoteBuilder() {
             <button onClick={handlePrint}
               className="flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-white/20 text-white hover:bg-white/30 transition-all active:scale-95 select-none">
               <Printer className="w-4 h-4" /> PDF
+            </button>
+            <button onClick={handleShare}
+              className="flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-copper-600 text-white hover:bg-copper-500 shadow-sm transition-all active:scale-95 select-none">
+              <Send className="w-4 h-4" /> Send
             </button>
           </div>
         </div>
@@ -424,6 +443,10 @@ export default function QuoteBuilder() {
           {saved ? <CheckCircle className="w-5 h-5" /> : <Save className="w-5 h-5" />}
           {saved ? 'Quote Saved!' : 'Save Quote'}
         </button>
+        <button onClick={handleShare}
+          className="flex items-center gap-2.5 px-8 py-4 rounded-2xl font-bold text-base bg-copper-600 hover:bg-copper-500 text-white transition-all shadow-md hover:shadow-lg active:scale-[0.97] select-none">
+          <Send className="w-5 h-5" /> Send to Client
+        </button>
         <button onClick={handlePrint}
           className="flex items-center gap-2.5 px-10 py-4 rounded-2xl font-bold text-base bg-white border-2 border-gray-200 hover:border-brand-400 text-gray-700 hover:text-brand-700 transition-all shadow-sm hover:shadow-md active:scale-[0.97] select-none">
           <Printer className="w-5 h-5" /> Export PDF
@@ -433,6 +456,10 @@ export default function QuoteBuilder() {
           Cancel
         </button>
       </div>
+
+      {share && (
+        <SharePanel quote={share.quote} company={company} url={share.url} onSent={markSent} onClose={() => setShare(null)} />
+      )}
     </div>
   )
 }

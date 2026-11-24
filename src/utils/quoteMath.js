@@ -16,6 +16,7 @@
  */
 
 import { calculateTax } from '../data/taxDatabase'
+import { longDate } from './dates'
 
 export const MAX_OPTIONS = 3
 export const OPTION_NAMES = ['Good', 'Better', 'Best']
@@ -72,6 +73,17 @@ export function deriveQuoteSummary(quote) {
 /** Option label for UI/PDF: "Better" or "Option B" when unnamed. */
 export function optionLabel(option, index) {
   return option?.name?.trim() || `Option ${String.fromCharCode(65 + index)}`
+}
+
+/** Proposal terms — shown on the PDF and on the client's online proposal page. */
+export function proposalTerms(quote) {
+  return [
+    'A deposit of 50% of the total is due upon acceptance of this proposal.',
+    'Remaining balance is due net 30 days from date of invoice.',
+    quote?.validUntil
+      ? `This proposal is valid until ${longDate(quote.validUntil)}.`
+      : 'This proposal is valid for 30 days from the date shown above.',
+  ]
 }
 
 const stripComputed = ({ subtotal, taxAmount, taxRate, taxable, total, ...raw }) => raw

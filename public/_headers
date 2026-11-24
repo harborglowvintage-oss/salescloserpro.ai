@@ -69,3 +69,8 @@
   X-Robots-Tag: noindex
 /help
   X-Robots-Tag: noindex
+/accept
+  X-Robots-Tag: noindex
+# client proposal pages carry private quote data in the #fragment — never index
+/p
+  X-Robots-Tag: noindex

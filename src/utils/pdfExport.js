@@ -9,9 +9,10 @@
 
 import jsPDF from 'jspdf'
 import autoTable from 'jspdf-autotable'
-import { format, parseISO } from 'date-fns'
+import { format } from 'date-fns'
 import { stateTaxData } from '../data/taxDatabase'
-import { formatMoney, priceQuote, optionLabel } from './quoteMath'
+import { formatMoney, priceQuote, optionLabel, proposalTerms } from './quoteMath'
+import { longDate } from './dates'
 
 // ── Neutral palette (one accent: LLMadvisor copper, for "recommended") ──
 const PAL = {
@@ -39,9 +40,6 @@ const PO_BADGES = {
   received: { fill: [254, 243, 199], text: [146, 115, 26] },
   paid:     { fill: [220, 252, 231], text: [22, 163, 74] },
 }
-
-/** 'yyyy-MM-dd' or ISO timestamp → "March 4, 2026" */
-export const longDate = (d) => format(typeof d === 'string' && d.length === 10 ? parseISO(d) : d ? new Date(d) : new Date(), 'MMMM d, yyyy')
 
 const capitalize = (t) => (t || '').charAt(0).toUpperCase() + (t || '').slice(1)
 
@@ -310,13 +308,7 @@ export function generatePDF({ quote, company, proposalUrl, download = true }) {
   }
 
   // ── Terms ──
-  y = drawTermsBox(doc, y + 8, 'TERMS & PAYMENT', [
-    'A deposit of 50% of the total is due upon acceptance of this proposal.',
-    'Remaining balance is due net 30 days from date of invoice.',
-    quote.validUntil
-      ? `This proposal is valid until ${longDate(quote.validUntil)}.`
-      : 'This proposal is valid for 30 days from the date shown above.',
-  ])
+  y = drawTermsBox(doc, y + 8, 'TERMS & PAYMENT', proposalTerms(quote))
 
   // ── Acceptance record, or the online accept link ──
   if (quote.acceptance) {

@@ -22,6 +22,8 @@ import BackupRestore from './components/backup/BackupRestore'
 import PurchaseOrders from './components/po/PurchaseOrders'
 import LegalPage from './components/landing/LegalPage'
 import ServicesPage from './components/landing/ServicesPage'
+import ProposalView from './components/proposal/ProposalView'
+import AcceptanceReceiver from './components/proposal/AcceptanceReceiver'
 import useStore from './store'
 
 export default function App() {
@@ -42,6 +44,8 @@ export default function App() {
         <Route path="/about" element={<AboutPage />} />
         <Route path="/legal" element={<LegalPage />} />
         <Route path="/services" element={<ServicesPage />} />
+        {/* Client-facing proposal — rendered from the link's #fragment, no store access */}
+        <Route path="/p" element={<ProposalView />} />
         
         {/* App Routes — instant access, no email/login */}
         <Route path="/" element={<Layout />}>
@@ -56,6 +60,7 @@ export default function App() {
           <Route path="settings" element={<CompanySettings />} />
           <Route path="backup" element={<BackupRestore />} />
           <Route path="help" element={<HelpGuide />} />
+          <Route path="accept" element={<AcceptanceReceiver />} />
         </Route>
       </Routes>
     </BrowserRouter>

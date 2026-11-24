@@ -5,6 +5,7 @@
  * https://github.com/harborglowvintage-oss/salescloserpro.ai
  */
 
+import { useEffect, useState } from 'react'
 import { create } from 'zustand'
 import { persist, createJSONStorage } from 'zustand/middleware'
 import { indexedDBStorage } from './db'
@@ -71,7 +72,12 @@ const useStore = create(
         }),
       updateQuote: (id, data) =>
         set((s) => ({
-          quotes: s.quotes.map((q) => (q.id === id ? withSummary({ ...q, ...data }) : q)),
+          quotes: s.quotes.map((q) => {
+            if (q.id !== id) return q
+            // first time a quote goes out, stamp sentAt — the follow-up schedule counts from it
+            const sentAt = data.status === 'sent' && !q.sentAt ? { sentAt: new Date().toISOString() } : {}
+            return withSummary({ ...q, ...data, ...sentAt })
+          }),
         })),
       deleteQuote: (id) =>
         set((s) => ({ quotes: s.quotes.filter((q) => q.id !== id) })),
@@ -305,5 +311,19 @@ const useStore = create(
     }
   )
 )
+
+/**
+ * True once persisted data has loaded from IndexedDB (async). Screens that read saved
+ * records on first render — deep links like /quotes/:id or /accept — must wait for it,
+ * or they render as if the data did not exist.
+ */
+export function useHydrated() {
+  const [hydrated, setHydrated] = useState(() => useStore.persist.hasHydrated())
+  useEffect(() => {
+    if (useStore.persist.hasHydrated()) setHydrated(true)
+    return useStore.persist.onFinishHydration(() => setHydrated(true))
+  }, [])
+  return hydrated
+}
 
 export default useStore

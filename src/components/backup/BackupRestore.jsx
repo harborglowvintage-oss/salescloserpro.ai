@@ -9,6 +9,7 @@ import useStore from '../../store'
 import { exportRawState, importRawState } from '../../db'
 import { format, formatDistanceToNow } from 'date-fns'
 import { downloadFile } from '../../utils/download'
+import { sanitizeState, MAX_BACKUP_BYTES } from '../../utils/fileSafety'
 
 // ── Helpers ─────────────────────────────────────────────
 // Backups read the persisted Zustand JSON straight from IndexedDB (see db.js).
@@ -181,6 +182,10 @@ export default function BackupRestore() {
   const handleFileSelect = (e) => {
     const file = e.target.files?.[0]
     if (!file) return
+    if (file.size > MAX_BACKUP_BYTES) {
+      setFeedback({ type: 'error', msg: `That file is too large to be a SalesCloserPro backup (over ${MAX_BACKUP_BYTES / 1024 / 1024} MB).` })
+      return
+    }
     setRestoreFile(file)
     const reader = new FileReader()
     reader.onload = (ev) => {
@@ -212,7 +217,9 @@ export default function BackupRestore() {
       // Accept both the native persist envelope ({ state, version }) and a bare state object
       const parsed = JSON.parse(restorePreview.raw)
       const envelope = parsed && typeof parsed === 'object' && 'state' in parsed ? parsed : { state: parsed, version: 0 }
-      await importRawState(JSON.stringify(envelope))
+      if (!envelope.state || typeof envelope.state !== 'object' || Array.isArray(envelope.state)) throw new Error('not a backup')
+      // a backup is a file from outside: strip any logo/attachment that is not our own data
+      await importRawState(JSON.stringify({ ...envelope, state: sanitizeState(envelope.state) }))
       setFeedback({ type: 'success', msg: 'Data restored successfully! Reloading app…' })
       setRestoreFile(null)
       setRestorePreview(null)

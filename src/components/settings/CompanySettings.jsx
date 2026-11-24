@@ -5,36 +5,13 @@ import {
 } from 'lucide-react'
 import useStore from '../../store'
 import { DEFAULT_VALID_DAYS } from '../../utils/followUps'
+import { safeLogo } from '../../utils/fileSafety'
 
 const US_STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD',
   'MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC',
   'SD','TN','TX','UT','VT','VA','WA','WV','WI','WY','DC'
 ]
-
-function resizeLogo(file, maxDim = 256) {
-  return new Promise((resolve) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const img = new window.Image()
-      img.onload = () => {
-        let { width, height } = img
-        if (width > maxDim || height > maxDim) {
-          const scale = Math.min(maxDim / width, maxDim / height)
-          width = Math.round(width * scale)
-          height = Math.round(height * scale)
-        }
-        const canvas = document.createElement('canvas')
-        canvas.width = width
-        canvas.height = height
-        canvas.getContext('2d').drawImage(img, 0, 0, width, height)
-        resolve(canvas.toDataURL('image/png', 0.9))
-      }
-      img.src = e.target.result
-    }
-    reader.readAsDataURL(file)
-  })
-}
 
 export default function CompanySettings() {
   const company = useStore((s) => s.company)
@@ -64,11 +41,8 @@ export default function CompanySettings() {
   const handleLogoUpload = useCallback(async (e) => {
     const file = e.target.files?.[0]
     if (!file) return
-    if (!file.type.startsWith('image/')) { alert('Please select an image file'); return }
-    if (file.size > 2 * 1024 * 1024) { alert('Logo must be under 2 MB'); return }
-    const dataUrl = await resizeLogo(file)
-    setCompany({ logo: dataUrl })
     e.target.value = ''
+    try { setCompany({ logo: await safeLogo(file) }) } catch (err) { alert(`That logo can't be used: ${err.message}.`) }
   }, [setCompany])
 
   const handleRemoveLogo = () => {
@@ -143,7 +117,7 @@ export default function CompanySettings() {
             <Camera className="w-4 h-4 text-brand-600" />
             Company Logo
           </h3>
-          <input ref={logoRef} type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
+          <input ref={logoRef} type="file" accept=".jpg,.jpeg,.png,.gif,.webp" className="hidden" onChange={handleLogoUpload} />
           <button
             onClick={() => logoRef.current?.click()}
             className="group relative w-28 h-28 rounded-2xl overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-brand-500 dark:hover:border-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-600"

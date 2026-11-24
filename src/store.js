@@ -11,6 +11,7 @@ import { persist, createJSONStorage } from 'zustand/middleware'
 import { indexedDBStorage } from './db'
 import { deriveQuoteSummary } from './utils/quoteMath'
 import { matchContact } from './utils/contacts'
+import { sanitizeState } from './utils/fileSafety'
 
 const mapDeals = (pipeline, fn) => pipeline.map((stage) => ({ ...stage, deals: stage.deals.map(fn) }))
 
@@ -319,6 +320,9 @@ const useStore = create(
       // the raw state object (including action functions) to IndexedDB, which throws
       // DataCloneError on every write — nothing was ever persisted before this fix.
       storage: createJSONStorage(() => indexedDBStorage),
+      // Saved data is untrusted input too (a restored backup, edited storage): logos and
+      // attachments that are not our own data: URLs are dropped before anything renders.
+      merge: (persisted, current) => ({ ...current, ...sanitizeState(persisted) }),
     }
   )
 )

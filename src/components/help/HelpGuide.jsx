@@ -131,6 +131,14 @@ const sections = [
         a: 'Up to 5 files per quote, each up to 2 MB. Images are automatically resized to a maximum of 1200 px so they stay small in storage.'
       },
       {
+        q: 'Why was my file not added?',
+        a: 'Every file is checked by what it actually contains, not by its name. A file is refused if it is not really a JPG, PNG, GIF, WebP or PDF; if its name does not match its contents; if it is a damaged or extremely large image; or if it is a PDF that contains scripts, launches programs, carries other files inside it, or is password-protected (which cannot be checked). The message under the upload area says which. Re-saving the PDF with "Print to PDF" usually produces a clean copy.'
+      },
+      {
+        q: 'Are uploaded files safe to keep?',
+        a: 'Images are never stored as uploaded — the picture is redrawn and re-saved, which removes hidden data such as camera location and anything tucked inside the file. PDFs are screened for active content before they are kept. Logos follow the same rules (JPG, PNG, GIF or WebP only). Backups are checked on restore too, so a tampered backup file cannot slip in outside links or scripts. This is a strict screen rather than antivirus software.'
+      },
+      {
         q: 'Do attachments appear in the PDF?',
         a: 'Yes. Image attachments are embedded as thumbnails in the Attachments section of the generated PDF. PDF attachments are listed by file name.'
       },

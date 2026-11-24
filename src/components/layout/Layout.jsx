@@ -5,31 +5,8 @@ import {
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import useStore, { useHydrated } from '../../store'
+import { safeLogo } from '../../utils/fileSafety'
 import { ProductLogo, Wordmark, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
-
-function resizeLogo(file, maxDim = 256) {
-  return new Promise((resolve) => {
-    const reader = new FileReader()
-    reader.onload = (e) => {
-      const img = new window.Image()
-      img.onload = () => {
-        let { width, height } = img
-        if (width > maxDim || height > maxDim) {
-          const scale = Math.min(maxDim / width, maxDim / height)
-          width = Math.round(width * scale)
-          height = Math.round(height * scale)
-        }
-        const canvas = document.createElement('canvas')
-        canvas.width = width
-        canvas.height = height
-        canvas.getContext('2d').drawImage(img, 0, 0, width, height)
-        resolve(canvas.toDataURL('image/png', 0.9))
-      }
-      img.src = e.target.result
-    }
-    reader.readAsDataURL(file)
-  })
-}
 
 const nav = [
   { to: '/dashboard', icon: LayoutDashboard, label: 'Dashboard' },
@@ -56,11 +33,8 @@ export default function Layout() {
   const handleLogoUpload = useCallback(async (e) => {
     const file = e.target.files?.[0]
     if (!file) return
-    if (!file.type.startsWith('image/')) return
-    if (file.size > 2 * 1024 * 1024) { alert('Logo must be under 2 MB'); return }
-    const dataUrl = await resizeLogo(file)
-    setCompany({ logo: dataUrl })
     e.target.value = ''
+    try { setCompany({ logo: await safeLogo(file) }) } catch (err) { alert(`That logo can't be used: ${err.message}.`) }
   }, [setCompany])
 
   const handleLogoContext = useCallback((e) => {
@@ -86,7 +60,7 @@ export default function Layout() {
         {/* Logo + Theme Toggle */}
         <div className="flex items-center gap-3 px-6 py-5 border-b border-gray-100 dark:border-gray-700">
           {/* Clickable logo area */}
-          <input ref={logoInputRef} type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
+          <input ref={logoInputRef} type="file" accept=".jpg,.jpeg,.png,.gif,.webp" className="hidden" onChange={handleLogoUpload} />
           <button
             onClick={() => logoInputRef.current?.click()}
             onContextMenu={handleLogoContext}

@@ -67,6 +67,7 @@
 - 📤 **Export** — new sidebar page: download contacts, deals and quotes as CSV laid out for HubSpot, Salesforce, or a universal format, with import steps for each. Formats are declarative column maps in `utils/crmExport.js`, so adding another CRM is one entry.
 - 📊 **Business Summary PDF**, **model numbers** on product lines, tidier CSV cells (Title Case, full state names, readable tax rates).
 - 🚫 **Go Live wizard removed** — it no longer fit the product; `/go-live` redirects to the dashboard. Developer deploy steps remain in this README.
+- 🛡️ **Upload hardening** (`utils/fileSafety.js`) — files are identified by content, not name; images are re-encoded (metadata and appended payloads dropped, SVG refused, 40 MP cap against decompression bombs); PDFs are refused if they contain JavaScript, launch actions, embedded files, data-submitting actions, XFA, or encryption — including inside compressed object streams; restored backups and stored state are sanitized so only the app's own `data:` images/PDFs survive; file names lose control and direction-override characters.
 - 🛠️ **Fixes** — quote and PO PDF tables overflowed the right margin; long PO terms ran off the page; refreshing `/quotes/:id` opened a blank quote (deep links rendered before IndexedDB loaded); "Client Details" heading invisible in dark mode.
 - 🧹 **One implementation of each thing** — pricing (`utils/quoteMath.js`), PDF drawing helpers, money formatting, status badges, file download, brand logo/credit/copyright are each defined once.
 
@@ -566,7 +567,7 @@ These elements are in the footer or below the visible viewport. Google discounts
     │   ├── 📂 quotes/SharePanel.jsx        → 📤 Send dialog — copy link, email draft, client preview
     │   ├── 📂 quotes/QuoteBadges.jsx       → 🏷️ StatusBadge + options / expired / accepted badges
     │   ├── 📂 quotes/QuoteList.jsx         → 📋 All quotes — search, status, delete
-    │   ├── 📂 quotes/FileUploader.jsx      → 📎 Drag-and-drop attachments (max 5 × 2 MB)
+    │   ├── 📂 quotes/FileUploader.jsx      → 📎 Drag-and-drop attachments (max 5 × 2 MB), every file screened by utils/fileSafety.js
     │   ├── 📂 settings/CompanySettings.jsx → 🏢 Company info, logo, home state, proposal validity days
     ├── 📂 data/taxDatabase.js   → 🧮 All 50 states + DC: rates, freight rules, labor rules
     └── 📂 utils/
@@ -578,6 +579,7 @@ These elements are in the footer or below the visible viewport. Google discounts
         ├── 📄 contacts.js       → 👥 Contact matching, search, and per-contact activity roll-up
         ├── 📄 crmExport.js      → 📤 Export engine — neutral records + per-CRM column maps + RFC 4180 CSV writer
         ├── 📄 reportPdf.js      → 📊 Business Summary PDF (headline numbers, deals by stage, quotes, contacts)
+        ├── 📄 fileSafety.js     → 🛡️ Upload gate — magic-byte sniffing, image re-encode, PDF active-content screen, state sanitizer
         ├── 📄 dates.js          → 📅 Calendar-date helpers (local yyyy-MM-dd)
         └── 📄 download.js       → 💾 Save a generated file (backups, .ics)
 ```

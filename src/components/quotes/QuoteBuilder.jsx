@@ -12,7 +12,7 @@ import FileUploader from './FileUploader'
 import clsx from 'clsx'
 
 const LINE_TYPES = [
-  { id: 'product', label: 'Product',        icon: Package,  color: 'text-blue-600',    bg: 'bg-blue-50',    border: 'border-blue-200',    accent: 'bg-blue-500'    },
+  { id: 'product', label: 'Product',        icon: Package,  color: 'text-brand-600',    bg: 'bg-brand-50',    border: 'border-brand-200',    accent: 'bg-brand-500'    },
   { id: 'service', label: 'Service',        icon: FileText, color: 'text-purple-600',  bg: 'bg-purple-50',  border: 'border-purple-200',  accent: 'bg-purple-500'  },
   { id: 'labor',   label: 'Install / Labor',icon: Wrench,   color: 'text-emerald-600', bg: 'bg-emerald-50', border: 'border-emerald-200', accent: 'bg-emerald-500' },
   { id: 'freight', label: 'Freight',        icon: Truck,    color: 'text-orange-600',  bg: 'bg-orange-50',  border: 'border-orange-200',  accent: 'bg-orange-500'  },
@@ -33,7 +33,7 @@ const UNITS = [
 
 const STATUS_STYLES = {
   draft: { bg: 'bg-gray-100',  text: 'text-gray-700',  dot: 'bg-gray-400'  },
-  sent:  { bg: 'bg-blue-100',  text: 'text-blue-700',  dot: 'bg-blue-500'  },
+  sent:  { bg: 'bg-brand-100',  text: 'text-brand-700',  dot: 'bg-brand-500'  },
   won:   { bg: 'bg-green-100', text: 'text-green-700', dot: 'bg-green-500' },
   lost:  { bg: 'bg-red-100',   text: 'text-red-600',   dot: 'bg-red-500'   },
 }
@@ -67,7 +67,7 @@ function LineItem({ line, stateCode, onUpdate, onRemove }) {
             {typeInfo.label}
           </span>
           <input
-            className="flex-1 text-base font-medium text-gray-900 dark:text-gray-100 placeholder:text-gray-300 dark:placeholder:text-gray-600 border-0 border-b-2 border-transparent focus:border-blue-400 outline-none bg-transparent px-1 py-0.5 transition-colors"
+            className="flex-1 text-base font-medium text-gray-900 dark:text-gray-100 placeholder:text-gray-300 dark:placeholder:text-gray-600 border-0 border-b-2 border-transparent focus:border-brand-400 outline-none bg-transparent px-1 py-0.5 transition-colors"
             placeholder={`Describe this ${typeInfo.label.toLowerCase()}…`}
             value={line.description}
             onChange={(e) => onUpdate(line.id, 'description', e.target.value)}
@@ -88,17 +88,17 @@ function LineItem({ line, stateCode, onUpdate, onRemove }) {
             <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Qty</label>
             <div className="flex items-center">
               <button onClick={() => onUpdate(line.id, 'qty', Math.max(0.25, line.qty - 1))}
-                className="w-11 h-12 rounded-l-xl bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 border-2 border-r-0 border-gray-200 dark:border-gray-600 hover:border-blue-300 text-gray-500 dark:text-gray-400 hover:text-blue-600 font-bold text-2xl flex items-center justify-center transition-all active:bg-blue-100 select-none">
+                className="w-11 h-12 rounded-l-xl bg-gray-100 dark:bg-gray-700 hover:bg-brand-50 dark:hover:bg-brand-900/30 border-2 border-r-0 border-gray-200 dark:border-gray-600 hover:border-brand-300 text-gray-500 dark:text-gray-400 hover:text-brand-600 font-bold text-2xl flex items-center justify-center transition-all active:bg-brand-100 select-none">
                 −
               </button>
               <input
                 type="number" min="0.25" step="0.25"
-                className="w-16 h-12 text-center text-lg font-bold border-y-2 border-gray-200 dark:border-gray-600 outline-none focus:border-blue-500 bg-white dark:bg-gray-800 dark:text-gray-100 transition-colors"
+                className="w-16 h-12 text-center text-lg font-bold border-y-2 border-gray-200 dark:border-gray-600 outline-none focus:border-brand-500 bg-white dark:bg-gray-800 dark:text-gray-100 transition-colors"
                 value={line.qty}
                 onChange={(e) => onUpdate(line.id, 'qty', parseFloat(e.target.value) || 1)}
               />
               <button onClick={() => onUpdate(line.id, 'qty', line.qty + 1)}
-                className="w-11 h-12 rounded-r-xl bg-gray-100 dark:bg-gray-700 hover:bg-blue-50 dark:hover:bg-blue-900/30 border-2 border-l-0 border-gray-200 dark:border-gray-600 hover:border-blue-300 text-gray-500 dark:text-gray-400 hover:text-blue-600 font-bold text-2xl flex items-center justify-center transition-all active:bg-blue-100 select-none">
+                className="w-11 h-12 rounded-r-xl bg-gray-100 dark:bg-gray-700 hover:bg-brand-50 dark:hover:bg-brand-900/30 border-2 border-l-0 border-gray-200 dark:border-gray-600 hover:border-brand-300 text-gray-500 dark:text-gray-400 hover:text-brand-600 font-bold text-2xl flex items-center justify-center transition-all active:bg-brand-100 select-none">
                 +
               </button>
             </div>
@@ -109,7 +109,7 @@ function LineItem({ line, stateCode, onUpdate, onRemove }) {
             <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5">Unit</label>
             <div className="relative">
               <select
-                className="h-12 pl-3 pr-8 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-semibold text-gray-700 dark:text-gray-200 outline-none focus:border-blue-500 appearance-none cursor-pointer transition-colors"
+                className="h-12 pl-3 pr-8 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm font-semibold text-gray-700 dark:text-gray-200 outline-none focus:border-brand-500 appearance-none cursor-pointer transition-colors"
                 value={line.unit}
                 onChange={(e) => onUpdate(line.id, 'unit', e.target.value)}
               >
@@ -126,7 +126,7 @@ function LineItem({ line, stateCode, onUpdate, onRemove }) {
               <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 text-lg font-bold select-none">$</span>
               <input
                 type="number" min="0" step="0.01"
-                className="w-full h-12 pl-8 pr-3 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-lg font-bold text-gray-900 dark:text-gray-100 outline-none focus:border-blue-500 transition-colors placeholder:text-gray-300 dark:placeholder:text-gray-600 placeholder:font-normal"
+                className="w-full h-12 pl-8 pr-3 rounded-xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 text-lg font-bold text-gray-900 dark:text-gray-100 outline-none focus:border-brand-500 transition-colors placeholder:text-gray-300 dark:placeholder:text-gray-600 placeholder:font-normal"
                 placeholder="0.00"
                 value={line.price || ''}
                 onChange={(e) => onUpdate(line.id, 'price', parseFloat(e.target.value) || 0)}
@@ -222,7 +222,7 @@ export default function QuoteBuilder() {
 
       {/* ── HEADER BAND ─────────────────────────────── */}
       <div className="rounded-2xl overflow-hidden shadow-md">
-        <div className="bg-gradient-to-r from-blue-600 via-blue-600 to-indigo-600 px-6 py-5 flex items-center justify-between flex-wrap gap-4">
+        <div className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 px-6 py-5 flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-4">
             <button onClick={() => navigate('/quotes')}
               className="w-10 h-10 rounded-full bg-white/20 hover:bg-white/30 flex items-center justify-center text-white transition-all active:scale-90">
@@ -232,7 +232,7 @@ export default function QuoteBuilder() {
               <h1 className="text-2xl font-extrabold text-white tracking-tight">
                 {existing ? existing.quoteNumber : 'New Quote'}
               </h1>
-              <p className="text-blue-200 text-xs font-medium mt-0.5">
+              <p className="text-brand-200 text-xs font-medium mt-0.5">
                 {lines.length} line item{lines.length !== 1 ? 's' : ''} · ${fmt(grandTotal)} total
               </p>
             </div>
@@ -247,7 +247,7 @@ export default function QuoteBuilder() {
             </div>
             <button onClick={handleSave} className={clsx(
               'flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm transition-all shadow-sm active:scale-95 select-none',
-              saved ? 'bg-green-500 text-white' : 'bg-white text-blue-700 hover:bg-blue-50'
+              saved ? 'bg-green-500 text-white' : 'bg-white text-brand-700 hover:bg-brand-50'
             )}>
               {saved ? <CheckCircle className="w-4 h-4" /> : <Save className="w-4 h-4" />}
               {saved ? 'Saved!' : 'Save'}
@@ -263,8 +263,8 @@ export default function QuoteBuilder() {
       {/* ── CLIENT DETAILS ──────────────────────────── */}
       <div className="card space-y-5">
         <div className="flex items-center gap-3 mb-1">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center">
-            <User className="w-5 h-5 text-blue-600" />
+          <div className="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center">
+            <User className="w-5 h-5 text-brand-600" />
           </div>
           <div>
             <h2 className="font-bold text-gray-900 text-lg leading-tight">Client Details</h2>
@@ -319,13 +319,13 @@ export default function QuoteBuilder() {
       <div>
         <div className="flex items-center gap-3 mb-4">
           <h2 className="font-bold text-gray-900 dark:text-gray-100 text-lg">Line Items</h2>
-          <span className="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-1 rounded-full">{lines.length}</span>
+          <span className="bg-brand-100 text-brand-700 text-xs font-bold px-2.5 py-1 rounded-full">{lines.length}</span>
         </div>
 
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mb-6">
           {LINE_TYPES.map(({ id: tid, label, icon: Icon, color, bg }) => (
             <button key={tid} onClick={() => addLine(tid)}
-              className="flex items-center gap-3 p-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-blue-400 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm transition-all duration-200 cursor-pointer group select-none">
+              className="flex items-center gap-3 p-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-brand-400 hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0 active:shadow-sm transition-all duration-200 cursor-pointer group select-none">
               <div className={clsx('w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110', bg)}>
                 <Icon className={clsx('w-6 h-6', color)} />
               </div>
@@ -333,7 +333,7 @@ export default function QuoteBuilder() {
                 <div className="font-bold text-gray-800 dark:text-gray-200 text-sm truncate">{label}</div>
                 <div className="text-xs text-gray-400 dark:text-gray-500 font-medium">+ Add</div>
               </div>
-              <Plus className="w-5 h-5 text-gray-300 group-hover:text-blue-500 ml-auto flex-shrink-0 transition-colors" />
+              <Plus className="w-5 h-5 text-gray-300 group-hover:text-brand-500 ml-auto flex-shrink-0 transition-colors" />
             </button>
           ))}
         </div>
@@ -363,7 +363,7 @@ export default function QuoteBuilder() {
             <div className="border-t-2 border-dashed border-gray-200" />
           </div>
         </div>
-        <div className="bg-gradient-to-r from-blue-600 via-blue-600 to-indigo-600 px-6 py-6 flex items-center justify-between">
+        <div className="bg-gradient-to-r from-brand-600 via-brand-600 to-brand-700 px-6 py-6 flex items-center justify-between">
           <span className="text-white/90 font-bold text-lg">Grand Total</span>
           <span className="text-white font-extrabold text-4xl tracking-tight">${fmt(grandTotal)}</span>
         </div>
@@ -386,13 +386,13 @@ export default function QuoteBuilder() {
       <div className="flex gap-3 flex-wrap">
         <button onClick={handleSave} className={clsx(
           'flex items-center gap-2.5 px-10 py-4 rounded-2xl font-bold text-base transition-all shadow-md hover:shadow-lg active:scale-[0.97] select-none',
-          saved ? 'bg-green-600 text-white' : 'bg-blue-600 hover:bg-blue-700 text-white'
+          saved ? 'bg-green-600 text-white' : 'bg-brand-600 hover:bg-brand-700 text-white'
         )}>
           {saved ? <CheckCircle className="w-5 h-5" /> : <Save className="w-5 h-5" />}
           {saved ? 'Quote Saved!' : 'Save Quote'}
         </button>
         <button onClick={handlePrint}
-          className="flex items-center gap-2.5 px-10 py-4 rounded-2xl font-bold text-base bg-white border-2 border-gray-200 hover:border-blue-400 text-gray-700 hover:text-blue-700 transition-all shadow-sm hover:shadow-md active:scale-[0.97] select-none">
+          className="flex items-center gap-2.5 px-10 py-4 rounded-2xl font-bold text-base bg-white border-2 border-gray-200 hover:border-brand-400 text-gray-700 hover:text-brand-700 transition-all shadow-sm hover:shadow-md active:scale-[0.97] select-none">
           <Printer className="w-5 h-5" /> Export PDF
         </button>
         <button onClick={() => navigate('/quotes')}

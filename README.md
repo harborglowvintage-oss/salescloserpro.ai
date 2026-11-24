@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="public/logos/salescloserprologo.png" alt="SalesCloserPro Logo" width="120" />
+  <img src="brand/salescloserpro-art.png" alt="SalesCloserPro Logo" width="120" />
 </p>
 
 <h1 align="center">salescloserpro.ai — Close More. Stress Less. 💪</h1>
@@ -442,7 +442,7 @@ This section documents the exact signals Google has indexed and is actively rewa
 | **`meta description`** | `Build professional quotes, track deals, issue POs, and export polished PDFs — 100% free and open source. No login required. Built for freelancers, contractors, and small businesses.` | `index.html` | Changes the snippet shown in search results |
 | **`H1` text** | `The Free CRM. No gimmicks. Send a professional quote or PO in minutes.` | `LandingPage.jsx` | H1 must semantically match the title tag intent |
 | **`link rel="canonical"`** | `https://salescloserpro.ai/` | `index.html` | Changing domain/path tells Google to re-index a "new" page |
-| **`og:image`** | `https://salescloserpro.ai/og-cover-v2.png` | `index.html` | This image is actively cached by Google, social platforms, and chat previews |
+| **`og:image`** | `https://salescloserpro.ai/og-cover-v3.png` | `index.html` | This image is actively cached by Google, social platforms, and chat previews |
 | **JSON-LD `SoftwareApplication`** | Type: `SoftwareApplication`, Category: `BusinessApplication / CRM Software`, Price: `0` | `index.html` | Structured data drives rich result eligibility — don't rename fields |
 | **`meta keywords`** | `free CRM, sales quoting tool, proposal builder, pipeline management...` | `index.html` | Low direct impact but part of the indexed document fingerprint |
 
@@ -513,15 +513,16 @@ These elements are in the footer or below the visible viewport. Google discounts
 ├── 📄 index.html                → App shell — SEO meta, OG tags, JSON-LD, dark-mode pre-paint
 ├── 📄 package.json              → Dependencies, scripts, author info, version
 ├── 📄 vite.config.js            → Vite config — React plugin, vendor chunks, __APP_VERSION__
-├── 📄 tailwind.config.js        → Tailwind CSS config (dark mode: 'class')
+├── 📄 tailwind.config.js        → Tailwind config + LLMadvisor brand tokens (brand / copper / ink, Source Serif 4)
+├── 📂 brand/                    → Source art: salescloserpro-art.png (handshake), llmadvisor-mark.png (atom)
 ├── 📄 postcss.config.js         → PostCSS pipeline (Tailwind + Autoprefixer)
 ├── 📂 scripts/
-│   └── 📄 generate-og.mjs       → Regenerates public/og-cover-v2.png (1200×630) with sharp
+│   └── 📄 generate-brand-images.mjs → Regenerates og-cover-v3.png, hero webp and LLMadvisor mark from /brand (npm run generate-images)
 ├── 📂 public/
 │   ├── 🖼️ favicon.ico · favicon-32.png · apple-touch-icon.png · icon-192.png · icon-512.png  (icon-192 is also the default sidebar logo)
 │   ├── 📄 manifest.webmanifest  → Web app manifest (installable, standalone)
-│   ├── 🖼️ og-cover-v2.png       → Social share card
-│   ├── 📂 logos/                → Landing page artwork
+│   ├── 🖼️ og-cover-v3.png       → Social share card
+│   ├── 📂 logos/                → Generated: salescloserpro-hero.webp, llmadvisor-mark.png (CSS mask); intake.png (Services)
 │   ├── 📄 _headers              → Cloudflare Pages cache + security headers, policy-file content types, noindex on app routes
 │   ├── 📄 _redirects            → Retired-page redirects, /security.txt → .well-known, SPA fallback
 │   ├── 📄 robots.txt            → Allow all + sitemap pointer (AI-crawler rules come from Cloudflare managed robots.txt, not this file)
@@ -658,7 +659,7 @@ The integrated data sync ensures consistency across modules:
 <details>
 <summary>🔒 Is my data secure?</summary>
 
-✅ **Yes!** All data stays in your browser's IndexedDB. Nothing is sent to any server. The only outbound requests are the site itself (Cloudflare) and the Inter font from Google Fonts; optional links (GitHub) open in a new tab.
+✅ **Yes!** All data stays in your browser's IndexedDB. Nothing is sent to any server. The only outbound requests are the site itself (Cloudflare) and the Inter + Source Serif 4 fonts from Google Fonts; optional links (GitHub) open in a new tab.
 </details>
 
 <details>

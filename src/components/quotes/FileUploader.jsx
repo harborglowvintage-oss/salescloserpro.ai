@@ -105,13 +105,13 @@ export default function FileUploader({ files = [], onChange }) {
           className={clsx(
             'border-2 border-dashed rounded-2xl p-6 text-center cursor-pointer transition-all duration-200',
             dragOver
-              ? 'border-blue-500 bg-blue-50 dark:bg-blue-900/30'
-              : 'border-gray-200 dark:border-gray-600 hover:border-blue-400 hover:bg-gray-50 dark:hover:bg-gray-700/50'
+              ? 'border-brand-500 bg-brand-50 dark:bg-brand-900/30'
+              : 'border-gray-200 dark:border-gray-600 hover:border-brand-400 hover:bg-gray-50 dark:hover:bg-gray-700/50'
           )}
         >
           <Upload className="w-8 h-8 mx-auto mb-2 text-gray-400" />
           <p className="text-sm font-medium text-gray-600 dark:text-gray-300">
-            Drop files here or <span className="text-blue-600 dark:text-blue-400">browse</span>
+            Drop files here or <span className="text-brand-600 dark:text-brand-400">browse</span>
           </p>
           <p className="text-xs text-gray-400 mt-1">Drawings, photos, or PDF documents</p>
           <input

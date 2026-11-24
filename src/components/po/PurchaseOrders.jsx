@@ -16,7 +16,7 @@ const fmt = (n) => n.toLocaleString('en-US', { minimumFractionDigits: 2, maximum
 const pct = (n) => `${n.toFixed(1)}%`
 
 const LINE_TYPE_META = {
-  product: { label: 'Product',  icon: Package,  color: 'text-blue-600',    bg: 'bg-blue-50',    accent: 'bg-blue-500'    },
+  product: { label: 'Product',  icon: Package,  color: 'text-brand-600',    bg: 'bg-brand-50',    accent: 'bg-brand-500'    },
   service: { label: 'Service',  icon: FileText,  color: 'text-purple-600',  bg: 'bg-purple-50',  accent: 'bg-purple-500'  },
   labor:   { label: 'Labor',    icon: Wrench,    color: 'text-emerald-600', bg: 'bg-emerald-50', accent: 'bg-emerald-500' },
   freight: { label: 'Freight',  icon: Truck,     color: 'text-orange-600',  bg: 'bg-orange-50',  accent: 'bg-orange-500'  },
@@ -24,8 +24,8 @@ const LINE_TYPE_META = {
 
 const PO_STATUSES = [
   { id: 'draft',    label: 'Draft',    dot: 'bg-gray-400',   badge: 'bg-gray-100 text-gray-700 dark:bg-gray-700 dark:text-gray-300'   },
-  { id: 'issued',   label: 'Issued',   dot: 'bg-indigo-500', badge: 'bg-indigo-100 text-indigo-700 dark:bg-indigo-900/40 dark:text-indigo-300' },
-  { id: 'ordered',  label: 'Ordered',  dot: 'bg-blue-500',   badge: 'bg-blue-100 text-blue-700 dark:bg-blue-900/40 dark:text-blue-300'   },
+  { id: 'issued',   label: 'Issued',   dot: 'bg-brand-600', badge: 'bg-brand-200 text-brand-800 dark:bg-brand-950/40 dark:text-brand-400' },
+  { id: 'ordered',  label: 'Ordered',  dot: 'bg-brand-500',   badge: 'bg-brand-100 text-brand-700 dark:bg-brand-900/40 dark:text-brand-300'   },
   { id: 'received', label: 'Received', dot: 'bg-amber-500',  badge: 'bg-amber-100 text-amber-700 dark:bg-amber-900/40 dark:text-amber-300'  },
   { id: 'paid',     label: 'Paid',     dot: 'bg-green-500',  badge: 'bg-green-100 text-green-700 dark:bg-green-900/40 dark:text-green-300'  },
 ]
@@ -42,7 +42,7 @@ function TabBtn({ active, icon: Icon, label, count, onClick }) {
       className={clsx(
         'flex items-center gap-2 px-5 py-3 rounded-xl font-semibold text-sm transition-all select-none',
         active
-          ? 'bg-blue-600 text-white shadow-md'
+          ? 'bg-brand-600 text-white shadow-md'
           : 'bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700'
       )}
     >
@@ -332,8 +332,8 @@ export default function PurchaseOrders() {
       <div className="flex items-start justify-between flex-wrap gap-4">
         <div>
           <h1 className="text-2xl font-extrabold text-gray-900 dark:text-gray-100 tracking-tight flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xl bg-indigo-100 dark:bg-indigo-900/40 flex items-center justify-center">
-              <ShoppingCart className="w-5 h-5 text-indigo-600 dark:text-indigo-400" />
+            <div className="w-10 h-10 rounded-xl bg-brand-200 dark:bg-brand-950/40 flex items-center justify-center">
+              <ShoppingCart className="w-5 h-5 text-brand-700 dark:text-brand-500" />
             </div>
             Purchase Orders
           </h1>
@@ -353,8 +353,8 @@ export default function PurchaseOrders() {
       {/* ── KPI Strip ───────────────────────────────────── */}
       <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
         {[
-          { label: 'Total POs',    value: kpis.count,                      color: 'bg-indigo-500' },
-          { label: 'Total Sold',   value: `$${fmt(kpis.totalSell)}`,      color: 'bg-blue-500'   },
+          { label: 'Total POs',    value: kpis.count,                      color: 'bg-brand-600' },
+          { label: 'Total Sold',   value: `$${fmt(kpis.totalSell)}`,      color: 'bg-brand-500'   },
           { label: 'Total Cost',   value: `$${fmt(kpis.totalCost)}`,      color: 'bg-orange-500' },
           { label: 'Total Margin', value: `$${fmt(kpis.totalMargin)}`,    color: 'bg-green-500'  },
           { label: 'Avg Margin',   value: pct(kpis.avgMargin),            color: 'bg-emerald-500'},
@@ -385,7 +385,7 @@ export default function PurchaseOrders() {
         <div className="space-y-4">
           {/* form */}
           {showForm && (
-            <div className="card border-2 border-blue-200 dark:border-blue-800 space-y-5">
+            <div className="card border-2 border-brand-200 dark:border-brand-800 space-y-5">
               <div className="flex items-center justify-between">
                 <h3 className="font-bold text-gray-900 dark:text-gray-100 text-lg">
                   {editId ? 'Edit Purchase Order' : 'Issue New Purchase Order'}
@@ -570,7 +570,7 @@ export default function PurchaseOrders() {
                         }
                         resetForm()
                       }}
-                      className="flex items-center gap-2 py-3 px-6 text-sm font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white shadow-md hover:shadow-lg transition-all"
+                      className="flex items-center gap-2 py-3 px-6 text-sm font-semibold rounded-xl bg-brand-700 hover:bg-brand-800 text-white shadow-md hover:shadow-lg transition-all"
                     >
                       <Send className="w-4 h-4" />
                       Issue PO & Download PDF
@@ -670,7 +670,7 @@ export default function PurchaseOrders() {
                             {po.quoteId ? (
                               <button
                                 onClick={() => navigate(`/quotes/${po.quoteId}`)}
-                                className="text-blue-600 dark:text-blue-400 hover:underline font-semibold text-xs inline-flex items-center gap-1"
+                                className="text-brand-600 dark:text-brand-400 hover:underline font-semibold text-xs inline-flex items-center gap-1"
                               >
                                 {po.quoteNumber} <ExternalLink className="w-3 h-3" />
                               </button>
@@ -692,7 +692,7 @@ export default function PurchaseOrders() {
                           <td className="px-4 py-3">
                             <div className="flex items-center gap-1">
                               {po.status === 'draft' ? (
-                                <button onClick={() => handleIssuePO(po)} className="p-2 text-gray-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-900/30 transition-colors" title="Issue PO & Download PDF">
+                                <button onClick={() => handleIssuePO(po)} className="p-2 text-gray-400 hover:text-brand-700 dark:hover:text-brand-500 rounded-lg hover:bg-brand-100 dark:hover:bg-brand-950/30 transition-colors" title="Issue PO & Download PDF">
                                   <Send className="w-4 h-4" />
                                 </button>
                               ) : (
@@ -700,7 +700,7 @@ export default function PurchaseOrders() {
                                   <Printer className="w-4 h-4" />
                                 </button>
                               )}
-                              <button onClick={() => handleEdit(po)} className="p-2 text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 rounded-lg hover:bg-blue-50 dark:hover:bg-blue-900/30 transition-colors" title="Edit">
+                              <button onClick={() => handleEdit(po)} className="p-2 text-gray-400 hover:text-brand-600 dark:hover:text-brand-400 rounded-lg hover:bg-brand-50 dark:hover:bg-brand-900/30 transition-colors" title="Edit">
                                 <Edit3 className="w-4 h-4" />
                               </button>
                               <button onClick={() => handleDelete(po.id)} className="p-2 text-gray-400 hover:text-red-500 rounded-lg hover:bg-red-50 dark:hover:bg-red-900/30 transition-colors" title="Delete">
@@ -754,7 +754,7 @@ export default function PurchaseOrders() {
                       return (
                         <tr key={po.id} className="hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors">
                           <td className="px-4 py-3 font-bold text-gray-900 dark:text-gray-100">{po.poNumber}</td>
-                          <td className="px-4 py-3 text-xs font-semibold text-blue-600 dark:text-blue-400">{po.quoteNumber}</td>
+                          <td className="px-4 py-3 text-xs font-semibold text-brand-600 dark:text-brand-400">{po.quoteNumber}</td>
                           <td className="px-4 py-3">
                             <span className={clsx('inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-xs font-bold', typeMeta.bg, typeMeta.color)}>
                               {typeMeta.label}
@@ -819,7 +819,7 @@ export default function PurchaseOrders() {
               {/* Cost by Line Type (Donut) */}
               <div className="card">
                 <h3 className="font-bold text-gray-900 dark:text-gray-100 flex items-center gap-2 mb-6">
-                  <PieChart className="w-5 h-5 text-blue-600" />
+                  <PieChart className="w-5 h-5 text-brand-600" />
                   Cost by Line Type
                 </h3>
                 <DonutChart data={costByType} />
@@ -860,7 +860,7 @@ export default function PurchaseOrders() {
                             <div className="flex items-center gap-2">
                               <span className="text-[10px] w-10 text-gray-400 font-semibold">Sell</span>
                               <div className="flex-1 h-4 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-                                <div className="h-full bg-blue-500 rounded-full transition-all duration-500" style={{ width: `${sellWidth}%` }} />
+                                <div className="h-full bg-brand-500 rounded-full transition-all duration-500" style={{ width: `${sellWidth}%` }} />
                               </div>
                               <span className="text-xs font-bold text-gray-700 dark:text-gray-300 w-24 text-right">${fmt(d.sell)}</span>
                             </div>
@@ -877,7 +877,7 @@ export default function PurchaseOrders() {
                     })}
                     <div className="flex items-center gap-4 pt-3 border-t border-gray-100 dark:border-gray-700">
                       <div className="flex items-center gap-1.5 text-xs">
-                        <span className="w-3 h-3 rounded-full bg-blue-500" />
+                        <span className="w-3 h-3 rounded-full bg-brand-500" />
                         <span className="text-gray-500 dark:text-gray-400 font-medium">Sell Price</span>
                       </div>
                       <div className="flex items-center gap-1.5 text-xs">

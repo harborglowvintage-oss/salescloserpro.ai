@@ -38,7 +38,7 @@ export default function Dashboard() {
 
   const statusColor = {
     draft: 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300',
-    sent: 'bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300',
+    sent: 'bg-brand-100 dark:bg-brand-900/50 text-brand-700 dark:text-brand-300',
     won: 'bg-green-100 dark:bg-green-900/50 text-green-700 dark:text-green-300',
     lost: 'bg-red-100 dark:bg-red-900/50 text-red-600 dark:text-red-400',
   }
@@ -57,7 +57,7 @@ export default function Dashboard() {
 
       {/* KPIs */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <KpiCard icon={FileText}    label="Open Quotes"   value={openQuotes}   color="bg-blue-500"   sub="drafts + sent" />
+        <KpiCard icon={FileText}    label="Open Quotes"   value={openQuotes}   color="bg-brand-500"   sub="drafts + sent" />
         <KpiCard icon={Users}       label="Total Clients" value={clients.length} color="bg-purple-500" />
         <KpiCard icon={TrendingUp}  label="Deals Won"     value={wonDeals}     color="bg-green-500" />
         <KpiCard icon={DollarSign}  label="Revenue Won"
@@ -116,7 +116,7 @@ export default function Dashboard() {
         {quotes.length > 5 && (
           <button
             onClick={() => navigate('/quotes')}
-            className="mt-4 w-full text-center text-sm text-blue-600 hover:text-blue-700 font-medium py-2"
+            className="mt-4 w-full text-center text-sm text-brand-600 hover:text-brand-700 font-medium py-2"
           >
             View all {quotes.length} quotes →
           </button>
@@ -136,15 +136,6 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* Brand footer */}
-      <div className="text-center pt-4 pb-2 space-y-2">
-        <p className="text-xs text-gray-400">
-          Powered by{' '}
-          <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 font-medium">
-            llmadvisor.ai
-          </a>
-        </p>
-      </div>
     </div>
   )
 }

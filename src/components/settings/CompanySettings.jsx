@@ -89,7 +89,7 @@ export default function CompanySettings() {
       <div className="flex flex-col sm:flex-row sm:items-end gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-500 to-indigo-700 flex items-center justify-center shadow-lg shadow-indigo-500/20">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-600 to-brand-800 flex items-center justify-center shadow-lg shadow-brand-600/20">
               <Building2 className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -104,16 +104,16 @@ export default function CompanySettings() {
       <div className="card p-5">
         <div className="flex items-center justify-between mb-3">
           <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-            <Shield className="w-4 h-4 text-indigo-500" />
+            <Shield className="w-4 h-4 text-brand-600" />
             Profile Completeness
           </h3>
-          <span className={`text-sm font-bold ${completionPct === 100 ? 'text-green-600' : 'text-indigo-600 dark:text-indigo-400'}`}>
+          <span className={`text-sm font-bold ${completionPct === 100 ? 'text-green-600' : 'text-brand-700 dark:text-brand-500'}`}>
             {completionPct}%
           </span>
         </div>
         <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2 mb-3">
           <div
-            className={`h-2 rounded-full transition-all duration-500 ${completionPct === 100 ? 'bg-green-500' : 'bg-indigo-500'}`}
+            className={`h-2 rounded-full transition-all duration-500 ${completionPct === 100 ? 'bg-green-500' : 'bg-brand-600'}`}
             style={{ width: `${completionPct}%` }}
           />
         </div>
@@ -138,13 +138,13 @@ export default function CompanySettings() {
         {/* Logo card */}
         <div className="card p-5 flex flex-col items-center text-center space-y-4">
           <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 self-start flex items-center gap-2">
-            <Camera className="w-4 h-4 text-indigo-500" />
+            <Camera className="w-4 h-4 text-brand-600" />
             Company Logo
           </h3>
           <input ref={logoRef} type="file" accept="image/*" className="hidden" onChange={handleLogoUpload} />
           <button
             onClick={() => logoRef.current?.click()}
-            className="group relative w-28 h-28 rounded-2xl overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-indigo-400 dark:hover:border-indigo-500 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            className="group relative w-28 h-28 rounded-2xl overflow-hidden border-2 border-dashed border-gray-300 dark:border-gray-600 hover:border-brand-500 dark:hover:border-brand-600 transition-colors focus:outline-none focus:ring-2 focus:ring-brand-600"
           >
             {company.logo ? (
               <img src={company.logo} alt="Company logo" className="w-full h-full object-cover" />
@@ -175,7 +175,7 @@ export default function CompanySettings() {
         {/* Info form */}
         <div className="lg:col-span-2 card p-5 space-y-4">
           <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-            <FileText className="w-4 h-4 text-indigo-500" />
+            <FileText className="w-4 h-4 text-brand-600" />
             Company Details
           </h3>
 
@@ -272,7 +272,7 @@ export default function CompanySettings() {
           </div>
 
           {/* Info note */}
-          <div className="bg-indigo-50 dark:bg-indigo-900/20 border border-indigo-200 dark:border-indigo-800 rounded-xl p-3 text-xs text-indigo-700 dark:text-indigo-300 leading-relaxed">
+          <div className="bg-brand-100 dark:bg-brand-950/20 border border-brand-300 dark:border-brand-900 rounded-xl p-3 text-xs text-brand-800 dark:text-brand-400 leading-relaxed">
             <strong>This info becomes your default</strong> — it auto-fills the header on every PDF quote and purchase order you generate. You can change it any time.
           </div>
 
@@ -301,7 +301,7 @@ export default function CompanySettings() {
       {/* Preview card */}
       <div className="card p-5 space-y-3">
         <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 flex items-center gap-2">
-          <FileText className="w-4 h-4 text-indigo-500" />
+          <FileText className="w-4 h-4 text-brand-600" />
           PDF Header Preview
         </h3>
         <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-5">
@@ -309,7 +309,7 @@ export default function CompanySettings() {
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-14 h-14 rounded-lg object-cover flex-shrink-0" />
             ) : (
-              <div className="w-14 h-14 rounded-lg bg-blue-600 flex items-center justify-center flex-shrink-0">
+              <div className="w-14 h-14 rounded-lg bg-brand-600 flex items-center justify-center flex-shrink-0">
                 <Building2 className="text-white w-7 h-7" />
               </div>
             )}

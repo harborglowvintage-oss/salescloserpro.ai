@@ -5,6 +5,7 @@ import {
 } from 'lucide-react'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import useStore from '../../store'
+import { ProductLogo, StudioCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
 function resizeLogo(file, maxDim = 256) {
   return new Promise((resolve) => {
@@ -88,13 +89,13 @@ export default function Layout() {
           <button
             onClick={() => logoInputRef.current?.click()}
             onContextMenu={handleLogoContext}
-            className="group relative w-9 h-9 rounded-xl flex-shrink-0 overflow-hidden focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-1"
+            className="group relative w-9 h-9 rounded-xl flex-shrink-0 overflow-hidden focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-1"
             title={company.logo ? 'Click to change · Right-click to remove' : 'Upload your logo'}
           >
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-full h-full object-cover" />
             ) : (
-              <img src="/icon-192.png" alt="SalesCloserPro" className="w-full h-full object-cover" />
+              <ProductLogo className="w-full h-full rounded-none" />
             )}
             <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all flex items-center justify-center">
               <span className="text-white text-[9px] font-bold opacity-0 group-hover:opacity-100 transition-opacity">
@@ -145,7 +146,7 @@ export default function Layout() {
               className={({ isActive }) =>
                 `flex items-center gap-3 px-4 py-3 rounded-xl font-medium text-sm transition-all duration-150
                  ${isActive
-                   ? 'bg-blue-50 dark:bg-blue-900/40 text-blue-700 dark:text-blue-300'
+                   ? 'bg-brand-50 dark:bg-brand-900/40 text-brand-700 dark:text-brand-300'
                    : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-gray-200'}`
               }
             >
@@ -157,21 +158,11 @@ export default function Layout() {
 
         {/* Footer */}
         <div className="px-3 pb-4 pt-3 border-t border-gray-100 dark:border-gray-700 space-y-2.5">
-          {/* Sub-links row */}
-          <div className="flex items-center justify-between px-1">
-            <a
-              href="https://llmadvisor.ai"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[10px] text-gray-400 dark:text-gray-500 hover:text-blue-500 dark:hover:text-blue-400 font-medium transition-colors"
-            >
-              Powered by llmadvisor.ai
-            </a>
-          </div>
-
-          <div className="text-[9px] text-gray-300 dark:text-gray-600 text-center">
-            © 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0
-          </div>
+          <StudioCredit
+            className="w-full justify-center text-[11px] text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300"
+            markClassName="w-4 h-4"
+          />
+          <div className="text-[9px] text-gray-400 dark:text-gray-500 text-center">{COPYRIGHT_LINE}</div>
         </div>
       </aside>
 
@@ -197,7 +188,7 @@ export default function Layout() {
             {company.logo ? (
               <img src={company.logo} alt="Logo" className="w-7 h-7 rounded-lg object-cover" />
             ) : (
-              <img src="/icon-192.png" alt="SalesCloserPro" className="w-7 h-7 rounded-lg object-cover" />
+              <ProductLogo className="w-7 h-7" />
             )}
             <span className="font-bold text-sm text-gray-900 dark:text-gray-100">salescloserpro.ai</span>
           </div>
@@ -215,7 +206,7 @@ export default function Layout() {
         
         {/* Footer */}
         <footer className="border-t border-gray-100 dark:border-gray-800 py-3 px-4 text-center text-xs text-gray-500">
-          © 2026 SalesCloserPro.ai · LLMadvisor ai LLC · Apache-2.0
+          {COPYRIGHT_LINE}
         </footer>
       </div>
     </div>

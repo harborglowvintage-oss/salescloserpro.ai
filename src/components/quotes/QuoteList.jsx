@@ -6,7 +6,7 @@ import { format } from 'date-fns'
 
 const statusColor = {
   draft: 'bg-gray-100 text-gray-600',
-  sent:  'bg-blue-100 text-blue-700',
+  sent:  'bg-brand-100 text-brand-700',
   won:   'bg-green-100 text-green-700',
   lost:  'bg-red-100 text-red-600',
 }
@@ -66,12 +66,12 @@ export default function QuoteList() {
           {filtered.map((q) => (
             <div
               key={q.id}
-              className="card flex items-center justify-between hover:border-blue-200 dark:hover:border-blue-700 hover:shadow-md transition-all cursor-pointer group"
+              className="card flex items-center justify-between hover:border-brand-200 dark:hover:border-brand-700 hover:shadow-md transition-all cursor-pointer group"
               onClick={() => navigate(`/quotes/${q.id}`)}
             >
               <div className="flex items-center gap-4">
-                <div className="w-10 h-10 bg-blue-50 dark:bg-blue-900/30 rounded-xl flex items-center justify-center group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors">
-                  <FileText className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+                <div className="w-10 h-10 bg-brand-50 dark:bg-brand-900/30 rounded-xl flex items-center justify-center group-hover:bg-brand-100 dark:group-hover:bg-brand-900/50 transition-colors">
+                  <FileText className="w-5 h-5 text-brand-600 dark:text-brand-400" />
                 </div>
                 <div>
                   <div className="font-bold text-gray-900 dark:text-gray-100">{q.quoteNumber}</div>

@@ -15,7 +15,7 @@ const STEP_META = [
 /* ── Reusable checkbox task ─────────────────────────────── */
 function TaskCheck({ checked, onChange, children, sub, timeEst }) {
   return (
-    <label className={`flex gap-3 p-3 rounded-xl cursor-pointer transition-all border-2 select-none ${checked ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' : 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 hover:border-blue-200 dark:hover:border-blue-800'}`}>
+    <label className={`flex gap-3 p-3 rounded-xl cursor-pointer transition-all border-2 select-none ${checked ? 'bg-green-50 dark:bg-green-900/20 border-green-200 dark:border-green-800' : 'bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700 hover:border-brand-200 dark:hover:border-brand-800'}`}>
       <input type="checkbox" checked={checked} onChange={onChange} className="sr-only" />
       <div className="mt-0.5 flex-shrink-0">
         {checked
@@ -39,13 +39,13 @@ function TaskCheck({ checked, onChange, children, sub, timeEst }) {
 function LinkCard({ href, label, badge, recommended, sponsored }) {
   return (
     <a href={href} target="_blank" rel={sponsored ? "noopener noreferrer sponsored" : "noopener noreferrer"}
-      className="flex items-center justify-between p-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 hover:border-blue-400 hover:shadow-md transition-all group bg-white dark:bg-gray-800">
+      className="flex items-center justify-between p-4 rounded-2xl border-2 border-gray-200 dark:border-gray-600 hover:border-brand-400 hover:shadow-md transition-all group bg-white dark:bg-gray-800">
       <div className="flex items-center gap-3">
-        <div className="font-bold text-gray-900 dark:text-gray-100 group-hover:text-blue-700 dark:group-hover:text-blue-400 transition-colors">{label}</div>
-        {recommended && <span className="bg-blue-100 text-blue-700 text-xs font-bold px-2.5 py-0.5 rounded-full">⭐ Recommended</span>}
+        <div className="font-bold text-gray-900 dark:text-gray-100 group-hover:text-brand-700 dark:group-hover:text-brand-400 transition-colors">{label}</div>
+        {recommended && <span className="bg-brand-100 text-brand-700 text-xs font-bold px-2.5 py-0.5 rounded-full">⭐ Recommended</span>}
         {badge && <span className="bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 text-xs font-semibold px-2.5 py-0.5 rounded-full">{badge}</span>}
       </div>
-      <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors" />
+      <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-brand-500 transition-colors" />
     </a>
   )
 }
@@ -53,8 +53,8 @@ function LinkCard({ href, label, badge, recommended, sponsored }) {
 /* ── Tip box ────────────────────────────────────────────── */
 function Tip({ children }) {
   return (
-    <div className="flex gap-2.5 bg-blue-50 dark:bg-blue-900/20 border border-blue-200 dark:border-blue-800 rounded-xl p-3 text-xs text-blue-800 dark:text-blue-300 leading-relaxed">
-      <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-blue-500" />
+    <div className="flex gap-2.5 bg-brand-50 dark:bg-brand-900/20 border border-brand-200 dark:border-brand-800 rounded-xl p-3 text-xs text-brand-800 dark:text-brand-300 leading-relaxed">
+      <Info className="w-4 h-4 flex-shrink-0 mt-0.5 text-brand-500" />
       <div>{children}</div>
     </div>
   )
@@ -93,10 +93,10 @@ export default function GoLiveWizard() {
       <div className="card !p-4 space-y-3">
         <div className="flex items-center justify-between text-sm">
           <span className="font-bold text-gray-700 dark:text-gray-300">Overall Progress</span>
-          <span className={`font-bold ${pct === 100 ? 'text-green-600' : 'text-blue-600'}`}>{totalDone}/{totalAll} tasks · {pct}%</span>
+          <span className={`font-bold ${pct === 100 ? 'text-green-600' : 'text-brand-600'}`}>{totalDone}/{totalAll} tasks · {pct}%</span>
         </div>
         <div className="h-3 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
-          <div className={`h-full rounded-full transition-all duration-500 ${pct === 100 ? 'bg-green-500' : 'bg-blue-500'}`} style={{ width: `${pct}%` }} />
+          <div className={`h-full rounded-full transition-all duration-500 ${pct === 100 ? 'bg-green-500' : 'bg-brand-500'}`} style={{ width: `${pct}%` }} />
         </div>
         {pct === 100 && (
           <div className="flex items-center gap-2 text-green-600 dark:text-green-400 text-sm font-bold">
@@ -136,7 +136,7 @@ export default function GoLiveWizard() {
                 <svg viewBox="0 0 36 36" className="w-9 h-9">
                   <circle cx="18" cy="18" r="15" fill="none" stroke="currentColor" className="text-gray-100 dark:text-gray-700" strokeWidth="3" />
                   <circle cx="18" cy="18" r="15" fill="none" stroke="currentColor"
-                    className={done ? 'text-green-500' : 'text-blue-500'}
+                    className={done ? 'text-green-500' : 'text-brand-500'}
                     strokeWidth="3" strokeLinecap="round"
                     strokeDasharray={`${(count / s.keys.length) * 94.2} 94.2`}
                     transform="rotate(-90 18 18)" />
@@ -276,15 +276,15 @@ export default function GoLiveWizard() {
                   <p className="text-sm font-bold text-gray-700 dark:text-gray-300 pt-2">Recommended providers:</p>
                   <div className="space-y-3">
                     <a href="https://www.zoho.com/mail/" target="_blank" rel="noopener noreferrer"
-                      className="flex items-center justify-between p-5 rounded-2xl border-2 border-blue-400 bg-blue-50 dark:bg-blue-900/20 hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all group">
+                      className="flex items-center justify-between p-5 rounded-2xl border-2 border-brand-400 bg-brand-50 dark:bg-brand-900/20 hover:bg-brand-100 dark:hover:bg-brand-900/30 transition-all group">
                       <div>
                         <div className="flex items-center gap-2">
                           <span className="font-bold text-gray-900 dark:text-gray-100 text-lg">Zoho Mail</span>
-                          <span className="bg-blue-600 text-white text-xs font-bold px-2.5 py-0.5 rounded-full">⭐ Our Pick</span>
+                          <span className="bg-brand-600 text-white text-xs font-bold px-2.5 py-0.5 rounded-full">⭐ Our Pick</span>
                         </div>
                         <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">~$2/month · Professional email on your domain · Great for solo users & small teams</div>
                       </div>
-                      <ExternalLink className="w-5 h-5 text-blue-500 group-hover:text-blue-700 ml-4 flex-shrink-0" />
+                      <ExternalLink className="w-5 h-5 text-brand-500 group-hover:text-brand-700 ml-4 flex-shrink-0" />
                     </a>
                     <a href="https://workspace.google.com" target="_blank" rel="noopener noreferrer"
                       className="flex items-center justify-between p-5 rounded-2xl border-2 border-gray-200 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-all group">

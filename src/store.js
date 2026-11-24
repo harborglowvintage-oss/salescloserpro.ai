@@ -75,7 +75,7 @@ const useStore = create(
       // ── Pipeline Stages ───────────────────────────────
       pipeline: [
         { id: 'lead',      label: 'Lead',           color: 'bg-gray-100',   deals: [] },
-        { id: 'quoted',    label: 'Quoted',          color: 'bg-blue-100',   deals: [] },
+        { id: 'quoted',    label: 'Quoted',          color: 'bg-brand-100',   deals: [] },
         { id: 'sent',      label: 'Proposal Sent',   color: 'bg-yellow-100', deals: [] },
         { id: 'negotiate', label: 'Negotiating',     color: 'bg-orange-100', deals: [] },
         { id: 'won',       label: 'Closed Won',      color: 'bg-green-100',  deals: [] },

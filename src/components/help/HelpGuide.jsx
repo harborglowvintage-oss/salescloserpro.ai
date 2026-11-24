@@ -5,6 +5,7 @@ import {
   ChevronDown, ChevronRight, Search, BookOpen, Zap, Shield,
   BarChart3, Settings, PlusCircle, Eye
 } from 'lucide-react'
+import { StudioCredit } from '../brand/Brand'
 
 const sections = [
   {
@@ -40,8 +41,8 @@ const sections = [
     id: 'quotes',
     icon: FileText,
     title: 'Creating & Managing Quotes',
-    color: 'text-blue-500',
-    bg: 'bg-blue-50 dark:bg-blue-900/20',
+    color: 'text-brand-500',
+    bg: 'bg-brand-50 dark:bg-brand-900/20',
     content: [
       {
         q: 'How do I create a new quote?',
@@ -98,8 +99,8 @@ const sections = [
     id: 'clients',
     icon: Users,
     title: 'Client Management',
-    color: 'text-cyan-500',
-    bg: 'bg-cyan-50 dark:bg-cyan-900/20',
+    color: 'text-brand-500',
+    bg: 'bg-brand-50 dark:bg-brand-900/20',
     content: [
       {
         q: 'How do I add a client?',
@@ -119,8 +120,8 @@ const sections = [
     id: 'pipeline',
     icon: GitBranch,
     title: 'Sales Pipeline',
-    color: 'text-indigo-500',
-    bg: 'bg-indigo-50 dark:bg-indigo-900/20',
+    color: 'text-brand-600',
+    bg: 'bg-brand-100 dark:bg-brand-950/20',
     content: [
       {
         q: 'What is the Pipeline view?',
@@ -148,8 +149,8 @@ const sections = [
     id: 'purchase-orders',
     icon: ShoppingCart,
     title: 'Purchase Orders & Margins',
-    color: 'text-violet-500',
-    bg: 'bg-violet-50 dark:bg-violet-900/20',
+    color: 'text-copper-500',
+    bg: 'bg-copper-50 dark:bg-copper-900/20',
     content: [
       {
         q: 'What are purchase orders for?',
@@ -317,7 +318,7 @@ export default function HelpGuide() {
       <div className="flex flex-col sm:flex-row sm:items-end gap-4">
         <div className="flex-1">
           <div className="flex items-center gap-3 mb-1">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-700 flex items-center justify-center shadow-lg shadow-blue-500/20">
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-brand-500 to-brand-700 flex items-center justify-center shadow-lg shadow-brand-500/20">
               <BookOpen className="w-5 h-5 text-white" />
             </div>
             <div>
@@ -355,7 +356,7 @@ export default function HelpGuide() {
             onClick={() => setActiveSection(null)}
             className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
               !activeSection
-                ? 'bg-blue-600 text-white shadow-md'
+                ? 'bg-brand-600 text-white shadow-md'
                 : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
             }`}
           >
@@ -369,7 +370,7 @@ export default function HelpGuide() {
                 onClick={() => setActiveSection(activeSection === s.id ? null : s.id)}
                 className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-all ${
                   activeSection === s.id
-                    ? 'bg-blue-600 text-white shadow-md'
+                    ? 'bg-brand-600 text-white shadow-md'
                     : 'bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-700'
                 }`}
               >
@@ -413,10 +414,10 @@ export default function HelpGuide() {
                           className="w-full flex items-start gap-3 px-5 py-3.5 text-left hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors group"
                         >
                           {isOpen
-                            ? <ChevronDown className="w-4 h-4 text-blue-500 mt-0.5 flex-shrink-0" />
+                            ? <ChevronDown className="w-4 h-4 text-brand-500 mt-0.5 flex-shrink-0" />
                             : <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-gray-600 dark:group-hover:text-gray-300 mt-0.5 flex-shrink-0" />
                           }
-                          <span className={`text-sm font-medium ${isOpen ? 'text-blue-600 dark:text-blue-400' : 'text-gray-700 dark:text-gray-300'}`}>
+                          <span className={`text-sm font-medium ${isOpen ? 'text-brand-600 dark:text-brand-400' : 'text-gray-700 dark:text-gray-300'}`}>
                             {item.q}
                           </span>
                         </button>
@@ -443,13 +444,13 @@ export default function HelpGuide() {
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {[
-            { icon: PlusCircle, label: 'New Quote', desc: 'Sidebar → New Quote button', color: 'text-blue-500' },
+            { icon: PlusCircle, label: 'New Quote', desc: 'Sidebar → New Quote button', color: 'text-brand-500' },
             { icon: Printer, label: 'Export PDF', desc: 'Open a quote → PDF / Export PDF', color: 'text-green-500' },
-            { icon: Send, label: 'Issue a PO', desc: 'Purchase Orders → New PO → Issue PO & Download PDF', color: 'text-violet-500' },
+            { icon: Send, label: 'Issue a PO', desc: 'Purchase Orders → New PO → Issue PO & Download PDF', color: 'text-copper-500' },
             { icon: Upload, label: 'Upload Logo', desc: 'Click the logo in the sidebar, or Company Info', color: 'text-orange-500' },
             { icon: Sun, label: 'Toggle Theme', desc: 'Sun/Moon icon in the sidebar header', color: 'text-amber-500' },
-            { icon: Users, label: 'Add Client', desc: 'Clients → Add Client', color: 'text-cyan-500' },
-            { icon: Eye, label: 'Move a Deal', desc: 'Pipeline → Move / Back buttons on a card', color: 'text-indigo-500' },
+            { icon: Users, label: 'Add Client', desc: 'Clients → Add Client', color: 'text-brand-500' },
+            { icon: Eye, label: 'Move a Deal', desc: 'Pipeline → Move / Back buttons on a card', color: 'text-brand-600' },
             { icon: Paperclip, label: 'Attach Files', desc: 'Quote → Attachments → drag or click', color: 'text-green-500' },
             { icon: HardDrive, label: 'Back Up Data', desc: 'Backup → Download Backup or Save to Folder', color: 'text-teal-500' },
           ].map((item, i) => {
@@ -470,12 +471,8 @@ export default function HelpGuide() {
       {/* Version + support footer */}
       <div className="card p-5 text-center space-y-2">
         <p className="text-sm font-medium text-gray-700 dark:text-gray-300">SalesCloserPro v{__APP_VERSION__}</p>
-        <p className="text-xs text-gray-400 dark:text-gray-500">
-          Free & Open Source · Powered by{' '}
-          <a href="https://llmadvisor.ai" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600 font-medium">
-            llmadvisor.ai
-          </a>
-        </p>
+        <p className="text-xs text-gray-400 dark:text-gray-500">Free &amp; Open Source · Apache-2.0</p>
+        <StudioCredit className="text-xs text-gray-500 dark:text-gray-400 hover:text-brand-700 dark:hover:text-brand-300" markClassName="w-4 h-4" />
       </div>
     </div>
   )

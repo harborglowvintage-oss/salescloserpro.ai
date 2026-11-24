@@ -127,10 +127,10 @@ export default function Clients() {
       ) : (
         <div className="grid sm:grid-cols-2 gap-4">
           {filtered.map((c) => (
-            <div key={c.id} className="card hover:border-blue-200 dark:hover:border-blue-700 hover:shadow-md transition-all">
+            <div key={c.id} className="card hover:border-brand-200 dark:hover:border-brand-700 hover:shadow-md transition-all">
               <div className="flex items-start justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="w-11 h-11 bg-blue-100 rounded-2xl flex items-center justify-center font-bold text-blue-700 text-lg flex-shrink-0">
+                  <div className="w-11 h-11 bg-brand-100 rounded-2xl flex items-center justify-center font-bold text-brand-700 text-lg flex-shrink-0">
                     {(c.name || '?')[0].toUpperCase()}
                   </div>
                   <div>
@@ -140,7 +140,7 @@ export default function Clients() {
                 </div>
                 <div className="flex gap-1">
                   <button onClick={() => setModal(c)}
-                    className="text-sm text-blue-500 hover:text-blue-700 font-semibold px-2 py-1">
+                    className="text-sm text-brand-500 hover:text-brand-700 font-semibold px-2 py-1">
                     Edit
                   </button>
                   <button onClick={() => { if (window.confirm('Delete this client?')) deleteClient(c.id) }}
@@ -153,13 +153,13 @@ export default function Clients() {
                 {c.email && (
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <Mail className="w-4 h-4 text-gray-300 flex-shrink-0" />
-                    <a href={`mailto:${c.email}`} className="hover:text-blue-600 transition-colors">{c.email}</a>
+                    <a href={`mailto:${c.email}`} className="hover:text-brand-600 transition-colors">{c.email}</a>
                   </div>
                 )}
                 {c.phone && (
                   <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
                     <Phone className="w-4 h-4 text-gray-300 flex-shrink-0" />
-                    <a href={`tel:${c.phone}`} className="hover:text-blue-600 transition-colors">{c.phone}</a>
+                    <a href={`tel:${c.phone}`} className="hover:text-brand-600 transition-colors">{c.phone}</a>
                   </div>
                 )}
                 {(c.address || c.state) && (

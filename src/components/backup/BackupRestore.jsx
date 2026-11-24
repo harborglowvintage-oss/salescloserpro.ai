@@ -363,7 +363,7 @@ export default function BackupRestore() {
                     <FolderOpen className="w-3.5 h-3.5" />
                     {backupSettings.locationLabel || dirHandle.name}
                   </span>
-                  <button onClick={chooseFolder} className="text-xs text-blue-500 hover:text-blue-600 font-medium">Change</button>
+                  <button onClick={chooseFolder} className="text-xs text-brand-500 hover:text-brand-600 font-medium">Change</button>
                   <button onClick={clearDirHandle} className="text-xs text-red-400 hover:text-red-500 font-medium">Remove</button>
                 </div>
               ) : (
@@ -409,15 +409,15 @@ export default function BackupRestore() {
 
         {/* Download as File */}
         <button onClick={handleDownloadBackup}
-          className="card p-5 text-left hover:border-blue-300 dark:hover:border-blue-600 hover:shadow-md transition-all group">
-          <div className="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-900/30 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
-            <Download className="w-5 h-5 text-blue-600 dark:text-blue-400" />
+          className="card p-5 text-left hover:border-brand-300 dark:hover:border-brand-600 hover:shadow-md transition-all group">
+          <div className="w-10 h-10 rounded-xl bg-brand-50 dark:bg-brand-900/30 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            <Download className="w-5 h-5 text-brand-600 dark:text-brand-400" />
           </div>
           <h3 className="font-semibold text-gray-900 dark:text-gray-100 text-sm">Download Backup</h3>
           <p className="text-[11px] text-gray-400 dark:text-gray-500 mt-1 leading-relaxed">
             Download a .json file to your Downloads folder — works in all browsers
           </p>
-          <div className="flex items-center gap-1.5 mt-3 text-xs font-semibold text-blue-600 dark:text-blue-400">
+          <div className="flex items-center gap-1.5 mt-3 text-xs font-semibold text-brand-600 dark:text-brand-400">
             <FileJson className="w-3.5 h-3.5" /> Universal · Any browser
           </div>
         </button>
@@ -484,7 +484,7 @@ export default function BackupRestore() {
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
             {
-              icon: HardDrive, label: 'Local Drive', color: 'text-blue-500', bg: 'bg-blue-50 dark:bg-blue-900/20',
+              icon: HardDrive, label: 'Local Drive', color: 'text-brand-500', bg: 'bg-brand-50 dark:bg-brand-900/20',
               desc: 'Any folder on your computer — Desktop, Documents, or a dedicated backup directory.'
             },
             {
@@ -559,7 +559,7 @@ export default function BackupRestore() {
                         <td className="px-5 py-2.5">
                           <span className={`inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold ${
                             rec.method === 'auto' ? 'bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400'
-                            : rec.method === 'download' ? 'bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400'
+                            : rec.method === 'download' ? 'bg-brand-50 dark:bg-brand-900/30 text-brand-700 dark:text-brand-400'
                             : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300'
                           }`}>
                             {rec.method === 'auto' ? <Clock className="w-2.5 h-2.5" /> : rec.method === 'download' ? <Download className="w-2.5 h-2.5" /> : <FolderOpen className="w-2.5 h-2.5" />}

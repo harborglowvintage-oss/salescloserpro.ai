@@ -3,7 +3,7 @@
  * Copyright (c) 2026 LLMadvisor ai LLC
  * Licensed under Apache-2.0
  *
- * One home for the product logo + wordmark, the LLMadvisor mark, the studio credit and
+ * One home for the product logo + wordmark, the LLMadvisor mark, the LLMadvisor credit and
  * the copyright line, so every page, the app shell and the proposal page stay in sync.
  * Images are generated from /brand by `npm run generate-images`.
  */

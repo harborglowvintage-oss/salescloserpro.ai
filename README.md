@@ -170,7 +170,7 @@ logo — see [CONTRIBUTING.md](CONTRIBUTING.md).
     │   ├── fileSafety.js      The gate every uploaded or restored file passes through
     │   └── dates.js · download.js
     └── components/
-        ├── brand/             Logo, wordmark, studio credit
+        ├── brand/             Logo, wordmark, LLMadvisor credit
         ├── landing/           Public pages: home, about, services, legal
         ├── layout/            App shell and navigation
         ├── dashboard/ · quotes/ · contacts/ · pipeline/ · po/

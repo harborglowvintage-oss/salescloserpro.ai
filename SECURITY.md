@@ -24,4 +24,13 @@ data to breach. The parts worth scrutiny are:
 - **Response headers** — `public/_headers`, plus the Content-Security-Policy set at the edge
   (see [DEPLOYMENT.md](DEPLOYMENT.md)).
 
+## Known, accepted advisories
+
+`npm audit` still reports a few items. None of them affects the deployed site:
+
+- **React Router** — the advisories concern server-side rendering. This app renders only in
+  the browser and never uses that code path. Clearing the report needs React Router 7.
+- **Vite / esbuild** (one rated high) — these affect the local development server a
+  developer runs on their own machine, not the built site. Clearing them needs Vite 8.
+
 The upload screen is a strict allow-list, not antivirus software.

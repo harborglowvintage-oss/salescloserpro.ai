@@ -50,6 +50,10 @@ The largest update since launch: salescloserpro.ai now closes the loop from quot
 - **Restored backups and stored data are sanitized**: only images and PDFs the app created
   survive; remote and script URLs are dropped.
 - File names lose control and direction-override characters.
+- **Dependencies updated** to clear every known high and critical advisory: jsPDF 2 → 4,
+  jspdf-autotable 3 → 5, React Router 6.30.6, sharp 0.35.
+- Stored images are accepted back only as PNG or JPEG, the two formats the app writes.
+- `Strict-Transport-Security` is sent on every response.
 
 ### Fixed
 

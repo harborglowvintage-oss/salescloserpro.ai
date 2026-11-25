@@ -66,7 +66,7 @@ ok(cleanFileName('x'.repeat(300) + '.pdf').length === 80 && cleanFileName('x'.re
 
 // ── stored data ──
 const good = 'data:image/png;base64,iVBORw0KGgo='
-ok(isSafeImageUrl(good) && !isSafeImageUrl('https://untrusted.example/pixel.png') && !isSafeImageUrl('javascript:alert(1)') && !isSafeImageUrl('data:image/svg+xml;base64,PHN2Zz4=') && !isSafeImageUrl('data:text/html;base64,PGI+') && !isSafeImageUrl('data:image/png;base64,AAA" onerror="x'), 'only our own base64 png/jpeg/gif/webp data: URLs count as images')
+ok(isSafeImageUrl(good) && !isSafeImageUrl('https://untrusted.example/pixel.png') && !isSafeImageUrl('javascript:alert(1)') && !isSafeImageUrl('data:image/svg+xml;base64,PHN2Zz4=') && !isSafeImageUrl('data:image/gif;base64,R0lGODlh') && !isSafeImageUrl('data:text/html;base64,PGI+') && !isSafeImageUrl('data:image/png;base64,AAA" onerror="x'), 'only our own base64 PNG/JPEG data: URLs count as images (no GIF, WebP, SVG, remote or script URLs)')
 const dirty = { company: { name: 'Co', logo: 'https://untrusted.example/track.gif?u=1' }, clients: [], quotes: [
   { id: 'q1', attachments: [
     { id: 'a', name: 'ok.png', type: 'image/png', dataUrl: good },

@@ -208,7 +208,8 @@ export async function safeAttachment(file) {
 }
 
 // ── stored data (backups, IndexedDB) ────────────────────────────
-const SAFE_IMAGE_URL = /^data:image\/(png|jpeg|gif|webp);base64,[A-Za-z0-9+/]+=*$/
+// The app only ever stores PNG or JPEG (uploads are re-encoded), so nothing else is accepted back.
+const SAFE_IMAGE_URL = /^data:image\/(png|jpeg);base64,[A-Za-z0-9+/]+=*$/
 const SAFE_PDF_URL = /^data:application\/pdf;base64,[A-Za-z0-9+/]+=*$/
 
 export const isSafeImageUrl = (url) => typeof url === 'string' && SAFE_IMAGE_URL.test(url)

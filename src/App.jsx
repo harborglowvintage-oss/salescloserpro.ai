@@ -8,8 +8,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useEffect } from 'react'
 import Layout from './components/layout/Layout'
-import LandingPage from './components/landing/LandingPage'
-import AboutPage from './components/landing/AboutPage'
 import Dashboard from './components/dashboard/Dashboard'
 import QuoteBuilder from './components/quotes/QuoteBuilder'
 import QuoteList from './components/quotes/QuoteList'
@@ -19,12 +17,11 @@ import HelpGuide from './components/help/HelpGuide'
 import CompanySettings from './components/settings/CompanySettings'
 import BackupRestore from './components/backup/BackupRestore'
 import PurchaseOrders from './components/po/PurchaseOrders'
-import LegalPage from './components/landing/LegalPage'
-import ServicesPage from './components/landing/ServicesPage'
 import ProposalView from './components/proposal/ProposalView'
 import AcceptanceReceiver from './components/proposal/AcceptanceReceiver'
 import CrmExport from './components/export/CrmExport'
 import useStore from './store'
+import { PUBLIC_PAGES, NOT_FOUND_PAGE, PublicPage } from './publicPages'
 
 export default function App() {
   const syncAllQuotesToPipeline = useStore((s) => s.syncAllQuotesToPipeline)
@@ -39,15 +36,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* Landing Page */}
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/about" element={<AboutPage />} />
-        <Route path="/legal" element={<LegalPage />} />
-        <Route path="/services" element={<ServicesPage />} />
+        {/* Public pages (home, about, services, legal) — prerendered at build, see publicPages.jsx */}
+        {PUBLIC_PAGES.map((page) => (
+          <Route key={page.path} path={page.path} element={<PublicPage page={page} />} />
+        ))}
         {/* Client-facing proposal — rendered from the link's #fragment, no store access */}
         <Route path="/p" element={<ProposalView />} />
         
-        {/* App Routes — instant access, no email/login */}
+        {/* App routes — instant access, no email/login. Each one needs a rewrite to /app in
+            public/_redirects; the build stops if one is missing. */}
         <Route path="/" element={<Layout />}>
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="quotes" element={<QuoteList />} />
@@ -64,6 +61,8 @@ export default function App() {
           <Route path="help" element={<HelpGuide />} />
           <Route path="accept" element={<AcceptanceReceiver />} />
         </Route>
+
+        <Route path="*" element={<PublicPage page={NOT_FOUND_PAGE} />} />
       </Routes>
     </BrowserRouter>
   )

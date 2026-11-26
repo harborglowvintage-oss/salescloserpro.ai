@@ -1,5 +1,7 @@
+# How to report a security problem with salescloserpro.ai (RFC 9116).
+# Renew the Expires date before it passes: the build warns 60 days ahead and stops once it has.
 Contact: mailto:brent@llmadvisor.ai
-Contact: https://github.com/harborglowvintage-oss
-Expires: 2027-03-15T00:00:00.000Z
+Contact: https://github.com/harborglowvintage-oss/salescloserpro.ai/security
+Expires: 2027-11-01T00:00:00.000Z
 Preferred-Languages: en
 Canonical: https://salescloserpro.ai/.well-known/security.txt

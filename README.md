@@ -123,7 +123,7 @@ flowchart LR
 |---|---|
 | **Where it lives** | Your browser's IndexedDB, on your device. Clearing site data erases it — use **Backup**. |
 | **What leaves your device** | Nothing, unless you send it: proposal links, emails from your own mail app, and files you download. |
-| **Third parties** | The site is served by Cloudflare, and two typefaces load from Google Fonts. There are no analytics, ads or trackers. |
+| **Third parties** | The site is served by Cloudflare. Everything else, typefaces included, comes from the site itself. There are no analytics, ads or trackers. |
 | **Moving devices** | Backup on one device, Restore on the other. There is no cloud sync. |
 
 > [!WARNING]
@@ -137,16 +137,19 @@ Requires Node 20 or newer (the repo pins Node 24 in `.nvmrc`).
 git clone https://github.com/harborglowvintage-oss/salescloserpro.ai.git
 cd salescloserpro.ai
 npm install
+git config core.hooksPath scripts/git-hooks   # checks the site files before each commit
 npm run dev        # http://localhost:5173
 ```
 
 | Script | What it does |
 |---|---|
 | `npm run dev` | Development server with hot reload |
-| `npm run build` | Production build into `dist/` |
+| `npm run build` | Production build into `dist/`: the app, plus each public page as finished HTML with a markdown copy for AI assistants |
 | `npm run preview` | Serve the production build locally |
-| `npm test` | Unit tests for pricing, proposal links, follow-ups, exports and upload safety |
-| `npm run test:e2e` | Browser tests for every user flow (setup notes in [`tests/run-e2e.mjs`](tests/run-e2e.mjs)) |
+| `npm run site:check` | Check that headers, routes and agent files agree (the build and the pre-commit hook run it too) |
+| `npm run site:sync` | Copy `public/_headers` into the Pages Function after editing it |
+| `npm test` | Unit tests for pricing, proposal links, follow-ups, exports, upload safety and the site build |
+| `npm run test:e2e` | Browser tests for every user flow; `E2E_SERVER=pages` runs them on Cloudflare's own runtime (setup notes in [`tests/run-e2e.mjs`](tests/run-e2e.mjs)) |
 | `npm run screenshots` | Regenerate `screenshots/` from demo data |
 | `npm run generate-images` | Rebuild the social card and logos from `brand/` |
 
@@ -157,18 +160,24 @@ npm run dev        # http://localhost:5173
 ## <img src="docs/readme/layout.svg" alt="Project layout" width="860" />
 
 ```text
-├── index.html                 App shell, SEO and social meta, structured data
+├── index.html                 Page template; the build adds each public page's own head
 ├── tailwind.config.js         Brand tokens (colours, typefaces, animations)
 ├── brand/                     Source artwork — everything in public/logos is generated from here
-├── public/                    Static files served as-is (icons, social card, headers, policy files)
+├── public/                    Served as-is: icons, fonts, _headers, _redirects, llms.txt, robots.txt
+├── functions/_middleware.js   Pages Function: markdown copies for AI assistants (see DEPLOYMENT.md)
 ├── docs/readme/               README section banners (generated)
 ├── screenshots/               README images (generated)
-├── scripts/                   generate-brand-images.mjs
+├── scripts/
+│   ├── site/                  Build step: finished public pages, markdown copies, checks
+│   ├── git-hooks/pre-commit   Runs the site checks
+│   └── generate-brand-images.mjs
 ├── tests/
 │   ├── unit/                  Pure-module tests
 │   └── e2e/                   Browser flows, fixtures, screenshot generator
 └── src/
     ├── App.jsx                Routes
+    ├── publicPages.jsx        The public pages: titles, descriptions, components
+    ├── entry-server.jsx       Draws the public pages to HTML at build time
     ├── store.js               All app state (Zustand, persisted to IndexedDB)
     ├── db.js                  IndexedDB adapter
     ├── data/taxDatabase.js    State sales-tax rates and rules
@@ -185,7 +194,7 @@ npm run dev        # http://localhost:5173
     │   └── dates.js · download.js
     └── components/
         ├── brand/             Logo, wordmark, LLMadvisor credit
-        ├── landing/           Public pages: home, about, services, legal
+        ├── landing/           Public pages: home, about, services, legal, not found
         ├── layout/            App shell and navigation
         ├── dashboard/ · quotes/ · contacts/ · pipeline/ · po/
         ├── followups/ · proposal/ · export/ · backup/ · settings/ · help/

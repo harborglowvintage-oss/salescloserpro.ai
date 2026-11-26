@@ -1,0 +1,49 @@
+#!/bin/sh
+# Runs before each commit. Enable once per clone:  git config core.hooksPath scripts/git-hooks
+#
+# 1. Privacy guard. This repository is public: stop a commit that adds a local file path, a
+#    hosting preview address, a private email address or a secrets file. Keep those outside the
+#    repository folder (see "What stays out of this repository" in DEPLOYMENT.md).
+# 2. Site check. Stop a commit whose site files disagree with each other: functions/_middleware.js
+#    out of step with public/_headers, an app route with no rewrite in public/_redirects, llms.txt
+#    missing a markdown copy, or an expired security.txt (see DEPLOYMENT.md).
+cd "$(git rev-parse --show-toplevel)" || exit 1
+
+# ── 1. privacy guard ──────────────────────────────────────────────────────────────────────────
+# Lines this commit adds (this file is skipped: it has to name the patterns).
+added=$(git diff --cached --no-color -U0 --diff-filter=ACMR -- . ':(exclude)scripts/git-hooks/pre-commit' ':(exclude)package-lock.json' \
+    | grep '^+' | grep -v '^+++')
+found=""
+report() { [ -n "$2" ] && found="$found
+  $1: $(echo "$2" | tr '\n' ' ')"; }
+
+report "local file path" "$(printf '%s\n' "$added" | grep -o -E '(/home/|/Users/|[A-Za-z]:\\Users\\)[^ "'"'"'\`)]*' | sort -u)"
+report "hosting preview address" "$(printf '%s\n' "$added" | grep -o -i -E '[a-z0-9-]+\.(pages|workers)\.dev' | sort -u)"
+# The public contact, and the demo addresses used by tests and form placeholders.
+report "email address" "$(printf '%s\n' "$added" | grep -o -i -E '[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}' \
+    | grep -v -i -E '^brent@llmadvisor\.ai$|@([a-z0-9-]+\.)?example(\.com)?$|^client@email\.com$|@acme(corp)?\.com$' | sort -u)"
+report "secrets file" "$(git diff --cached --name-only --diff-filter=A \
+    | grep -E '(^|/)(\.env(\..+)?|\.dev\.vars|[^/]*\.(pem|key|p12)|id_(rsa|ed25519)[^/]*)$')"
+
+if [ -n "$found" ]; then
+    echo "Commit stopped. This repository is public, and the commit adds:$found" >&2
+    echo "Keep these outside the repository folder, then git add again." >&2
+    exit 1
+fi
+
+# ── 2. site check ─────────────────────────────────────────────────────────────────────────────
+# The check reads the working tree, so the files it reads must be committed as they are.
+files="public/_headers public/_redirects public/llms.txt public/.well-known/security.txt src/App.jsx functions/_middleware.js"
+# shellcheck disable=SC2086
+if ! git diff --quiet -- $files; then
+    echo "Commit stopped. These files have changes that are not staged:" >&2
+    # shellcheck disable=SC2086
+    git diff --name-only -- $files | sed 's/^/  /' >&2
+    echo "Run: git add them (after npm run site:sync if you edited public/_headers)." >&2
+    exit 1
+fi
+
+if ! node scripts/site/build.mjs --check; then
+    echo "Commit stopped. Fix the problems above, then git add the files." >&2
+    exit 1
+fi

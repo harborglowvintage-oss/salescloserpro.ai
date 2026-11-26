@@ -6,11 +6,12 @@ node_modules/
 dist/
 dist-ssr/
 
-# Environment files
+# Environment and secrets files (never in this public repository)
 .env
-.env.local
-.env.production
-.env.*.local
+.env.*
+.dev.vars
+*.pem
+*.key
 
 # Editor
 .vscode/
@@ -26,6 +27,9 @@ npm-debug.log*
 
 # Vite
 vite.config.js.timestamp-*
+
+# Local Cloudflare runtime state (E2E_SERVER=pages, wrangler pages dev)
+.wrangler/
 
 # Test output (fixtures, downloaded PDFs, screenshots of failures)
 tests/e2e/.out/

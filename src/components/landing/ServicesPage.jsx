@@ -157,11 +157,9 @@ export default function ServicesPage() {
             </div>
 
             {/* Right — perspective browser mockup */}
-            <div className="flex-1 flex justify-center lg:justify-end" style={{ perspective: '1200px' }}>
-              <div
-                className="relative w-full max-w-md"
-                style={{ transform: 'rotateY(-6deg) rotateX(3deg)', transformStyle: 'preserve-3d' }}
-              >
+            {/* decorative; Tailwind classes, not style attributes, which the CSP in _headers blocks */}
+            <div className="flex-1 flex justify-center lg:justify-end [perspective:1200px]" aria-hidden="true">
+              <div className="relative w-full max-w-md [transform:rotateY(-6deg)_rotateX(3deg)] [transform-style:preserve-3d]">
                 {/* Glow */}
                 <div className="absolute -inset-4 rounded-2xl bg-brand-500/10 blur-2xl" />
                 {/* Browser chrome */}
@@ -188,11 +186,12 @@ export default function ServicesPage() {
         {/* ── Audience strip ── */}
         <Reveal className="mb-14">
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-ink-500">
-            <span className="text-xs font-semibold text-ink-600 uppercase tracking-widest mr-2">Built for</span>
+            {/* the {' '} spaces are not drawn in a flex row, but keep the words apart for screen readers and text copies */}
+            <span className="text-xs font-semibold text-ink-600 uppercase tracking-widest mr-2">Built for</span>{' '}
             {audiences.map((a, i) => (
               <span key={a} className="flex items-center gap-2">
                 <span className="text-ink-400">{a}</span>
-                {i < audiences.length - 1 && <span className="text-ink-700">·</span>}
+                {i < audiences.length - 1 && <>{' '}<span className="text-ink-700">·</span>{' '}</>}
               </span>
             ))}
           </div>
@@ -206,7 +205,7 @@ export default function ServicesPage() {
                 className={`relative rounded-xl border ${border} bg-white/[0.03] p-6 hover:bg-white/[0.05] transition-colors group h-full`}
               >
                 {/* Number badge */}
-                <span className={`absolute top-4 right-4 text-2xl font-black ${numColor} select-none`}>
+                <span aria-hidden="true" className={`absolute top-4 right-4 text-2xl font-black ${numColor} select-none`}>
                   {num}
                 </span>
                 <div className={`w-10 h-10 rounded-lg flex items-center justify-center mb-4 ${color}`}>

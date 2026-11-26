@@ -1,8 +1,29 @@
+# Cloudflare Pages redirects and rewrites.
+# https://developers.cloudflare.com/pages/configuration/redirects/
+
 # Retired pages
 /whitepaper  /  301
 
 # Legacy security.txt location → RFC 9116 canonical path
 /security.txt  /.well-known/security.txt  301
 
-# SPA fallback — serve index.html for all non-asset routes
-/404.html /index.html 200
+# The app. Each app address loads the empty app shell, app.html, which the app draws itself
+# into. The target is written /app: Pages redirects /app.html to /app, so rewriting to
+# /app.html would send the visitor to a different address. The public pages are finished HTML
+# files, and any other address gets 404.html with a 404 status.
+# One line per route in src/App.jsx: the build stops if one is missing or left over.
+# Exact addresses first, wildcards last (Cloudflare matches them faster that way).
+/dashboard        /app  200
+/quotes           /app  200
+/contacts         /app  200
+/clients          /app  200
+/pipeline         /app  200
+/purchase-orders  /app  200
+/go-live          /app  200
+/settings         /app  200
+/backup           /app  200
+/export           /app  200
+/help             /app  200
+/accept           /app  200
+/p                /app  200
+/quotes/*         /app  200

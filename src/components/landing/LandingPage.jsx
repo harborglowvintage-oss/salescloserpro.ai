@@ -158,7 +158,7 @@ export default function LandingPage() {
                 className="w-full h-auto rounded-[1.4rem]"
               />
             </div>
-            <figcaption className="absolute -bottom-5 -left-3 sm:-left-8 flex items-center gap-3 rounded-xl border border-ink-100/10 bg-ink-900/95 backdrop-blur px-4 py-3 shadow-xl text-left">
+            <figcaption aria-hidden="true" className="absolute -bottom-5 -left-3 sm:-left-8 flex items-center gap-3 rounded-xl border border-ink-100/10 bg-ink-900/95 backdrop-blur px-4 py-3 shadow-xl text-left">
               <span className="w-9 h-9 rounded-full bg-emerald-500/15 text-emerald-400 flex items-center justify-center flex-shrink-0">
                 <CheckCircle2 className="w-5 h-5" />
               </span>
@@ -179,7 +179,7 @@ export default function LandingPage() {
           <ol className="grid md:grid-cols-3 gap-8 md:gap-10">
             {STEPS.map(({ n, title, desc }) => (
               <li key={n} className="border-t border-ink-100/15 pt-5">
-                <span className="font-serif text-4xl font-semibold text-copper-300">{n}</span>
+                <span aria-hidden="true" className="font-serif text-4xl font-semibold text-copper-300">{n}</span>
                 <h3 className="mt-2 text-lg font-semibold text-ink-50">{title}</h3>
                 <p className="mt-1.5 text-sm text-ink-400 leading-relaxed">{desc}</p>
               </li>

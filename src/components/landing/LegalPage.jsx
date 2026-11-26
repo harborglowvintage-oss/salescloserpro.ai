@@ -4,15 +4,14 @@
  * Licensed under Apache-2.0
  */
 
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import {
   Shield,
   FileText,
   Lock,
   Globe,
   AlertTriangle,
-  ChevronDown,
   ChevronRight,
   ExternalLink,
   Scale,
@@ -23,32 +22,37 @@ import {
 } from 'lucide-react'
 import { ProductLogo, Wordmark, LLMadvisorCredit, COPYRIGHT_LINE, CONTACT_EMAIL } from '../brand/Brand'
 
-const LAST_UPDATED = 'November 24, 2026'
+const LAST_UPDATED = 'November 26, 2026'
 const APP_VERSION  = __APP_VERSION__
 
-/* ── collapsible section ── */
+/* ── collapsible section ──
+   A native <details>, so every policy is in the page source (search engines, AI assistants
+   and find-in-page all see it) and opens without JavaScript. */
 function Section({ id, icon: Icon, title, color = 'text-brand-400', children, defaultOpen = false }) {
-  const [open, setOpen] = useState(defaultOpen)
   return (
-    <div id={id} className="border border-white/[0.07] rounded-2xl overflow-hidden">
-      <button
-        onClick={() => setOpen(o => !o)}
-        className="w-full flex items-center gap-4 px-6 py-5 text-left hover:bg-white/[0.03] transition-colors"
-      >
+    <details id={id} open={defaultOpen} className="group border border-white/[0.07] rounded-2xl overflow-hidden scroll-mt-20">
+      <summary className="w-full flex items-center gap-4 px-6 py-5 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:bg-white/[0.03] transition-colors">
         <span className={`flex-shrink-0 ${color}`}><Icon className="w-5 h-5" /></span>
         <span className="flex-1 font-semibold text-white text-base">{title}</span>
-        {open
-          ? <ChevronDown className="w-4 h-4 text-ink-500 flex-shrink-0" />
-          : <ChevronRight className="w-4 h-4 text-ink-500 flex-shrink-0" />
-        }
-      </button>
-      {open && (
-        <div className="px-6 pb-7 pt-1 space-y-4 text-sm text-ink-400 leading-relaxed border-t border-white/[0.05]">
-          {children}
-        </div>
-      )}
-    </div>
+        <ChevronRight className="w-4 h-4 text-ink-500 flex-shrink-0 transition-transform group-open:rotate-90" />
+      </summary>
+      <div className="px-6 pb-7 pt-1 space-y-4 text-sm text-ink-400 leading-relaxed border-t border-white/[0.05]">
+        {children}
+      </div>
+    </details>
   )
+}
+
+/** Opens and shows the section a link points to (/legal#privacy, the contents list). */
+function useOpenLinkedSection() {
+  const { hash } = useLocation()
+  useEffect(() => {
+    const section = hash && document.getElementById(decodeURIComponent(hash.slice(1)))
+    if (section instanceof HTMLDetailsElement) {
+      section.open = true
+      section.scrollIntoView()
+    }
+  }, [hash])
 }
 
 /* ── sub-heading ── */
@@ -76,6 +80,7 @@ const TocItem = ({ href, children }) => (
 )
 
 export default function LegalPage() {
+  useOpenLinkedSection()
   return (
     <div className="min-h-screen bg-ink-950 text-ink-200 antialiased">
 
@@ -104,17 +109,17 @@ export default function LegalPage() {
             Policies, disclosures, and compliance information for salescloserpro.ai — the free, open-source sales quoting
             and CRM platform. Please read these documents before using the software.
           </p>
-          <div className="flex flex-wrap gap-4 mt-5">
-            <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-300 border border-brand-500/20">
+          <ul className="flex flex-wrap gap-4 mt-5">
+            <li className="px-3 py-1.5 rounded-full text-xs font-semibold bg-brand-500/10 text-brand-300 border border-brand-500/20">
               Last updated: {LAST_UPDATED}
-            </span>
-            <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/[0.05] text-ink-400 border border-white/[0.08]">
+            </li>
+            <li className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/[0.05] text-ink-400 border border-white/[0.08]">
               App version: {APP_VERSION}
-            </span>
-            <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-green-500/10 text-green-300 border border-green-500/20">
+            </li>
+            <li className="px-3 py-1.5 rounded-full text-xs font-semibold bg-green-500/10 text-green-300 border border-green-500/20">
               Open-source · Apache-2.0
-            </span>
-          </div>
+            </li>
+          </ul>
         </div>
 
         <div className="grid lg:grid-cols-[220px_1fr] gap-10">
@@ -122,8 +127,8 @@ export default function LegalPage() {
           {/* ── table of contents ── */}
           <aside className="hidden lg:block">
             <div className="sticky top-20 rounded-2xl border border-white/[0.07] bg-white/[0.02] p-5">
-              <p className="text-[10px] font-bold uppercase tracking-widest text-ink-500 mb-4">Contents</p>
-              <nav className="space-y-0.5">
+              <p aria-hidden="true" className="text-[10px] font-bold uppercase tracking-widest text-ink-500 mb-4">Contents</p>
+              <nav aria-label="Contents" className="space-y-0.5">
                 <TocItem href="#terms">Terms of Use</TocItem>
                 <TocItem href="#privacy">Privacy Policy</TocItem>
                 <TocItem href="#data">Data Storage</TocItem>
@@ -202,14 +207,13 @@ export default function LegalPage() {
               </p>
               <H>Third-Party Services</H>
               <p>
-                The Software makes no requests to servers we operate. Two things do reach third parties: the site
-                is served by Cloudflare, and the page loads the Inter and Source Serif 4 typefaces from Google Fonts (which receives your
-                IP address as part of that request). If you follow the optional link to GitHub, GitHub's own privacy policy
-                governs anything you submit there. We encourage you to review:
+                The Software makes no requests to servers we operate. One third party is involved: the site is
+                served by Cloudflare. Everything the page loads, including its typefaces, comes from this site itself.
+                If you follow the optional link to GitHub, GitHub's own privacy policy governs anything you submit
+                there. We encourage you to review:
               </p>
               <ul className="list-disc list-inside space-y-1.5 ml-2">
                 <li><Ext href="https://www.cloudflare.com/privacypolicy/">Cloudflare Privacy Policy</Ext></li>
-                <li><Ext href="https://policies.google.com/privacy">Google Privacy Policy</Ext> (Google Fonts)</li>
                 <li><Ext href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</Ext></li>
               </ul>
             </Section>

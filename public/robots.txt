@@ -1,3 +1,12 @@
+# salescloserpro.ai - robots.txt
+#
+# The AI crawler rules and the Content-Signal line are managed in Cloudflare (AI Crawl Control,
+# with Bot Preference Sync on). Cloudflare places them above this file on the live site.
+# Change bot rules there, not here. This file only covers what Cloudflare does not.
+#
+# The app addresses (/dashboard, /quotes…) stay crawlable on purpose: each page carries
+# noindex, and a crawler blocked here could not read it.
+
 User-agent: *
 Allow: /
 

@@ -6,6 +6,9 @@ This product includes software developed by LLMadvisor ai LLC (https://llmadviso
 "salescloserpro.ai", "LLMadvisor" and "highsignal" are trademarks of LLMadvisor ai LLC.
 The Apache License does not grant permission to use them; see CONTRIBUTING.md.
 
+The Inter and Source Serif 4 typefaces in public/fonts are third-party works under the
+SIL Open Font License 1.1; see public/fonts/LICENSE.txt.
+
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
 You may obtain a copy of the License at

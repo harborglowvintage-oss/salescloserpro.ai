@@ -1,27 +1,56 @@
-# Cloudflare Pages – HTTP response headers
+# Cloudflare Pages headers. This file is the only source of security and cache headers:
+# nothing is added by the hosting dashboard.
 # https://developers.cloudflare.com/pages/configuration/headers/
+#
+# Everything the site loads comes from its own domain. Images may also be data: and blob:
+# addresses, because a company logo is kept inside the browser and PDFs are built there.
 
-# ── HTML pages: no cache (SPA, always fresh) ──────────────────────────
-/*.html
-  Cache-Control: no-cache, no-store, must-revalidate
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: SAMEORIGIN
-  Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-
-# ── Catch-all security headers (all routes) ───────────────────────────
 /*
-  X-Content-Type-Options: nosniff
-  X-Frame-Options: SAMEORIGIN
+  ! Access-Control-Allow-Origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data: blob:; connect-src 'self'; manifest-src 'self'; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()
   Referrer-Policy: strict-origin-when-cross-origin
-  Permissions-Policy: camera=(), microphone=(), geolocation=()
-  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-site
+  Cross-Origin-Embedder-Policy: credentialless
+  Link: </sitemap.xml>; rel="sitemap"
 
-# ── Hashed JS/CSS assets: immutable 1-year cache ──────────────────────
+# The public pages. Each is checked on every visit: a deploy replaces the hashed files in
+# /assets, so a page kept from an older deploy could ask for scripts that no longer exist.
+# A page with a markdown Link is served through functions/_middleware.js, which Cloudflare does
+# not apply this file to; `npm run site:sync` copies these headers into that function, and the
+# build stops if the copy is out of date. Every page in src/publicPages.jsx needs a rule here.
+/
+  Cache-Control: public, max-age=0, must-revalidate
+  Link: </index.md>; rel="alternate"; type="text/markdown"
+/about
+  Cache-Control: public, max-age=0, must-revalidate
+  Link: </about.md>; rel="alternate"; type="text/markdown"
+/services
+  Cache-Control: public, max-age=0, must-revalidate
+  Link: </services.md>; rel="alternate"; type="text/markdown"
+/legal
+  Cache-Control: public, max-age=0, must-revalidate
+  Link: </legal.md>; rel="alternate"; type="text/markdown"
+
+# Markdown copies of the public pages, for AI assistants (written by the build). Kept out of
+# search, since the page itself is the address to index. The Content-Signal allows search and
+# answering a person's question (ai-input), not training; llms.txt says the same.
+/*.md
+  Content-Type: text/markdown; charset=utf-8
+  Content-Signal: search=yes, ai-input=yes, ai-train=no
+  X-Robots-Tag: noindex
+
+# Built JS and CSS carry a content hash in their names, so they never change: cache for a year.
 /assets/*
   Cache-Control: public, max-age=31536000, immutable
+/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
 
-# ── Images / icons in /public root and /logos ────────────────────────
+# Images and icons keep their names when replaced: cache for a week.
 /logos/*
   Cache-Control: public, max-age=604800, stale-while-revalidate=86400
 /og-cover-v3.png
@@ -37,43 +66,19 @@
 /manifest.webmanifest
   Cache-Control: public, max-age=86400
 
-# ── Policy files (served from this repo since Oct 14, 2026; edge worker retired) ──
+# Files for crawlers and security researchers.
 /robots.txt
   Content-Type: text/plain; charset=utf-8
+  Cache-Control: public, max-age=86400
+/sitemap.xml
   Cache-Control: public, max-age=86400
 /llms.txt
   Content-Type: text/plain; charset=utf-8
   Cache-Control: public, max-age=86400
-# RFC 9116 security contact (Expires 2027-03-15 — renew before then)
 /.well-known/security.txt
   Content-Type: text/plain; charset=utf-8
-  Cache-Control: public, max-age=3600
+  Cache-Control: public, max-age=86400
 
-# ── App shell routes: keep out of search results (the SPA serves index.html here) ──
-/dashboard
-  X-Robots-Tag: noindex
-/quotes
-  X-Robots-Tag: noindex
-/quotes/*
-  X-Robots-Tag: noindex
-/clients
-  X-Robots-Tag: noindex
-/contacts
-  X-Robots-Tag: noindex
-/pipeline
-  X-Robots-Tag: noindex
-/purchase-orders
-  X-Robots-Tag: noindex
-/settings
-  X-Robots-Tag: noindex
-/backup
-  X-Robots-Tag: noindex
-/export
-  X-Robots-Tag: noindex
-/help
-  X-Robots-Tag: noindex
-/accept
-  X-Robots-Tag: noindex
-# client proposal pages carry private quote data in the #fragment — never index
-/p
-  X-Robots-Tag: noindex
+# The app addresses (/dashboard, /quotes…) all load app.html, which carries
+# <meta name="robots" content="noindex">, so search engines skip them. The proposal page /p is
+# one of them: a client's quote travels in the link's #fragment, which never reaches the server.

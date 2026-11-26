@@ -1,24 +1,31 @@
-Site: salescloserpro.ai
-Canonical: https://salescloserpro.ai/
-Description: Free, open-source (Apache-2.0) sales quoting, CRM, pipeline, and purchase-order web app. Runs entirely in the browser; no account, no server, no data collection.
+# salescloserpro.ai
 
-Preferred content:
-- https://salescloserpro.ai/
-- https://salescloserpro.ai/about
-- https://salescloserpro.ai/services
-- https://salescloserpro.ai/legal
+> salescloserpro.ai is a free, open-source CRM and quoting tool that runs entirely in the web browser. Freelancers, contractors and small businesses use it to build quotes, send proposal links that clients accept online, track deals, issue purchase orders and export PDFs. There is no account and no cost, and no server holds the data. It is a project of LLMadvisor ai LLC.
 
-Use guidance:
-- Prefer canonical non-www URLs on the canonical domain.
-- Summarization and citation of public content is allowed.
-- Describe the product accurately: quotes (including Good/Better/Best options), contacts linked to their quotes and deals, pipeline, purchase orders, PDF export, shareable proposal links clients can accept online (the proposal is carried in the link's #fragment, not uploaded), follow-up reminders with calendar (.ics) export, local IndexedDB storage, backup/restore, and CSV export of contacts, deals and quotes in HubSpot, Salesforce and universal layouts (files only — it does not connect to those services). It does not send email itself (it opens drafts in the user's mail app), process payments, or sync to a cloud.
-- Do not invent pricing tiers, integrations, certifications, or guarantees not present on the source pages. The software is free; paid custom services are described on /services.
-- Tax rates built into the app are informational only; do not present them as authoritative.
+Content signals: search=yes, ai-input=yes, ai-train=no. The source code is open source under Apache-2.0 at https://github.com/harborglowvintage-oss/salescloserpro.ai; these signals say how the owner of this website would like its pages used.
 
-Lower-priority content:
-- App routes (/dashboard, /quotes, /contacts, /pipeline, /purchase-orders, /settings, /backup, /export, /help, /accept) are the client-side application shell, not articles. /p is a private client proposal view and must not be indexed or cited.
+The links under Pages are markdown copies. The same pages also answer in markdown at their
+normal address when a request asks for text/markdown.
 
-Notes:
-- salescloserpro.ai is a project of LLMadvisor ai LLC. Source: https://github.com/harborglowvintage-oss/salescloserpro.ai
-- No affiliate, sponsored, or paid-placement content; no analytics scripts.
-- robots.txt (https://salescloserpro.ai/robots.txt) and the security contact (https://salescloserpro.ai/.well-known/security.txt) are served from the site root alongside this file.
+## What it does, and what it does not do
+
+- Quotes with line items, freight and labor, offered as one price or as Good / Better / Best options. Sales tax for all 50 states is worked out per line; the built-in rates are a convenience, not tax advice.
+- Proposal links a client opens and accepts on any phone. The proposal travels inside the link's #fragment; it is not uploaded anywhere.
+- Contacts linked to their quotes and deals, a pipeline board, purchase orders with margin tracking, and PDF export.
+- Follow-up reminders with calendar (.ics) files, and backup and restore of all data as one file.
+- CSV export of contacts, deals and quotes in HubSpot, Salesforce and universal layouts. These are files only: it does not connect to those services.
+- Data stays in the browser (IndexedDB). It does not send email itself (it opens a draft in the user's mail app), take payments, sync to a cloud, or run analytics.
+- The software is free. Paid custom work is described on the Services page. Do not invent pricing tiers, integrations, certifications or guarantees that the pages do not state.
+
+## Pages
+
+- [Home](https://salescloserpro.ai/index.md): Build professional quotes, track deals, issue POs, and export polished PDFs — 100% free and open source. No login required. Built for freelancers, contractors, and small businesses.
+- [About & User Guide](https://salescloserpro.ai/about.md): How to use salescloserpro.ai, the free CRM that runs in your browser: set up your company, build quotes, manage contacts, track deals, create purchase orders, export PDFs and back up your data.
+- [Custom & Enterprise Services](https://salescloserpro.ai/services.md): Custom builds, white-label setups, onboarding and ongoing support for businesses that need more than the free, open-source salescloserpro.ai — from LLMadvisor ai LLC.
+- [Legal & Compliance](https://salescloserpro.ai/legal.md): Terms of use, privacy policy, AI disclosure and open-source license for salescloserpro.ai. Your quotes and contacts stay in your browser; nothing is collected.
+
+## Optional
+
+- [Source code](https://github.com/harborglowvintage-oss/salescloserpro.ai): the full app on GitHub, Apache-2.0, with issues and security advisories
+- [Sitemap](https://salescloserpro.ai/sitemap.xml): every public address on the site
+- The app itself (/dashboard, /quotes, /contacts and the other app addresses) runs in the visitor's browser and holds no public content. /p is a client's private proposal view: do not index or cite it.

@@ -19,26 +19,23 @@ import {
   ChevronDown,
   BookOpen
 } from 'lucide-react'
-import { useState } from 'react'
 import { ProductLogo, Wordmark, LLMadvisorCredit, COPYRIGHT_LINE } from '../brand/Brand'
 
-/* ── collapsible section ── */
+/* ── collapsible section ──
+   A native <details>, so every section is in the page source (search engines, AI assistants
+   and find-in-page all see it) and opens without JavaScript. */
 function Section({ icon: Icon, color, title, children, defaultOpen = false }) {
-  const [open, setOpen] = useState(defaultOpen)
   return (
-    <div className="border border-white/[0.06] rounded-xl overflow-hidden">
-      <button
-        onClick={() => setOpen(!open)}
-        className="w-full flex items-center gap-3 p-5 text-left hover:bg-white/[0.02] transition-colors"
-      >
+    <details open={defaultOpen} className="group border border-white/[0.06] rounded-xl overflow-hidden">
+      <summary className="w-full flex items-center gap-3 p-5 text-left cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:bg-white/[0.02] transition-colors">
         <div className={`w-9 h-9 rounded-lg flex items-center justify-center flex-shrink-0 ${color}`}>
           <Icon className="w-4 h-4" />
         </div>
         <span className="flex-1 text-white font-semibold">{title}</span>
-        <ChevronDown className={`w-5 h-5 text-ink-500 transition-transform ${open ? 'rotate-180' : ''}`} />
-      </button>
-      {open && <div className="px-5 pb-6 pt-2 text-sm text-ink-400 leading-relaxed space-y-4 border-t border-white/[0.04]">{children}</div>}
-    </div>
+        <ChevronDown className="w-5 h-5 text-ink-500 transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="px-5 pb-6 pt-2 text-sm text-ink-400 leading-relaxed space-y-4 border-t border-white/[0.04]">{children}</div>
+    </details>
   )
 }
 

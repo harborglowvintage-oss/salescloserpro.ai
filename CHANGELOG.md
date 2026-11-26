@@ -2,6 +2,35 @@
 
 Versions are release dates, `MM.DD.YY`.
 
+## Unreleased
+
+Search engines and AI assistants can now read the whole site, and the site meets the same header
+and agent-file standard as llmadvisor.ai.
+
+### Added
+
+- **Finished pages.** Home, About, Services and Legal are drawn to HTML at build time, each with
+  its own title, description and canonical address, so a reader that runs no JavaScript sees the
+  full page. Before, every address served the same empty page that claimed to be the home page.
+- **Markdown for AI assistants.** Each public page has a markdown copy (`/about.md`). A request
+  that asks for `text/markdown` gets it at the page's own address, through a small Pages Function.
+  `llms.txt` is rewritten in the llmstxt.org format and links the copies.
+- **A real 404 page**, with a 404 status, for addresses the site does not have.
+- **Checks that keep it consistent.** The build and a pre-commit hook stop on headers, routes or
+  agent files that disagree, and on an expired `security.txt`. `E2E_SERVER=pages npm run test:e2e`
+  runs every browser test on Cloudflare's own runtime with the real headers.
+- **A privacy guard in the pre-commit hook** keeps local paths, hosting addresses, private email
+  addresses and secrets files out of this public repository.
+
+### Changed
+
+- **Headers live in the repository only.** A Content-Security-Policy that allows nothing from
+  outside the site, HSTS with preload, cross-origin isolation headers, and no open CORS header.
+- **Typefaces are served from the site** instead of Google Fonts; the privacy policy says so.
+- About and Legal sections are native collapsible sections, so their text is in the page source;
+  links such as `/legal#privacy` open the section they point to.
+- The sitemap and the structured data's version number are generated, not hand-edited.
+
 ## 11.24.26 — November 24, 2026
 
 The largest update since launch: salescloserpro.ai now closes the loop from quote to signed yes.
